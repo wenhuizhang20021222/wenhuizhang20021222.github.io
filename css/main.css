@@ -1815,6 +1815,9 @@ header.header {
   font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   overflow-wrap: break-word;
 }
+.post-body a {
+  color: #428bca;
+}
 @media (min-width: 1200px) {
   .post-body {
     font-size: 1.125em;
@@ -2399,6 +2402,14 @@ ul.breadcrumb li:last-child {
   border-bottom-color: #111;
   color: #111;
 }
+.gt-header a,
+.gt-comments a,
+.gt-popup a {
+  border-bottom: 0;
+}
+.gt-container .gt-popup .gt-action.is--active::before {
+  top: 0.7em;
+}
 .search-active {
   overflow: hidden;
 }
@@ -2769,7 +2780,7 @@ hr {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #a1ffff;
+  background: #a3ff4d;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
