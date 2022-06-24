@@ -2,6 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>http://zhangwenhui-blog.com.cn/2022/06/23/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+        
+        <lastmod>2022-06-24T15:25:05.872Z</lastmod>
+        
+        <date>1655954417000</date>
+        <title>关系数据库 | zwh's Blog</title>
+        
+        <desc>Here's something encrypted, password is required to continue reading.</desc>
+    </url>
+    
+    <url>
         <loc>http://zhangwenhui-blog.com.cn/tags/index.html</loc>
         
         <lastmod>2022-06-24T13:50:54.971Z</lastmod>
@@ -54,28 +65,6 @@
         <title>sql概述与sql定义语言 | zwh's Blog</title>
         
         <desc>三、 sql概述与sql定义语言1、基本概念sql的特点： 综合统一：集数据定义、数据操纵、数据控制语言的功能为一体 高度非过程化 面向集合的操作方式 两种使用方式，统一的语法结构 简洁易学、通用、功能强</desc>
-    </url>
-    
-    <url>
-        <loc>http://zhangwenhui-blog.com.cn/2022/06/23/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-        
-        <lastmod>2022-06-24T00:44:30.708Z</lastmod>
-        
-        <date>1655954417000</date>
-        <title>关系数据库 | zwh's Blog</title>
-        
-        <desc>1、基本概念关系模型的特点：①结构简单、表达力强；②语言的一体化；③非过程化的操作；④坚实的数学基础（关系理论） 关系模型的三要素： 关系数据结构：在关系模型中，实体与实体之间的联系均用表来表示 关系数据操作：包括增删改查、传统的集合操作、专门的关系操作 关系的完整性约束：实体完整性、参照完整性、用户自定义的完整性</desc>
-    </url>
-    
-    <url>
-        <loc>http://zhangwenhui-blog.com.cn/2022/06/23/os%E7%BB%AA%E8%AE%BA/</loc>
-        
-        <lastmod>2022-06-24T00:43:57.536Z</lastmod>
-        
-        <date>1655954637000</date>
-        <title>os绪论 | zwh's Blog</title>
-        
-        <desc>一、操作系统绪论&#x3D;&#x3D;重点考察概念&#x3D;&#x3D;操作系统的定义，操作系统在计算机系统中的地位，操作系统的主要功能，资源复用、虚化、抽象，操作系统的特征，多道程序设计，并发，中断，系统调用，CPU 的两种工作模式（用户态、内核态），特权指令和非特权指令 1、操作系统概念、功能及提供的接口操作系统的概念：管理计算机硬件并提供应用程序运行环境的软件。操作系统是配置在计算机硬件</desc>
     </url>
     
     <url>

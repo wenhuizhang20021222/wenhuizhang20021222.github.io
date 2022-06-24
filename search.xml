@@ -21,444 +21,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>关系数据库</title>
-    <url>/2022/06/23/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
-    <content><![CDATA[<h2 id="1、基本概念"><a href="#1、基本概念" class="headerlink" title="1、基本概念"></a>1、基本概念</h2><p><strong>关系模型的特点：</strong>①结构简单、表达力强；②语言的一体化；③非过程化的操作；④坚实的数学基础（关系理论）</p>
-<p><strong>关系模型的三要素</strong>：</p>
-<ul>
-<li>关系数据结构：在关系模型中，实体与实体之间的联系均用表来表示</li>
-<li>关系数据操作：包括增删改查、传统的集合操作、专门的关系操作</li>
-<li>关系的完整性约束：实体完整性、参照完整性、用户自定义的完整性</li>
-</ul>
-<span id="more"></span>
-
-<p><strong>关系的基本术语</strong>：</p>
-<table>
-<thead>
-<tr>
-<th>基本术语</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>元组和属性</td>
-<td>元组：行，属性：列。关系中的元组个数称为关系的基数，属性个数称为关系的度或维数</td>
-</tr>
-<tr>
-<td>超键</td>
-<td>能唯一区分任意两行数据的属性或属性集。包含超键的多个属性都是超键</td>
-</tr>
-<tr>
-<td>候选键（&#x3D;&#x3D;键&#x3D;&#x3D;）</td>
-<td>某一属性（或属性集）的值可唯一地表示每一个元组。<u>候选键本身是超键，但其任何真子集都不再是超键</u>。候选键包含的属性为&#x3D;&#x3D;主属性&#x3D;&#x3D;</td>
-</tr>
-<tr>
-<td>主键</td>
-<td>在使用关系来组织数据时，常使用一个候选键作为组织该关系以及唯一性操作的对象，其中被选用的候选键为主键，例如学号。主键包含的属性为&#x3D;&#x3D;主键属性&#x3D;&#x3D;</td>
-</tr>
-<tr>
-<td>外键</td>
-<td>对于关系R1、R2，其中某属性\属性集A不是R1的候选键，但是是R2的候选键，则称A是R1的外键</td>
-</tr>
-<tr>
-<td>全键</td>
-<td>当需要一个关系的全部属性作为该关系的候选键，则称该全部属性组合为全键</td>
-</tr>
-</tbody></table>
-<p><strong>关系的种类：</strong>基本关系、查询表（查询结果对应的表）、视图表（虚表）</p>
-<p><strong>关系的性质</strong>：</p>
-<p>①列的同质性：每一列中的分量为同一类型，来自同一个域</p>
-<p>②列名唯一性：每列要基于不同的属性名，但是不同列的值可以出自同一个域</p>
-<p>③元组相异性：关系中任意两个元组不能完全相同</p>
-<p>④行序无关性：行的次序无关紧要，可以互换</p>
-<p>⑤列序无关性：列的次序无关紧要，可以互换</p>
-<p>⑥分量原子性：每一个分量都必须是不可分的数据项</p>
-<p><strong>关系模式：</strong> 关系结构的描述和定义，即二维表的表结构定义。可简记为关系的属性名表。例如学生关系模式可以简记为学生（<u>学号</u>，姓名，性别，年龄，籍贯）。可理解为<strong>表头</strong> </p>
-<p><strong>关系数据库：</strong> 基于关系模型的数据库。</p>
-<p>&#x3D;&#x3D;关系、关系模型、关系模式和关系数据库的区别与联系：&#x3D;&#x3D;</p>
-<p><strong>区别：</strong></p>
-<ul>
-<li><code>关系模型</code>是用表结构表示实体集与实体集之间联系的一种模型；<code>关系</code>是属性值域的笛卡儿积中有意义的元组集合，实质上是一张二维表，表的每一行为一个元组，每一列为一个属性；<code>关系模式</code>是关系结构的描述和定义，即二维表的表结构定义；<code>关系数据库</code>是建立在关系模型之上的关系的集合</li>
-</ul>
-<p><strong>联系：</strong></p>
-<ul>
-<li>一个关系只能对应一个关系模式，一个关系模式可对应多个关系</li>
-<li>关系模式是关系的型，按其型装入数据值后即形成关系</li>
-<li>关系模式是相对静态的、稳定的，而关系是动态的、随时间变化的</li>
-<li>一个关系数据库是相关关系的集合，而关系模型的结构是相关关系模式的集合</li>
-</ul>
-<h2 id="2、关系的完整性约束"><a href="#2、关系的完整性约束" class="headerlink" title="2、关系的完整性约束"></a>2、关系的完整性约束</h2><p><strong>实体完整性</strong>： 组成主键的各属性都不能取空值（任何主键属性都不能为空，&#x3D;&#x3D;注意属性集不为空不代表属性集中的所有属性都不为空&#x3D;&#x3D;）。插入和修改元组可能破坏实体完整性规则。</p>
-<p><strong>参照完整性</strong>：如果属性\属性组F是R的外键（R为依赖表），它与S表的主键相对应，则对于R中的每个元组，在F上的取值必须取空值或者等于S中某个元组的主键值。</p>
-<blockquote>
-<p><strong>实体完整性优先于参照完整性</strong> 。即外键是主键属性时，不能为空。</p>
-<img src="C:/AppData/Roaming/Typora/typora-user-images/image-20220516162456086.png" alt="image-20220516162456086" style="zoom:50%;" />
-</blockquote>
-<p><strong>用户定义完整性</strong>：针对某一具体关系数据库的约束。包括定义属性是否为空值、定义属性值的唯一性、定义属性的取值范围、定义属性的默认值、定义属性间函数依赖关系等。</p>
-<hr>
-<img src="https://s2.loli.net/2022/05/16/SB9MQkbiUuwDPaj.png" alt="image-20220516162759988" style="zoom:67%;" />
-
-<p><strong>关系完整性控制的实现原理</strong>：定义、检查、保证数据完整性</p>
-<p><strong>例子：</strong></p>
-<img src="https://s2.loli.net/2022/05/16/rXFtZ146I9xePCw.png" alt="image-20220516194737598" style="zoom:67%;" />
-
-<h2 id="3、关系代数的运算"><a href="#3、关系代数的运算" class="headerlink" title="3、关系代数的运算"></a>3、关系代数的运算</h2><p><strong>常用的关系运算：</strong>并、交、差、笛卡儿积、投影、选择、连接、除运算</p>
-<p><strong>基本的关系运算：</strong>并、差、笛卡儿积、选择、投影，其他的关系运算可以通过这些基本运算来表达（关系依赖） </p>
-<img src="https://s2.loli.net/2022/05/16/1zVE8DkPaXOYuAe.png" alt="image-20220516163214039" style="zoom:67%;" />
-
-<h3 id="并-∪"><a href="#并-∪" class="headerlink" title="并 ∪"></a>并 ∪</h3><p>关系R和S的并由属于R或者属于S的元组（行）组成，并去掉冗余的元组</p>
-<h3 id="交-∩"><a href="#交-∩" class="headerlink" title="交 ∩"></a>交 ∩</h3><p>关系R和S的交由即属于R又属于S的元组（行）组成</p>
-<h3 id="差"><a href="#差" class="headerlink" title="差 -"></a>差 -</h3><p>关系R和S的差由属于R但不属于S的元组（行）组成</p>
-<p>👉并交差运算：两个关系必须是相容的同类关系（兼容表），列数相同且属性值取自同一个域</p>
-<h3 id="积-×"><a href="#积-×" class="headerlink" title="积 ×"></a>积 ×</h3><p>即笛卡尔积，k元关系R与j元关系S进行笛卡尔积得到j+k元新关系，该关系的元组（行）数为R和S的元组（行）数之积</p>
-<p><img src="https://s2.loli.net/2022/05/16/6Aq4Di3mdcESkLr.png" alt="image-20220516163515542"></p>
-<h3 id="选择-σ"><a href="#选择-σ" class="headerlink" title="选择 σ"></a>选择 σ</h3><p>σ<del>F</del> (R) &#x3D; {t|(t ∈R) ∧ F(t) &#x3D; True}。从关系R中选出满足条件表达式F（可简单可复合）的那些&#x3D;&#x3D;元组&#x3D;&#x3D;所构成的关系</p>
-<h3 id="投影-Π"><a href="#投影-Π" class="headerlink" title="投影 Π"></a>投影 Π</h3><p>∏<del>A</del> (R) &#x3D; {t[A] | t ∈ R}。取属性名表A中指定的&#x3D;&#x3D;列&#x3D;&#x3D;，<strong>消除重复元组</strong> （当选择的列中不包含键时会出现重复元组）</p>
-<p><img src="https://s2.loli.net/2022/05/16/yiZbTMXzfPdKh7n.png" alt="image-20220516163855752"></p>
-<h3 id="连接-⋈"><a href="#连接-⋈" class="headerlink" title="连接 ⋈"></a>连接 ⋈</h3><p>从两个关系的笛卡儿积中选取属性间满足一定条件的元组（&#x3D;&#x3D;笛卡儿积上进行的选择运算&#x3D;&#x3D; ）</p>
-<p>①等值连接：该特定条件为R关系在A属性（列）上的值与S关系在B属性（列）上的值相等</p>
-<p>②自然连接：将结果之中重复的属性（列）去掉的等值连接</p>
-<p>👉等值连接与自然连接的区别：①自然连接一定是等值连接，等值连接不一定是自然连接；②等值连接的连接属性不要求是同名属性；③等值连接后不要求去掉同名属性</p>
-<p><img src="https://s2.loli.net/2022/05/16/43KxoqJRZsfLXvj.png" alt="image-20220516164224269"></p>
-<h3 id="除-÷"><a href="#除-÷" class="headerlink" title="除 ÷"></a>除 ÷</h3><p>（个人概括？）R ÷ S，先求出R与S的属性集交集，在本例中为CD，∏<del>C,D</del> (S) &#x3D; {cd, ef}，然后求R的属性集 - CD &#x3D; AB，将R按AB分组，本例中可以分为三组ab、bc、ed，分别求出这些组的CD集合，本例中为ab组 &#x3D; {cd, ef, de}，bc组 &#x3D; {ef}，ed组 &#x3D; {cd, ef}，可以判断出{cd, ef}包含于ab组和ed组，故R ÷ S &#x3D; {ab, cd}</p>
-<p><img src="https://s2.loli.net/2022/05/16/s1ezau8YtGgRPyV.png" alt="image-20220516165612885"></p>
-<h2 id="4、综合的例子"><a href="#4、综合的例子" class="headerlink" title="4、综合的例子"></a>4、综合的例子</h2><blockquote>
-<p>基本都是先选择后投影，注意如果要做连接运算的话，可以先做部分选择和投影运算，这样可以降低计算开销</p>
-<p>如果有“所有”这个词，可以考虑除运算</p>
-</blockquote>
-<img src="https://s2.loli.net/2022/05/16/sNoQwLK7nvU3eWu.png" alt="image-20220516185848173" style="zoom:67%;" />
-
-<img src="https://s2.loli.net/2022/05/16/pjqTRbnkX8VPLfy.png" alt="image-20220516185957304" style="zoom:67%;" />
-
-<img src="https://s2.loli.net/2022/05/16/fjmZiRI2uoJaAXb.png" alt="image-20220516190034825" style="zoom:67%;" />
-
-<img src="https://s2.loli.net/2022/05/16/DLAMuWNqnKVo923.png" alt="image-20220516190106486" style="zoom:67%;" />
-
-<img src="https://s2.loli.net/2022/05/16/gQGOdZX5zUB3KTf.png" alt="image-20220516190238200" style="zoom:67%;" />
-
-<img src="https://s2.loli.net/2022/05/16/rjBwDJC1KUzI35h.png" alt="image-20220516190551314" style="zoom:67%;" />
-
-<img src="https://s2.loli.net/2022/05/16/vpOuMmTFUZKsJAL.png" alt="image-20220516191322048" style="zoom:67%;" />
-
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>数据库</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>绪论</title>
-    <url>/2022/06/23/%E7%BB%AA%E8%AE%BA/</url>
-    <content><![CDATA[<h1 id="一、绪论"><a href="#一、绪论" class="headerlink" title="一、绪论"></a>一、绪论</h1><h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p><strong>DB：数据库</strong>，是按照一定结构组织并长期存储在计算机内的可共享的大量数据的有机集合。</p>
-<p><strong>DBMS：数据库管理系统</strong>，是管理和维护数据库的系统软件，是数据库和用户之间的一个接口，其主要作用是在数据库建立、运行和维护时对数据库进行统一的管理控制和提供数据服务。</p>
-<span id="more"></span>
-
-<p><code>DBMS的功能：</code>数据定义、数据操作、数据组织和管理、数据库运行管理（核心工作）、数据库的建立和维护、数据接口</p>
-<p><strong>DBA：数据库管理人员</strong>，其职责包括决定DB中的信息内容和结构；决定DB的存储结构和存取策略；定义数据的安全性要求和完整性约束条件；监控数据库的使用和运行。</p>
-<p><strong>DBS：数据库系统</strong>，是实现有组织地、动态地存储大量关联数据、方便多用户访问的计算机软件、硬件和人组成的系统。</p>
-<p><code>DBS的特点：</code>①数据的高度结构化；②数据的高共享性；③程序与数据的高独立性；④数据控制力度大（DBMS统一管理和控制数据）<br>$$<br>DBS &#x3D; 计算机系统(硬件、软件平台、人)+DBMS+DB\<br>或\<br>DBS &#x3D; 硬件 + 软件（OS、DB、DBMS、语言及开发工具、DB应用程序）+ 人（DBA、设计者、用户）<br>$$</p>
-<p><img src="https://s2.loli.net/2022/03/04/7zNQasLYrVqw1px.png"></p>
-<h2 id="2、信息模型"><a href="#2、信息模型" class="headerlink" title="2、信息模型"></a>2、信息模型</h2><p>也称概念模型，主要用于数据库设计</p>
-<p>表示方法：ER图</p>
-<p>基本成分：实体集、属性、联系</p>
-<p><img src="https://s2.loli.net/2022/03/04/oMmlnGpIqh5iDXO.png"></p>
-<h2 id="3、数据模型"><a href="#3、数据模型" class="headerlink" title="3、数据模型"></a>3、数据模型</h2><p>三要素：数据结构、数据操作、数据的完整性约束</p>
-<p>三种基本数据模型：层次模型、网状模型、关系模型</p>
-<p><strong>3种基本数据模型的比较</strong></p>
-<table>
-<thead>
-<tr>
-<th>特点\模型</th>
-<th>层次模型</th>
-<th>网状模型</th>
-<th>关系模型（&#x3D;&#x3D;最重要&#x3D;&#x3D; ）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>数据结构</strong></td>
-<td>树结构</td>
-<td>图结构</td>
-<td>表结构</td>
-</tr>
-<tr>
-<td><strong>存储方法</strong></td>
-<td>按先根顺序存储及用左孩子右兄弟链式存储</td>
-<td>链接法</td>
-<td>文件</td>
-</tr>
-<tr>
-<td><strong>数据操作</strong></td>
-<td>增删改查。按层次顺序查询、按层次路径查询。且每次操作只能取一个记录</td>
-<td>操作时必须说明做什么、如何做</td>
-<td>增删改查。集合操作，操作对象和操作结果都是关系，即若干元组的集合。存取路径对用户隐藏（安全的同时效率低），用户只需指出干什么。</td>
-</tr>
-<tr>
-<td><strong>数据完整性约束</strong></td>
-<td>父子约束、一致性约束、数据的型和值需保持树形结构等</td>
-<td>父子约束、主从约束</td>
-<td>实体完整性、参照完整性和用户定义的完整性</td>
-</tr>
-<tr>
-<td><strong>联系表示的特点</strong></td>
-<td>适合1：n</td>
-<td>可以间接表示m：n</td>
-<td>便于表示m：n</td>
-</tr>
-<tr>
-<td><strong>联系的方式</strong></td>
-<td>通过指针（或路径）</td>
-<td>通过指针（或路径）</td>
-<td>通过表格自然联系及创建联系</td>
-</tr>
-<tr>
-<td><strong>使用与效率</strong></td>
-<td>较难使用、效率较高</td>
-<td>使用复杂、效率较高</td>
-<td>容易使用，效率较低</td>
-</tr>
-<tr>
-<td><strong>数据操作语言</strong></td>
-<td>过程化</td>
-<td>过程化</td>
-<td>非过程化及过程扩展</td>
-</tr>
-<tr>
-<td><strong>理论基础</strong></td>
-<td>无</td>
-<td>无</td>
-<td>关系理论</td>
-</tr>
-<tr>
-<td><strong>优缺点</strong></td>
-<td>①数据结构较简单、查询效率高；②提供良好的完整性支持；③不易表示多对多的联系；④数据操作限制多，独立性较差</td>
-<td>①较为直接地描述现实世界；②存取效率较高；③结构较复杂，不易使用；④数据独立性较差</td>
-<td>①有坚实的理论基础；②结构简单、易用；③数据独立性及安全性好；④查询效率较低</td>
-</tr>
-</tbody></table>
-<h2 id="4、三级模式结构"><a href="#4、三级模式结构" class="headerlink" title="4、三级模式结构"></a>4、三级模式结构</h2><p><strong>模式</strong>：（也称概念模式&#x2F;逻辑模式）是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公用数据结构。</p>
-<p><strong>子模式</strong>：（也称外模式&#x2F;用户模式）是数据库用户所见和使用的局部数据的逻辑结构和特征的描述，是用户所用的数据库结构。子模式是模式的子集，它主要描述用户视图的各记录的组成、相互联系、数据项的特征等。</p>
-<p><strong>内模式</strong>：（也称存储模式）是数据物理结构和存储方法的描述，是整个数据库的最低层结构的标识。</p>
-<p>三级模式结构示意如下图所示：</p>
-<p><img src="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205081008688.png" alt="image-20220508100815575"></p>
-<h2 id="5、二级映像功能"><a href="#5、二级映像功能" class="headerlink" title="5、二级映像功能"></a>5、二级映像功能</h2><p><strong>映像1：子模式&#x2F;模式映像</strong>，是指由模式生成子模式的规则，它定义了各个子模式和模式之间的对应关系。（不唯一）</p>
-<p><strong>映像2：模式&#x2F;内模式映像</strong>，是说明模式在物理设备中的存储结构，定义了模式和内模式之间的对应关系。（唯一）</p>
-<p><strong>三级模式结构和二级映像的作用：保证了数据库系统的数据能够具有较高的逻辑独立性和物理独立性</strong></p>
-<blockquote>
-<p>数据冗余：</p>
-<p><img src="https://s2.loli.net/2022/05/14/pExd5HsrKunezmM.png" alt="image-20220514221005579"></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>数据库</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>os绪论</title>
-    <url>/2022/06/23/os%E7%BB%AA%E8%AE%BA/</url>
-    <content><![CDATA[<h1 id="一、操作系统绪论"><a href="#一、操作系统绪论" class="headerlink" title="一、操作系统绪论"></a>一、操作系统绪论</h1><h2 id="x3D-x3D-重点考察概念-x3D-x3D"><a href="#x3D-x3D-重点考察概念-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;重点考察概念&#x3D;&#x3D;"></a>&#x3D;&#x3D;重点考察概念&#x3D;&#x3D;</h2><p>操作系统的定义，操作系统在计算机系统中的地位，操作系统的主要功能，资源复用、虚化、抽象，操作系统的特征，多道程序设计，并发，中断，系统调用，CPU 的两种工作模式（用户态、内核态），特权指令和非特权指令 </p>
-<h2 id="1、操作系统概念、功能及提供的接口"><a href="#1、操作系统概念、功能及提供的接口" class="headerlink" title="1、操作系统概念、功能及提供的接口"></a>1、操作系统概念、功能及提供的接口</h2><p><strong>操作系统的概念</strong>：管理计算机硬件并提供应用程序运行环境的软件。操作系统是配置在计算机硬件上的第一层软件，是对硬件的首次扩充，形成了虚拟计算机&#x2F;扩展机。它位于硬件与其它软件之间，是所有其他软件运行的基础。</p>
-<span id="more"></span>
-
-<p><strong>操作系统的作用：</strong></p>
-<p><strong>用户视角：</strong> 操作系统是用户与计算机硬件之间的接口。为用户使用计算机提供服务。</p>
-<p><strong>系统视角：</strong> </p>
-<ul>
-<li>&#x3D;&#x3D;资源管理器&#x3D;&#x3D; ：管理计算机系统的软硬件资源。<strong>资源复用、资源虚化以及资源抽象</strong> 。<ul>
-<li>资源复用：分为时间复用和空间复用。时间复用指的是多个用户或程序轮流使用某个资源，如CPU使用；空间复用指的是多个用户或程序同时使用资源的一部分，如内存使用。</li>
-<li>资源虚化：让一个物理设备变成多个相对独立的对应物</li>
-<li>资源抽象：对内封装细节，对外通过管理对象与访问接口，如：面向进程而不是CPU，面向文件而不是物理存储介质，面向窗口而不是屏幕</li>
-<li>&#x3D;&#x3D;复用与虚拟化解决的是资源不足的问题。资源抽象解决的是资源复杂的问题。&#x3D;&#x3D;</li>
-</ul>
-</li>
-<li>&#x3D;&#x3D;控制程序&#x3D;&#x3D; ：控制程序执行过程，防止错误和计算机的不当使用</li>
-</ul>
-<p><img src="https://s2.loli.net/2022/05/13/msaGykqzLiVtrDT.png" alt="image-20220513191418134"></p>
-<p><img src="https://s2.loli.net/2022/05/13/HKJvnRhTVw89bdC.png" alt="image-20220513193433159"></p>
-<p><img src="https://s2.loli.net/2022/05/13/AQW3CRkS6fHpBNw.png" alt="image-20220513192502110"></p>
-<p><img src="https://s2.loli.net/2022/05/13/LiEpfK6Awz8WFvs.png" alt="image-20220513193123123"></p>
-<p>联机命令接口 &#x3D; 交互命令接口，如命令行</p>
-<p>脱机命令接口 &#x3D; 批处理命令接口，如*.bat文件</p>
-<p>程序接口：如dll文件，调用dll文件即可进行系统调用，只能通过应用程序间接使用</p>
-<h2 id="2、操作系统的特征"><a href="#2、操作系统的特征" class="headerlink" title="2、操作系统的特征"></a>2、操作系统的特征</h2><ul>
-<li><p><strong>并发性：</strong> 多个事件在同一事件间隔内发生（并行：同一时刻）。并发的实质是一个物理CPU(也可以多个物理CPU) 在若干道程序之间多路复用，并发性是对有限物理资源强制行使多用户共享以提高效率。</p>
-</li>
-<li><p><strong>共享性：</strong> 系统中的资源可供多个并发执行的进程共同使用。有两种资源共享方式：</p>
-<ul>
-<li>互斥共享：一段时间只允许一个进程访问。如对摄像头设备的共享使用</li>
-<li>同时访问：一段时间允许多个进程访问。如对硬盘资源的共享使用</li>
-</ul>
-<p>  &#x3D;&#x3D;并发和共享是操作系统的两个最基本特征，二者之间互为存在条件。&#x3D;&#x3D; </p>
-</li>
-<li><p><strong>虚拟性：</strong> 把一个物理上的实体变为若干个逻辑上的对应物；或把物理上的多个实体变成逻辑上的一个对应物的技术。eg.虚拟存储器</p>
-<ul>
-<li><p>空分复用技术：如虚拟存储技术</p>
-</li>
-<li><p>时分复用技术：如虚拟处理器技术</p>
-<p>  并发性是虚拟性存在的基础</p>
-</li>
-</ul>
-</li>
-<li><p><strong>异步性（或不确定性）：</strong> 多个作业的执行过程是走走停停的，其执行顺序和每个作业的执行时间是不确定的。</p>
-</li>
-</ul>
-<h2 id="3、操作系统的发展与分类"><a href="#3、操作系统的发展与分类" class="headerlink" title="3、操作系统的发展与分类"></a>3、操作系统的发展与分类</h2><p><img src="https://s2.loli.net/2022/05/13/3AWQXpLSTGkobFC.png" alt="image-20220513201053867"></p>
-<p>批处理技术是指计算机系统对一批作业自动进行处理的一种技术。</p>
-<p>分类：</p>
-<ul>
-<li>联机批处理：采用联机输入&#x2F;输出，即输入&#x2F;输出操作在监督程序控制下，同步进行。 缺点：速度慢 </li>
-<li>脱机批处理：外围机：独立于主机，负责把作业任务写入磁带，以及从磁带输出到打印机。主机：负责从磁带上把作业调入内存，或者把结果写回磁带。实现了部分异步能力、减少了CPU的空闲时间、提高了I&#x2F;O速度</li>
-</ul>
-<hr>
-<p>多道程序设计：</p>
-<ul>
-<li><strong>核心思想：</strong> 将多个作业存放在主存中，这些程序在管理程序的控制下交替运行，共享处理机和系统中的其他资源。即通过安排作业（编码与数据）&#x3D;&#x3D;使得CPU无论何时都有进程执行，从而最大化CPU利用率&#x3D;&#x3D; </li>
-<li>没有提供用户与计算机系统的交互</li>
-<li>多道程序宏观上并行，微观上串行</li>
-<li>多道程序设计的道数不是任意的</li>
-<li><strong>优缺点：</strong> <ul>
-<li>提高了CPU的利用率</li>
-<li>提高了内存和I&#x2F;O设备的利用率</li>
-<li>改进了系统的吞吐率</li>
-<li>充分发挥了系统的并行性</li>
-<li>其主要缺点是: 作业周转时间延长</li>
-</ul>
-</li>
-<li>**多重处理系统:   ** 指配置了多个物理CPU，能真正同时执行多道程序的系统。</li>
-</ul>
-<hr>
-<p>&#x3D;&#x3D;操作系统的三种基本类型：批处理操作系统、分时操作系统、实时操作系统&#x3D;&#x3D; </p>
-<p>分时系统：允许多个联机用户同时使用一台计算机系统进行计算的操作系统称分时操作系统</p>
-<p><strong>分时技术：</strong> 把处理机的运行时间分成很短的时间片，按时间片轮流把处理机分配给各联机作业使用。</p>
-<p>是多道程序设计的自然延伸</p>
-<p>采用调度算法，以快速切换作业，好像每个作业同时执行</p>
-<p><strong>特征：</strong> </p>
-<ul>
-<li>多路性：也称同时性，一台计算机与若干台终端相连接，终端上的这些用户可以同时使用计算机。</li>
-<li>交互性：用户通过终端采用人机会话的方式直接控制程序运行，同程序进行交互。</li>
-<li>独立性：用户彼此之间都感觉不到别人也在使用这台计算机，好像只有自己独占计算机一样。</li>
-<li>及时性：用户请求能在很短时间内获得响应。</li>
-</ul>
-<h2 id="4、操作系统的运行机制与体系结构"><a href="#4、操作系统的运行机制与体系结构" class="headerlink" title="4、操作系统的运行机制与体系结构"></a>4、操作系统的运行机制与体系结构</h2><p><img src="https://s2.loli.net/2022/05/13/uCvXRb5ixgc4ep9.png" alt="image-20220513203343485"></p>
-<blockquote>
-<p>用程序状态字寄存器（PSW， program status word）中的某标志位来标识当前处理器处于什么状态。如0为用户态，1为核心态</p>
-</blockquote>
-<hr>
-<p>内核是操作系统的构件，或称基本单位。 </p>
-<p>内核作用：  为进程提供管理 、为进程执行提供良好的运行环境</p>
-<p>&#x3D;&#x3D;基本功能:&#x3D;&#x3D;  </p>
-<ul>
-<li>中断处理：截获中断，转向中断处理例程</li>
-<li>短程调度：CPU调度，保存与恢复现场</li>
-<li>原语管理：原语是不可中断过程</li>
-</ul>
-<p>&#x3D;&#x3D;基本属性:&#x3D;&#x3D; </p>
-<ul>
-<li>内核是由中断驱动的</li>
-<li>内核的执行是连续的</li>
-<li>内核在屏蔽中断状态下执行</li>
-<li>内核可以使用特权指令</li>
-</ul>
-<p>&#x3D;&#x3D;分类：&#x3D;&#x3D;</p>
-<ul>
-<li><p><strong>模块结构（整体式结构）</strong>：将内核划分为一个个独立的模块，模块之间相互调用。效率高但是结构不清晰，访问控制困难</p>
-</li>
-<li><p><strong>层次结构</strong>：一种特殊的模块结构。将内核划分为一系列相互依赖的层次，每个层次也可以分解为一系列更小的模块。</p>
-<p>  <img src="https://s2.loli.net/2022/03/04/2PkGeSmIBXyOTai.png"></p>
-</li>
-<li><p><strong>微内核结构</strong></p>
-</li>
-</ul>
-<p><img src="https://s2.loli.net/2022/05/13/OzmplexJuwFcj24.png" alt="image-20220513202231353"></p>
-<p><img src="https://s2.loli.net/2022/05/13/7S4E6d3gHUeNlpI.png" alt="image-20220513202617422"></p>
-<h2 id="5、中断和异常"><a href="#5、中断和异常" class="headerlink" title="5、中断和异常"></a>5、中断和异常</h2><p><img src="https://s2.loli.net/2022/05/13/ojrdODLXqEezi3G.png" alt="image-20220513205554625"></p>
-<p>&#x3D;&#x3D;用户态 → 核心态是通过中断实现的，并且中断是唯一途径&#x3D;&#x3D;</p>
-<p>&#x3D;&#x3D;核心态 → 用户态的切换是通过执行一个特权指令，将程序状态字（PSW）的标志位设置为“用户态”&#x3D;&#x3D;</p>
-<p><img src="https://s2.loli.net/2022/05/13/twndlTegkLJ6x9X.png" alt="image-20220513205029547"></p>
-<p><img src="https://s2.loli.net/2022/05/13/EYTzjIOvW7drqfx.png" alt="image-20220513205136837"></p>
-<p><strong>外中断的处理过程：</strong></p>
-<p><img src="https://s2.loli.net/2022/05/13/oRmXYrNvBUkTgfI.png" alt="image-20220513205420243"></p>
-<h2 id="6、系统调用"><a href="#6、系统调用" class="headerlink" title="6、系统调用"></a>6、系统调用</h2><p><img src="https://s2.loli.net/2022/05/13/xzmwb1KdrT5MIsp.png" alt="image-20220513213014300"></p>
-<p>系统调用是操作系统提供给应用程序（程序员&#x2F;编程人员）使用的接口，可以理解为一种可供应用程序调用的特殊函数，应用程序可以发出系统调用请求来获得操作系统的服务。</p>
-<p>系统调用与库函数的区别：</p>
-<p><img src="https://s2.loli.net/2022/05/13/tK9mNhM6OdzepCP.png" alt="image-20220513211951839"></p>
-<p>系统调用背后的过程：</p>
-<p><img src="https://s2.loli.net/2022/05/13/obNKP1RrQt9sBuV.png" alt="image-20220513212751507"></p>
-<p>中断、异常和系统调用：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>产生原因</th>
-<th>实现机制</th>
-<th>区别</th>
-<th>保存地址</th>
-<th>处理</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>中断</strong></td>
-<td>由定时器和I&#x2F;O设备产生（来自硬件设备的处理请求）</td>
-<td>中断机制</td>
-<td>①由与现行指令无关的中断信号触发的(异步的)；②中断的发生与CPU处在用户模式或内核模式无关，系统不能确定中断发生的时间 ；③一般来说，中断处理程序提供的服务不是为当前进程所需的</td>
-<td>保存的是下一条指令的地址，以便在指令结束后检测有没有中断</td>
-<td><strong>硬件和软件结合</strong> 。①定时器：定时器是OS回收控制的重要方式，可设置为在指定周期（固定或可变）后中断计算机。防止用户程序陷入死循环，或不调用系统服务并且不将控制返回给操作系统。在将控制交到用户之前，操作系统确保定时器已设置好以便产生中断；②中断装置（发生中断源并产生中断的<strong>硬件</strong> ）：发现中断源、保护现场、启动中断处理程序（IDTR寄存器中存放了中断描述符表在内存的起始地址）；③中断处理程序： 保护未被硬件保护的一些必需的处理状态 （CPU自动保存的只有EIP&#x2F;EFLAGS&#x2F;ESP&#x2F;SS&#x2F;CS） ；识别各个中断源，分析产生中断的原因；处理中断事件；恢复正常操作；④OS必须保证中断前后的同步性，必须保证现场保护的原子性（保护现场的过程不能被中断）</td>
-</tr>
-<tr>
-<td><strong>异常</strong></td>
-<td>由程序错误产生，或者由内核必须处理的异常条件产生</td>
-<td>中断机制</td>
-<td>① 由处理器正在执行现行指令而引起的； ②异常处理程序提供的服务是为当前进程所用的；③异常包括出错、陷入、终止和编程异常等等；④异常通常由意想不到的行为触发</td>
-<td>出错保存的是当前指令的地址，陷入保存的是下一条指令的地址</td>
-<td>①由硬件检测并处理（如除0）；②硬件自身出错产生的异常：通常会在检测错误之后重新执行该指令，CPU保存运行状态；③有些异常是修复后返回并重新执行出错的指令（如页错误）；有些异常是OS通知相应进程；④异常发生在内核会导致OS崩溃</td>
-</tr>
-<tr>
-<td><strong>系统调用</strong></td>
-<td>程序主动请求操作系统服务</td>
-<td>通常通过一种特殊的异常来实现</td>
-<td>程序主动请求系统服务</td>
-<td>保存的是下一条指令的地址</td>
-<td>提供给用户态程序执行特权操作的接口；触发事件，切换至内核态；传递系统调用的参数； 保存状态以便完成系统调用后恢复执行</td>
-</tr>
-</tbody></table>
-<h2 id="7、-x3D-x3D-可能的大题：多道程序运行、简答题-x3D-x3D"><a href="#7、-x3D-x3D-可能的大题：多道程序运行、简答题-x3D-x3D" class="headerlink" title="7、&#x3D;&#x3D;可能的大题：多道程序运行、简答题&#x3D;&#x3D;"></a>7、&#x3D;&#x3D;可能的大题：多道程序运行、简答题&#x3D;&#x3D;</h2><h3 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h3><p>计算作业完成时间，CPU或者I&#x2F;O设备的利用率等等</p>
-<p>资源利用率：CPU利用率 &#x3D; CPU有效工作时间&#x2F;CPU总的运行时间， CPU总的运行时间 &#x3D; CPU有效工作时间+CPU空闲等待时间。</p>
-<p>I&#x2F;O设备的利用率同理。</p>
-<p>&#x3D;&#x3D;注意考虑优先级以及是否能够抢占&#x3D;&#x3D;</p>
-<p><strong>（1）</strong>在单CPU和两台I&#x2F;O(I1,I2)设备的多道程序设计环境下，同时投入三个作业运行。它们的执行轨迹如下：</p>
-<p>Job1：I2(30ms)、CPU(10ms)、I1(30ms)、CPU(10ms)</p>
-<p>Job2：I1(20ms)、CPU(20ms)、I2(40ms)</p>
-<p>Job3：CPU(30ms)、I1(20ms)</p>
-<p>如果CPU、I1和I2都能并行工作，优先级从高到低为Job1、Job2和Job3，优先级高的作业可以抢占优先级低的作业的CPU。试求：(1)每个作业从投入到完成分别所需的时间。(2) 每个作业投入到完成CPU的利用率。(3)I&#x2F;O设备利用率。</p>
-<p><strong>答：</strong>画出三个作业并行工作图如下(图中着色部分为作业等待时间)：</p>
-<p><img src="https://s2.loli.net/2022/05/14/FxBnaZuVIQ8Nhe7.png" alt="img"></p>
-<p>(1) Job1从投入到运行完成需80ms，Job2从投入到运行完成需90ms，Job3从投入到运行完成需90ms。</p>
-<p>(2) CPU空闲时间段为：60ms至70ms，80ms至90ms。所以CPU利用率为(90-20)&#x2F;90&#x3D;77.78%。</p>
-<p>(3) 设备I1空闲时间段为：20ms至40ms，故I1的利用率为(90-20)&#x2F;90&#x3D;77.78%。设备I2空闲时间段为：30ms至50ms，故I2的利用率为(90-20)&#x2F;90&#x3D;77.78%。</p>
-<p>2、 若内存中有3道程序A、B、C，它们按A、B、C优先次序运行（不考虑强占）。各程序的计算轨迹为：</p>
-<p>A：计算(20)、I&#x2F;O(30)、计算(10) </p>
-<p>B：计算(40)、I&#x2F;O(20)、计算(10)</p>
-<p>C：计算(10)、I&#x2F;O(30)、计算(20)</p>
-<p>如果三道程序都使用相同设备进行I&#x2F;O(即程序用串行方式使用设备，调度开销忽略不计)。试分别画出单道和多道运行的时间关系图。两种情况下，CPU的平均利用率各为多少?</p>
-<p><strong>答</strong>：分别画出单道和多道运行的时间图</p>
-<p>(1) 单道运行时间关系图</p>
-<p>  <img src="https://s2.loli.net/2022/05/14/FhG1CTOSvzJu8EM.png" alt="img"></p>
-<p>单道总运行时间为190ms。CPU利用率为(190-80)&#x2F;190&#x3D;57.9%</p>
-<p>(2) 多道运行时间关系图</p>
-<p>  <img src="https://s2.loli.net/2022/05/14/vworFI23sGiWeKp.png" alt="img"></p>
-<p>多道总运行时间为140ms。CPU利用率为(140-30)&#x2F;140&#x3D;78.6%</p>
-]]></content>
-      <categories>
-        <category>操作系统</category>
-      </categories>
-      <tags>
-        <tag>操作系统</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>sql概述与sql定义语言</title>
     <url>/2022/06/23/sql%E6%A6%82%E8%BF%B0%E4%B8%8Esql%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80/</url>
     <content><![CDATA[<h1 id="三、-sql概述与sql定义语言"><a href="#三、-sql概述与sql定义语言" class="headerlink" title="三、 sql概述与sql定义语言"></a>三、 sql概述与sql定义语言</h1><h2 id="1、基本概念"><a href="#1、基本概念" class="headerlink" title="1、基本概念"></a>1、基本概念</h2><p><strong>sql的特点：</strong></p>
@@ -904,6 +466,137 @@
 <li><p>过程性完整性约束：给出了约束不满足时的相应动作；保证事物的一致性</p>
 </li>
 </ul>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关系数据库</title>
+    <url>/2022/06/23/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="ae0c20df2b9f922389bdc076c74053445d27e1275b182cc4355c1e9048443cfd">4630436162ade97ba2718b7d0c4b3b6351ade09e539dfebeb5402828e29e64b0761016e52c83ee143be9a5bc90a976e2ce7bd4414cecba87f31f8f630f8358faf93b63e2f4db9923ecb99d84d347b52ef7cedaac6353f41bd6b43e6faec0e92ae6b1e9c75fb1ed04ff1ee326cdf297545372c172113be879360b55e6b9282e0e90b217b4e9e3b0fcb1fc1afdd4f263181e51b00a99f2c1353d8f8d3ab9a8d9791af72cdede615bb5623498c3a4ca208826b6ec6e852de947fdb79c2ea69f86f6d67154fce7626a349dfe5d987d1dffee9a991b1b75e0aba3182bd8013a23d23ed400b6b578d45b6eaf33ec7bbcf37d3f945c4ded18b409f01dcadbd0f1da73940fb4aee3953accc197197639210b4c08889c29ab36f6a677471a4f7499d5a5e23c07b2940f5ade7ba94085f0c8f8c36021aaaa46390281b942b50bced7e7cd06e80a43c38550f9147064470e3172d0056b496aaf8ce749e35477f1c8defd7f929ceb7f1c2c49bbb23ceeb2b8932884c09db3c58e00aee2f2c327dc4a76f211a889187e094a0231c2e3e211cc80168636ce34308a7b23c6941cf8f6a76f500c6c4a27c3d973266173890b1bf2907f4a8edb0f65bece9e5502217496a3b39d02d07d7d486a6629aaf411e574e5def21548aab7fdcfe045f90be1a9229ee92fad8995a75e20ce3d68a9e2c9b13c25687c5f2870b9495f1fed53ca0d78ba09925f80908d5ffcbc4e882a3acb6a160414006025304f671e6f4fd392ccf09ffdaeafc7d184d8f000bc0431f12be9e129fa6d04d439efd3354c488404657a8a3c58f0db643243a396033c91890a63068e36dd98b292799a748b2678fffc32bc46ea8b636b3af488e59dc41fb65b7d7ef23bdd4dfcef854e38073024b7ada01421f65a4151af682b3f561149dd4b620736a0fd52c4eb8fe06d32d4fdf4677f85711b1678e93ae64d3ebd0961a9e19a9a7f234ad63c4798cae46cb0ec5c57a686a8384b76cd8597979cb827caa6c2f22e07ca9bd9ec761069fe19cd959044db80a628eda5dfc1f8ce4f3b4b8d0b1e707aba8a11d46c8ab19bbd9d1027fa41264756f3537edb78c9299e05728a122e868fa1616bdbba4195376d0dd2bde6dd812f928a6f812f17253e44ea1b019720bfcbd9c6a2b87d6ec001b6a75a11c94bca38d524cb6be47ed72b2206627fdd33831bdffad0d8c15aa29ecdbdf6abf699e2bed4de29ed0208e674ef38c2cb36f6e8b3b8d3d65fb44221b4627bcc11722ceccc38a2899c314e90cfb1a5b9cd73eda13b4d5979e851054abeec03bb88f5635b4c695ac86d3ef0de4c7e45e2d8fef1a1ac4b636abb1834170474330a9ab959228af41b6b06568cacfe17e89cffc37d59973a5874d61880bd9df723f81d0652b6ef720dec314424abab9a667a0f0c936d11d7a8197b850649a3f35eadfff8bb04c554a3bcb2016dc1c8a220720775412f1ac2865ff6ccbb15384bea1befb30abace690e3d431f2bc35d93edc8b0aeb11ebb0c0abffac9726cee7187114c3118302b903f52f484b3d0f8d4169b341bc88f8de85c03ed332783596cf12ec1eb529e1a60f1077ec549f4cdb36bb429d95f2af4b6b2932cea94f34404984ad89125260aaecbb212ab861f0b86875a46ef8fa12a0b9a64f36e1ca9010e755bcc7d6bad5d22e34ffbf32f11b135391495e7592170d91e9fc6f4d01f9243d518b85f41157e8b8160ba772d1ad7508e93e28e14998d6acd2f61ffe859bb326ab88bba8ebe267d6c6b6be900e8eb1dc87e262531fdcc06ad177e0954746640758fa9544779e26658a9e265ad8c951fc6d1259ed356149aeb39c29089e6b00f0396b46a70e7d1fb281dc607f556eb2cdb4f5d13585e114feb5ff2512c808cb2d520f24b59fb6ac66ce9c8a1daec31652b7d06d61096498edfddd80a309aa8e1c1a75a0fe378900772733fa151984af29db7bd0a66bd6fd0c4b33be2874d3c7cb46882b961b432babc28f87ba5e60df2a0532d6db191c6f1c8f41731669ecc0fbf94ae508a7a1d9c711a172f2b3566e310efa5635a2b1142a32a8b241b8eb34992908212edc81e3de75beca11bbd13dfe9b040b2f09331b071cc315bd87bf9efd926bfc3328ec123caf45f45fab759e70c63582350466349200faa6afcb58dcc42ff3a6b7ca4fcf15e6fcc7e6bbe7d5ec7f2a99418fb9a7166760f76747a9251a3d09b3a303f1e59afdc0d360ceaa4cccce7579e0993a67f9f884bdff464040b33c75057641af8ecfcfea14ff217d53b77983b71d6c22d62d02582f7ca7875c65c175b3c72367c8ae16535e51311b102d659d906a4a7eb8427a9774eac96937a90d18957a1d3afba0a0489c6385ed3850f60bd20872d4a3718513f657174bcdadc480466d207da336d386dce2830ad5ec8fba06db7d4aa488d4ab9b04cec8a9432234c994a49cda4d6d526f248c2afb59ae3799fc9fc2d10c2edcead90a9b493641d19fc9bbbe9c295fc6676fd173132422eb8737d5633b565edce2152b10efe4b5c138e38df7f4a4fa9e47038e202a20aa9b04b7222453a1638d0b2f8ef17f1a799a234fcbae619815a7db84d1c1a97262eff457384198fd3b70c0dfd33f6f4286a9abdf11d086e543c1345d7b52e92da0747ec4e8bc42ec5fa4d7e5fdd65aad070b300b084d994514e03344d747a942bc5e44de5b2b6f42a19b874fa09eba0e150dc82d0f1eab970ff5f0b53c20fbff3884f41f179c61db1845a7622cedb67520806b9f9a7088f75e08ac07ee2dfb4372c7d87c7d54bc955b4d639a312fe635a26b99807913caa473201b2e929d62ad2b75b058bb3bd444b9cf5b31f1e7050ff762957042f47b5483ee2eb68a36e262a7f91c0229d7b15859c25305466a1e5d2d38368c72503db5398b7029012fe15daff8d47c6c53f45911b1ca1a16173fa74665e83a08bb83511fab4aaffc3f9de27ce7f551703ce7a90ba518a69cd09af7d880b14b1d0b24d1eac3d569e9e9c2355707c75c55358fb659c0ac98113d963ea706dac417ed13fdac8481c33ce8ce69d10ec3b1c1d34030ac2fe19d34e28bcecb37b4cb167cb4f38bad572b738749c37b164e4f336b0763867dc6aa11fb95d5c5ae149264e3aa3b1c756d7a34801fa6287c84794f20b64a8de5ae2f99753747238fa6a92429f10537c53048c137080e2ae1b8e05b45c8cf24c362f13b268c66385c389f22078372a8c75e31de3959185a9dad10f7b065c4e63e460f6e76ba270014e5ee4793d327a24746782ee63d1e7abb88b7a29e14347f2cad0c3f24f9ac023ec28ad904b9a0453eab1ad9943ddf5df132c2de23833c6ac8c0f0dc35ac7f3b9803e3bd28a0f8e7cc594d450255b8972a38fa023f947efb7b72ca6c9560af7be1af73ba4ea79915a96b505e20224b769632e961f5f70acd0d11944e11fc58d3fd21d190ac1c1c354ddffa6624ea0635a3f9c1a07c284d51e5b9af0893cea2247607ba2ff81ccd7527930b082a39d1cd1b363da42a5e83c740523e143c45b605758514415de1de6a89ec4a9e441f7d9b730b70623fccea9677ecdf2aeb32935779c63863a97fdcfab5da0cb47094763f35fda4802567f9ed7b18afe2d92fe6850924b5e3e2823a31e964a588f69a3fd55c49fe2ca42b90a3be1b7ea492a50e1bca496f41af6e27f8f9c0829e0286675377e95aeaff6357b798346e24be6956e479c21813454b3e4c09c7b92a638df2a75d054bce97d651fbaa97df885ce19ceb503e7f826f31704460fa17370cfc1dc9b423ca7c7866ac262759421bdba8e18a97f1851b61ea95fff5fe5d96317ecfbbf9db5f3ad035b2c2bad2fcf14c4f864013493332cdbdffd44fdcb4f7cdc2660f4e98ceee55af76be6bc095924d9ceb2dcc82683128c37c18b3e566171b9e170a066c535f3c2128226e77c65b19a2876a96d6008ebe066f2757a189620e3544c4da19cb140c7b9e9c79b1b7a903417e88caf528a6bf99217eb7b20970b8519ebc95d4ba342ed8d333319c0147372a79bc165124e3df7cb733db003188723f72e0fc32c0f83fb17c86928c145466ee4cb7820f9b3d4027925b7220fe23017524cdc12c6cfdfc6b90130c4e6e202f3042a582d359aa9b699aae7ce1cea4e2f5468aff2e0d06286e1272b22de3813f7db1a107c2efc78f8571afa8a614aef5c49b0b822a9e299677c97de8dfc37a71734577846f99892484346069daaee3441b527781be7a7dab52b4c8e962ff06c67f7f6109f478f3240139c14900b826690113e5950717e12032613f001ef5402af689c3dbf9840910c98cead252a66c2e6c32a5822bf99d0d7d18248994ed456884efd163357205c0f5d10031eb26aaa2ac7dad2e6c95389f95287e03d0dcd69bef32852dc2ca6fefc72dda4227d2ac97db3038167190ff00cda2667d7df0ed71afa041980499945b63c3f55aa6cb986a1850217b5d051a6f9eaf898180e8fd2e3cef793f348a5e669d5b2d91f73be6eeeaa3537ce087c40bed8f145e84f199f2b20f2c0b09f9956dbf7b75c4b7aefc04f64545d70ab5c09368e14c3dacf0122bd4c66a6efacd692823bb54f6506682e01b4eb395287db96f3dda8e4c4162fdb45dbbbfbc6f8aa41fad136ae1308b515d27e590df7ad20585edb6d2c7ff10281bf6fc5f09e0dc827f065805777cbe81f6197b8461450061aedf11f419534c879de7081761f75652cba7d2b9e9856ec3d9d607ce13e24749ac69b2840fc3926afa828e81ca2be00aa9441befa9f9879b4b172f2f590deb03e5b784ad3f22935a79e7c58f65eadf64752a1e8df18c4d093e52943ae3707631013f5a54cf6ae48008e9c7e5c1e0853dca194139008c35f4d59a8f700e9d90c0c1514268b46397e0f573db5d308711e445509412c6421b9dcd8943f2646eeda53305e4a93e0baea97614d8280388b692284705ee3bfe1c41903e200a2b69b4614e0dac2d77f505744702e9bd33de4c2666a22a2ca5312f8fe7bca16dbdee2d84e73e4ee15100fe5b5cfc5aaf5b437649989ec9404bfaacc58b9ac9084c25b9397da8c96883f34a28f14936dca324caf5581088c81c3a7d711552f69e43e85fe54e2c8e68555151d4532f754bfd6116e822b30d6967a808a7ea0b05aebef6527665d93504758f762239b3805836054f49c2226731ffb67836cc51738f8c20d94c2db4074502fb0de896e44d019641e07c5caf215023c44e0d293f479f7d3be719969432049a832f6b57edac09132256bee33dd21c00146f0c3a151a6cc42667d76fbc6c64de9c618eb96ed23061a74b02e18c456f1cf706f864b8db8628d5e7c20c61c0c9d683f3d1871239c23a6b893596e6fb39efebf525721eb553ea6e01df5549eed5e45c367a1fe1b06f248361815cba8746e12abeafb28470cea282b519e2be57d6e1381e64ab52a01528a41bdb0213be880966c129a239d475aa81e146378e8a4b2963ad99014eda11209fb92f68840726f834e727e5c38057d6f5e482f4887da5dac18610659e1199dc106f9a04807c462592163c57d602372c73c947d16d9043d145d3b21a1771cce3ad6b06e43e2d221682b3d4c240e9d91d75b4efa4a6fcd15c32fd88fd8c685a7cd8fea9f616739a405ba67746f3210b897a73a842b15451b73d722fe448edb861c59e8b16eba26e627729c90039b78dfc1ac11ea07f7941f533f69cc47d8bd0edcea8c0e63cd4d3e898b797930d6566a0d12efa2111b665998f483e4c71235a4bffb6c5050645635551d6254fdd781f74db882b100dde8de17bf3a0877fe493a5afb8d32000d6f6ba1ea374fcd0b3db84c7e2593661c2844298d278e0d4ea2f8c5163a04a4a870abf1a3493eb3b7edfc43a7b805c9d30537c4c4fff8e354e708a4c9677800d3db6ce31a32b3e311e7b612e2ee8182df7b4cd3fbcaefacf94f17a961c28cd3f1737caf5742d94aa2eb5e501d7fcf77f5817f69e0412c0c4c2f197be60c56f4d6b4016af5d919956d76d1a8622cf44d8e19c368713bad860d30e4ae878a164bbcea107604c4f22d7de9bc25dcd17aca6feb5c98aa9bc66c07a2ade66ea2689ba44c9e3733e7383b84d9b2d217e02bcab2507f259342a791b2ab9d481ea073c0d3a10c3b2e0c68645b4faafe76261172903b22a86df282d4a8cfb901996347ebea7481be8beee21a79540e71b760c7c4de815a9ec28eefc6cb6c720705043b4ebe9b1b7c821d06ab25b3564cf1a7a56fc4c7cc76ca698497956725e30b288c84680ffc725f50ca284a6f29a3e81124cff2a76e545b44836e3e7895996f9f70038d7cf7488a2926a6216052e9e02cfeb79cc3b5420d6a4c9b99e564dd78fa166074be49a642667205781f6bccc0dbf43107e86994bb460251ae32401e817f9c8c05542011db6e0b6d6fe4747dabdfdbf03b8f4cc0885d0769d4c8045a0f0e621d24c57bb7bdf874f268086eba9f02c634269770fdaf4d94ed1f148484ae5fa5ee7ca7f1f36ab835b3ea0dcdcb04922295e05bc71b76a882d698e704e14dca0a4424d7646aaf14c3b3e67f7dec8badf937f09da031de72c1dd406c4ea44d4eda95fe2650257a22360fa8420eb74dafe55d7504a5a7f83f259e24b38cfc38591e235e3fd36e0d8fb89455aededc943658013806dadacf370446d0e79c668584df34b3cbfce6ebaeba996917e43f6502fa3835c88d3e84cc7b3db3cad97a65482fad8f3830793c1fb3e85b45b5b80e102f3cb91c6a21326138a6f4058ab737d5940adac8053dcf11cadb93578adde5e70b9861e1970cc8df22d6ef085e67cf8ee41cb3860ef1119af09d4a6f14c0e7a72bcb19afc1405d096720c601fbcd4a7aded36f8458ec6cdb83bf27a04ab5f12f806b68f56e05d2af3ae194fddbbb21817d48ef33f5bef84d1c83441e6ca043136b27ea8f55e0e7e8e32089ea734c2737401f83a813f0cf90597f181fbfd136e2ecee6ba60096a5e8a77eb4cc39fea9e4551129b292813d27fa5e69b3a320ab125ee736e14560646a18e78b2b110cde3c5950b3eb01badedd8af3a72c6dc37dfbef1b79f4a290f1d9dc5879b581e25a8f693868801055ae5cb3b9285ad86e03d5b501b6c8bef9a69a263643bfd460cbf2832312d906b0bb20ab335bb6b053d3d224624f405e493de365005e5e6339f0cf406d9967e34efc8dd61caa9050456d3253a8cc078c00c1c2b1c7f37bf0d9c1b566874837011f10acfe4c18fff1473436ed3ec7ac42e485b528b625fb9f4c733075691056f2811bfd89cfa9b6654237bee92cce9ca5ff9301aedbbb700242507237c1b300d6d59cd8c6961c4fa2a31eeaa6e5fb3f6c6922a34d1412c14b6b87921707352487b842f4fcb2096a303a5a1b0d03fa9bfbdf19369066a39309fde277be069e8cb8eff9ee534868eb3405eadd74703d849b544e0e4c6fe1be9f32c18081d7c58043f54ff03c4ab87c5f5a7ba88ef8a901858c71ffff9918f15d26ec2a115e1eecd188fa3af08e4929e9163ca94d7110037436a8e865496b61f3e23e2fa293b9a72a4cc82a22739c076deeb5d44767d062bc317b6f08569bcf092be817acb1e9abd02d8253dfe2a7f34a09029fa9275666911752e6b3cefee3d8515311b88d3cd4b76fd270a78365b0b480e5cea08ff41da5ff5d0911acf05934fc8f5bf08b4ea97ba27dbf769cfdfcb8be93455e1b9110ab7b475211d29658b7093448f98c8088826e5f8edb0c4a1999d53e38cfceaf8319eb886b4a2ad0503ad4f01553014f9250a100882d62cf5771a5e6ea153ad1a073ea201c1ab3020b6967ea29653a7c42448c56119af80326c10d5769bf96a9eb80fea5cf8846c3a7bd3994b4556f467ebc20358bf352b2ddf2e81e3490d3b91d16b444126c62fc5b7587228d6cfe03adb7068f325c3027543273bf9e44aed46783be83033540d47a7addd1fbee09446bf5ce39854354c1d880726683e793965a0682acdc0225caad4e3ac681f468353e84e19e805032435e7b07fedbb0683bc6f1f3dd4f8dad637ecca51e91d4d95590602490aef01bb88836fbca13c64e3c7c674ce1cc15b8a03c2536852a67b0810fb3be188933fb8a152a3ca018ac69e18f5e877e2baee9a098d13394f558728f7e59e8651eb5f68e6534ba82258e4b6787868a90c65c39818a7f59737ebee8951b3a852b58551c7d94228264bea8cf59a2fa22d6d5b28466a091f16594a005d3142d1a7740291634fbbd4cd168e24f0a1051f2fea3a7c8a84dc724b81e629509c39a0433410d6076a531819bd3092b02d74b3dcdf70266ca8c2b4852bc4ecae67beab45aa37df8d01e7de036ec4e710339b1672857cd584f44ca4a11c02940a650948e2233073c9e3ffb6c07fccfa7e2ee397aac12eef0eea62d84762dd72176ec548c0a6405d919ddd60e1aeaed1960c52385188da1940ea9f4feff4e6db42ac2619ff21a469020bf7c2dc58aef51b660a5d242aecfc9267b77620947ebe66ae58e2ab987d10f961acbdee0ab214ec06c23e2d6c9824b79320ac96ae0bd48434ea0744190c85c0531ef5b8ab5f31ffb85167100a64a47d77126b98d5b57302bc28b201e0272ff4f27b7a7f093be6abbd6928e6a46f1ac4f72fe799c92446acd4032f751a7588c9fdd2a53dc4cf1e68353bac31400bf8094de243f0d138b7613a15550b34fd55d24819283f44b195cd27d67b42804ff5bd7a38e55ca4cd4266660385abec69cdd4c337de8a796a234f0e8127a5315621bb1bd5868a7adf48897e6fa649f5c2d486254be57839d231a2be33d4fd62cde622bc287d1c1b6f6179eaaaa1b0647aa40df209ddbd1afaaeced867ddb2db95370bfadafb68119c1bf0e13e93194ca365eef8464ad6a4372b3d797f701a536f164bb721584c31020a6117fa606eca865541ce834ee58a7bce85c72caea5c51e5673fde5e86e46c35f08ff31bd60d39756d557dfc46647ba342a0c7e8d9170e14936ace96a365dc5cb02c97feb17bee2532c25a071a79ba849f672f0f4aa1968678bf74669123353582032b00307157aedd6001aedcbfa7cf4c62e943827734a8c26bff227876852fa23078d5ea02134e7e22392c337688c4934de44dc10bbdd32b2fdf618e837de4e080e3edf01ea083aa3f7e1e142444ecb8ff5360fa1d48ce4a977ffcae18366cf85c2bed6255140b9902abeb815999806e3f697f5cd738c4804a4b3e1b73946666ca8d3ba7937fcb24611af2f8e1f5f12ebd15640015429743e39315d271a9f058fd1ad89a6aaec8d6947e70ee1189144ed8d0d2a0b77a86e527358c3a74684524b6315f3f96b9afc18d34a787b657b40acb390ab75998e4ac4347b97c1cc6fa7356c8936652df6bc83e2ad26f80dbfc2e4b8e86dbdfa00e1339ad85812100f5e936c9d76200040cc30252b49ba4dd109ae1fe4c2063cac0328643d54dda8596895b127b376fe3ab1c6b3640f6ee2fe711add155a2bb049982af43d4ddd6ccb401e3a08d1e4c277bddde5bbd8d12ee9482e53ca72d8630c7cfb4d0e50480110f7a09a4f919dd981d37a6e2f10276d2d6e97d006449e25040ba347bb3e2ae9404d19806973a8028a1dafc5c106cebbe070c74ed1764af22a920c9f671dfb452570669ac0d5df95210f2fdab65f31a636f9c0dee0f7b0ca49088bebc4406c369a740064f63b7e19e498415534b2d8699886a46aeb828bb601aa615b054bf8652d0df70eba5d375695fccfbf06ce56f64db700746d81bf90527cf655ec651410ad93ff39e86fd7b1e090123a898e54f1666c40d73d94bbf7856e774bb4ec9a28479c52e412c4dc6026a80d07ee4430b5dae87eefaf2cd79aea84a96bbe6c88b3bdaa215f474b29426342c3298cdb7d02f610de99b4c82c19f68f995550c73f58f7bccba44d9a2552d8460f70fd5121dcb33b4d51858c3b1bbedd0e292f8ff5853c7d3ab5f8e89cbb0be880abdbc52360965eefae9f5aded90ee10e0e4f7de289e1dc54ae5cb99fb5f711563ebafe392dfcf9d021eae7643d0934cdca56796c437b2da03f3e931db93e738d9efb3ba8694f620a522ecd8a2080b19c821c28d38ecae833ccb39082a31d64afa74f3b32112e31103496d14e1a0a4be2c32a2997d3437c806744bf1bf717fe36a6fbd714c1d0d7de915d8cf4c34442fb47e800566960827b516cba7641619e0cfc8720f2e88f1669cf660b8e4436ebe02b6fc4b9b1859402f6d3c3d7bcecf620dd0efe691159d94a47b5a2c0adb61ab2d247abb101bbc46c31053a14da287d0191a6411d2f43c5d9e45f32dc6c2d1ba9aaa7bd7467ef59264e1964436fa7257539b2bf99291350fb515700052a4466a4166fabd6fc8cdd5253e2e53ea2b123f772f2bd1371790e73cc7818b827d4edf15364d661dd96ce1faaa1bba24d2209fa3a639c3d4d91009812d6c7c865c0ef18575d951914b36afb78a2d382c107ffc6c19daac5a13e0c3b18a7ea9079cd5ea62cdf6aa8ba837c7e044979e99502fd36e06f64b8a8bedc2a668de5119fa073bad3833ff9e1441c731a292d8d8bc391980f5dcc7b94b1e083ae8c70ce22e0c68437e808e6a7b42648d9281f2b08bd7039f563cd92c365e1bd32060080b02719d18fadb52b962d5229cd089af368de4109eeb6bc2c5c731ded23fd43da67383912d46d35dd224f4cc16586ad0da80ba2c6a4acdaac4f1d0b648832c35ef55623830fa8dc75e13a7f9afef741725333e764360fb918ee958db5a50552fc186b874c4f881c9e24c3c8812955045dff386c1bd0a6debe07de43d8d376b041b0568228874d3790435f4d7daf4a354ae3b286d7f9190d1c2fdb5b77273f347c587395b012cd4ad852680c44e508615dbeb04c7ba7256e3cadd29a4ef19228761d730e0e0ad1eca69cd110e19976a1285e60e3d29fc41b4993129842d376ba0d0f47c25a75c155e3ba62a1fb31f4c2786f37e294e4546ee0beb841f83148ca1539499595c4c96e26e060ad39ef9840083c9c29a9270191d3c1a44f9eeb7dea58dca33d78beff73b80b6044fa33f9fd9ce8620d93e1b64027ab6d8dd85ebe1ec757485b1f862e3b7e241b3efd541ab702ceb058fd5906e4039fc29f6c9e599d1ca21a42ca1907d268c295638eca57fa8cf124e025d4f1e552e1bc0b5159ca3c5200f05285fde061df3b35d703b664622914e16caf3c76b8e4253d1877584f24ea5e3ab2960a167775d37575da4f588ee5b57e12bfad784b77fddb9c4f534a5791c275b104c81175b76f7529502eeb7ce56cdadcbe635e42fea78547de84efa47d2b6c2c9f3239455f6de4e16e959af942edabd03fe4da55658c62e117271ff4835f61ca23ea2533ba68739cb8c7e0448ec58315b00c0275ddfd7a9c4e5f65f1a0c58ac61e5b6335b74e37d544a2739e064d922e0a5b0d8aeeb0203aea9e8a0348662ba325b24cebd45d7534e5a38e67b8eac58b79309e88d2cdadd0d7560c17261c94ecc052a83a30e83b571cfd86142b6fdad8439525fde7807f2ae737c1d72bdf6f8d0ab43e1c6d26b0205464b98b642f321ab06898b41a45dedd567cf6c4eab4ffaa2173f9cae107ade4830ac640d814cc7e7062cb91b8ae9eec54bced52194d8237578bf0e36db7876b4970c66bced544d8b3f02bcf5cd84df2c444ca65d5dd7eb43dcb4a28249be84f5cba10bedcf13e2f7aae3efa95982534c32ee97b954de0df192b1a73a7613888627ee449fff9123876ea82ec2dd0942b3b59764962fe1a8da9d495421ed11ffc4e6e05db01f6325c620a1c194d2e8c5987add8ca745b10a9e1534896a3e710d1997c34731bd8dd8d0a379b81c019c447a3cab3b6cf28ce60e60ac5a0d6d23ea226f2114a84b38943d0ae23c33fa597e87eba5d159d253e7bf6bc20f487306dbc0d70b3b6ed0343853a918fc92a527765d37cc039ce079b54ce580ec30eece7614fb0e1afc09c117e75651af45516f865ebffbab3ead8b8e21cee4b1ceea7e3a08301e2f0203010f4679874de602e41a543ef025962d122a1b464a2d1be7473df7ff7fd4141e9f615777b4bd9f729dd4742d529cd8fd591be97efa0baa94359f420ca7a270fec2d54a997c370b65b0186ba1b1c2aa51b796539b5bc31f0621a10235e328a2eec56f5590f96029e7004862907155627f227715886d835009a683f0508115f7ecbd85739cbd75a204f4b81a4018590208416e54eeeb77ebf3ceadeec4f1829b75b677ee1e0dc73439ee8a0b8ab9bf0ccf98a5a086f4fe0cbcd61f01b02d376b300cd27e8ef19d533a0dce0458684b13763d33b4a6ddca90ad2a3a53b4b83560f36e38132f7d76986245ff77afd6bdbbaa43155e8ed6332e2001607f6669e416de569903b67a70c5a1f2fe8a23105b81ba9d1c9c486c7bc3aef29f1ef0aad5ab07176725b39b87202011eccb205dc40ad74cb574fcc58316217a4f5fcab5be201b7e5c18f924839a08e3fc6072744e97cf80efe739b82ee94dc7be9bbfd47cc9c462643338895c973cef013f384aa084738912014316aceeaf7bf3ff944ba2375d338ec8bf0f3ef59971e779303dadfbf408578c87a8d492557cf0cc7ee15325d63901db0aeab3013e092ed52735e1a441d824b1ae7b4d0f4da3b957398a7f986b798808cfebeef17f3191d15a995053af8d01d462330604f89979e3c6fcc03deddf6928251ca77877ba630aec1723113f6fa37d915136ea03b5a2cc142c9afc165bb8b0b8f8691b7c20aafb8724d3e4c9e29cdf4ae08ceb2c910e900434510de5a6b3a0f098992b14d6a2252159d11299a94d2521888a3fb5d3fe4eb2845f50a9378ead6a9351927c9343fb9bb6cef9cc8c5a2b3d16c0c7fac9af6f5e14761c12357e583f36782fc98f32d5ac7e9602cccc88bd90567475f18d8c1bf3835bf3c6010da071feb5a5f063bcf35e0eb5dc558d9d631b7a501d65002e8c0a5eb4787d91b2bfb0882dafc437a0bd2b00e18e7dac4c85842f5a60ea17d958d2234ca44177c00fd127d0bdc3eff6f5a1a7ff9b0ea821f3c1e9293708834c3aab98418ad674c13e8426d8ce5569ce7ab837e181aa878baa7bb2a44df13ca19e89c470ece44c41b9d88a2bd07e1c3ff2992d91556611dd0fdc5c1c1f1013985f83df1f97907b8ebed1075e262752e20e2fa04ce9d23b14e2c4ca5c14c02ee87fdb6d57061e720e6935a568505fcc1610d1a9d9a1cc9fd13b51d2aad8d79308ad4ca903f3bb0719152a7da7b4510098217e3077c7ab49c372cc9ed5394b39b34efd7a0906e5072dbe6713a7a19aee4e24abc0cf8288a7091547a02378ea27c415c9e395029af158b3076337c2d23d2929a25b918131559e202b2bdc607d38b3e5355e74e5fe3b53f0ddd65f2f7f7b57d8321c3b6ea90abd7891d1e20a8bb1a3eb60cb64bc0c16f59a7388aece6a5d13698ad34736b56d5cf9704ee8e3d96aa57cceb5da4feb5f08abb35a78abdd5f6987207e3e536c4dd903f5b4a8230ff2d8e32d9ad53eb9d7810a4aaafa149b75985f5fc0927879685738112dd48391173e8b6cfa1f009e679161d2985cb66bece754f75272ab774c9c61237cae4fcded139713d81f58c6bc36a529126f3b12346d5a279f9e0b9d446f1714558f7ef2878e9a1ec7ebab93ccb596f8db84e4cfc654e9e066d308d980c316faf5fcbeac2cc426d4abbb672e2278b4dda53c773ebd5b6a5de9d05cb7c7c802967ba2fcd8ee8b545bc9fafa03264ad2752a00fc1c7462d312142d68fb658ee9179d5d59acee2ac5f23622e3029173196c715c074b0545a61f7e88dc76eb49d08ff6a2a92865f07859383c93cc2d69b2ec945e33069556600f9fd74b9d90e656224fb7934ada9609a6763ddada0d1edfbe901ee155e5976057897c88e4f298fd048804cac40f9b934cb81448f18aa9da1756312e13fbffd1bbfeaf1f84afe0c84737c5e09518054faad3cec3728eee5cdb2ea3bb629f45746b8a117743f231b7debd66f025965abf6c378770c7fa917e4b44db25711dbb95ba1b92176b80b01e7629bd122df984607d89b5e9f2b9841ca9a624291ea065d308eb5f6cfdd09db7e06565bef08369e351be51bf1bb7bf5e992d420e897a9d726c84b46493a217cc8a115e0436df48f59c155651b85bed177bfb2952d62c5abbc35b44bfeecc59bb139bee1178f78c44bbc02079d76ec5f89df2b02ae930e17a083641d087977c7c7bd67af3ae14e4c68d43a4665a6259b50ee248bf26bb2a9d42eceff602dc6ad1209d111d4589d2b78ea1440eac44fb2150b4717130f0c797e0dcc4296433286acf3dcbb3c7f63ac6c6ec7bfe66082aae309883dcf0db208d1ac03fa1f45df3095803bf715f22527ac29d9007a2d30cd9b24c172fcb8c8e547c06ef435470802e8972f62fc5405f5534be5dbe2560391cbb2f946a656e5ed537e6e480ceea4f8636a0b1071a2175bf6698270bb60481e9192536adcc89c65276c409ff1c344c05ba1d219a57b2ae3c4ad0fd26e14e0e4dc383a245f4e36572be405be55e83c6f035da611f5bcc0ab5cf41429b934d22a114bd3a557e23a862a443f6998d01db34c64b42bd83dad113eb57462d529a4d37c6dc6154f104595207f69675af8dca92c3d1430c74305d0ed826a428129d313ea30ebf9eecd3a7c230f3fa782cd282fa55fbee092adce1e2676ec7527017479a4fcd4bf02d5a2a946200520b5e69e8851c2b436d148be5b4407076e4d665c6b925a41920249571ebc04702f0172e03425f6d9347b741bf9a686cf056a9e76fc0d1cd2912ec87f09a097f4fb3</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入密码查看文章</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>绪论</title>
+    <url>/2022/06/23/%E7%BB%AA%E8%AE%BA/</url>
+    <content><![CDATA[<h1 id="一、绪论"><a href="#一、绪论" class="headerlink" title="一、绪论"></a>一、绪论</h1><h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p><strong>DB：数据库</strong>，是按照一定结构组织并长期存储在计算机内的可共享的大量数据的有机集合。</p>
+<p><strong>DBMS：数据库管理系统</strong>，是管理和维护数据库的系统软件，是数据库和用户之间的一个接口，其主要作用是在数据库建立、运行和维护时对数据库进行统一的管理控制和提供数据服务。</p>
+<span id="more"></span>
+
+<p><code>DBMS的功能：</code>数据定义、数据操作、数据组织和管理、数据库运行管理（核心工作）、数据库的建立和维护、数据接口</p>
+<p><strong>DBA：数据库管理人员</strong>，其职责包括决定DB中的信息内容和结构；决定DB的存储结构和存取策略；定义数据的安全性要求和完整性约束条件；监控数据库的使用和运行。</p>
+<p><strong>DBS：数据库系统</strong>，是实现有组织地、动态地存储大量关联数据、方便多用户访问的计算机软件、硬件和人组成的系统。</p>
+<p><code>DBS的特点：</code>①数据的高度结构化；②数据的高共享性；③程序与数据的高独立性；④数据控制力度大（DBMS统一管理和控制数据）<br>$$<br>DBS &#x3D; 计算机系统(硬件、软件平台、人)+DBMS+DB\<br>或\<br>DBS &#x3D; 硬件 + 软件（OS、DB、DBMS、语言及开发工具、DB应用程序）+ 人（DBA、设计者、用户）<br>$$</p>
+<p><img src="https://s2.loli.net/2022/03/04/7zNQasLYrVqw1px.png"></p>
+<h2 id="2、信息模型"><a href="#2、信息模型" class="headerlink" title="2、信息模型"></a>2、信息模型</h2><p>也称概念模型，主要用于数据库设计</p>
+<p>表示方法：ER图</p>
+<p>基本成分：实体集、属性、联系</p>
+<p><img src="https://s2.loli.net/2022/03/04/oMmlnGpIqh5iDXO.png"></p>
+<h2 id="3、数据模型"><a href="#3、数据模型" class="headerlink" title="3、数据模型"></a>3、数据模型</h2><p>三要素：数据结构、数据操作、数据的完整性约束</p>
+<p>三种基本数据模型：层次模型、网状模型、关系模型</p>
+<p><strong>3种基本数据模型的比较</strong></p>
+<table>
+<thead>
+<tr>
+<th>特点\模型</th>
+<th>层次模型</th>
+<th>网状模型</th>
+<th>关系模型（&#x3D;&#x3D;最重要&#x3D;&#x3D; ）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>数据结构</strong></td>
+<td>树结构</td>
+<td>图结构</td>
+<td>表结构</td>
+</tr>
+<tr>
+<td><strong>存储方法</strong></td>
+<td>按先根顺序存储及用左孩子右兄弟链式存储</td>
+<td>链接法</td>
+<td>文件</td>
+</tr>
+<tr>
+<td><strong>数据操作</strong></td>
+<td>增删改查。按层次顺序查询、按层次路径查询。且每次操作只能取一个记录</td>
+<td>操作时必须说明做什么、如何做</td>
+<td>增删改查。集合操作，操作对象和操作结果都是关系，即若干元组的集合。存取路径对用户隐藏（安全的同时效率低），用户只需指出干什么。</td>
+</tr>
+<tr>
+<td><strong>数据完整性约束</strong></td>
+<td>父子约束、一致性约束、数据的型和值需保持树形结构等</td>
+<td>父子约束、主从约束</td>
+<td>实体完整性、参照完整性和用户定义的完整性</td>
+</tr>
+<tr>
+<td><strong>联系表示的特点</strong></td>
+<td>适合1：n</td>
+<td>可以间接表示m：n</td>
+<td>便于表示m：n</td>
+</tr>
+<tr>
+<td><strong>联系的方式</strong></td>
+<td>通过指针（或路径）</td>
+<td>通过指针（或路径）</td>
+<td>通过表格自然联系及创建联系</td>
+</tr>
+<tr>
+<td><strong>使用与效率</strong></td>
+<td>较难使用、效率较高</td>
+<td>使用复杂、效率较高</td>
+<td>容易使用，效率较低</td>
+</tr>
+<tr>
+<td><strong>数据操作语言</strong></td>
+<td>过程化</td>
+<td>过程化</td>
+<td>非过程化及过程扩展</td>
+</tr>
+<tr>
+<td><strong>理论基础</strong></td>
+<td>无</td>
+<td>无</td>
+<td>关系理论</td>
+</tr>
+<tr>
+<td><strong>优缺点</strong></td>
+<td>①数据结构较简单、查询效率高；②提供良好的完整性支持；③不易表示多对多的联系；④数据操作限制多，独立性较差</td>
+<td>①较为直接地描述现实世界；②存取效率较高；③结构较复杂，不易使用；④数据独立性较差</td>
+<td>①有坚实的理论基础；②结构简单、易用；③数据独立性及安全性好；④查询效率较低</td>
+</tr>
+</tbody></table>
+<h2 id="4、三级模式结构"><a href="#4、三级模式结构" class="headerlink" title="4、三级模式结构"></a>4、三级模式结构</h2><p><strong>模式</strong>：（也称概念模式&#x2F;逻辑模式）是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公用数据结构。</p>
+<p><strong>子模式</strong>：（也称外模式&#x2F;用户模式）是数据库用户所见和使用的局部数据的逻辑结构和特征的描述，是用户所用的数据库结构。子模式是模式的子集，它主要描述用户视图的各记录的组成、相互联系、数据项的特征等。</p>
+<p><strong>内模式</strong>：（也称存储模式）是数据物理结构和存储方法的描述，是整个数据库的最低层结构的标识。</p>
+<p>三级模式结构示意如下图所示：</p>
+<p><img src="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205081008688.png" alt="image-20220508100815575"></p>
+<h2 id="5、二级映像功能"><a href="#5、二级映像功能" class="headerlink" title="5、二级映像功能"></a>5、二级映像功能</h2><p><strong>映像1：子模式&#x2F;模式映像</strong>，是指由模式生成子模式的规则，它定义了各个子模式和模式之间的对应关系。（不唯一）</p>
+<p><strong>映像2：模式&#x2F;内模式映像</strong>，是说明模式在物理设备中的存储结构，定义了模式和内模式之间的对应关系。（唯一）</p>
+<p><strong>三级模式结构和二级映像的作用：保证了数据库系统的数据能够具有较高的逻辑独立性和物理独立性</strong></p>
+<blockquote>
+<p>数据冗余：</p>
+<p><img src="https://s2.loli.net/2022/05/14/pExd5HsrKunezmM.png" alt="image-20220514221005579"></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>数据库</category>
