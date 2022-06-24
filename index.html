@@ -18,7 +18,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangwenhui-blog.com.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangwenhui-blog.com.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+
+
 
     <meta name="description" content="我希望许过的愿望一路生花">
 <meta property="og:type" content="website">
@@ -76,6 +79,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -83,12 +87,38 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">4</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">2</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -137,7 +167,7 @@
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -183,6 +213,114 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://zhangwenhui-blog.com.cn/2022/06/22/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zrn.png">
+      <meta itemprop="name" content="Zhang Wen Hui">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="description" content="我希望许过的愿望一路生花">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | zwh's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/06/22/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-06-22 08:41:03" itemprop="dateCreated datePublished" datetime="2022-06-22T08:41:03+08:00">2022-06-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-24 08:49:06" itemprop="dateModified" datetime="2022-06-24T08:49:06+08:00">2022-06-24</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>431</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+          
+              <i class="fa fa-thumb-tack"></i>
+              <font color=7D26CD>置顶</font>
+              <span class="post-meta-divider">|</span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/22/hello-world/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://zhangwenhui-blog.com.cn/2022/06/23/os%E7%BB%AA%E8%AE%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -191,6 +329,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwh's Blog">
       <meta itemprop="name" content="zwh's Blog">
       <meta itemprop="description" content="我希望许过的愿望一路生花">
     </span>
@@ -211,9 +350,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-06-23 11:23:57 / 修改时间：16:19:06" itemprop="dateCreated datePublished" datetime="2022-06-23T11:23:57+08:00">2022-06-23</time>
+      <time title="创建时间：2022-06-23 11:23:57" itemprop="dateCreated datePublished" datetime="2022-06-23T11:23:57+08:00">2022-06-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-24 08:43:57" itemprop="dateModified" datetime="2022-06-24T08:43:57+08:00">2022-06-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -243,6 +388,8 @@
     </span>
 </div>
 
+          
+
         </div>
       </header>
 
@@ -252,194 +399,14 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="一、操作系统绪论"><a href="#一、操作系统绪论" class="headerlink" title="一、操作系统绪论"></a>一、操作系统绪论</h1><h2 id="x3D-x3D-重点考察概念-x3D-x3D"><a href="#x3D-x3D-重点考察概念-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;重点考察概念&#x3D;&#x3D;"></a>&#x3D;&#x3D;重点考察概念&#x3D;&#x3D;</h2><p>操作系统的定义，操作系统在计算机系统中的地位，操作系统的主要功能，资源复用、虚化、抽象，操作系统的特征，多道程序设计，并发，中断，系统调用，CPU 的两种工作模式（用户态、内核态），特权指令和非特权指令 </p>
 <h2 id="1、操作系统概念、功能及提供的接口"><a href="#1、操作系统概念、功能及提供的接口" class="headerlink" title="1、操作系统概念、功能及提供的接口"></a>1、操作系统概念、功能及提供的接口</h2><p><strong>操作系统的概念</strong>：管理计算机硬件并提供应用程序运行环境的软件。操作系统是配置在计算机硬件上的第一层软件，是对硬件的首次扩充，形成了虚拟计算机&#x2F;扩展机。它位于硬件与其它软件之间，是所有其他软件运行的基础。</p>
-<p><strong>操作系统的作用：</strong></p>
-<p><strong>用户视角：</strong> 操作系统是用户与计算机硬件之间的接口。为用户使用计算机提供服务。</p>
-<p><strong>系统视角：</strong> </p>
-<ul>
-<li>&#x3D;&#x3D;资源管理器&#x3D;&#x3D; ：管理计算机系统的软硬件资源。<strong>资源复用、资源虚化以及资源抽象</strong> 。<ul>
-<li>资源复用：分为时间复用和空间复用。时间复用指的是多个用户或程序轮流使用某个资源，如CPU使用；空间复用指的是多个用户或程序同时使用资源的一部分，如内存使用。</li>
-<li>资源虚化：让一个物理设备变成多个相对独立的对应物</li>
-<li>资源抽象：对内封装细节，对外通过管理对象与访问接口，如：面向进程而不是CPU，面向文件而不是物理存储介质，面向窗口而不是屏幕</li>
-<li>&#x3D;&#x3D;复用与虚拟化解决的是资源不足的问题。资源抽象解决的是资源复杂的问题。&#x3D;&#x3D;</li>
-</ul>
-</li>
-<li>&#x3D;&#x3D;控制程序&#x3D;&#x3D; ：控制程序执行过程，防止错误和计算机的不当使用</li>
-</ul>
-<p><img src="https://s2.loli.net/2022/05/13/msaGykqzLiVtrDT.png" alt="image-20220513191418134"></p>
-<p><img src="https://s2.loli.net/2022/05/13/HKJvnRhTVw89bdC.png" alt="image-20220513193433159"></p>
-<p><img src="https://s2.loli.net/2022/05/13/AQW3CRkS6fHpBNw.png" alt="image-20220513192502110"></p>
-<p><img src="https://s2.loli.net/2022/05/13/LiEpfK6Awz8WFvs.png" alt="image-20220513193123123"></p>
-<p>联机命令接口 &#x3D; 交互命令接口，如命令行</p>
-<p>脱机命令接口 &#x3D; 批处理命令接口，如*.bat文件</p>
-<p>程序接口：如dll文件，调用dll文件即可进行系统调用，只能通过应用程序间接使用</p>
-<h2 id="2、操作系统的特征"><a href="#2、操作系统的特征" class="headerlink" title="2、操作系统的特征"></a>2、操作系统的特征</h2><ul>
-<li><p><strong>并发性：</strong> 多个事件在同一事件间隔内发生（并行：同一时刻）。并发的实质是一个物理CPU(也可以多个物理CPU) 在若干道程序之间多路复用，并发性是对有限物理资源强制行使多用户共享以提高效率。</p>
-</li>
-<li><p><strong>共享性：</strong> 系统中的资源可供多个并发执行的进程共同使用。有两种资源共享方式：</p>
-<ul>
-<li>互斥共享：一段时间只允许一个进程访问。如对摄像头设备的共享使用</li>
-<li>同时访问：一段时间允许多个进程访问。如对硬盘资源的共享使用</li>
-</ul>
-<p>  &#x3D;&#x3D;并发和共享是操作系统的两个最基本特征，二者之间互为存在条件。&#x3D;&#x3D; </p>
-</li>
-<li><p><strong>虚拟性：</strong> 把一个物理上的实体变为若干个逻辑上的对应物；或把物理上的多个实体变成逻辑上的一个对应物的技术。eg.虚拟存储器</p>
-<ul>
-<li><p>空分复用技术：如虚拟存储技术</p>
-</li>
-<li><p>时分复用技术：如虚拟处理器技术</p>
-<p>  并发性是虚拟性存在的基础</p>
-</li>
-</ul>
-</li>
-<li><p><strong>异步性（或不确定性）：</strong> 多个作业的执行过程是走走停停的，其执行顺序和每个作业的执行时间是不确定的。</p>
-</li>
-</ul>
-<h2 id="3、操作系统的发展与分类"><a href="#3、操作系统的发展与分类" class="headerlink" title="3、操作系统的发展与分类"></a>3、操作系统的发展与分类</h2><p><img src="https://s2.loli.net/2022/05/13/3AWQXpLSTGkobFC.png" alt="image-20220513201053867"></p>
-<p>批处理技术是指计算机系统对一批作业自动进行处理的一种技术。</p>
-<p>分类：</p>
-<ul>
-<li>联机批处理：采用联机输入&#x2F;输出，即输入&#x2F;输出操作在监督程序控制下，同步进行。 缺点：速度慢 </li>
-<li>脱机批处理：外围机：独立于主机，负责把作业任务写入磁带，以及从磁带输出到打印机。主机：负责从磁带上把作业调入内存，或者把结果写回磁带。实现了部分异步能力、减少了CPU的空闲时间、提高了I&#x2F;O速度</li>
-</ul>
-<hr>
-<p>多道程序设计：</p>
-<ul>
-<li><strong>核心思想：</strong> 将多个作业存放在主存中，这些程序在管理程序的控制下交替运行，共享处理机和系统中的其他资源。即通过安排作业（编码与数据）&#x3D;&#x3D;使得CPU无论何时都有进程执行，从而最大化CPU利用率&#x3D;&#x3D; </li>
-<li>没有提供用户与计算机系统的交互</li>
-<li>多道程序宏观上并行，微观上串行</li>
-<li>多道程序设计的道数不是任意的</li>
-<li><strong>优缺点：</strong> <ul>
-<li>提高了CPU的利用率</li>
-<li>提高了内存和I&#x2F;O设备的利用率</li>
-<li>改进了系统的吞吐率</li>
-<li>充分发挥了系统的并行性</li>
-<li>其主要缺点是: 作业周转时间延长</li>
-</ul>
-</li>
-<li>**多重处理系统:   ** 指配置了多个物理CPU，能真正同时执行多道程序的系统。</li>
-</ul>
-<hr>
-<p>&#x3D;&#x3D;操作系统的三种基本类型：批处理操作系统、分时操作系统、实时操作系统&#x3D;&#x3D; </p>
-<p>分时系统：允许多个联机用户同时使用一台计算机系统进行计算的操作系统称分时操作系统</p>
-<p><strong>分时技术：</strong> 把处理机的运行时间分成很短的时间片，按时间片轮流把处理机分配给各联机作业使用。</p>
-<p>是多道程序设计的自然延伸</p>
-<p>采用调度算法，以快速切换作业，好像每个作业同时执行</p>
-<p><strong>特征：</strong> </p>
-<ul>
-<li>多路性：也称同时性，一台计算机与若干台终端相连接，终端上的这些用户可以同时使用计算机。</li>
-<li>交互性：用户通过终端采用人机会话的方式直接控制程序运行，同程序进行交互。</li>
-<li>独立性：用户彼此之间都感觉不到别人也在使用这台计算机，好像只有自己独占计算机一样。</li>
-<li>及时性：用户请求能在很短时间内获得响应。</li>
-</ul>
-<h2 id="4、操作系统的运行机制与体系结构"><a href="#4、操作系统的运行机制与体系结构" class="headerlink" title="4、操作系统的运行机制与体系结构"></a>4、操作系统的运行机制与体系结构</h2><p><img src="https://s2.loli.net/2022/05/13/uCvXRb5ixgc4ep9.png" alt="image-20220513203343485"></p>
-<blockquote>
-<p>用程序状态字寄存器（PSW， program status word）中的某标志位来标识当前处理器处于什么状态。如0为用户态，1为核心态</p>
-</blockquote>
-<hr>
-<p>内核是操作系统的构件，或称基本单位。 </p>
-<p>内核作用：  为进程提供管理 、为进程执行提供良好的运行环境</p>
-<p>&#x3D;&#x3D;基本功能:&#x3D;&#x3D;  </p>
-<ul>
-<li>中断处理：截获中断，转向中断处理例程</li>
-<li>短程调度：CPU调度，保存与恢复现场</li>
-<li>原语管理：原语是不可中断过程</li>
-</ul>
-<p>&#x3D;&#x3D;基本属性:&#x3D;&#x3D; </p>
-<ul>
-<li>内核是由中断驱动的</li>
-<li>内核的执行是连续的</li>
-<li>内核在屏蔽中断状态下执行</li>
-<li>内核可以使用特权指令</li>
-</ul>
-<p>&#x3D;&#x3D;分类：&#x3D;&#x3D;</p>
-<ul>
-<li><p><strong>模块结构（整体式结构）</strong>：将内核划分为一个个独立的模块，模块之间相互调用。效率高但是结构不清晰，访问控制困难</p>
-</li>
-<li><p><strong>层次结构</strong>：一种特殊的模块结构。将内核划分为一系列相互依赖的层次，每个层次也可以分解为一系列更小的模块。</p>
-<p>  <img src="https://s2.loli.net/2022/03/04/2PkGeSmIBXyOTai.png"></p>
-</li>
-<li><p><strong>微内核结构</strong></p>
-</li>
-</ul>
-<p><img src="https://s2.loli.net/2022/05/13/OzmplexJuwFcj24.png" alt="image-20220513202231353"></p>
-<p><img src="https://s2.loli.net/2022/05/13/7S4E6d3gHUeNlpI.png" alt="image-20220513202617422"></p>
-<h2 id="5、中断和异常"><a href="#5、中断和异常" class="headerlink" title="5、中断和异常"></a>5、中断和异常</h2><p><img src="https://s2.loli.net/2022/05/13/ojrdODLXqEezi3G.png" alt="image-20220513205554625"></p>
-<p>&#x3D;&#x3D;用户态 → 核心态是通过中断实现的，并且中断是唯一途径&#x3D;&#x3D;</p>
-<p>&#x3D;&#x3D;核心态 → 用户态的切换是通过执行一个特权指令，将程序状态字（PSW）的标志位设置为“用户态”&#x3D;&#x3D;</p>
-<p><img src="https://s2.loli.net/2022/05/13/twndlTegkLJ6x9X.png" alt="image-20220513205029547"></p>
-<p><img src="https://s2.loli.net/2022/05/13/EYTzjIOvW7drqfx.png" alt="image-20220513205136837"></p>
-<p><strong>外中断的处理过程：</strong></p>
-<p><img src="https://s2.loli.net/2022/05/13/oRmXYrNvBUkTgfI.png" alt="image-20220513205420243"></p>
-<h2 id="6、系统调用"><a href="#6、系统调用" class="headerlink" title="6、系统调用"></a>6、系统调用</h2><p><img src="https://s2.loli.net/2022/05/13/xzmwb1KdrT5MIsp.png" alt="image-20220513213014300"></p>
-<p>系统调用是操作系统提供给应用程序（程序员&#x2F;编程人员）使用的接口，可以理解为一种可供应用程序调用的特殊函数，应用程序可以发出系统调用请求来获得操作系统的服务。</p>
-<p>系统调用与库函数的区别：</p>
-<p><img src="https://s2.loli.net/2022/05/13/tK9mNhM6OdzepCP.png" alt="image-20220513211951839"></p>
-<p>系统调用背后的过程：</p>
-<p><img src="https://s2.loli.net/2022/05/13/obNKP1RrQt9sBuV.png" alt="image-20220513212751507"></p>
-<p>中断、异常和系统调用：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>产生原因</th>
-<th>实现机制</th>
-<th>区别</th>
-<th>保存地址</th>
-<th>处理</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>中断</strong></td>
-<td>由定时器和I&#x2F;O设备产生（来自硬件设备的处理请求）</td>
-<td>中断机制</td>
-<td>①由与现行指令无关的中断信号触发的(异步的)；②中断的发生与CPU处在用户模式或内核模式无关，系统不能确定中断发生的时间 ；③一般来说，中断处理程序提供的服务不是为当前进程所需的</td>
-<td>保存的是下一条指令的地址，以便在指令结束后检测有没有中断</td>
-<td><strong>硬件和软件结合</strong> 。①定时器：定时器是OS回收控制的重要方式，可设置为在指定周期（固定或可变）后中断计算机。防止用户程序陷入死循环，或不调用系统服务并且不将控制返回给操作系统。在将控制交到用户之前，操作系统确保定时器已设置好以便产生中断；②中断装置（发生中断源并产生中断的<strong>硬件</strong> ）：发现中断源、保护现场、启动中断处理程序（IDTR寄存器中存放了中断描述符表在内存的起始地址）；③中断处理程序： 保护未被硬件保护的一些必需的处理状态 （CPU自动保存的只有EIP&#x2F;EFLAGS&#x2F;ESP&#x2F;SS&#x2F;CS） ；识别各个中断源，分析产生中断的原因；处理中断事件；恢复正常操作；④OS必须保证中断前后的同步性，必须保证现场保护的原子性（保护现场的过程不能被中断）</td>
-</tr>
-<tr>
-<td><strong>异常</strong></td>
-<td>由程序错误产生，或者由内核必须处理的异常条件产生</td>
-<td>中断机制</td>
-<td>① 由处理器正在执行现行指令而引起的； ②异常处理程序提供的服务是为当前进程所用的；③异常包括出错、陷入、终止和编程异常等等；④异常通常由意想不到的行为触发</td>
-<td>出错保存的是当前指令的地址，陷入保存的是下一条指令的地址</td>
-<td>①由硬件检测并处理（如除0）；②硬件自身出错产生的异常：通常会在检测错误之后重新执行该指令，CPU保存运行状态；③有些异常是修复后返回并重新执行出错的指令（如页错误）；有些异常是OS通知相应进程；④异常发生在内核会导致OS崩溃</td>
-</tr>
-<tr>
-<td><strong>系统调用</strong></td>
-<td>程序主动请求操作系统服务</td>
-<td>通常通过一种特殊的异常来实现</td>
-<td>程序主动请求系统服务</td>
-<td>保存的是下一条指令的地址</td>
-<td>提供给用户态程序执行特权操作的接口；触发事件，切换至内核态；传递系统调用的参数； 保存状态以便完成系统调用后恢复执行</td>
-</tr>
-</tbody></table>
-<h2 id="7、-x3D-x3D-可能的大题：多道程序运行、简答题-x3D-x3D"><a href="#7、-x3D-x3D-可能的大题：多道程序运行、简答题-x3D-x3D" class="headerlink" title="7、&#x3D;&#x3D;可能的大题：多道程序运行、简答题&#x3D;&#x3D;"></a>7、&#x3D;&#x3D;可能的大题：多道程序运行、简答题&#x3D;&#x3D;</h2><h3 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h3><p>计算作业完成时间，CPU或者I&#x2F;O设备的利用率等等</p>
-<p>资源利用率：CPU利用率 &#x3D; CPU有效工作时间&#x2F;CPU总的运行时间， CPU总的运行时间 &#x3D; CPU有效工作时间+CPU空闲等待时间。</p>
-<p>I&#x2F;O设备的利用率同理。</p>
-<p>&#x3D;&#x3D;注意考虑优先级以及是否能够抢占&#x3D;&#x3D;</p>
-<p><strong>（1）</strong>在单CPU和两台I&#x2F;O(I1,I2)设备的多道程序设计环境下，同时投入三个作业运行。它们的执行轨迹如下：</p>
-<p>Job1：I2(30ms)、CPU(10ms)、I1(30ms)、CPU(10ms)</p>
-<p>Job2：I1(20ms)、CPU(20ms)、I2(40ms)</p>
-<p>Job3：CPU(30ms)、I1(20ms)</p>
-<p>如果CPU、I1和I2都能并行工作，优先级从高到低为Job1、Job2和Job3，优先级高的作业可以抢占优先级低的作业的CPU。试求：(1)每个作业从投入到完成分别所需的时间。(2) 每个作业投入到完成CPU的利用率。(3)I&#x2F;O设备利用率。</p>
-<p><strong>答：</strong>画出三个作业并行工作图如下(图中着色部分为作业等待时间)：</p>
-<p><img src="https://s2.loli.net/2022/05/14/FxBnaZuVIQ8Nhe7.png" alt="img"></p>
-<p>(1) Job1从投入到运行完成需80ms，Job2从投入到运行完成需90ms，Job3从投入到运行完成需90ms。</p>
-<p>(2) CPU空闲时间段为：60ms至70ms，80ms至90ms。所以CPU利用率为(90-20)&#x2F;90&#x3D;77.78%。</p>
-<p>(3) 设备I1空闲时间段为：20ms至40ms，故I1的利用率为(90-20)&#x2F;90&#x3D;77.78%。设备I2空闲时间段为：30ms至50ms，故I2的利用率为(90-20)&#x2F;90&#x3D;77.78%。</p>
-<p>2、 若内存中有3道程序A、B、C，它们按A、B、C优先次序运行（不考虑强占）。各程序的计算轨迹为：</p>
-<p>A：计算(20)、I&#x2F;O(30)、计算(10) </p>
-<p>B：计算(40)、I&#x2F;O(20)、计算(10)</p>
-<p>C：计算(10)、I&#x2F;O(30)、计算(20)</p>
-<p>如果三道程序都使用相同设备进行I&#x2F;O(即程序用串行方式使用设备，调度开销忽略不计)。试分别画出单道和多道运行的时间关系图。两种情况下，CPU的平均利用率各为多少?</p>
-<p><strong>答</strong>：分别画出单道和多道运行的时间图</p>
-<p>(1) 单道运行时间关系图</p>
-<p>  <img src="https://s2.loli.net/2022/05/14/FhG1CTOSvzJu8EM.png" alt="img"></p>
-<p>单道总运行时间为190ms。CPU利用率为(190-80)&#x2F;190&#x3D;57.9%</p>
-<p>(2) 多道运行时间关系图</p>
-<p>  <img src="https://s2.loli.net/2022/05/14/vworFI23sGiWeKp.png" alt="img"></p>
-<p>多道总运行时间为140ms。CPU利用率为(140-30)&#x2F;140&#x3D;78.6%</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/23/os%E7%BB%AA%E8%AE%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -474,6 +441,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="name" content="zwh's Blog">
       <meta itemprop="description" content="我希望许过的愿望一路生花">
     </span>
 
@@ -493,9 +461,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-06-23 11:21:25 / 修改时间：16:19:06" itemprop="dateCreated datePublished" datetime="2022-06-23T11:21:25+08:00">2022-06-23</time>
+      <time title="创建时间：2022-06-23 11:21:25" itemprop="dateCreated datePublished" datetime="2022-06-23T11:21:25+08:00">2022-06-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-24 08:44:47" itemprop="dateModified" datetime="2022-06-24T08:44:47+08:00">2022-06-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -525,6 +499,8 @@
     </span>
 </div>
 
+          
+
         </div>
       </header>
 
@@ -540,440 +516,14 @@
 <li>两种使用方式，统一的语法结构</li>
 <li>简洁易学、通用、功能强</li>
 </ul>
-<p><strong>sql语言的分类</strong>：数据定义语言DDL、数据操作语言DML、数据查询语言DQL、数据控制语言DCL</p>
-<p><strong>sql数据库的三级结构：</strong></p>
-<p><img src="https://s2.loli.net/2022/05/17/3IjuTbYwHFQzdAp.png" alt="image-20220517103508209"></p>
-<p>子模式对应于视图和部分查询表，模式对应于基本表，内模式对应于存储文件</p>
-<p><strong>sql语句的分类</strong>：模式定义语句、数据操纵语句（增删改查）、事务与控制语句、会话及诊断语句</p>
-<p><strong>sql的数据类型：</strong></p>
-<p><img src="https://s2.loli.net/2022/05/17/fhJG9wazTZ1ydL5.png" alt="image-20220517104732266"></p>
-<blockquote>
-<p>在实验中发现，如果要显示001这种类型的数字，可以设置为<em>sno int(3) zerofill</em></p>
-</blockquote>
-<h2 id="2、sql的数据定义"><a href="#2、sql的数据定义" class="headerlink" title="2、sql的数据定义"></a>2、sql的数据定义</h2><p><img src="https://s2.loli.net/2022/05/17/5Qv3qyIM9TeJrXG.png" alt="image-20220517110612939"></p>
-<blockquote>
-<p>👉总结：</p>
-<p>创建：create  对象类型 对象名</p>
-<p>删除：drop 对象类型 对象名   [RESTRICT | CASCADE]</p>
-<p>RESTRICT：如果有其它对象依赖于该对象，则拒绝进行DROP操作</p>
-<p>CASCADE：级联删除该对象及所有依赖于该对象的对象</p>
-</blockquote>
-<h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><ul>
-<li><p>模式的定义：</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> SCHEMA <span class="operator">&lt;</span>模式名<span class="operator">&gt;</span> <span class="keyword">AUTHORIZATION</span> <span class="operator">&lt;</span>用户名<span class="operator">&gt;</span>  #若不指定<span class="operator">&lt;</span>模式名<span class="operator">&gt;</span>，则隐含为<span class="operator">&lt;</span>用户名<span class="operator">&gt;</span></span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">CREATE</span> SCHEMA library_db <span class="keyword">AUTHORIZATION</span> Guoqing;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>模式的删除</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> SCHEMA <span class="operator">&lt;</span>模式名<span class="operator">&gt;</span> [RESTRICT <span class="operator">|</span> CASCADE];</span><br><span class="line">#RESTRICT – 如果模式内没有对象，则删除该模式</span><br><span class="line">#CASCADE – 删除模式中所有对象的内容和定义</span><br><span class="line"></span><br><span class="line">#eg.</span><br><span class="line"><span class="keyword">DROP</span> SCHEMA library RESTRICT;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="域"><a href="#域" class="headerlink" title="域"></a>域</h3><ul>
-<li><p>定义域：</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DOMAIN <span class="operator">&lt;</span>域名<span class="operator">&gt;</span> [<span class="keyword">AS</span>] <span class="operator">&lt;</span>数据类型<span class="operator">&gt;</span> [<span class="keyword">DEFAULT</span> <span class="operator">&lt;</span>默认值<span class="operator">&gt;</span>] [<span class="operator">&lt;</span>域约束<span class="operator">&gt;</span>] </span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">CREATE</span> DOMAIN SexType <span class="keyword">AS</span> <span class="type">CHAR</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> ‘M’ <span class="keyword">CHECK</span> (<span class="keyword">VALUE</span> <span class="keyword">IN</span> (‘M’, ‘F’));</span><br><span class="line">sex SexType <span class="keyword">NOT</span> <span class="keyword">NULL</span>;  #使用域</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除域：</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> DOMAIN <span class="operator">&lt;</span>域名<span class="operator">&gt;</span> [RESTRICT <span class="operator">|</span> CASCADE];</span><br><span class="line">#如果指定RESTRICT，且域用于现有的表中，则删除失败</span><br><span class="line">#如果指定CASCADE，基于域的任一表中的列都会自动地改变为基本域类型，该域的<span class="keyword">CHECK</span>约束或默认值都会被列的约束或默认值代替</span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">DROP</span> DOMAIN SexType；</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="表"><a href="#表" class="headerlink" title="表"></a>表</h3><ul>
-<li><p>表的建立</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> [模式名.] <span class="operator">&lt;</span>表名<span class="operator">&gt;</span> </span><br><span class="line">(   </span><br><span class="line">    <span class="operator">&lt;</span>列名<span class="operator">&gt;</span><span class="operator">&lt;</span>数据类型<span class="operator">&gt;</span>[<span class="keyword">NOT</span> <span class="keyword">NULL</span>│<span class="keyword">NULL</span>][<span class="keyword">UNIQUE</span>]</span><br><span class="line">    [, <span class="operator">&lt;</span>列名<span class="operator">&gt;</span><span class="operator">&lt;</span>数据类型<span class="operator">&gt;</span>[<span class="keyword">NOT</span> <span class="keyword">NULL</span>│<span class="keyword">NULL</span>][<span class="keyword">UNIQUE</span>]]…</span><br><span class="line">    [, <span class="keyword">PRIMARY</span> KEY （<span class="operator">&lt;</span>列名<span class="operator">&gt;</span>[，<span class="operator">&lt;</span>列名<span class="operator">&gt;</span>] …）]    #主键,主键属性列用括号括起来</span><br><span class="line">    [, <span class="keyword">FOREIGN</span> KEY （<span class="operator">&lt;</span>列名<span class="operator">&gt;</span>[，<span class="operator">&lt;</span>列名<span class="operator">&gt;</span>] …）<span class="keyword">REFERENCES</span>  <span class="operator">&lt;</span>被参照表名<span class="operator">&gt;</span>]#外键</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> PropertyForRent </span><br><span class="line">(</span><br><span class="line">    propertyNo PNumber <span class="keyword">NOT</span> <span class="keyword">NULL</span>,      #数据类型为用户定义的域</span><br><span class="line">    rooms PRooms <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">4</span>, </span><br><span class="line">    rent PRent <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">600</span>, </span><br><span class="line">    ownerNo OwnerNumber <span class="keyword">NOT</span> <span class="keyword">NULL</span>, </span><br><span class="line">    staffNo StaffNumber <span class="keyword">Constraint</span> StaffNotHandlingTooMuch ….</span><br><span class="line">    branchNo BranchNumber <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (propertyNo),   #主键属性和外键属性要用括号括起来</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (staffNo) <span class="keyword">REFERENCES</span> Staff </span><br><span class="line">    <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">SET</span> <span class="keyword">NULL</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> CASCADE …. #可采取的行为</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>表的删除</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span> [CASCADE <span class="operator">|</span> RESTRICT]</span><br><span class="line">#既删除DD中表的结构定义，也删除DB中的数据文件</span><br><span class="line">#RESTRICT：如果有其它对象依赖于该表，则拒绝进行<span class="keyword">DROP</span>操作</span><br><span class="line">#CASCADE：级联删除表及所有依赖于该表的对象</span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> PropertyForRent;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>&#x3D;&#x3D;修改表&#x3D;&#x3D;</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ALETR <span class="keyword">TABLE</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span></span><br><span class="line">[<span class="keyword">ADD</span> <span class="operator">&lt;</span>新列名<span class="operator">&gt;</span> <span class="operator">&lt;</span>数据类型<span class="operator">&gt;</span> &#123;<span class="keyword">NULL</span>&#125;]     #加新列，新增加的列默认为空值</span><br><span class="line">[<span class="keyword">ADD</span> <span class="operator">&lt;</span>完整性约束条件<span class="operator">&gt;</span>]</span><br><span class="line">[<span class="keyword">DROP</span> <span class="operator">&lt;</span>完整性约束条件<span class="operator">&gt;</span>]   #删除列的完整性约束条件，没有提供删除列的子句</span><br><span class="line">[MODIFY <span class="operator">&lt;</span>列名<span class="operator">&gt;</span> <span class="operator">&lt;</span>数据类型<span class="operator">&gt;</span>]   #修改列，可能破坏已有数据</span><br><span class="line"></span><br><span class="line">#eg 增加学生姓名必须取唯一值的约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> c1_name <span class="keyword">UNIQUE</span> (SN)  #c1_name是约束的名字</span><br><span class="line"></span><br><span class="line">#eg 删除学生姓名必须取唯一值的约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> S </span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">UNIQUE</span>（SN）;  </span><br><span class="line">#或者 <span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> c1_name</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><ul>
-<li><p>建立索引</p>
-<p>  一条语句建立一个索引</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">UNIQUE</span>表示每个索引值只能对应唯一的数据记录，CLUSTER表示聚簇索引，即索引项的顺序与表中记录的物理顺序一致的有序索引，一个基本表最多只能建立一个聚簇索引</span><br><span class="line"><span class="keyword">CREATE</span> [<span class="keyword">UNIQUE</span>] [CLUSTER] INDEX <span class="operator">&lt;</span>索引名<span class="operator">&gt;</span>  </span><br><span class="line"><span class="keyword">ON</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span> (<span class="operator">&lt;</span>列名<span class="number">1</span><span class="operator">&gt;</span>[<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>], <span class="operator">&lt;</span>列名<span class="number">2</span><span class="operator">&gt;</span>[<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>], ...);</span><br><span class="line">#<span class="keyword">ASC</span>表示升序，<span class="keyword">DESC</span>表示降序。默认为升序。</span><br><span class="line"></span><br><span class="line">#eg:在SC中按sno升序cno降序建唯一索引</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX SC_index <span class="keyword">ON</span> SC( sno <span class="keyword">ASC</span>，cno <span class="keyword">DESC</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除索引</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> INDEX [<span class="keyword">ON</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span>]<span class="operator">&lt;</span>索引名<span class="operator">&gt;</span></span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">DROP</span> INDEX SC_index;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="x3D-x3D-3、⚠⚠⚠sql数据查询-x3D-x3D"><a href="#x3D-x3D-3、⚠⚠⚠sql数据查询-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;3、⚠⚠⚠sql数据查询&#x3D;&#x3D;"></a>&#x3D;&#x3D;3、⚠⚠⚠sql数据查询&#x3D;&#x3D;</h2><h3 id="一般格式"><a href="#一般格式" class="headerlink" title="一般格式"></a>一般格式</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">ALL</span><span class="operator">|</span><span class="keyword">DISTINCT</span>] <span class="operator">&lt;</span>目标列表达式<span class="operator">&gt;</span>[,<span class="operator">&lt;</span>目标列表达式<span class="operator">&gt;</span>]...      #<span class="keyword">ALL</span>为默认设置，即不取消重复值，<span class="keyword">DISTINCT</span>表示取消重复值</span><br><span class="line"><span class="keyword">FROM</span> <span class="operator">&lt;</span>表名或视图名<span class="operator">&gt;</span>[,表名或视图名]...     #<span class="keyword">SELECT</span>子句与<span class="keyword">FROM</span>子句是必选子句</span><br><span class="line">[<span class="keyword">WHERE</span> <span class="operator">&lt;</span>条件表达式<span class="operator">&gt;</span>]</span><br><span class="line">[<span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>列名<span class="number">1</span><span class="operator">&gt;</span>[<span class="keyword">HAVING</span><span class="operator">&lt;</span>条件表达式<span class="operator">&gt;</span>]]</span><br><span class="line">[<span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>列名<span class="number">2</span><span class="operator">&gt;</span>[<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>]];     #其中，列名<span class="number">2</span>也可以用<span class="keyword">SELECT</span>子句中相应列的序号</span><br></pre></td></tr></table></figure>
-
-<p><strong>含义：</strong></p>
-<p><img src="https://s2.loli.net/2022/05/17/GUvQItYzXHpeOmW.png" alt="image-20220517114258444"></p>
-<p><strong>概念性的执行步骤：</strong></p>
-<ul>
-<li>计算出现在FROM后面的表之间的笛卡儿积</li>
-<li>实施由WHERE后面的条件规定的选择操作</li>
-<li>根据GROUP BY后面的属性的值进行分组</li>
-<li>对于分组出来的每一个小组，实施由HAVING后面的条件规定的选择操作，保留满足条件的小组</li>
-<li>将出现在SELECT后面的属性投影成结果表</li>
-<li>将结果表中的元组根据ORDER BY后面的属性及指定的顺序（升序或降序）输出</li>
-</ul>
-<h3 id="SELECT子句："><a href="#SELECT子句：" class="headerlink" title="SELECT子句："></a>SELECT子句：</h3><p><em>SELECT [ALL|DISTINCT] &lt;目标列表达式&gt;[,&lt;目标列表达式&gt;]…</em></p>
-<ul>
-<li><p>*代表指定表的所有列，一般用在exists和not exists里面</p>
-</li>
-<li><p>ALL为默认设置 ，即不取消重复值，DISTINCT表示取消重复值</p>
-</li>
-<li><p>&#x3D;&#x3D;聚集函数（只能用于SELECT子句和HAVING子句中 ）&#x3D;&#x3D;</p>
-<p>  <img src="https://s2.loli.net/2022/03/05/YGrdqMfam4Qhb8P.png" alt="image-20220305102158697"></p>
-<p>  <img src="https://s2.loli.net/2022/03/07/xj6qmHkOhKrcvag.png" alt="image-20220307231705848"></p>
-<blockquote>
-<p>当这些函数遇到空值时，除COUNT(*)外，都跳过空值而只处理非空值。</p>
-</blockquote>
-<p>  例子：</p>
-  <img src="https://s2.loli.net/2022/05/17/5Yvk4aWe1JPLMOw.png" alt="image-20220517115836637" style="zoom: 67%;" />
-</li>
-<li><p>&#x3D;&#x3D;算术表达式：&#x3D;&#x3D;  </p>
-<p>  +、-、*、&#x2F;、%、INTEGER（取整）、SQRT（求平方根）、三角函数（SIN、COS）、字符串函数SUBSTRING（取子串）、UPPER（大写字符）、MONTHS_BETWEEN（月份差）</p>
-<hr>
-</li>
-<li><p>用AS子句为列命名 </p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> staffNo, fName, lName, salary<span class="operator">/</span><span class="number">12</span> <span class="keyword">AS</span> monthlySalary <span class="keyword">FROM</span> Staff;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="FROM子句："><a href="#FROM子句：" class="headerlink" title="FROM子句："></a>FROM子句：</h3><p>可以给表指定别名：多个表放在FROM子句中，代表多表进行笛卡尔积</p>
-<p><img src="https://s2.loli.net/2022/05/17/4bpXBmUsKrI3CdH.png" alt="image-20220517120134854"></p>
-<h3 id="WHERE子句："><a href="#WHERE子句：" class="headerlink" title="WHERE子句："></a>WHERE子句：</h3><p>WHERE子句的查询条件可以用多种形式表示： </p>
-<img src="https://s2.loli.net/2022/05/18/X4nGHxUtsuZCcio.png" style="zoom:67%;" />
-
-<ul>
-<li><p>比较运算作为查找条件 (&gt;,  &lt;,  &gt;&#x3D;,  &lt;&#x3D;,  &#x3D;,  &lt;&gt;(不等于))</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> salary <span class="operator">&gt;</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>复合比较运算作为查找条件 (AND, OR, NOT ) </p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> city <span class="operator">=</span> ‘London’ <span class="keyword">OR</span> city <span class="operator">=</span> ‘Glasgow’</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>范围作为查找条件（BETWEEN &#x2F; NOT BETWEEN）。&#x3D;&#x3D;BETWEEN包含端点&#x3D;&#x3D;</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> grade <span class="keyword">BETWEEN</span> <span class="number">85</span> <span class="keyword">AND</span> <span class="number">95</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>集合成员测试作为查找条件（IN &#x2F; NOT IN）</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> place <span class="keyword">IN</span>(<span class="string">&#x27;湖南&#x27;</span>,<span class="string">&#x27;湖北&#x27;</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>模式匹配作为查找条件（LIKE &#x2F; NOT LIKE）</p>
-<p>  SQL中的两种特殊的模式匹配符号：</p>
-<ul>
-<li><p>%: 百分号表示零或多个字符序列（通配符）</p>
-</li>
-<li><p>_: 下划线表示任意单个字符</p>
-  <img src="https://s2.loli.net/2022/03/07/Z52TOHjLlb6tivJ.png" alt="image-20220307230435181" style="zoom:67%;" /></li>
-</ul>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> sname <span class="keyword">LIKE</span> <span class="string">&#x27;刘%&#x27;</span> <span class="keyword">OR</span> SNAME <span class="keyword">LIKE</span> <span class="string">&#x27;__晓%&#x27;</span>   #一个汉字占两个字符位</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>空查找条件（IS NULL  &#x2F;  IS NOT NULL）</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> propertyNo <span class="operator">=</span> ‘PG4’ <span class="keyword">AND</span> comment <span class="keyword">IS</span> <span class="keyword">NULL</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="GROUP-BY子句-："><a href="#GROUP-BY子句-：" class="headerlink" title="GROUP BY子句 ："></a>GROUP BY子句 ：</h3><p>将查询结果按指定列名的取值分组，并选取满足HAVING中的内部函数表达式所指定条件的组。目的：细化聚集函数的作用对象。 &#x3D;&#x3D;HAVING子句是包含在GROUP BY子句中的&#x3D;&#x3D; </p>
-<blockquote>
-<p>WHERE子句是在表中选择满足条件的元组，而HAVING子句是在各组中选择满足条件的小组</p>
-</blockquote>
-<blockquote>
-<p>ISO标准规定，应用GROUP BY时，两个空值被认为是相等的</p>
-</blockquote>
-<blockquote>
-<p>&#x3D;&#x3D;当使用GROUP BY时， SELECT列表中的项必须每组都有单一值(因为最终一个组会变成一个元组)&#x3D;&#x3D; </p>
-</blockquote>
-<blockquote>
-<p>当使用GROUP BY时， SELECT子句中除集合函数外，其它所有列必须在GROUP BY子句中出现；反之，GROUP BY子句出现的列不一定出现在SELECT列表中；</p>
-<p>HAVING子句使用的列名必须出现在GROUP BY 子句列表中，或者包括在集合函数中。实践中，HAVING子句的条件表达式至少包括一个集合函数</p>
-</blockquote>
-<h3 id="ORDER-BY子句"><a href="#ORDER-BY子句" class="headerlink" title="ORDER BY子句"></a>ORDER BY子句</h3><p>order by子句必须放最后用于对最终的查询结果进行排序，<u>不能用在子查询中</u></p>
-<p>该子句后可以跟多个排序的变量名，第一个变量为主序，下面依次类推。&#x3D;&#x3D;ASC（升序）为默认设置&#x3D;&#x3D; 。它也可以用SELECT子句中相应列的序号。</p>
-<img src="https://s2.loli.net/2022/05/17/5Yvk4aWe1JPLMOw.png" alt="image-20220517115836637" style="zoom: 67%;" />
-
-<img src="https://s2.loli.net/2022/05/17/GeHg8L1yBXIUpJt.png" alt="image-20220517120939452" style="zoom: 80%;" />
-
-<h3 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h3><p>单表查询</p>
-<ul>
-<li>查询指定的列：通过在SELECT子句的&lt;目标列表达式&gt;中指定要查询的列来实现。可以使用*、聚集函数、算术表达式等</li>
-<li>查询表中行：通过WHERE子句的查询条件来实现</li>
-</ul>
-<h3 id="复杂查询"><a href="#复杂查询" class="headerlink" title="复杂查询"></a>复杂查询</h3><h4 id="连接查询："><a href="#连接查询：" class="headerlink" title="连接查询："></a>连接查询：</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> student.sno, sname, cno, grade <span class="keyword">FROM</span> student, s_c <span class="keyword">WHERE</span> student.sno <span class="operator">=</span> s_c.sno;</span><br></pre></td></tr></table></figure>
-
-<p>&#x3D;&#x3D;注意在多表查询中，当两个列名相同时，需采用表名.列名以示区别&#x3D;&#x3D;</p>
-<h4 id="嵌套查询（子查询）："><a href="#嵌套查询（子查询）：" class="headerlink" title="嵌套查询（子查询）："></a>嵌套查询（子查询）：</h4><p>子查询可以被使用在外部SELECT语句的WHERE子句、HAVING子句甚至SELECT子句中</p>
-<p>&#x3D;&#x3D;子查询应遵循如下规则：&#x3D;&#x3D; </p>
-<ul>
-<li><p>ORDER BY子句不能用于子查询（因为ORDER BY子句是对最终显示的结果进行排序）</p>
-</li>
-<li><p>子查询总是<strong>括在圆括号</strong> 中，作为表达式的一部分出现在条件比较运算符的右边，并且可以有选择的跟在IN，SOME（ANY），ALL和EXIST等谓词后面。</p>
-</li>
-<li><p>子查询select列表必须由<strong>单个列名或表达式</strong> （如集合函数）组成，除非子查询使用了关键字EXISTS（多列多行时使用）</p>
-</li>
-<li><p>默认情况下，子查询中列名取自子查询的FROM子句中给定的表，也可以通过限定列名的办法指定取自外查询的FROM子句中的表（不相关子查询和相关子查询）</p>
-</li>
-<li><p>带有比较运算符的子查询（&#x3D;&#x3D;此时子查询返回单个值&#x3D;&#x3D;，可以使用集合函数 ）</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#列出个人工资高于平均工资的所有职员，并求出多于平均数的值。</span><br><span class="line"><span class="keyword">SELECT</span> staffNo, fName, lName, position, salary–(<span class="keyword">SELECT</span> <span class="built_in">AVG</span>(salary) <span class="keyword">FROM</span> Staff) <span class="keyword">AS</span> SalDiff</span><br><span class="line"><span class="keyword">FROM</span> Staff</span><br><span class="line"><span class="keyword">WHERE</span> salary <span class="operator">&gt;</span> (<span class="keyword">SELECT</span> <span class="built_in">AVG</span>(salary) <span class="keyword">FROM</span> Staff);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>带有IN谓词的子查询（子查询返回单个值或单个列多个行）</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查询选修了课程“C2”的学生的学号和姓名</span><br><span class="line"><span class="keyword">SELECT</span> sno, sname <span class="keyword">FROM</span> S <span class="keyword">WHERE</span> sno <span class="keyword">IN</span> ( <span class="keyword">SELECT</span> sno <span class="keyword">FROM</span> SC <span class="keyword">WHERE</span> cno <span class="operator">=</span> ‘C2’ );</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>多层嵌套：子查询中又嵌套子查询</p>
-</li>
-<li><p>&#x3D;&#x3D;不相关子查询和相关子查询&#x3D;&#x3D; </p>
-<ul>
-<li><p>不相关子查询：内层的子查询完全独立于外层的SELECT语句。&#x3D;&#x3D;m + n&#x3D;&#x3D; （只执行了一次子查询，在检查外层的元组时，无需再执行子查询）</p>
-<blockquote>
-<p>执行过程：1）执行子查询，其结果不被显示，而是传递给外部查询，作为外部查询的条件使用。2）执行外部查询，并显示整个结果。</p>
-</blockquote>
-</li>
-<li><p>相关子查询：子查询的判断条件涉及外层父查询的属性。要用到存在谓词EXISTS和NOT EXISTS，或者ALL、SOME等。&#x3D;&#x3D;m * n&#x3D;&#x3D; （每检查一个元组，都要执行一次子查询）</p>
-<blockquote>
-<p>执行过程：1）从外层查询中取出一个元组，将元组相关列（被内层子查询引用）的值传给内层查询。2）执行内层查询，得到子查询操作的值。3）外查询根据子查询返回的结果或结果集得到满足条件的行。4）然后外层查询取出下一个元组重复做步骤1-3，直到外层的元组全部处理完毕。</p>
-</blockquote>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#找出每个学生超过他自己已选修课程平均成绩的课程号</span><br><span class="line"><span class="keyword">SELECT</span> sno, cno <span class="keyword">FROM</span> SC x <span class="keyword">WHERE</span> G<span class="operator">&gt;=</span> (<span class="keyword">SELECT</span> <span class="built_in">AVG</span>(G) <span class="keyword">FROM</span> SC y <span class="keyword">WHERE</span> x.sno <span class="operator">=</span> y.sno);</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>量化比较谓词</p>
-<ul>
-<li><p>作用：产生单个列的子查询</p>
-</li>
-<li><p>通用形式：<code>expr Θ &#123; SOME | ANY | ALL &#125; (Subquery)其中Θ∈&#123;&lt;,&lt;=,=,&lt;&gt;,&gt;,&gt;=&#125; </code>。expr为表达式。该形式中的SOME与ANY含义相同，但用SOME而不用ANY。SOME某些，ALL全部。</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查询其它系中比信息系某一学生年龄小的学生姓名和年龄</span><br><span class="line"><span class="keyword">SELECT</span> SN, SA <span class="keyword">FROM</span> S <span class="keyword">WHERE</span> SA <span class="operator">&lt;</span> <span class="keyword">SOME</span> (<span class="keyword">SELECT</span> SA <span class="keyword">FROM</span> S <span class="keyword">WHERE</span> SD <span class="operator">=</span>‘<span class="keyword">IS</span>’) <span class="keyword">AND</span> SD <span class="operator">&lt;&gt;</span>‘<span class="keyword">IS</span>’;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<blockquote>
-<p>expr Θ （子查询）  子查询返回单个值</p>
-<p>expr IN （子查询）</p>
-<p>expr Θ { SOME | ANY | ALL } (子查询)，&gt;&#x3D; ALL可以用于求最大值</p>
-</blockquote>
-</li>
-<li><p>&#x3D;&#x3D;EXISTS谓词&#x3D;&#x3D; </p>
-<ul>
-<li><p>通用形式：[NOT] EXISTS （Subquery）</p>
-</li>
-<li><p>作用：测试被子查询检索到的行集(子查询可以返回多行多列)<strong>是否为空</strong> 。谓词 EXISTS （Subquery）为真当且仅当子查询返回一个非空的集合。NOT_EXISTS则相反</p>
-</li>
-<li><p>NOT EXISTS谓词可以实现<strong>关系代数的差运算</strong></p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查询没有选修‘C1’号课程的学生的姓名。</span><br><span class="line"><span class="keyword">SELECT</span> sname <span class="keyword">FROM</span> S <span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> (<span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> SC <span class="keyword">WHERE</span> sno <span class="operator">=</span> S.sno <span class="keyword">AND</span> cno <span class="operator">=</span> ‘C1’);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>所有带IN谓词、比较运算符、SOME和ALL谓词的子查询都可以用带EXISTS谓词的子查询等价替换，反过来就不一定</p>
-</li>
-<li><p>可以采用双嵌套NOT_EXISTS来实现<strong>带全称量词的查询</strong>。<img src="https://s2.loli.net/2022/03/15/Km17HNji9vZAeGV.png" alt="image-20220315110415416" style="zoom:50%;" /></p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#查询选修了全部课程的学生姓名</span><br><span class="line">#转化为查询这样的学生x，没有一门课程y 是x不选修的</span><br><span class="line"><span class="keyword">SELECT</span> SN</span><br><span class="line"><span class="keyword">FROM</span> S     #查询学生x</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>  #不存在课程y</span><br><span class="line">    （<span class="keyword">SELECT</span> ﹡</span><br><span class="line">    <span class="keyword">FROM</span> C</span><br><span class="line">    <span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>  #x不选修课程y</span><br><span class="line">        （<span class="keyword">SELECT</span> ﹡</span><br><span class="line">        <span class="keyword">FROM</span> SC</span><br><span class="line">        <span class="keyword">WHERE</span> S# <span class="operator">=</span> S.S#</span><br><span class="line">        <span class="keyword">AND</span> C# <span class="operator">=</span> C.C#））</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以采用NOT EXISTS谓词实现<strong>关系代数的除运算</strong></p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#查询至少选修了学生‘<span class="number">95002</span>’选修的全部课程的学生号码</span><br><span class="line">#转换为查询学号为x的学生，不存在这样的课程y，学生<span class="number">95002</span>选修了y，而学生x没有选</span><br><span class="line"><span class="keyword">SELECT</span> S#</span><br><span class="line"><span class="keyword">FROM</span> S          #查询学生x</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span></span><br><span class="line">    （<span class="keyword">SELECT</span> ﹡</span><br><span class="line">    <span class="keyword">FROM</span> C       #不存在课程y</span><br><span class="line">    <span class="keyword">WHERE</span> <span class="keyword">EXISTS</span>   #<span class="number">95002</span>选修了课程y</span><br><span class="line">        (<span class="keyword">SELECT</span> ﹡</span><br><span class="line">        <span class="keyword">FROM</span> SC SCX</span><br><span class="line">        <span class="keyword">WHERE</span> SCX.C# <span class="operator">=</span> C.C# <span class="keyword">AND</span> SCX.S#<span class="operator">=</span>‘<span class="number">95002</span>’）</span><br><span class="line">    <span class="keyword">AND</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>   #x没有选修y</span><br><span class="line">        (<span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line">        <span class="keyword">FROM</span> SC SCY</span><br><span class="line">        <span class="keyword">WHERE</span> SCY.C# <span class="operator">=</span> C.C# <span class="keyword">AND</span> SCY.S#<span class="operator">=</span>S.S#)</span><br><span class="line">    );</span><br><span class="line">    </span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> S#    #因为是从SC里选的学号，故需要<span class="keyword">DISTINCT</span></span><br><span class="line"><span class="keyword">FROM</span> SC SCX         #查询学生x</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span></span><br><span class="line">    （<span class="keyword">SELECT</span> ﹡</span><br><span class="line">    <span class="keyword">FROM</span> SC SCY    #不存在课程y</span><br><span class="line">    <span class="keyword">WHERE</span> SCY.S# <span class="operator">=</span> ‘<span class="number">95002</span>’  #<span class="number">95002</span>选修了课程y</span><br><span class="line">    <span class="keyword">AND</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>    #x没有选修y</span><br><span class="line">        （<span class="keyword">SELECT</span> ﹡  </span><br><span class="line">        <span class="keyword">FROM</span> SC SCZ</span><br><span class="line">        <span class="keyword">WHERE</span> SCZ.S# <span class="operator">=</span> SCX.S#</span><br><span class="line">        <span class="keyword">AND</span> SCZ.C# <span class="operator">=</span> SCY.C#））；</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<p><img src="https://s2.loli.net/2022/03/14/2srATEC8QOWUzM4.png" alt="image-20220314232322210"></p>
-<h2 id="4、数据更新"><a href="#4、数据更新" class="headerlink" title="4、数据更新"></a>4、数据更新</h2><h3 id="插入数据：INSERT-（元组级）"><a href="#插入数据：INSERT-（元组级）" class="headerlink" title="插入数据：INSERT （元组级）"></a>插入数据：INSERT （元组级）</h3><p>&#x3D;&#x3D;插入数据时，表定义中说明了NOT NULL的列不能取空值&#x3D;&#x3D; </p>
-<ul>
-<li><p>用<strong>子句</strong>向表中插入数据：将新元组插入表中</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> </span><br><span class="line"><span class="keyword">INTO</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span> [(<span class="operator">&lt;</span>列名<span class="number">1</span><span class="operator">&gt;</span>[, <span class="operator">&lt;</span>列名<span class="number">2</span><span class="operator">&gt;</span>]...)] </span><br><span class="line"><span class="keyword">VALUES</span>(<span class="operator">&lt;</span>常量<span class="number">1</span><span class="operator">&gt;</span>[, <span class="operator">&lt;</span>常量<span class="number">2</span><span class="operator">&gt;</span>]...)  </span><br><span class="line"> #未指定任何列名时，新插入的属性必须在每个属性列上均有值，仅指定部分列名时，新元组的其他列为空值</span><br><span class="line"> </span><br><span class="line">#eg 插入一条选课记录（‘<span class="number">95020</span>’，‘C1’）</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SC（S#, C#）<span class="keyword">VALUES</span> （‘<span class="number">95020</span>’, ‘C1’）; </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用<strong>子查询</strong>向表中插入数据</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> </span><br><span class="line"><span class="keyword">INTO</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span> [(<span class="operator">&lt;</span>列名<span class="number">1</span><span class="operator">&gt;</span>[, <span class="operator">&lt;</span>列名<span class="number">2</span><span class="operator">&gt;</span>]...)] </span><br><span class="line"><span class="keyword">SELECT</span>语句;  #<span class="keyword">SELECT</span>语句的返回列要和INFO里的对应</span><br><span class="line"></span><br><span class="line">#eg  对每个系，求学生的平均年龄，并把结果存入数据库</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Deptage (SD, Avgage) <span class="keyword">SELECT</span> SD, <span class="built_in">AVG</span>(SA) <span class="keyword">FROM</span> S <span class="keyword">GROUP</span> <span class="keyword">BY</span> SD;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="修改数据：UPDATE"><a href="#修改数据：UPDATE" class="headerlink" title="修改数据：UPDATE"></a>修改数据：UPDATE</h3><p>一条UPDATE语句在某一时刻只能更新<strong>一张表</strong>，但可以更新一张表中的<strong>多列</strong>，也可以更新<strong>多行</strong>数据。</p>
-<ul>
-<li><p>用<strong>子句</strong>修改表中数据</p>
-<p>  修改表中满足WHERE条件的元组：</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">SET</span> <span class="operator">&lt;</span>列名<span class="operator">&gt;</span> <span class="operator">=</span> <span class="operator">&lt;</span>表达式<span class="operator">&gt;</span>[, <span class="operator">&lt;</span>列名<span class="operator">&gt;</span> <span class="operator">=</span> <span class="operator">&lt;</span>表达式<span class="operator">&gt;</span>] #用表达式的值取代相应的属性列值</span><br><span class="line">[<span class="keyword">WHERE</span> <span class="operator">&lt;</span>条件表达式<span class="operator">&gt;</span>]				#省略<span class="keyword">WHERE</span>语句则修改全部元组</span><br><span class="line"></span><br><span class="line">#eg 将学生<span class="number">95001</span>的年龄改为<span class="number">22</span>岁</span><br><span class="line"><span class="keyword">UPDATE</span> S <span class="keyword">SET</span> SA <span class="operator">=</span> <span class="number">22</span> <span class="keyword">WHERE</span> S# <span class="operator">=</span> ‘<span class="number">95001</span>’;</span><br><span class="line"></span><br><span class="line">#eg 将所有学生的年龄增加<span class="number">1</span>岁</span><br><span class="line"><span class="keyword">UPDATE</span> S <span class="keyword">SET</span> SA <span class="operator">=</span> SA <span class="operator">+</span> <span class="number">1</span>；</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用<strong>子查询</strong>修改表中数据：子查询可以嵌套在WHERE语句的条件表达式中，用于构造修改的条件。相关子查询</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#将计算机科学系全体学生的成绩置零</span><br><span class="line">#相关子查询，每次拿出SC中的一个元组，得到它的系，如果为CS则将成绩置<span class="number">0</span></span><br><span class="line"><span class="keyword">UPDATE</span> SC <span class="keyword">SET</span> G <span class="operator">=</span> <span class="number">0</span> <span class="keyword">WHERE</span> ‘CS’ <span class="operator">=</span> ( <span class="keyword">SELECT</span> SD <span class="keyword">FROM</span> S <span class="keyword">WHERE</span> S.S# <span class="operator">=</span> SC.S#);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="删除数据：DELETE-（元组级）"><a href="#删除数据：DELETE-（元组级）" class="headerlink" title="删除数据：DELETE （元组级）"></a>删除数据：DELETE （元组级）</h3><p>DELETE用于<strong>从指定表中删除满足条件的元组</strong>，但不能用来从特定的列中删除数据。一条DELETE语句可以从表中删除一个或多个元组。</p>
-<ul>
-<li><p>用<strong>子句</strong>删除表中数据</p>
-<p>  删除表中满足WHERE条件的元组：</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> </span><br><span class="line"><span class="keyword">FROM</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span></span><br><span class="line">[<span class="keyword">WHERE</span> <span class="operator">&lt;</span>条件表达式<span class="operator">&gt;</span>]  </span><br><span class="line"></span><br><span class="line">#eg 删除学号为<span class="number">95001</span>的学生记录</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> S <span class="keyword">WHERE</span> S# <span class="operator">=</span> ‘<span class="number">95001</span>’;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>省略WHERE语句则删除全部元组，但<strong>只删除了表中的数据</strong>，而不是表的定义，表的定义仍在DD中。<strong>删除表应当用DROP</strong></p>
-</blockquote>
-</li>
-<li><p><strong>子查询</strong>可以嵌套在WHERE语句的条件表达式中。相关子查询</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#删除计算机科学系全体学生的选课记录</span><br><span class="line">#相关子查询</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> SC <span class="keyword">WHERE</span> ‘CS’ <span class="operator">=</span> ( <span class="keyword">SELECT</span> SD <span class="keyword">FROM</span> S <span class="keyword">WHERE</span> S.S# <span class="operator">=</span> SC.S#);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="5、视图"><a href="#5、视图" class="headerlink" title="5、视图"></a>5、视图</h2><ul>
-<li><strong>概念：</strong><ul>
-<li>视图是&#x3D;&#x3D;动态结果&#x3D;&#x3D;：对一个或多个基本关系进行关系操作得到的动态结果，是从一个或几个基本表（或视图）导出的表。而且对基本表的操作将在视图可见的范围内映射到视图上。&#x3D;&#x3D;视图对应的内容是实时的、最新的内容&#x3D;&#x3D; </li>
-<li>视图是&#x3D;&#x3D;虚关系&#x3D;&#x3D;：它不包含真正存储的数据，其内容不占用存储空间。</li>
-<li><strong>视图的内容被定义成基于一个或多个基本关系的查询</strong></li>
-<li>视图是在&#x3D;&#x3D;外模式&#x3D;&#x3D;这一层，为用户所用</li>
-</ul>
-</li>
-<li><strong>操作：</strong>视图可以和基本表一样被查询、被删除。也可以在一个视图之上再定义新的视图，但&#x3D;&#x3D;对视图的更新（增、删、改）操作则有一定的限制&#x3D;&#x3D;。&#x3D;&#x3D;对视图的一切操作最终也要转换为对基本表的操作。&#x3D;&#x3D;</li>
-</ul>
-<h3 id="视图的创建及种类"><a href="#视图的创建及种类" class="headerlink" title="视图的创建及种类"></a>视图的创建及种类</h3><ul>
-<li><p>视图可以从一张表、几张表或其他视图中创建。 </p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> <span class="operator">&lt;</span>视图名<span class="operator">&gt;</span> [(<span class="operator">&lt;</span>列名<span class="number">1</span><span class="operator">&gt;</span>[,<span class="operator">&lt;</span>列名<span class="number">2</span><span class="operator">&gt;</span>]...)]</span><br><span class="line"><span class="keyword">AS</span> </span><br><span class="line"><span class="keyword">SELECT</span> 语句</span><br><span class="line">[<span class="keyword">WITH</span> <span class="keyword">CHECK</span> OPTION]  </span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>几点说明：</strong></p>
-<ul>
-<li><p>&#x3D;&#x3D;创建视图只是将视图的定义存入DD（数据字典），并不会真的执行SELECT语句，当对视图查询时，才根据视图的定义从基本表中将数据查出。&#x3D;&#x3D;</p>
-</li>
-<li><p><strong>省略视图名后的列名表时</strong>，默认该视图由子查询中SELECT子句目标列中的诸属性列组成</p>
-</li>
-<li><p>若使用&#x3D;&#x3D;WITH CHECK OPTION&#x3D;&#x3D;，则对视图进行UPDATE和INSERT操作时，保证更新行满足视图定义中的WHERE子句指定的条件，否则将被DBMS拒绝</p>
-</li>
-<li><p>当目标列不是单一的属性列(如集合函数)、存在同名列以及需启用更合适的名字时，需要指定组成视图的所有列名</p>
-</li>
-<li><p>可以在视图中增加虚拟列（派生列），即基本表中并不存在的列，如avg(grade)</p>
-</li>
-</ul>
-</blockquote>
-</li>
-<li><p><strong>视图的种类</strong></p>
-<ul>
-<li><p>水平视图：从单个基本表导出，并且只是<strong>去掉了</strong>基本表的<strong>某些行</strong></p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#创建一个视图，让分支机构B003的经理只看到他所在分支机构的职员的信息</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> Manager3Staff</span><br><span class="line"><span class="keyword">AS</span> <span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> Staff</span><br><span class="line"><span class="keyword">WHERE</span> branchNo <span class="operator">=</span> ‘B003’;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>垂直视图：从单个基本表导出，并且只是<strong>去掉了</strong>基本表的<strong>某些列</strong> </p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#建立关于分支机构B003职员信息但不包括工资信息的视图</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> Staff3</span><br><span class="line"><span class="keyword">AS</span> <span class="keyword">SELECT</span> staffNo, fName, lName, position, sex</span><br><span class="line"><span class="keyword">FROM</span> Manager3Staff;		#视图可以从其他视图中创建</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>分组视图：用<strong>GROUP BY 子句</strong>定义的视图</p>
-</li>
-<li><p>连接视图：用<strong>连接运算</strong>得到的视图</p>
-<p>  <img src="https://s2.loli.net/2022/03/22/CA4TkBawSpnsgIi.png" alt="image-20220322094759185"></p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h3><ul>
-<li><pre><code class="sql">  DROP VIEW &lt;视图名&gt;&#123;CASCADE|RESTRICT&#125; 
-  <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">-</span> 视图是虚表，**删除的是<span class="selector-tag">DD</span>中的视图的定义**，**对产生视图数据的基本表中的数据没有影响**</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">-</span> 默认<span class="selector-tag">RESTRICT</span> ，如果存在依赖被删除视图的其他对象，则不允许删除</span><br><span class="line"></span><br><span class="line">    如果指定<span class="selector-tag">CASCADE</span>**，**删除视图可能产生级联删除</span><br><span class="line"></span><br><span class="line">### 查询视图</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">-</span> **步骤**</span><br><span class="line"></span><br><span class="line">```<span class="selector-tag">mermaid</span></span><br><span class="line"><span class="selector-tag">graph</span> <span class="selector-tag">LR</span></span><br><span class="line">    <span class="selector-tag">a</span><span class="selector-attr">[有效性检查]</span><span class="selector-tag">--</span>&gt;|有效|<span class="selector-tag">b</span><span class="selector-attr">[从DD中取出视图定义]</span></span><br><span class="line">    <span class="selector-tag">b</span><span class="selector-attr">[从DD中取出视图定义]</span><span class="selector-tag">--</span>&gt;|视图消解|<span class="selector-tag">c</span><span class="selector-attr">[对基本表的查询]</span></span><br><span class="line">    <span class="selector-tag">c</span><span class="selector-attr">[对基本表的查询]</span><span class="selector-tag">--</span>&gt;<span class="selector-tag">d</span><span class="selector-attr">[执行查询]</span></span><br></pre></td></tr></table></figure>
-</code></pre>
-</li>
-<li><p>&#x3D;&#x3D;视图消解&#x3D;&#x3D;：将对视图的查询<strong>转换为对基本表的查询</strong>。执行对视图的查询时，从数据字典中取出视图的定义，将定义中的子查询和用户的查询结合起来，转换成等价的对基本表的查询的过程</p>
-<blockquote>
-<p>简单转换的过程：</p>
-<ul>
-<li><p>将SELECT列表中给出的列名转换为视图定义中对应的列名</p>
-</li>
-<li><p>FROM子句的视图名可以视图定义中的FROM列表代替</p>
-</li>
-<li><p>用AND将WHERE子句和视图定义中的WHERE子句合并</p>
-</li>
-<li><p>从视图定义中复制GROUP BY和HAVING子句</p>
-</li>
-<li><p>将 ORDER BY列名转换为视图定义中对应的列名</p>
-<p>  例子：</p>
-  <img src="https://s2.loli.net/2022/03/22/jVlQaEdt8FD5HcW.png" alt="image-20220322221341006" style="zoom:67%;" />
-
-  <img src="https://s2.loli.net/2022/03/22/I5TvHtQE4RCPSlk.png" alt="image-20220322221538427" style="zoom: 67%;" />
-
-  <img src="https://s2.loli.net/2022/03/22/HOEKyJ3X26nhGs9.png" alt="image-20220322221558073" style="zoom:67%;" /></li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>复杂转换：涉及集合函数，考虑HAVING子句等等</p>
-<img src="https://s2.loli.net/2022/03/22/7WcqENUudBsYIMg.png" alt="image-20220322222248720" style="zoom:67%;" />
-</blockquote>
-<ul>
-<li><p><strong>查询视图的约束：</strong></p>
-<ul>
-<li><p>如果视图中某个列是基于集合函数的，那么，该列只能出现在访问视图的SELECT和ORDER BY子句中，特别是，该列不能出现在WHERE子句中，并且不能作为集合函数的参数</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> StaffPropCnt <span class="keyword">WHERE</span> cnt <span class="operator">&gt;</span> <span class="number">2</span>; <span class="operator">/</span><span class="operator">/</span>错误</span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span> (cnt) <span class="keyword">FROM</span> StaffPropCnt;  <span class="operator">/</span><span class="operator">/</span>错误</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>分组视图不能与基本表或视图进行连接操作</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="更新视图"><a href="#更新视图" class="headerlink" title="更新视图"></a>更新视图</h3><ul>
-<li>👉<strong>对视图的更新最终要转换为对表的更新</strong>，但有些更新不能有意义地转换成对基本表S的更新，如修改一个集合函数得到的列，因此&#x3D;&#x3D;对视图的更新操作有一定的限制&#x3D;&#x3D;</li>
-<li>在视图定义时加上WITH CHECK OPTION子句可以使得对视图进行更新操作时需满足视图定义中子查询的条件</li>
-<li>&#x3D;&#x3D;视图可更新的充要条件&#x3D;&#x3D;<ul>
-<li>没有指定DISTINCT,即重复元组未从查询结果中消除；</li>
-<li>定义查询的SELECT列表中的每个元素均为列名（而不是常量，表达式或聚合函数），且列名不能出现多于一次；</li>
-<li>FROM子句只能指定一个表，即视图必须有一个源表且用户有请求该表的权限。如果源表本身就是一个视图，那么视图必须满足这些条件。因此，排除了基于连接、并（UNION）、交（INTERSECT）或差（EXCEPT）操作的所有视图；</li>
-<li>WHERE子句不能包括任何引用了FROM子句中的表的嵌套SELECT操作，即不能出现相关子查询</li>
-<li>定义查询不能有GROUP BY或HAVING子句。</li>
-<li>添加到视图中的每一行都不能违反基本表的完整性约束</li>
-</ul>
-</li>
-<li>分类<ul>
-<li>可更新视图：满足上面的六个条件，即对视图的更新能唯一的有意义的转换为对基本表的更新</li>
-<li>（理论上）不可更新的视图</li>
-<li>不允许更新的视图&#96;(<em>&gt;﹏&lt;</em>)′</li>
-</ul>
-</li>
-</ul>
-<h3 id="视图的优缺点"><a href="#视图的优缺点" class="headerlink" title="视图的优缺点"></a>视图的优缺点</h3><ul>
-<li><p><strong>优点：</strong>①提高逻辑独立性、②实时性、③提高安全性、④简化结构及复杂操作、⑤多角度地、更灵活地共享、⑥数据完整性</p>
-</li>
-<li><p><strong>缺点：</strong>①更新的局限性、②结构的局限性、③性能开销（查询时需要转化）</p>
-<blockquote>
-<p><strong>视图维护：</strong>更新基本表引起视图更新的过程称为视图维护</p>
-<p><strong>视图物化：</strong>把第一次访问视图的结果存储为数据库的临时表；这样，基于物化视图的查询比每次重新计算视图要快的多。但会带来视图维护的代价</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="x3D-x3D-6、sql的完整性约束-x3D-x3D"><a href="#x3D-x3D-6、sql的完整性约束-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;6、sql的完整性约束&#x3D;&#x3D;"></a>&#x3D;&#x3D;6、sql的完整性约束&#x3D;&#x3D;</h2><h3 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a><strong>基本概念：</strong></h3><ul>
-<li><strong>完整性：</strong>指数据库中数据的正确性、有效性和相容性（表示同一对象的两个或多个数据必须一致）</li>
-<li><strong>完整性约束</strong>：数据库中数据应满足的条件</li>
-</ul>
-<h3 id="非过程性完整性约束"><a href="#非过程性完整性约束" class="headerlink" title="非过程性完整性约束"></a>非过程性完整性约束</h3><ul>
-<li><p><strong>数据取值要求：</strong>非空约束（NOT NULL）、唯一性约束（UNIQUE）、CHECK约束（CHECK(searchcondition)）</p>
-<blockquote>
-<p>CHECK子句只对定义它的关系起约束作用，对其他关系没有任何作用</p>
-</blockquote>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sex <span class="type">CHAR</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">CHECK</span> (sex <span class="keyword">IN</span> (‘M’, ‘F’))</span><br></pre></td></tr></table></figure>
-
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#eg 增加学生姓名必须取唯一值的约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> c1_name <span class="keyword">UNIQUE</span> (SN)  #c1_name是约束的名字</span><br><span class="line"></span><br><span class="line">#eg 删除学生姓名必须取唯一值的约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> S </span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">UNIQUE</span>（SN）;  </span><br><span class="line">#或者 <span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> c1_name</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>域约束：</strong>通过自定义域来实现</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DOMAIN DomainName [<span class="keyword">AS</span>] dataType</span><br><span class="line">[<span class="keyword">DEFAULT</span> defaultOption]</span><br><span class="line">[<span class="keyword">CHECK</span> (searchCondition)]  #searchCondition 可以用<span class="keyword">SELECT</span>语句表达</span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">CREATE</span> DOMAIN SexType <span class="keyword">AS</span> <span class="type">CHAR</span>(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">DEFAULT</span> ‘M’</span><br><span class="line"><span class="keyword">CHECK</span> (<span class="keyword">VALUE</span> <span class="keyword">IN</span> (‘M’, ‘F’));</span><br><span class="line"></span><br><span class="line">#使用域来定义列</span><br><span class="line">sex SexType <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>实体完整性：</strong>主键属性不空。DBMS自动支持实体完整性（拒绝破坏实体完整性的操作（不合法的插入和更新））</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">PRIMARY</span> KEY(<span class="operator">&lt;</span>列名表<span class="operator">&gt;</span>)  #主键定义   </span><br><span class="line"><span class="keyword">UNIQUE</span>(<span class="operator">&lt;</span>列名表<span class="operator">&gt;</span>)   #候选键定义</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>参照完整性</strong>：DBMS自动支持参照完整性（拒绝破坏参照完整性的操作，如不合法的对子表（参照表）的插入和更新操作，不合法的对父表（被参照表）的删除和更新操作）。注意SQL语句的顺序。</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FOREIGN</span> KEY （<span class="operator">&lt;</span>列名<span class="operator">&gt;</span>[，<span class="operator">&lt;</span>列名<span class="operator">&gt;</span>] …）<span class="keyword">REFERENCES</span> <span class="operator">&lt;</span>被参照表名<span class="operator">&gt;</span> </span><br><span class="line">[<span class="keyword">ON</span> <span class="keyword">DELETE</span> [CASCADE <span class="operator">|</span> <span class="keyword">SET</span> <span class="keyword">DEFAULT</span> <span class="operator">|</span> <span class="keyword">SET</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NO</span> ACTION] ]</span><br><span class="line">[<span class="keyword">ON</span> <span class="keyword">UPDATE</span> [CASCADE <span class="operator">|</span> <span class="keyword">SET</span> <span class="keyword">DEFAULT</span> <span class="operator">|</span> <span class="keyword">SET</span> <span class="keyword">NULL</span> <span class="operator">|</span><span class="keyword">NO</span> ACTION] ]</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>参照完整性被破坏时可选择的策略：</p>
-<img src="https://s2.loli.net/2022/03/22/N9xBsZtjn5iSdO4.png" alt="image-20220322230658737" style="zoom: 80%;" />
-</blockquote>
-</li>
-<li><p><strong>一般约束（企业约束）</strong></p>
-<p>  在创建和修改表时使用CHECK&#x2F;UNIQUE，还可以&#x3D;&#x3D;CREATE ASSERTION（设置断言）&#x3D;&#x3D;</p>
-<p>  当完整性约束涉及多个关系或者与聚合操作有关，则可以采用SQL的断言机制来完成</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> ASSERTION AssertionName</span><br><span class="line"><span class="keyword">CHECK</span> (searchCondition)</span><br><span class="line"></span><br><span class="line">#限制staff不能管理太多的房产</span><br><span class="line"><span class="keyword">CREATE</span> ASSERTION StaffNotHandlingTooMuch</span><br><span class="line"><span class="keyword">CHECK</span> (<span class="keyword">NOT</span> <span class="keyword">EXISTS</span> </span><br><span class="line">           (<span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line">            <span class="keyword">FROM</span> PropertyForRent</span><br><span class="line">            <span class="keyword">GROUP</span> <span class="keyword">BY</span> staffNo</span><br><span class="line">            <span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="operator">&gt;</span> <span class="number">100</span>));</span><br></pre></td></tr></table></figure></li>
-</ul>
-<img src="https://s2.loli.net/2022/03/22/Ihst97CnifNJAq1.png" alt="image-20220322231603163" style="zoom: 67%;" />
-
-
-
-<h3 id="过程性完整性约束：触发器"><a href="#过程性完整性约束：触发器" class="headerlink" title="过程性完整性约束：触发器"></a>过程性完整性约束：触发器</h3><ul>
-<li><p>概念：一类靠事件驱动的特殊过程，一旦由某个用户定义，任何触发该触发器的事件发生时，均由<strong>服务器</strong>自动激活相应的触发器。</p>
-</li>
-<li><p>三要素：触发事件（包括Insert、delete、update等）、触发条件、触发动作</p>
-</li>
-<li><p>作用：示警（给出提示信息）；满足特定条件时自动执行某项任务以消除负面影响</p>
-</li>
-<li><p>定义(Full SQL-99的Create Trigger语法)</p>
-  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> trigger_name </span><br><span class="line">&#123;BEFORE <span class="operator">|</span> AFTER&#125; &#123;<span class="keyword">INSERT</span> <span class="operator">|</span> <span class="keyword">DELETE</span> <span class="operator">|</span> <span class="keyword">UPDATE</span> [<span class="keyword">OF</span> columnname&#123;,columnname…&#125;]&#125; <span class="keyword">ON</span> tablename #触发事件[<span class="keyword">REFERENCING</span> corr_name_def &#123;, corr_name_def…&#125;]  #旧值或新值名表</span><br><span class="line">[<span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="type">ROW</span> <span class="operator">|</span> <span class="keyword">FOR</span> <span class="keyword">EACH</span> STATEMENT]  </span><br><span class="line">[<span class="keyword">WHEN</span> (search_condition)]   #触发条件</span><br><span class="line">&#123;	</span><br><span class="line">	statement <span class="operator">|</span>          #触发动作，为单个或一系列<span class="keyword">SQL</span>语句</span><br><span class="line">	<span class="keyword">BEGIN</span> <span class="keyword">ATOMIC</span> statement; </span><br><span class="line">	&#123;statement; …&#125; </span><br><span class="line">	<span class="keyword">END</span></span><br><span class="line">&#125; ;</span><br><span class="line"></span><br><span class="line">#eg 设计一个用于s_c的触发器，该触发器规定，如果需要修改成绩，则需要保证修改之后的成绩不得低于之前的成绩，否则拒绝修改</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> trig_grade</span><br><span class="line">AFTER <span class="keyword">UPDATE</span> <span class="keyword">OF</span> grade <span class="keyword">ON</span> s_c</span><br><span class="line"><span class="keyword">REFERENCING</span> <span class="keyword">OLD</span> <span class="keyword">AS</span> oldg, <span class="keyword">NEW</span> <span class="keyword">AS</span> newg</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="type">ROW</span></span><br><span class="line"><span class="keyword">WHEN</span> (oldg.grade <span class="operator">&gt;</span> newg.grade)</span><br><span class="line">	<span class="keyword">UPDATE</span> s_c</span><br><span class="line">	<span class="keyword">SET</span> GRADE <span class="operator">=</span> oldg.grade</span><br><span class="line">	<span class="keyword">WHERE</span> cno <span class="operator">=</span> oldg.cno <span class="keyword">AND</span> sno <span class="operator">=</span> oldg.sno;  #根据主键找到该元组</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>几点说明：</p>
-<ul>
-<li><p>触发器名是一个标识符，在其所属的模式里是唯一的</p>
-</li>
-<li><p>ON&lt;表名&gt;子句里的表必须和触发器位于同一个模式中</p>
-</li>
-<li><p>定义行的相关名字的corr_name_def 如下:</p>
-<p>  {OLD [ROW] [AS] old_row_corr_name</p>
-<p>  | NEW [ROW] [AS] new_row_corr_name</p>
-<p>  | OLD TABLE [AS] old_table_corr_name</p>
-<p>  | NEW TABLE [AS] new_table_corr_name}</p>
-</li>
-<li><p>如果在触发器定义中省略WHEN子句，即省略触发条件，则触发动作在触发器被激活后立即发生</p>
-</li>
-<li><p>触发动作可以是单个或一系列SQL语句，若为一系列，需要使用BEGIN ATOMIC…END子句，语句之间用分号隔开</p>
-</li>
-<li><p>注意触发器级联问题，防止一个触发动作引发一系列连锁反应（一个触发器的动作引发另一个触发器的动作）以致失控</p>
-</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<h3 id="两种完整性约束的对比"><a href="#两种完整性约束的对比" class="headerlink" title="两种完整性约束的对比"></a>两种完整性约束的对比</h3><ul>
-<li><p>非过程性完整性约束：种类和能力有限但易于理解；直接为系统所知；难以给出约束不满足时的相应动作</p>
-</li>
-<li><p>过程性完整性约束：给出了约束不满足时的相应动作；保证事物的一致性</p>
-</li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/23/sql%E6%A6%82%E8%BF%B0%E4%B8%8Esql%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1008,6 +558,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="name" content="zwh's Blog">
       <meta itemprop="description" content="我希望许过的愿望一路生花">
     </span>
 
@@ -1027,9 +578,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-06-23 11:20:17 / 修改时间：16:19:06" itemprop="dateCreated datePublished" datetime="2022-06-23T11:20:17+08:00">2022-06-23</time>
+      <time title="创建时间：2022-06-23 11:20:17" itemprop="dateCreated datePublished" datetime="2022-06-23T11:20:17+08:00">2022-06-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-24 08:44:30" itemprop="dateModified" datetime="2022-06-24T08:44:30+08:00">2022-06-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1059,6 +616,8 @@
     </span>
 </div>
 
+          
+
         </div>
       </header>
 
@@ -1073,114 +632,14 @@
 <li>关系数据操作：包括增删改查、传统的集合操作、专门的关系操作</li>
 <li>关系的完整性约束：实体完整性、参照完整性、用户自定义的完整性</li>
 </ul>
-<p><strong>关系的基本术语</strong>：</p>
-<table>
-<thead>
-<tr>
-<th>基本术语</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>元组和属性</td>
-<td>元组：行，属性：列。关系中的元组个数称为关系的基数，属性个数称为关系的度或维数</td>
-</tr>
-<tr>
-<td>超键</td>
-<td>能唯一区分任意两行数据的属性或属性集。包含超键的多个属性都是超键</td>
-</tr>
-<tr>
-<td>候选键（&#x3D;&#x3D;键&#x3D;&#x3D;）</td>
-<td>某一属性（或属性集）的值可唯一地表示每一个元组。<u>候选键本身是超键，但其任何真子集都不再是超键</u>。候选键包含的属性为&#x3D;&#x3D;主属性&#x3D;&#x3D;</td>
-</tr>
-<tr>
-<td>主键</td>
-<td>在使用关系来组织数据时，常使用一个候选键作为组织该关系以及唯一性操作的对象，其中被选用的候选键为主键，例如学号。主键包含的属性为&#x3D;&#x3D;主键属性&#x3D;&#x3D;</td>
-</tr>
-<tr>
-<td>外键</td>
-<td>对于关系R1、R2，其中某属性\属性集A不是R1的候选键，但是是R2的候选键，则称A是R1的外键</td>
-</tr>
-<tr>
-<td>全键</td>
-<td>当需要一个关系的全部属性作为该关系的候选键，则称该全部属性组合为全键</td>
-</tr>
-</tbody></table>
-<p><strong>关系的种类：</strong>基本关系、查询表（查询结果对应的表）、视图表（虚表）</p>
-<p><strong>关系的性质</strong>：</p>
-<p>①列的同质性：每一列中的分量为同一类型，来自同一个域</p>
-<p>②列名唯一性：每列要基于不同的属性名，但是不同列的值可以出自同一个域</p>
-<p>③元组相异性：关系中任意两个元组不能完全相同</p>
-<p>④行序无关性：行的次序无关紧要，可以互换</p>
-<p>⑤列序无关性：列的次序无关紧要，可以互换</p>
-<p>⑥分量原子性：每一个分量都必须是不可分的数据项</p>
-<p><strong>关系模式：</strong> 关系结构的描述和定义，即二维表的表结构定义。可简记为关系的属性名表。例如学生关系模式可以简记为学生（<u>学号</u>，姓名，性别，年龄，籍贯）。可理解为<strong>表头</strong> </p>
-<p><strong>关系数据库：</strong> 基于关系模型的数据库。</p>
-<p>&#x3D;&#x3D;关系、关系模型、关系模式和关系数据库的区别与联系：&#x3D;&#x3D;</p>
-<p><strong>区别：</strong></p>
-<ul>
-<li><code>关系模型</code>是用表结构表示实体集与实体集之间联系的一种模型；<code>关系</code>是属性值域的笛卡儿积中有意义的元组集合，实质上是一张二维表，表的每一行为一个元组，每一列为一个属性；<code>关系模式</code>是关系结构的描述和定义，即二维表的表结构定义；<code>关系数据库</code>是建立在关系模型之上的关系的集合</li>
-</ul>
-<p><strong>联系：</strong></p>
-<ul>
-<li>一个关系只能对应一个关系模式，一个关系模式可对应多个关系</li>
-<li>关系模式是关系的型，按其型装入数据值后即形成关系</li>
-<li>关系模式是相对静态的、稳定的，而关系是动态的、随时间变化的</li>
-<li>一个关系数据库是相关关系的集合，而关系模型的结构是相关关系模式的集合</li>
-</ul>
-<h2 id="2、关系的完整性约束"><a href="#2、关系的完整性约束" class="headerlink" title="2、关系的完整性约束"></a>2、关系的完整性约束</h2><p><strong>实体完整性</strong>： 组成主键的各属性都不能取空值（任何主键属性都不能为空，&#x3D;&#x3D;注意属性集不为空不代表属性集中的所有属性都不为空&#x3D;&#x3D;）。插入和修改元组可能破坏实体完整性规则。</p>
-<p><strong>参照完整性</strong>：如果属性\属性组F是R的外键（R为依赖表），它与S表的主键相对应，则对于R中的每个元组，在F上的取值必须取空值或者等于S中某个元组的主键值。</p>
-<blockquote>
-<p><strong>实体完整性优先于参照完整性</strong> 。即外键是主键属性时，不能为空。</p>
-<img src="C:/AppData/Roaming/Typora/typora-user-images/image-20220516162456086.png" alt="image-20220516162456086" style="zoom:50%;" />
-</blockquote>
-<p><strong>用户定义完整性</strong>：针对某一具体关系数据库的约束。包括定义属性是否为空值、定义属性值的唯一性、定义属性的取值范围、定义属性的默认值、定义属性间函数依赖关系等。</p>
-<hr>
-<img src="https://s2.loli.net/2022/05/16/SB9MQkbiUuwDPaj.png" alt="image-20220516162759988" style="zoom:67%;" />
-
-<p><strong>关系完整性控制的实现原理</strong>：定义、检查、保证数据完整性</p>
-<p><strong>例子：</strong></p>
-<img src="https://s2.loli.net/2022/05/16/rXFtZ146I9xePCw.png" alt="image-20220516194737598" style="zoom:67%;" />
-
-<h2 id="3、关系代数的运算"><a href="#3、关系代数的运算" class="headerlink" title="3、关系代数的运算"></a>3、关系代数的运算</h2><p><strong>常用的关系运算：</strong>并、交、差、笛卡儿积、投影、选择、连接、除运算</p>
-<p><strong>基本的关系运算：</strong>并、差、笛卡儿积、选择、投影，其他的关系运算可以通过这些基本运算来表达（关系依赖） </p>
-<img src="https://s2.loli.net/2022/05/16/1zVE8DkPaXOYuAe.png" alt="image-20220516163214039" style="zoom:67%;" />
-
-<h3 id="并-∪"><a href="#并-∪" class="headerlink" title="并 ∪"></a>并 ∪</h3><p>关系R和S的并由属于R或者属于S的元组（行）组成，并去掉冗余的元组</p>
-<h3 id="交-∩"><a href="#交-∩" class="headerlink" title="交 ∩"></a>交 ∩</h3><p>关系R和S的交由即属于R又属于S的元组（行）组成</p>
-<h3 id="差"><a href="#差" class="headerlink" title="差 -"></a>差 -</h3><p>关系R和S的差由属于R但不属于S的元组（行）组成</p>
-<p>👉并交差运算：两个关系必须是相容的同类关系（兼容表），列数相同且属性值取自同一个域</p>
-<h3 id="积-×"><a href="#积-×" class="headerlink" title="积 ×"></a>积 ×</h3><p>即笛卡尔积，k元关系R与j元关系S进行笛卡尔积得到j+k元新关系，该关系的元组（行）数为R和S的元组（行）数之积</p>
-<p><img src="https://s2.loli.net/2022/05/16/6Aq4Di3mdcESkLr.png" alt="image-20220516163515542"></p>
-<h3 id="选择-σ"><a href="#选择-σ" class="headerlink" title="选择 σ"></a>选择 σ</h3><p>σ<del>F</del> (R) &#x3D; {t|(t ∈R) ∧ F(t) &#x3D; True}。从关系R中选出满足条件表达式F（可简单可复合）的那些&#x3D;&#x3D;元组&#x3D;&#x3D;所构成的关系</p>
-<h3 id="投影-Π"><a href="#投影-Π" class="headerlink" title="投影 Π"></a>投影 Π</h3><p>∏<del>A</del> (R) &#x3D; {t[A] | t ∈ R}。取属性名表A中指定的&#x3D;&#x3D;列&#x3D;&#x3D;，<strong>消除重复元组</strong> （当选择的列中不包含键时会出现重复元组）</p>
-<p><img src="https://s2.loli.net/2022/05/16/yiZbTMXzfPdKh7n.png" alt="image-20220516163855752"></p>
-<h3 id="连接-⋈"><a href="#连接-⋈" class="headerlink" title="连接 ⋈"></a>连接 ⋈</h3><p>从两个关系的笛卡儿积中选取属性间满足一定条件的元组（&#x3D;&#x3D;笛卡儿积上进行的选择运算&#x3D;&#x3D; ）</p>
-<p>①等值连接：该特定条件为R关系在A属性（列）上的值与S关系在B属性（列）上的值相等</p>
-<p>②自然连接：将结果之中重复的属性（列）去掉的等值连接</p>
-<p>👉等值连接与自然连接的区别：①自然连接一定是等值连接，等值连接不一定是自然连接；②等值连接的连接属性不要求是同名属性；③等值连接后不要求去掉同名属性</p>
-<p><img src="https://s2.loli.net/2022/05/16/43KxoqJRZsfLXvj.png" alt="image-20220516164224269"></p>
-<h3 id="除-÷"><a href="#除-÷" class="headerlink" title="除 ÷"></a>除 ÷</h3><p>（个人概括？）R ÷ S，先求出R与S的属性集交集，在本例中为CD，∏<del>C,D</del> (S) &#x3D; {cd, ef}，然后求R的属性集 - CD &#x3D; AB，将R按AB分组，本例中可以分为三组ab、bc、ed，分别求出这些组的CD集合，本例中为ab组 &#x3D; {cd, ef, de}，bc组 &#x3D; {ef}，ed组 &#x3D; {cd, ef}，可以判断出{cd, ef}包含于ab组和ed组，故R ÷ S &#x3D; {ab, cd}</p>
-<p><img src="https://s2.loli.net/2022/05/16/s1ezau8YtGgRPyV.png" alt="image-20220516165612885"></p>
-<h2 id="4、综合的例子"><a href="#4、综合的例子" class="headerlink" title="4、综合的例子"></a>4、综合的例子</h2><blockquote>
-<p>基本都是先选择后投影，注意如果要做连接运算的话，可以先做部分选择和投影运算，这样可以降低计算开销</p>
-<p>如果有“所有”这个词，可以考虑除运算</p>
-</blockquote>
-<img src="https://s2.loli.net/2022/05/16/sNoQwLK7nvU3eWu.png" alt="image-20220516185848173" style="zoom:67%;" />
-
-<img src="https://s2.loli.net/2022/05/16/pjqTRbnkX8VPLfy.png" alt="image-20220516185957304" style="zoom:67%;" />
-
-<img src="https://s2.loli.net/2022/05/16/fjmZiRI2uoJaAXb.png" alt="image-20220516190034825" style="zoom:67%;" />
-
-<img src="https://s2.loli.net/2022/05/16/DLAMuWNqnKVo923.png" alt="image-20220516190106486" style="zoom:67%;" />
-
-<img src="https://s2.loli.net/2022/05/16/gQGOdZX5zUB3KTf.png" alt="image-20220516190238200" style="zoom:67%;" />
-
-<img src="https://s2.loli.net/2022/05/16/rjBwDJC1KUzI35h.png" alt="image-20220516190551314" style="zoom:67%;" />
-
-<img src="https://s2.loli.net/2022/05/16/vpOuMmTFUZKsJAL.png" alt="image-20220516191322048" style="zoom:67%;" />
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/23/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1215,6 +674,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="name" content="zwh's Blog">
       <meta itemprop="description" content="我希望许过的愿望一路生花">
     </span>
 
@@ -1234,9 +694,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-06-23 11:10:12 / 修改时间：16:19:06" itemprop="dateCreated datePublished" datetime="2022-06-23T11:10:12+08:00">2022-06-23</time>
+      <time title="创建时间：2022-06-23 11:10:12" itemprop="dateCreated datePublished" datetime="2022-06-23T11:10:12+08:00">2022-06-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-24 08:44:55" itemprop="dateModified" datetime="2022-06-24T08:44:55+08:00">2022-06-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1266,6 +732,8 @@
     </span>
 </div>
 
+          
+
         </div>
       </header>
 
@@ -1275,204 +743,14 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="一、绪论"><a href="#一、绪论" class="headerlink" title="一、绪论"></a>一、绪论</h1><h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p><strong>DB：数据库</strong>，是按照一定结构组织并长期存储在计算机内的可共享的大量数据的有机集合。</p>
 <p><strong>DBMS：数据库管理系统</strong>，是管理和维护数据库的系统软件，是数据库和用户之间的一个接口，其主要作用是在数据库建立、运行和维护时对数据库进行统一的管理控制和提供数据服务。</p>
-<p><code>DBMS的功能：</code>数据定义、数据操作、数据组织和管理、数据库运行管理（核心工作）、数据库的建立和维护、数据接口</p>
-<p><strong>DBA：数据库管理人员</strong>，其职责包括决定DB中的信息内容和结构；决定DB的存储结构和存取策略；定义数据的安全性要求和完整性约束条件；监控数据库的使用和运行。</p>
-<p><strong>DBS：数据库系统</strong>，是实现有组织地、动态地存储大量关联数据、方便多用户访问的计算机软件、硬件和人组成的系统。</p>
-<p><code>DBS的特点：</code>①数据的高度结构化；②数据的高共享性；③程序与数据的高独立性；④数据控制力度大（DBMS统一管理和控制数据）<br>$$<br>DBS &#x3D; 计算机系统(硬件、软件平台、人)+DBMS+DB\<br>或\<br>DBS &#x3D; 硬件 + 软件（OS、DB、DBMS、语言及开发工具、DB应用程序）+ 人（DBA、设计者、用户）<br>$$</p>
-<p><img src="https://s2.loli.net/2022/03/04/7zNQasLYrVqw1px.png"></p>
-<h2 id="2、信息模型"><a href="#2、信息模型" class="headerlink" title="2、信息模型"></a>2、信息模型</h2><p>也称概念模型，主要用于数据库设计</p>
-<p>表示方法：ER图</p>
-<p>基本成分：实体集、属性、联系</p>
-<p><img src="https://s2.loli.net/2022/03/04/oMmlnGpIqh5iDXO.png"></p>
-<h2 id="3、数据模型"><a href="#3、数据模型" class="headerlink" title="3、数据模型"></a>3、数据模型</h2><p>三要素：数据结构、数据操作、数据的完整性约束</p>
-<p>三种基本数据模型：层次模型、网状模型、关系模型</p>
-<p><strong>3种基本数据模型的比较</strong></p>
-<table>
-<thead>
-<tr>
-<th>特点\模型</th>
-<th>层次模型</th>
-<th>网状模型</th>
-<th>关系模型（&#x3D;&#x3D;最重要&#x3D;&#x3D; ）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>数据结构</strong></td>
-<td>树结构</td>
-<td>图结构</td>
-<td>表结构</td>
-</tr>
-<tr>
-<td><strong>存储方法</strong></td>
-<td>按先根顺序存储及用左孩子右兄弟链式存储</td>
-<td>链接法</td>
-<td>文件</td>
-</tr>
-<tr>
-<td><strong>数据操作</strong></td>
-<td>增删改查。按层次顺序查询、按层次路径查询。且每次操作只能取一个记录</td>
-<td>操作时必须说明做什么、如何做</td>
-<td>增删改查。集合操作，操作对象和操作结果都是关系，即若干元组的集合。存取路径对用户隐藏（安全的同时效率低），用户只需指出干什么。</td>
-</tr>
-<tr>
-<td><strong>数据完整性约束</strong></td>
-<td>父子约束、一致性约束、数据的型和值需保持树形结构等</td>
-<td>父子约束、主从约束</td>
-<td>实体完整性、参照完整性和用户定义的完整性</td>
-</tr>
-<tr>
-<td><strong>联系表示的特点</strong></td>
-<td>适合1：n</td>
-<td>可以间接表示m：n</td>
-<td>便于表示m：n</td>
-</tr>
-<tr>
-<td><strong>联系的方式</strong></td>
-<td>通过指针（或路径）</td>
-<td>通过指针（或路径）</td>
-<td>通过表格自然联系及创建联系</td>
-</tr>
-<tr>
-<td><strong>使用与效率</strong></td>
-<td>较难使用、效率较高</td>
-<td>使用复杂、效率较高</td>
-<td>容易使用，效率较低</td>
-</tr>
-<tr>
-<td><strong>数据操作语言</strong></td>
-<td>过程化</td>
-<td>过程化</td>
-<td>非过程化及过程扩展</td>
-</tr>
-<tr>
-<td><strong>理论基础</strong></td>
-<td>无</td>
-<td>无</td>
-<td>关系理论</td>
-</tr>
-<tr>
-<td><strong>优缺点</strong></td>
-<td>①数据结构较简单、查询效率高；②提供良好的完整性支持；③不易表示多对多的联系；④数据操作限制多，独立性较差</td>
-<td>①较为直接地描述现实世界；②存取效率较高；③结构较复杂，不易使用；④数据独立性较差</td>
-<td>①有坚实的理论基础；②结构简单、易用；③数据独立性及安全性好；④查询效率较低</td>
-</tr>
-</tbody></table>
-<h2 id="4、三级模式结构"><a href="#4、三级模式结构" class="headerlink" title="4、三级模式结构"></a>4、三级模式结构</h2><p><strong>模式</strong>：（也称概念模式&#x2F;逻辑模式）是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公用数据结构。</p>
-<p><strong>子模式</strong>：（也称外模式&#x2F;用户模式）是数据库用户所见和使用的局部数据的逻辑结构和特征的描述，是用户所用的数据库结构。子模式是模式的子集，它主要描述用户视图的各记录的组成、相互联系、数据项的特征等。</p>
-<p><strong>内模式</strong>：（也称存储模式）是数据物理结构和存储方法的描述，是整个数据库的最低层结构的标识。</p>
-<p>三级模式结构示意如下图所示：</p>
-<p><img src="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205081008688.png" alt="image-20220508100815575"></p>
-<h2 id="5、二级映像功能"><a href="#5、二级映像功能" class="headerlink" title="5、二级映像功能"></a>5、二级映像功能</h2><p><strong>映像1：子模式&#x2F;模式映像</strong>，是指由模式生成子模式的规则，它定义了各个子模式和模式之间的对应关系。（不唯一）</p>
-<p><strong>映像2：模式&#x2F;内模式映像</strong>，是说明模式在物理设备中的存储结构，定义了模式和内模式之间的对应关系。（唯一）</p>
-<p><strong>三级模式结构和二级映像的作用：保证了数据库系统的数据能够具有较高的逻辑独立性和物理独立性</strong></p>
-<blockquote>
-<p>数据冗余：</p>
-<p><img src="https://s2.loli.net/2022/05/14/pExd5HsrKunezmM.png" alt="image-20220514221005579"></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://zhangwenhui-blog.com.cn/2022/06/22/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/zrn.png">
-      <meta itemprop="name" content="Zhang Wen Hui">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zwh's Blog">
-      <meta itemprop="description" content="我希望许过的愿望一路生花">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | zwh's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/06/22/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-06-22 08:41:03" itemprop="dateCreated datePublished" datetime="2022-06-22T08:41:03+08:00">2022-06-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-23 16:19:06" itemprop="dateModified" datetime="2022-06-23T16:19:06+08:00">2022-06-23</time>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>431</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/23/%E7%BB%AA%E8%AE%BA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1517,6 +795,8 @@
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
 
 
 
