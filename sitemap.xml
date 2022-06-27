@@ -2,6 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>http://zhangwenhui-blog.com.cn/2022/06/23/os%E7%BB%AA%E8%AE%BA/</loc>
+        
+        <lastmod>2022-06-27T00:29:52.985Z</lastmod>
+        
+        <date>1655954637000</date>
+        <title>os绪论 | zwh's Blog</title>
+        
+        <desc>一、操作系统绪论&#x3D;&#x3D;重点考察概念&#x3D;&#x3D;操作系统的定义，操作系统在计算机系统中的地位，操作系统的主要功能，资源复用、虚化、抽象，操作系统的特征，多道程序设计，并发，中断，系统调用，CPU 的两种工作模式（用户态、内核态），特权指令和非特权指令 1、操作系统概念、功能及提供的接口操作系统的概念：管理计算机硬件并提供应用程序运行环境的软件。操作系统是配置在计算机硬件</desc>
+    </url>
+    
+    <url>
         <loc>http://zhangwenhui-blog.com.cn/2022/06/23/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
         
         <lastmod>2022-06-24T15:25:05.872Z</lastmod>
