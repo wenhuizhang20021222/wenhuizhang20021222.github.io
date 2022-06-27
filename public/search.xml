@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/06/22/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<span id="more"></span>
+
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>os绪论</title>
+    <url>/2022/06/23/os%E7%BB%AA%E8%AE%BA/</url>
+    <content><![CDATA[<h1 id="一、操作系统绪论"><a href="#一、操作系统绪论" class="headerlink" title="一、操作系统绪论"></a>一、操作系统绪论</h1><h2 id="x3D-x3D-重点考察概念-x3D-x3D"><a href="#x3D-x3D-重点考察概念-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;重点考察概念&#x3D;&#x3D;"></a>&#x3D;&#x3D;重点考察概念&#x3D;&#x3D;</h2><p>操作系统的定义，操作系统在计算机系统中的地位，操作系统的主要功能，资源复用、虚化、抽象，操作系统的特征，多道程序设计，并发，中断，系统调用，CPU 的两种工作模式（用户态、内核态），特权指令和非特权指令 </p>
+<h2 id="1、操作系统概念、功能及提供的接口"><a href="#1、操作系统概念、功能及提供的接口" class="headerlink" title="1、操作系统概念、功能及提供的接口"></a>1、操作系统概念、功能及提供的接口</h2><p><strong>操作系统的概念</strong>：管理计算机硬件并提供应用程序运行环境的软件。操作系统是配置在计算机硬件上的第一层软件，是对硬件的首次扩充，形成了虚拟计算机&#x2F;扩展机。它位于硬件与其它软件之间，是所有其他软件运行的基础。</p>
+<span id="more"></span>
+
+<p><strong>操作系统的作用：</strong></p>
+<p><strong>用户视角：</strong> 操作系统是用户与计算机硬件之间的接口。为用户使用计算机提供服务。</p>
+<p><strong>系统视角：</strong> </p>
+<ul>
+<li>&#x3D;&#x3D;资源管理器&#x3D;&#x3D; ：管理计算机系统的软硬件资源。<strong>资源复用、资源虚化以及资源抽象</strong> 。<ul>
+<li>资源复用：分为时间复用和空间复用。时间复用指的是多个用户或程序轮流使用某个资源，如CPU使用；空间复用指的是多个用户或程序同时使用资源的一部分，如内存使用。</li>
+<li>资源虚化：让一个物理设备变成多个相对独立的对应物</li>
+<li>资源抽象：对内封装细节，对外通过管理对象与访问接口，如：面向进程而不是CPU，面向文件而不是物理存储介质，面向窗口而不是屏幕</li>
+<li>&#x3D;&#x3D;复用与虚拟化解决的是资源不足的问题。资源抽象解决的是资源复杂的问题。&#x3D;&#x3D;</li>
+</ul>
+</li>
+<li>&#x3D;&#x3D;控制程序&#x3D;&#x3D; ：控制程序执行过程，防止错误和计算机的不当使用</li>
+</ul>
+<p><img data-src="https://s2.loli.net/2022/05/13/msaGykqzLiVtrDT.png" alt="image-20220513191418134"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/HKJvnRhTVw89bdC.png" alt="image-20220513193433159"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/AQW3CRkS6fHpBNw.png" alt="image-20220513192502110"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/LiEpfK6Awz8WFvs.png" alt="image-20220513193123123"></p>
+<p>联机命令接口 &#x3D; 交互命令接口，如命令行</p>
+<p>脱机命令接口 &#x3D; 批处理命令接口，如*.bat文件</p>
+<p>程序接口：如dll文件，调用dll文件即可进行系统调用，只能通过应用程序间接使用</p>
+<h2 id="2、操作系统的特征"><a href="#2、操作系统的特征" class="headerlink" title="2、操作系统的特征"></a>2、操作系统的特征</h2><ul>
+<li><p><strong>并发性：</strong> 多个事件在同一事件间隔内发生（并行：同一时刻）。并发的实质是一个物理CPU(也可以多个物理CPU) 在若干道程序之间多路复用，并发性是对有限物理资源强制行使多用户共享以提高效率。</p>
+</li>
+<li><p><strong>共享性：</strong> 系统中的资源可供多个并发执行的进程共同使用。有两种资源共享方式：</p>
+<ul>
+<li>互斥共享：一段时间只允许一个进程访问。如对摄像头设备的共享使用</li>
+<li>同时访问：一段时间允许多个进程访问。如对硬盘资源的共享使用</li>
+</ul>
+<p>  &#x3D;&#x3D;并发和共享是操作系统的两个最基本特征，二者之间互为存在条件。&#x3D;&#x3D; </p>
+</li>
+<li><p><strong>虚拟性：</strong> 把一个物理上的实体变为若干个逻辑上的对应物；或把物理上的多个实体变成逻辑上的一个对应物的技术。eg.虚拟存储器</p>
+<ul>
+<li><p>空分复用技术：如虚拟存储技术</p>
+</li>
+<li><p>时分复用技术：如虚拟处理器技术</p>
+<p>  并发性是虚拟性存在的基础</p>
+</li>
+</ul>
+</li>
+<li><p><strong>异步性（或不确定性）：</strong> 多个作业的执行过程是走走停停的，其执行顺序和每个作业的执行时间是不确定的。</p>
+</li>
+</ul>
+<h2 id="3、操作系统的发展与分类"><a href="#3、操作系统的发展与分类" class="headerlink" title="3、操作系统的发展与分类"></a>3、操作系统的发展与分类</h2><p><img data-src="https://s2.loli.net/2022/05/13/3AWQXpLSTGkobFC.png" alt="image-20220513201053867"></p>
+<p>批处理技术是指计算机系统对一批作业自动进行处理的一种技术。</p>
+<p>分类：</p>
+<ul>
+<li>联机批处理：采用联机输入&#x2F;输出，即输入&#x2F;输出操作在监督程序控制下，同步进行。 缺点：速度慢 </li>
+<li>脱机批处理：外围机：独立于主机，负责把作业任务写入磁带，以及从磁带输出到打印机。主机：负责从磁带上把作业调入内存，或者把结果写回磁带。实现了部分异步能力、减少了CPU的空闲时间、提高了I&#x2F;O速度</li>
+</ul>
+<hr>
+<p>多道程序设计：</p>
+<ul>
+<li><strong>核心思想：</strong> 将多个作业存放在主存中，这些程序在管理程序的控制下交替运行，共享处理机和系统中的其他资源。即通过安排作业（编码与数据）&#x3D;&#x3D;使得CPU无论何时都有进程执行，从而最大化CPU利用率&#x3D;&#x3D; </li>
+<li>没有提供用户与计算机系统的交互</li>
+<li>多道程序宏观上并行，微观上串行</li>
+<li>多道程序设计的道数不是任意的</li>
+<li><strong>优缺点：</strong> <ul>
+<li>提高了CPU的利用率</li>
+<li>提高了内存和I&#x2F;O设备的利用率</li>
+<li>改进了系统的吞吐率</li>
+<li>充分发挥了系统的并行性</li>
+<li>其主要缺点是: 作业周转时间延长</li>
+</ul>
+</li>
+<li>**多重处理系统:   ** 指配置了多个物理CPU，能真正同时执行多道程序的系统。</li>
+</ul>
+<hr>
+<p>&#x3D;&#x3D;操作系统的三种基本类型：批处理操作系统、分时操作系统、实时操作系统&#x3D;&#x3D; </p>
+<p>分时系统：允许多个联机用户同时使用一台计算机系统进行计算的操作系统称分时操作系统</p>
+<p><strong>分时技术：</strong> 把处理机的运行时间分成很短的时间片，按时间片轮流把处理机分配给各联机作业使用。</p>
+<p>是多道程序设计的自然延伸</p>
+<p>采用调度算法，以快速切换作业，好像每个作业同时执行</p>
+<p><strong>特征：</strong> </p>
+<ul>
+<li>多路性：也称同时性，一台计算机与若干台终端相连接，终端上的这些用户可以同时使用计算机。</li>
+<li>交互性：用户通过终端采用人机会话的方式直接控制程序运行，同程序进行交互。</li>
+<li>独立性：用户彼此之间都感觉不到别人也在使用这台计算机，好像只有自己独占计算机一样。</li>
+<li>及时性：用户请求能在很短时间内获得响应。</li>
+</ul>
+<h2 id="4、操作系统的运行机制与体系结构"><a href="#4、操作系统的运行机制与体系结构" class="headerlink" title="4、操作系统的运行机制与体系结构"></a>4、操作系统的运行机制与体系结构</h2><p><img data-src="https://s2.loli.net/2022/05/13/uCvXRb5ixgc4ep9.png" alt="image-20220513203343485"></p>
+<blockquote>
+<p>用程序状态字寄存器（PSW， program status word）中的某标志位来标识当前处理器处于什么状态。如0为用户态，1为核心态</p>
+</blockquote>
+<hr>
+<p>内核是操作系统的构件，或称基本单位。 </p>
+<p>内核作用：  为进程提供管理 、为进程执行提供良好的运行环境</p>
+<p>&#x3D;&#x3D;基本功能:&#x3D;&#x3D;  </p>
+<ul>
+<li>中断处理：截获中断，转向中断处理例程</li>
+<li>短程调度：CPU调度，保存与恢复现场</li>
+<li>原语管理：原语是不可中断过程</li>
+</ul>
+<p>&#x3D;&#x3D;基本属性:&#x3D;&#x3D; </p>
+<ul>
+<li>内核是由中断驱动的</li>
+<li>内核的执行是连续的</li>
+<li>内核在屏蔽中断状态下执行</li>
+<li>内核可以使用特权指令</li>
+</ul>
+<p>&#x3D;&#x3D;分类：&#x3D;&#x3D;</p>
+<ul>
+<li><p><strong>模块结构（整体式结构）</strong>：将内核划分为一个个独立的模块，模块之间相互调用。效率高但是结构不清晰，访问控制困难</p>
+</li>
+<li><p><strong>层次结构</strong>：一种特殊的模块结构。将内核划分为一系列相互依赖的层次，每个层次也可以分解为一系列更小的模块。</p>
+<p>  <img data-src="https://s2.loli.net/2022/03/04/2PkGeSmIBXyOTai.png"></p>
+</li>
+<li><p><strong>微内核结构</strong></p>
+</li>
+</ul>
+<p><img data-src="https://s2.loli.net/2022/05/13/OzmplexJuwFcj24.png" alt="image-20220513202231353"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/7S4E6d3gHUeNlpI.png" alt="image-20220513202617422"></p>
+<h2 id="5、中断和异常"><a href="#5、中断和异常" class="headerlink" title="5、中断和异常"></a>5、中断和异常</h2><p><img data-src="https://s2.loli.net/2022/05/13/ojrdODLXqEezi3G.png" alt="image-20220513205554625"></p>
+<p>&#x3D;&#x3D;用户态 → 核心态是通过中断实现的，并且中断是唯一途径&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;核心态 → 用户态的切换是通过执行一个特权指令，将程序状态字（PSW）的标志位设置为“用户态”&#x3D;&#x3D;</p>
+<p><img data-src="https://s2.loli.net/2022/05/13/twndlTegkLJ6x9X.png" alt="image-20220513205029547"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/EYTzjIOvW7drqfx.png" alt="image-20220513205136837"></p>
+<p><strong>外中断的处理过程：</strong></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/oRmXYrNvBUkTgfI.png" alt="image-20220513205420243"></p>
+<h2 id="6、系统调用"><a href="#6、系统调用" class="headerlink" title="6、系统调用"></a>6、系统调用</h2><p><img data-src="https://s2.loli.net/2022/05/13/xzmwb1KdrT5MIsp.png" alt="image-20220513213014300"></p>
+<p>系统调用是操作系统提供给应用程序（程序员&#x2F;编程人员）使用的接口，可以理解为一种可供应用程序调用的特殊函数，应用程序可以发出系统调用请求来获得操作系统的服务。</p>
+<p>系统调用与库函数的区别：</p>
+<p><img data-src="https://s2.loli.net/2022/05/13/tK9mNhM6OdzepCP.png" alt="image-20220513211951839"></p>
+<p>系统调用背后的过程：</p>
+<p><img data-src="https://s2.loli.net/2022/05/13/obNKP1RrQt9sBuV.png" alt="image-20220513212751507"></p>
+<p>中断、异常和系统调用：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>产生原因</th>
+<th>实现机制</th>
+<th>区别</th>
+<th>保存地址</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>中断</strong></td>
+<td>由定时器和I&#x2F;O设备产生（来自硬件设备的处理请求）</td>
+<td>中断机制</td>
+<td>①由与现行指令无关的中断信号触发的(异步的)；②中断的发生与CPU处在用户模式或内核模式无关，系统不能确定中断发生的时间 ；③一般来说，中断处理程序提供的服务不是为当前进程所需的</td>
+<td>保存的是下一条指令的地址，以便在指令结束后检测有没有中断</td>
+<td><strong>硬件和软件结合</strong> 。①定时器：定时器是OS回收控制的重要方式，可设置为在指定周期（固定或可变）后中断计算机。防止用户程序陷入死循环，或不调用系统服务并且不将控制返回给操作系统。在将控制交到用户之前，操作系统确保定时器已设置好以便产生中断；②中断装置（发生中断源并产生中断的<strong>硬件</strong> ）：发现中断源、保护现场、启动中断处理程序（IDTR寄存器中存放了中断描述符表在内存的起始地址）；③中断处理程序： 保护未被硬件保护的一些必需的处理状态 （CPU自动保存的只有EIP&#x2F;EFLAGS&#x2F;ESP&#x2F;SS&#x2F;CS） ；识别各个中断源，分析产生中断的原因；处理中断事件；恢复正常操作；④OS必须保证中断前后的同步性，必须保证现场保护的原子性（保护现场的过程不能被中断）</td>
+</tr>
+<tr>
+<td><strong>异常</strong></td>
+<td>由程序错误产生，或者由内核必须处理的异常条件产生</td>
+<td>中断机制</td>
+<td>① 由处理器正在执行现行指令而引起的； ②异常处理程序提供的服务是为当前进程所用的；③异常包括出错、陷入、终止和编程异常等等；④异常通常由意想不到的行为触发</td>
+<td>出错保存的是当前指令的地址，陷入保存的是下一条指令的地址</td>
+<td>①由硬件检测并处理（如除0）；②硬件自身出错产生的异常：通常会在检测错误之后重新执行该指令，CPU保存运行状态；③有些异常是修复后返回并重新执行出错的指令（如页错误）；有些异常是OS通知相应进程；④异常发生在内核会导致OS崩溃</td>
+</tr>
+<tr>
+<td><strong>系统调用</strong></td>
+<td>程序主动请求操作系统服务</td>
+<td>通常通过一种特殊的异常来实现</td>
+<td>程序主动请求系统服务</td>
+<td>保存的是下一条指令的地址</td>
+<td>提供给用户态程序执行特权操作的接口；触发事件，切换至内核态；传递系统调用的参数； 保存状态以便完成系统调用后恢复执行</td>
+</tr>
+</tbody></table>
+<h2 id="7、-x3D-x3D-可能的大题：多道程序运行、简答题-x3D-x3D"><a href="#7、-x3D-x3D-可能的大题：多道程序运行、简答题-x3D-x3D" class="headerlink" title="7、&#x3D;&#x3D;可能的大题：多道程序运行、简答题&#x3D;&#x3D;"></a>7、&#x3D;&#x3D;可能的大题：多道程序运行、简答题&#x3D;&#x3D;</h2><h3 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h3><p>计算作业完成时间，CPU或者I&#x2F;O设备的利用率等等</p>
+<p>资源利用率：CPU利用率 &#x3D; CPU有效工作时间&#x2F;CPU总的运行时间， CPU总的运行时间 &#x3D; CPU有效工作时间+CPU空闲等待时间。</p>
+<p>I&#x2F;O设备的利用率同理。</p>
+<p>&#x3D;&#x3D;注意考虑优先级以及是否能够抢占&#x3D;&#x3D;</p>
+<p><strong>（1）</strong>在单CPU和两台I&#x2F;O(I1,I2)设备的多道程序设计环境下，同时投入三个作业运行。它们的执行轨迹如下：</p>
+<p>Job1：I2(30ms)、CPU(10ms)、I1(30ms)、CPU(10ms)</p>
+<p>Job2：I1(20ms)、CPU(20ms)、I2(40ms)</p>
+<p>Job3：CPU(30ms)、I1(20ms)</p>
+<p>如果CPU、I1和I2都能并行工作，优先级从高到低为Job1、Job2和Job3，优先级高的作业可以抢占优先级低的作业的CPU。试求：(1)每个作业从投入到完成分别所需的时间。(2) 每个作业投入到完成CPU的利用率。(3)I&#x2F;O设备利用率。</p>
+<p><strong>答：</strong>画出三个作业并行工作图如下(图中着色部分为作业等待时间)：</p>
+<p><img data-src="https://s2.loli.net/2022/05/14/FxBnaZuVIQ8Nhe7.png" alt="img"></p>
+<p>(1) Job1从投入到运行完成需80ms，Job2从投入到运行完成需90ms，Job3从投入到运行完成需90ms。</p>
+<p>(2) CPU空闲时间段为：60ms至70ms，80ms至90ms。所以CPU利用率为(90-20)&#x2F;90&#x3D;77.78%。</p>
+<p>(3) 设备I1空闲时间段为：20ms至40ms，故I1的利用率为(90-20)&#x2F;90&#x3D;77.78%。设备I2空闲时间段为：30ms至50ms，故I2的利用率为(90-20)&#x2F;90&#x3D;77.78%。</p>
+<p>2、 若内存中有3道程序A、B、C，它们按A、B、C优先次序运行（不考虑强占）。各程序的计算轨迹为：</p>
+<p>A：计算(20)、I&#x2F;O(30)、计算(10) </p>
+<p>B：计算(40)、I&#x2F;O(20)、计算(10)</p>
+<p>C：计算(10)、I&#x2F;O(30)、计算(20)</p>
+<p>如果三道程序都使用相同设备进行I&#x2F;O(即程序用串行方式使用设备，调度开销忽略不计)。试分别画出单道和多道运行的时间关系图。两种情况下，CPU的平均利用率各为多少?</p>
+<p><strong>答</strong>：分别画出单道和多道运行的时间图</p>
+<p>(1) 单道运行时间关系图</p>
+<p>  <img data-src="https://s2.loli.net/2022/05/14/FhG1CTOSvzJu8EM.png" alt="img"></p>
+<p>单道总运行时间为190ms。CPU利用率为(190-80)&#x2F;190&#x3D;57.9%</p>
+<p>(2) 多道运行时间关系图</p>
+<p>  <img data-src="https://s2.loli.net/2022/05/14/vworFI23sGiWeKp.png" alt="img"></p>
+<p>多道总运行时间为140ms。CPU利用率为(140-30)&#x2F;140&#x3D;78.6%</p>
+]]></content>
+      <categories>
+        <category>操作系统</category>
+      </categories>
+      <tags>
+        <tag>操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sql概述与sql定义语言</title>
+    <url>/2022/06/23/sql%E6%A6%82%E8%BF%B0%E4%B8%8Esql%E5%AE%9A%E4%B9%89%E8%AF%AD%E8%A8%80/</url>
+    <content><![CDATA[<h1 id="三、-sql概述与sql定义语言"><a href="#三、-sql概述与sql定义语言" class="headerlink" title="三、 sql概述与sql定义语言"></a>三、 sql概述与sql定义语言</h1><h2 id="1、基本概念"><a href="#1、基本概念" class="headerlink" title="1、基本概念"></a>1、基本概念</h2><p><strong>sql的特点：</strong></p>
+<ul>
+<li>综合统一：集数据定义、数据操纵、数据控制语言的功能为一体</li>
+<li>高度非过程化</li>
+<li>面向集合的操作方式</li>
+<li>两种使用方式，统一的语法结构</li>
+<li>简洁易学、通用、功能强</li>
+</ul>
+<span id="more"></span>
+
+<p><strong>sql语言的分类</strong>：数据定义语言DDL、数据操作语言DML、数据查询语言DQL、数据控制语言DCL</p>
+<p><strong>sql数据库的三级结构：</strong></p>
+<p><img data-src="https://s2.loli.net/2022/05/17/3IjuTbYwHFQzdAp.png" alt="image-20220517103508209"></p>
+<p>子模式对应于视图和部分查询表，模式对应于基本表，内模式对应于存储文件</p>
+<p><strong>sql语句的分类</strong>：模式定义语句、数据操纵语句（增删改查）、事务与控制语句、会话及诊断语句</p>
+<p><strong>sql的数据类型：</strong></p>
+<p><img data-src="https://s2.loli.net/2022/05/17/fhJG9wazTZ1ydL5.png" alt="image-20220517104732266"></p>
+<blockquote>
+<p>在实验中发现，如果要显示001这种类型的数字，可以设置为<em>sno int(3) zerofill</em></p>
+</blockquote>
+<h2 id="2、sql的数据定义"><a href="#2、sql的数据定义" class="headerlink" title="2、sql的数据定义"></a>2、sql的数据定义</h2><p><img data-src="https://s2.loli.net/2022/05/17/5Qv3qyIM9TeJrXG.png" alt="image-20220517110612939"></p>
+<blockquote>
+<p>👉总结：</p>
+<p>创建：create  对象类型 对象名</p>
+<p>删除：drop 对象类型 对象名   [RESTRICT | CASCADE]</p>
+<p>RESTRICT：如果有其它对象依赖于该对象，则拒绝进行DROP操作</p>
+<p>CASCADE：级联删除该对象及所有依赖于该对象的对象</p>
+</blockquote>
+<h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><ul>
+<li><p>模式的定义：</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> SCHEMA <span class="operator">&lt;</span>模式名<span class="operator">&gt;</span> <span class="keyword">AUTHORIZATION</span> <span class="operator">&lt;</span>用户名<span class="operator">&gt;</span>  #若不指定<span class="operator">&lt;</span>模式名<span class="operator">&gt;</span>，则隐含为<span class="operator">&lt;</span>用户名<span class="operator">&gt;</span></span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">CREATE</span> SCHEMA library_db <span class="keyword">AUTHORIZATION</span> Guoqing;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模式的删除</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> SCHEMA <span class="operator">&lt;</span>模式名<span class="operator">&gt;</span> [RESTRICT <span class="operator">|</span> CASCADE];</span><br><span class="line">#RESTRICT – 如果模式内没有对象，则删除该模式</span><br><span class="line">#CASCADE – 删除模式中所有对象的内容和定义</span><br><span class="line"></span><br><span class="line">#eg.</span><br><span class="line"><span class="keyword">DROP</span> SCHEMA library RESTRICT;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="域"><a href="#域" class="headerlink" title="域"></a>域</h3><ul>
+<li><p>定义域：</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DOMAIN <span class="operator">&lt;</span>域名<span class="operator">&gt;</span> [<span class="keyword">AS</span>] <span class="operator">&lt;</span>数据类型<span class="operator">&gt;</span> [<span class="keyword">DEFAULT</span> <span class="operator">&lt;</span>默认值<span class="operator">&gt;</span>] [<span class="operator">&lt;</span>域约束<span class="operator">&gt;</span>] </span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">CREATE</span> DOMAIN SexType <span class="keyword">AS</span> <span class="type">CHAR</span>(<span class="number">2</span>) <span class="keyword">DEFAULT</span> ‘M’ <span class="keyword">CHECK</span> (<span class="keyword">VALUE</span> <span class="keyword">IN</span> (‘M’, ‘F’));</span><br><span class="line">sex SexType <span class="keyword">NOT</span> <span class="keyword">NULL</span>;  #使用域</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除域：</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> DOMAIN <span class="operator">&lt;</span>域名<span class="operator">&gt;</span> [RESTRICT <span class="operator">|</span> CASCADE];</span><br><span class="line">#如果指定RESTRICT，且域用于现有的表中，则删除失败</span><br><span class="line">#如果指定CASCADE，基于域的任一表中的列都会自动地改变为基本域类型，该域的<span class="keyword">CHECK</span>约束或默认值都会被列的约束或默认值代替</span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">DROP</span> DOMAIN SexType；</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="表"><a href="#表" class="headerlink" title="表"></a>表</h3><ul>
+<li><p>表的建立</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> [模式名.] <span class="operator">&lt;</span>表名<span class="operator">&gt;</span> </span><br><span class="line">(   </span><br><span class="line">    <span class="operator">&lt;</span>列名<span class="operator">&gt;</span><span class="operator">&lt;</span>数据类型<span class="operator">&gt;</span>[<span class="keyword">NOT</span> <span class="keyword">NULL</span>│<span class="keyword">NULL</span>][<span class="keyword">UNIQUE</span>]</span><br><span class="line">    [, <span class="operator">&lt;</span>列名<span class="operator">&gt;</span><span class="operator">&lt;</span>数据类型<span class="operator">&gt;</span>[<span class="keyword">NOT</span> <span class="keyword">NULL</span>│<span class="keyword">NULL</span>][<span class="keyword">UNIQUE</span>]]…</span><br><span class="line">    [, <span class="keyword">PRIMARY</span> KEY （<span class="operator">&lt;</span>列名<span class="operator">&gt;</span>[，<span class="operator">&lt;</span>列名<span class="operator">&gt;</span>] …）]    #主键,主键属性列用括号括起来</span><br><span class="line">    [, <span class="keyword">FOREIGN</span> KEY （<span class="operator">&lt;</span>列名<span class="operator">&gt;</span>[，<span class="operator">&lt;</span>列名<span class="operator">&gt;</span>] …）<span class="keyword">REFERENCES</span>  <span class="operator">&lt;</span>被参照表名<span class="operator">&gt;</span>]#外键</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> PropertyForRent </span><br><span class="line">(</span><br><span class="line">    propertyNo PNumber <span class="keyword">NOT</span> <span class="keyword">NULL</span>,      #数据类型为用户定义的域</span><br><span class="line">    rooms PRooms <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">4</span>, </span><br><span class="line">    rent PRent <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">600</span>, </span><br><span class="line">    ownerNo OwnerNumber <span class="keyword">NOT</span> <span class="keyword">NULL</span>, </span><br><span class="line">    staffNo StaffNumber <span class="keyword">Constraint</span> StaffNotHandlingTooMuch ….</span><br><span class="line">    branchNo BranchNumber <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (propertyNo),   #主键属性和外键属性要用括号括起来</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (staffNo) <span class="keyword">REFERENCES</span> Staff </span><br><span class="line">    <span class="keyword">ON</span> <span class="keyword">DELETE</span> <span class="keyword">SET</span> <span class="keyword">NULL</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> CASCADE …. #可采取的行为</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>表的删除</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span> [CASCADE <span class="operator">|</span> RESTRICT]</span><br><span class="line">#既删除DD中表的结构定义，也删除DB中的数据文件</span><br><span class="line">#RESTRICT：如果有其它对象依赖于该表，则拒绝进行<span class="keyword">DROP</span>操作</span><br><span class="line">#CASCADE：级联删除表及所有依赖于该表的对象</span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> PropertyForRent;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>&#x3D;&#x3D;修改表&#x3D;&#x3D;</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">ALETR <span class="keyword">TABLE</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span></span><br><span class="line">[<span class="keyword">ADD</span> <span class="operator">&lt;</span>新列名<span class="operator">&gt;</span> <span class="operator">&lt;</span>数据类型<span class="operator">&gt;</span> &#123;<span class="keyword">NULL</span>&#125;]     #加新列，新增加的列默认为空值</span><br><span class="line">[<span class="keyword">ADD</span> <span class="operator">&lt;</span>完整性约束条件<span class="operator">&gt;</span>]</span><br><span class="line">[<span class="keyword">DROP</span> <span class="operator">&lt;</span>完整性约束条件<span class="operator">&gt;</span>]   #删除列的完整性约束条件，没有提供删除列的子句</span><br><span class="line">[MODIFY <span class="operator">&lt;</span>列名<span class="operator">&gt;</span> <span class="operator">&lt;</span>数据类型<span class="operator">&gt;</span>]   #修改列，可能破坏已有数据</span><br><span class="line"></span><br><span class="line">#eg 增加学生姓名必须取唯一值的约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> c1_name <span class="keyword">UNIQUE</span> (SN)  #c1_name是约束的名字</span><br><span class="line"></span><br><span class="line">#eg 删除学生姓名必须取唯一值的约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> S </span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">UNIQUE</span>（SN）;  </span><br><span class="line">#或者 <span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> c1_name</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><ul>
+<li><p>建立索引</p>
+<p>  一条语句建立一个索引</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#<span class="keyword">UNIQUE</span>表示每个索引值只能对应唯一的数据记录，CLUSTER表示聚簇索引，即索引项的顺序与表中记录的物理顺序一致的有序索引，一个基本表最多只能建立一个聚簇索引</span><br><span class="line"><span class="keyword">CREATE</span> [<span class="keyword">UNIQUE</span>] [CLUSTER] INDEX <span class="operator">&lt;</span>索引名<span class="operator">&gt;</span>  </span><br><span class="line"><span class="keyword">ON</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span> (<span class="operator">&lt;</span>列名<span class="number">1</span><span class="operator">&gt;</span>[<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>], <span class="operator">&lt;</span>列名<span class="number">2</span><span class="operator">&gt;</span>[<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>], ...);</span><br><span class="line">#<span class="keyword">ASC</span>表示升序，<span class="keyword">DESC</span>表示降序。默认为升序。</span><br><span class="line"></span><br><span class="line">#eg:在SC中按sno升序cno降序建唯一索引</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX SC_index <span class="keyword">ON</span> SC( sno <span class="keyword">ASC</span>，cno <span class="keyword">DESC</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除索引</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> INDEX [<span class="keyword">ON</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span>]<span class="operator">&lt;</span>索引名<span class="operator">&gt;</span></span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">DROP</span> INDEX SC_index;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="x3D-x3D-3、⚠⚠⚠sql数据查询-x3D-x3D"><a href="#x3D-x3D-3、⚠⚠⚠sql数据查询-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;3、⚠⚠⚠sql数据查询&#x3D;&#x3D;"></a>&#x3D;&#x3D;3、⚠⚠⚠sql数据查询&#x3D;&#x3D;</h2><h3 id="一般格式"><a href="#一般格式" class="headerlink" title="一般格式"></a>一般格式</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">ALL</span><span class="operator">|</span><span class="keyword">DISTINCT</span>] <span class="operator">&lt;</span>目标列表达式<span class="operator">&gt;</span>[,<span class="operator">&lt;</span>目标列表达式<span class="operator">&gt;</span>]...      #<span class="keyword">ALL</span>为默认设置，即不取消重复值，<span class="keyword">DISTINCT</span>表示取消重复值</span><br><span class="line"><span class="keyword">FROM</span> <span class="operator">&lt;</span>表名或视图名<span class="operator">&gt;</span>[,表名或视图名]...     #<span class="keyword">SELECT</span>子句与<span class="keyword">FROM</span>子句是必选子句</span><br><span class="line">[<span class="keyword">WHERE</span> <span class="operator">&lt;</span>条件表达式<span class="operator">&gt;</span>]</span><br><span class="line">[<span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>列名<span class="number">1</span><span class="operator">&gt;</span>[<span class="keyword">HAVING</span><span class="operator">&lt;</span>条件表达式<span class="operator">&gt;</span>]]</span><br><span class="line">[<span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>列名<span class="number">2</span><span class="operator">&gt;</span>[<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>]];     #其中，列名<span class="number">2</span>也可以用<span class="keyword">SELECT</span>子句中相应列的序号</span><br></pre></td></tr></table></figure>
+
+<p><strong>含义：</strong></p>
+<p><img data-src="https://s2.loli.net/2022/05/17/GUvQItYzXHpeOmW.png" alt="image-20220517114258444"></p>
+<p><strong>概念性的执行步骤：</strong></p>
+<ul>
+<li>计算出现在FROM后面的表之间的笛卡儿积</li>
+<li>实施由WHERE后面的条件规定的选择操作</li>
+<li>根据GROUP BY后面的属性的值进行分组</li>
+<li>对于分组出来的每一个小组，实施由HAVING后面的条件规定的选择操作，保留满足条件的小组</li>
+<li>将出现在SELECT后面的属性投影成结果表</li>
+<li>将结果表中的元组根据ORDER BY后面的属性及指定的顺序（升序或降序）输出</li>
+</ul>
+<h3 id="SELECT子句："><a href="#SELECT子句：" class="headerlink" title="SELECT子句："></a>SELECT子句：</h3><p><em>SELECT [ALL|DISTINCT] &lt;目标列表达式&gt;[,&lt;目标列表达式&gt;]…</em></p>
+<ul>
+<li><p>*代表指定表的所有列，一般用在exists和not exists里面</p>
+</li>
+<li><p>ALL为默认设置 ，即不取消重复值，DISTINCT表示取消重复值</p>
+</li>
+<li><p>&#x3D;&#x3D;聚集函数（只能用于SELECT子句和HAVING子句中 ）&#x3D;&#x3D;</p>
+<p>  <img data-src="https://s2.loli.net/2022/03/05/YGrdqMfam4Qhb8P.png" alt="image-20220305102158697"></p>
+<p>  <img data-src="https://s2.loli.net/2022/03/07/xj6qmHkOhKrcvag.png" alt="image-20220307231705848"></p>
+<blockquote>
+<p>当这些函数遇到空值时，除COUNT(*)外，都跳过空值而只处理非空值。</p>
+</blockquote>
+<p>  例子：</p>
+  <img data-src="https://s2.loli.net/2022/05/17/5Yvk4aWe1JPLMOw.png" alt="image-20220517115836637" style="zoom: 67%;" />
+</li>
+<li><p>&#x3D;&#x3D;算术表达式：&#x3D;&#x3D;  </p>
+<p>  +、-、*、&#x2F;、%、INTEGER（取整）、SQRT（求平方根）、三角函数（SIN、COS）、字符串函数SUBSTRING（取子串）、UPPER（大写字符）、MONTHS_BETWEEN（月份差）</p>
+<hr>
+</li>
+<li><p>用AS子句为列命名 </p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> staffNo, fName, lName, salary<span class="operator">/</span><span class="number">12</span> <span class="keyword">AS</span> monthlySalary <span class="keyword">FROM</span> Staff;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="FROM子句："><a href="#FROM子句：" class="headerlink" title="FROM子句："></a>FROM子句：</h3><p>可以给表指定别名：多个表放在FROM子句中，代表多表进行笛卡尔积</p>
+<p><img data-src="https://s2.loli.net/2022/05/17/4bpXBmUsKrI3CdH.png" alt="image-20220517120134854"></p>
+<h3 id="WHERE子句："><a href="#WHERE子句：" class="headerlink" title="WHERE子句："></a>WHERE子句：</h3><p>WHERE子句的查询条件可以用多种形式表示： </p>
+<img data-src="https://s2.loli.net/2022/05/18/X4nGHxUtsuZCcio.png" style="zoom:67%;" />
+
+<ul>
+<li><p>比较运算作为查找条件 (&gt;,  &lt;,  &gt;&#x3D;,  &lt;&#x3D;,  &#x3D;,  &lt;&gt;(不等于))</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> salary <span class="operator">&gt;</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>复合比较运算作为查找条件 (AND, OR, NOT ) </p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> city <span class="operator">=</span> ‘London’ <span class="keyword">OR</span> city <span class="operator">=</span> ‘Glasgow’</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>范围作为查找条件（BETWEEN &#x2F; NOT BETWEEN）。&#x3D;&#x3D;BETWEEN包含端点&#x3D;&#x3D;</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> grade <span class="keyword">BETWEEN</span> <span class="number">85</span> <span class="keyword">AND</span> <span class="number">95</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>集合成员测试作为查找条件（IN &#x2F; NOT IN）</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> place <span class="keyword">IN</span>(<span class="string">&#x27;湖南&#x27;</span>,<span class="string">&#x27;湖北&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>模式匹配作为查找条件（LIKE &#x2F; NOT LIKE）</p>
+<p>  SQL中的两种特殊的模式匹配符号：</p>
+<ul>
+<li><p>%: 百分号表示零或多个字符序列（通配符）</p>
+</li>
+<li><p>_: 下划线表示任意单个字符</p>
+  <img data-src="https://s2.loli.net/2022/03/07/Z52TOHjLlb6tivJ.png" alt="image-20220307230435181" style="zoom:67%;" /></li>
+</ul>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> sname <span class="keyword">LIKE</span> <span class="string">&#x27;刘%&#x27;</span> <span class="keyword">OR</span> SNAME <span class="keyword">LIKE</span> <span class="string">&#x27;__晓%&#x27;</span>   #一个汉字占两个字符位</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>空查找条件（IS NULL  &#x2F;  IS NOT NULL）</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> propertyNo <span class="operator">=</span> ‘PG4’ <span class="keyword">AND</span> comment <span class="keyword">IS</span> <span class="keyword">NULL</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="GROUP-BY子句-："><a href="#GROUP-BY子句-：" class="headerlink" title="GROUP BY子句 ："></a>GROUP BY子句 ：</h3><p>将查询结果按指定列名的取值分组，并选取满足HAVING中的内部函数表达式所指定条件的组。目的：细化聚集函数的作用对象。 &#x3D;&#x3D;HAVING子句是包含在GROUP BY子句中的&#x3D;&#x3D; </p>
+<blockquote>
+<p>WHERE子句是在表中选择满足条件的元组，而HAVING子句是在各组中选择满足条件的小组</p>
+</blockquote>
+<blockquote>
+<p>ISO标准规定，应用GROUP BY时，两个空值被认为是相等的</p>
+</blockquote>
+<blockquote>
+<p>&#x3D;&#x3D;当使用GROUP BY时， SELECT列表中的项必须每组都有单一值(因为最终一个组会变成一个元组)&#x3D;&#x3D; </p>
+</blockquote>
+<blockquote>
+<p>当使用GROUP BY时， SELECT子句中除集合函数外，其它所有列必须在GROUP BY子句中出现；反之，GROUP BY子句出现的列不一定出现在SELECT列表中；</p>
+<p>HAVING子句使用的列名必须出现在GROUP BY 子句列表中，或者包括在集合函数中。实践中，HAVING子句的条件表达式至少包括一个集合函数</p>
+</blockquote>
+<h3 id="ORDER-BY子句"><a href="#ORDER-BY子句" class="headerlink" title="ORDER BY子句"></a>ORDER BY子句</h3><p>order by子句必须放最后用于对最终的查询结果进行排序，<u>不能用在子查询中</u></p>
+<p>该子句后可以跟多个排序的变量名，第一个变量为主序，下面依次类推。&#x3D;&#x3D;ASC（升序）为默认设置&#x3D;&#x3D; 。它也可以用SELECT子句中相应列的序号。</p>
+<img data-src="https://s2.loli.net/2022/05/17/5Yvk4aWe1JPLMOw.png" alt="image-20220517115836637" style="zoom: 67%;" />
+
+<img data-src="https://s2.loli.net/2022/05/17/GeHg8L1yBXIUpJt.png" alt="image-20220517120939452" style="zoom: 80%;" />
+
+<h3 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h3><p>单表查询</p>
+<ul>
+<li>查询指定的列：通过在SELECT子句的&lt;目标列表达式&gt;中指定要查询的列来实现。可以使用*、聚集函数、算术表达式等</li>
+<li>查询表中行：通过WHERE子句的查询条件来实现</li>
+</ul>
+<h3 id="复杂查询"><a href="#复杂查询" class="headerlink" title="复杂查询"></a>复杂查询</h3><h4 id="连接查询："><a href="#连接查询：" class="headerlink" title="连接查询："></a>连接查询：</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> student.sno, sname, cno, grade <span class="keyword">FROM</span> student, s_c <span class="keyword">WHERE</span> student.sno <span class="operator">=</span> s_c.sno;</span><br></pre></td></tr></table></figure>
+
+<p>&#x3D;&#x3D;注意在多表查询中，当两个列名相同时，需采用表名.列名以示区别&#x3D;&#x3D;</p>
+<h4 id="嵌套查询（子查询）："><a href="#嵌套查询（子查询）：" class="headerlink" title="嵌套查询（子查询）："></a>嵌套查询（子查询）：</h4><p>子查询可以被使用在外部SELECT语句的WHERE子句、HAVING子句甚至SELECT子句中</p>
+<p>&#x3D;&#x3D;子查询应遵循如下规则：&#x3D;&#x3D; </p>
+<ul>
+<li><p>ORDER BY子句不能用于子查询（因为ORDER BY子句是对最终显示的结果进行排序）</p>
+</li>
+<li><p>子查询总是<strong>括在圆括号</strong> 中，作为表达式的一部分出现在条件比较运算符的右边，并且可以有选择的跟在IN，SOME（ANY），ALL和EXIST等谓词后面。</p>
+</li>
+<li><p>子查询select列表必须由<strong>单个列名或表达式</strong> （如集合函数）组成，除非子查询使用了关键字EXISTS（多列多行时使用）</p>
+</li>
+<li><p>默认情况下，子查询中列名取自子查询的FROM子句中给定的表，也可以通过限定列名的办法指定取自外查询的FROM子句中的表（不相关子查询和相关子查询）</p>
+</li>
+<li><p>带有比较运算符的子查询（&#x3D;&#x3D;此时子查询返回单个值&#x3D;&#x3D;，可以使用集合函数 ）</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#列出个人工资高于平均工资的所有职员，并求出多于平均数的值。</span><br><span class="line"><span class="keyword">SELECT</span> staffNo, fName, lName, position, salary–(<span class="keyword">SELECT</span> <span class="built_in">AVG</span>(salary) <span class="keyword">FROM</span> Staff) <span class="keyword">AS</span> SalDiff</span><br><span class="line"><span class="keyword">FROM</span> Staff</span><br><span class="line"><span class="keyword">WHERE</span> salary <span class="operator">&gt;</span> (<span class="keyword">SELECT</span> <span class="built_in">AVG</span>(salary) <span class="keyword">FROM</span> Staff);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>带有IN谓词的子查询（子查询返回单个值或单个列多个行）</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#查询选修了课程“C2”的学生的学号和姓名</span><br><span class="line"><span class="keyword">SELECT</span> sno, sname <span class="keyword">FROM</span> S <span class="keyword">WHERE</span> sno <span class="keyword">IN</span> ( <span class="keyword">SELECT</span> sno <span class="keyword">FROM</span> SC <span class="keyword">WHERE</span> cno <span class="operator">=</span> ‘C2’ );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多层嵌套：子查询中又嵌套子查询</p>
+</li>
+<li><p>&#x3D;&#x3D;不相关子查询和相关子查询&#x3D;&#x3D; </p>
+<ul>
+<li><p>不相关子查询：内层的子查询完全独立于外层的SELECT语句。&#x3D;&#x3D;m + n&#x3D;&#x3D; （只执行了一次子查询，在检查外层的元组时，无需再执行子查询）</p>
+<blockquote>
+<p>执行过程：1）执行子查询，其结果不被显示，而是传递给外部查询，作为外部查询的条件使用。2）执行外部查询，并显示整个结果。</p>
+</blockquote>
+</li>
+<li><p>相关子查询：子查询的判断条件涉及外层父查询的属性。要用到存在谓词EXISTS和NOT EXISTS，或者ALL、SOME等。&#x3D;&#x3D;m * n&#x3D;&#x3D; （每检查一个元组，都要执行一次子查询）</p>
+<blockquote>
+<p>执行过程：1）从外层查询中取出一个元组，将元组相关列（被内层子查询引用）的值传给内层查询。2）执行内层查询，得到子查询操作的值。3）外查询根据子查询返回的结果或结果集得到满足条件的行。4）然后外层查询取出下一个元组重复做步骤1-3，直到外层的元组全部处理完毕。</p>
+</blockquote>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#找出每个学生超过他自己已选修课程平均成绩的课程号</span><br><span class="line"><span class="keyword">SELECT</span> sno, cno <span class="keyword">FROM</span> SC x <span class="keyword">WHERE</span> G<span class="operator">&gt;=</span> (<span class="keyword">SELECT</span> <span class="built_in">AVG</span>(G) <span class="keyword">FROM</span> SC y <span class="keyword">WHERE</span> x.sno <span class="operator">=</span> y.sno);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>量化比较谓词</p>
+<ul>
+<li><p>作用：产生单个列的子查询</p>
+</li>
+<li><p>通用形式：<code>expr Θ &#123; SOME | ANY | ALL &#125; (Subquery)其中Θ∈&#123;&lt;,&lt;=,=,&lt;&gt;,&gt;,&gt;=&#125; </code>。expr为表达式。该形式中的SOME与ANY含义相同，但用SOME而不用ANY。SOME某些，ALL全部。</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#查询其它系中比信息系某一学生年龄小的学生姓名和年龄</span><br><span class="line"><span class="keyword">SELECT</span> SN, SA <span class="keyword">FROM</span> S <span class="keyword">WHERE</span> SA <span class="operator">&lt;</span> <span class="keyword">SOME</span> (<span class="keyword">SELECT</span> SA <span class="keyword">FROM</span> S <span class="keyword">WHERE</span> SD <span class="operator">=</span>‘<span class="keyword">IS</span>’) <span class="keyword">AND</span> SD <span class="operator">&lt;&gt;</span>‘<span class="keyword">IS</span>’;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>expr Θ （子查询）  子查询返回单个值</p>
+<p>expr IN （子查询）</p>
+<p>expr Θ { SOME | ANY | ALL } (子查询)，&gt;&#x3D; ALL可以用于求最大值</p>
+</blockquote>
+</li>
+<li><p>&#x3D;&#x3D;EXISTS谓词&#x3D;&#x3D; </p>
+<ul>
+<li><p>通用形式：[NOT] EXISTS （Subquery）</p>
+</li>
+<li><p>作用：测试被子查询检索到的行集(子查询可以返回多行多列)<strong>是否为空</strong> 。谓词 EXISTS （Subquery）为真当且仅当子查询返回一个非空的集合。NOT_EXISTS则相反</p>
+</li>
+<li><p>NOT EXISTS谓词可以实现<strong>关系代数的差运算</strong></p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#查询没有选修‘C1’号课程的学生的姓名。</span><br><span class="line"><span class="keyword">SELECT</span> sname <span class="keyword">FROM</span> S <span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> (<span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> SC <span class="keyword">WHERE</span> sno <span class="operator">=</span> S.sno <span class="keyword">AND</span> cno <span class="operator">=</span> ‘C1’);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>所有带IN谓词、比较运算符、SOME和ALL谓词的子查询都可以用带EXISTS谓词的子查询等价替换，反过来就不一定</p>
+</li>
+<li><p>可以采用双嵌套NOT_EXISTS来实现<strong>带全称量词的查询</strong>。<img data-src="https://s2.loli.net/2022/03/15/Km17HNji9vZAeGV.png" alt="image-20220315110415416" style="zoom:50%;" /></p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#查询选修了全部课程的学生姓名</span><br><span class="line">#转化为查询这样的学生x，没有一门课程y 是x不选修的</span><br><span class="line"><span class="keyword">SELECT</span> SN</span><br><span class="line"><span class="keyword">FROM</span> S     #查询学生x</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>  #不存在课程y</span><br><span class="line">    （<span class="keyword">SELECT</span> ﹡</span><br><span class="line">    <span class="keyword">FROM</span> C</span><br><span class="line">    <span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>  #x不选修课程y</span><br><span class="line">        （<span class="keyword">SELECT</span> ﹡</span><br><span class="line">        <span class="keyword">FROM</span> SC</span><br><span class="line">        <span class="keyword">WHERE</span> S# <span class="operator">=</span> S.S#</span><br><span class="line">        <span class="keyword">AND</span> C# <span class="operator">=</span> C.C#））</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以采用NOT EXISTS谓词实现<strong>关系代数的除运算</strong></p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#查询至少选修了学生‘<span class="number">95002</span>’选修的全部课程的学生号码</span><br><span class="line">#转换为查询学号为x的学生，不存在这样的课程y，学生<span class="number">95002</span>选修了y，而学生x没有选</span><br><span class="line"><span class="keyword">SELECT</span> S#</span><br><span class="line"><span class="keyword">FROM</span> S          #查询学生x</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span></span><br><span class="line">    （<span class="keyword">SELECT</span> ﹡</span><br><span class="line">    <span class="keyword">FROM</span> C       #不存在课程y</span><br><span class="line">    <span class="keyword">WHERE</span> <span class="keyword">EXISTS</span>   #<span class="number">95002</span>选修了课程y</span><br><span class="line">        (<span class="keyword">SELECT</span> ﹡</span><br><span class="line">        <span class="keyword">FROM</span> SC SCX</span><br><span class="line">        <span class="keyword">WHERE</span> SCX.C# <span class="operator">=</span> C.C# <span class="keyword">AND</span> SCX.S#<span class="operator">=</span>‘<span class="number">95002</span>’）</span><br><span class="line">    <span class="keyword">AND</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>   #x没有选修y</span><br><span class="line">        (<span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line">        <span class="keyword">FROM</span> SC SCY</span><br><span class="line">        <span class="keyword">WHERE</span> SCY.C# <span class="operator">=</span> C.C# <span class="keyword">AND</span> SCY.S#<span class="operator">=</span>S.S#)</span><br><span class="line">    );</span><br><span class="line">    </span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> S#    #因为是从SC里选的学号，故需要<span class="keyword">DISTINCT</span></span><br><span class="line"><span class="keyword">FROM</span> SC SCX         #查询学生x</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span></span><br><span class="line">    （<span class="keyword">SELECT</span> ﹡</span><br><span class="line">    <span class="keyword">FROM</span> SC SCY    #不存在课程y</span><br><span class="line">    <span class="keyword">WHERE</span> SCY.S# <span class="operator">=</span> ‘<span class="number">95002</span>’  #<span class="number">95002</span>选修了课程y</span><br><span class="line">    <span class="keyword">AND</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>    #x没有选修y</span><br><span class="line">        （<span class="keyword">SELECT</span> ﹡  </span><br><span class="line">        <span class="keyword">FROM</span> SC SCZ</span><br><span class="line">        <span class="keyword">WHERE</span> SCZ.S# <span class="operator">=</span> SCX.S#</span><br><span class="line">        <span class="keyword">AND</span> SCZ.C# <span class="operator">=</span> SCY.C#））；</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p><img data-src="https://s2.loli.net/2022/03/14/2srATEC8QOWUzM4.png" alt="image-20220314232322210"></p>
+<h2 id="4、数据更新"><a href="#4、数据更新" class="headerlink" title="4、数据更新"></a>4、数据更新</h2><h3 id="插入数据：INSERT-（元组级）"><a href="#插入数据：INSERT-（元组级）" class="headerlink" title="插入数据：INSERT （元组级）"></a>插入数据：INSERT （元组级）</h3><p>&#x3D;&#x3D;插入数据时，表定义中说明了NOT NULL的列不能取空值&#x3D;&#x3D; </p>
+<ul>
+<li><p>用<strong>子句</strong>向表中插入数据：将新元组插入表中</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> </span><br><span class="line"><span class="keyword">INTO</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span> [(<span class="operator">&lt;</span>列名<span class="number">1</span><span class="operator">&gt;</span>[, <span class="operator">&lt;</span>列名<span class="number">2</span><span class="operator">&gt;</span>]...)] </span><br><span class="line"><span class="keyword">VALUES</span>(<span class="operator">&lt;</span>常量<span class="number">1</span><span class="operator">&gt;</span>[, <span class="operator">&lt;</span>常量<span class="number">2</span><span class="operator">&gt;</span>]...)  </span><br><span class="line"> #未指定任何列名时，新插入的属性必须在每个属性列上均有值，仅指定部分列名时，新元组的其他列为空值</span><br><span class="line"> </span><br><span class="line">#eg 插入一条选课记录（‘<span class="number">95020</span>’，‘C1’）</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> SC（S#, C#）<span class="keyword">VALUES</span> （‘<span class="number">95020</span>’, ‘C1’）; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用<strong>子查询</strong>向表中插入数据</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> </span><br><span class="line"><span class="keyword">INTO</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span> [(<span class="operator">&lt;</span>列名<span class="number">1</span><span class="operator">&gt;</span>[, <span class="operator">&lt;</span>列名<span class="number">2</span><span class="operator">&gt;</span>]...)] </span><br><span class="line"><span class="keyword">SELECT</span>语句;  #<span class="keyword">SELECT</span>语句的返回列要和INFO里的对应</span><br><span class="line"></span><br><span class="line">#eg  对每个系，求学生的平均年龄，并把结果存入数据库</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Deptage (SD, Avgage) <span class="keyword">SELECT</span> SD, <span class="built_in">AVG</span>(SA) <span class="keyword">FROM</span> S <span class="keyword">GROUP</span> <span class="keyword">BY</span> SD;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="修改数据：UPDATE"><a href="#修改数据：UPDATE" class="headerlink" title="修改数据：UPDATE"></a>修改数据：UPDATE</h3><p>一条UPDATE语句在某一时刻只能更新<strong>一张表</strong>，但可以更新一张表中的<strong>多列</strong>，也可以更新<strong>多行</strong>数据。</p>
+<ul>
+<li><p>用<strong>子句</strong>修改表中数据</p>
+<p>  修改表中满足WHERE条件的元组：</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">SET</span> <span class="operator">&lt;</span>列名<span class="operator">&gt;</span> <span class="operator">=</span> <span class="operator">&lt;</span>表达式<span class="operator">&gt;</span>[, <span class="operator">&lt;</span>列名<span class="operator">&gt;</span> <span class="operator">=</span> <span class="operator">&lt;</span>表达式<span class="operator">&gt;</span>] #用表达式的值取代相应的属性列值</span><br><span class="line">[<span class="keyword">WHERE</span> <span class="operator">&lt;</span>条件表达式<span class="operator">&gt;</span>]				#省略<span class="keyword">WHERE</span>语句则修改全部元组</span><br><span class="line"></span><br><span class="line">#eg 将学生<span class="number">95001</span>的年龄改为<span class="number">22</span>岁</span><br><span class="line"><span class="keyword">UPDATE</span> S <span class="keyword">SET</span> SA <span class="operator">=</span> <span class="number">22</span> <span class="keyword">WHERE</span> S# <span class="operator">=</span> ‘<span class="number">95001</span>’;</span><br><span class="line"></span><br><span class="line">#eg 将所有学生的年龄增加<span class="number">1</span>岁</span><br><span class="line"><span class="keyword">UPDATE</span> S <span class="keyword">SET</span> SA <span class="operator">=</span> SA <span class="operator">+</span> <span class="number">1</span>；</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用<strong>子查询</strong>修改表中数据：子查询可以嵌套在WHERE语句的条件表达式中，用于构造修改的条件。相关子查询</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#将计算机科学系全体学生的成绩置零</span><br><span class="line">#相关子查询，每次拿出SC中的一个元组，得到它的系，如果为CS则将成绩置<span class="number">0</span></span><br><span class="line"><span class="keyword">UPDATE</span> SC <span class="keyword">SET</span> G <span class="operator">=</span> <span class="number">0</span> <span class="keyword">WHERE</span> ‘CS’ <span class="operator">=</span> ( <span class="keyword">SELECT</span> SD <span class="keyword">FROM</span> S <span class="keyword">WHERE</span> S.S# <span class="operator">=</span> SC.S#);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="删除数据：DELETE-（元组级）"><a href="#删除数据：DELETE-（元组级）" class="headerlink" title="删除数据：DELETE （元组级）"></a>删除数据：DELETE （元组级）</h3><p>DELETE用于<strong>从指定表中删除满足条件的元组</strong>，但不能用来从特定的列中删除数据。一条DELETE语句可以从表中删除一个或多个元组。</p>
+<ul>
+<li><p>用<strong>子句</strong>删除表中数据</p>
+<p>  删除表中满足WHERE条件的元组：</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> </span><br><span class="line"><span class="keyword">FROM</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span></span><br><span class="line">[<span class="keyword">WHERE</span> <span class="operator">&lt;</span>条件表达式<span class="operator">&gt;</span>]  </span><br><span class="line"></span><br><span class="line">#eg 删除学号为<span class="number">95001</span>的学生记录</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> S <span class="keyword">WHERE</span> S# <span class="operator">=</span> ‘<span class="number">95001</span>’;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>省略WHERE语句则删除全部元组，但<strong>只删除了表中的数据</strong>，而不是表的定义，表的定义仍在DD中。<strong>删除表应当用DROP</strong></p>
+</blockquote>
+</li>
+<li><p><strong>子查询</strong>可以嵌套在WHERE语句的条件表达式中。相关子查询</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#删除计算机科学系全体学生的选课记录</span><br><span class="line">#相关子查询</span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> SC <span class="keyword">WHERE</span> ‘CS’ <span class="operator">=</span> ( <span class="keyword">SELECT</span> SD <span class="keyword">FROM</span> S <span class="keyword">WHERE</span> S.S# <span class="operator">=</span> SC.S#);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="5、视图"><a href="#5、视图" class="headerlink" title="5、视图"></a>5、视图</h2><ul>
+<li><strong>概念：</strong><ul>
+<li>视图是&#x3D;&#x3D;动态结果&#x3D;&#x3D;：对一个或多个基本关系进行关系操作得到的动态结果，是从一个或几个基本表（或视图）导出的表。而且对基本表的操作将在视图可见的范围内映射到视图上。&#x3D;&#x3D;视图对应的内容是实时的、最新的内容&#x3D;&#x3D; </li>
+<li>视图是&#x3D;&#x3D;虚关系&#x3D;&#x3D;：它不包含真正存储的数据，其内容不占用存储空间。</li>
+<li><strong>视图的内容被定义成基于一个或多个基本关系的查询</strong></li>
+<li>视图是在&#x3D;&#x3D;外模式&#x3D;&#x3D;这一层，为用户所用</li>
+</ul>
+</li>
+<li><strong>操作：</strong>视图可以和基本表一样被查询、被删除。也可以在一个视图之上再定义新的视图，但&#x3D;&#x3D;对视图的更新（增、删、改）操作则有一定的限制&#x3D;&#x3D;。&#x3D;&#x3D;对视图的一切操作最终也要转换为对基本表的操作。&#x3D;&#x3D;</li>
+</ul>
+<h3 id="视图的创建及种类"><a href="#视图的创建及种类" class="headerlink" title="视图的创建及种类"></a>视图的创建及种类</h3><ul>
+<li><p>视图可以从一张表、几张表或其他视图中创建。 </p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> <span class="operator">&lt;</span>视图名<span class="operator">&gt;</span> [(<span class="operator">&lt;</span>列名<span class="number">1</span><span class="operator">&gt;</span>[,<span class="operator">&lt;</span>列名<span class="number">2</span><span class="operator">&gt;</span>]...)]</span><br><span class="line"><span class="keyword">AS</span> </span><br><span class="line"><span class="keyword">SELECT</span> 语句</span><br><span class="line">[<span class="keyword">WITH</span> <span class="keyword">CHECK</span> OPTION]  </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>几点说明：</strong></p>
+<ul>
+<li><p>&#x3D;&#x3D;创建视图只是将视图的定义存入DD（数据字典），并不会真的执行SELECT语句，当对视图查询时，才根据视图的定义从基本表中将数据查出。&#x3D;&#x3D;</p>
+</li>
+<li><p><strong>省略视图名后的列名表时</strong>，默认该视图由子查询中SELECT子句目标列中的诸属性列组成</p>
+</li>
+<li><p>若使用&#x3D;&#x3D;WITH CHECK OPTION&#x3D;&#x3D;，则对视图进行UPDATE和INSERT操作时，保证更新行满足视图定义中的WHERE子句指定的条件，否则将被DBMS拒绝</p>
+</li>
+<li><p>当目标列不是单一的属性列(如集合函数)、存在同名列以及需启用更合适的名字时，需要指定组成视图的所有列名</p>
+</li>
+<li><p>可以在视图中增加虚拟列（派生列），即基本表中并不存在的列，如avg(grade)</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>视图的种类</strong></p>
+<ul>
+<li><p>水平视图：从单个基本表导出，并且只是<strong>去掉了</strong>基本表的<strong>某些行</strong></p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#创建一个视图，让分支机构B003的经理只看到他所在分支机构的职员的信息</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> Manager3Staff</span><br><span class="line"><span class="keyword">AS</span> <span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> Staff</span><br><span class="line"><span class="keyword">WHERE</span> branchNo <span class="operator">=</span> ‘B003’;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>垂直视图：从单个基本表导出，并且只是<strong>去掉了</strong>基本表的<strong>某些列</strong> </p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#建立关于分支机构B003职员信息但不包括工资信息的视图</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> Staff3</span><br><span class="line"><span class="keyword">AS</span> <span class="keyword">SELECT</span> staffNo, fName, lName, position, sex</span><br><span class="line"><span class="keyword">FROM</span> Manager3Staff;		#视图可以从其他视图中创建</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分组视图：用<strong>GROUP BY 子句</strong>定义的视图</p>
+</li>
+<li><p>连接视图：用<strong>连接运算</strong>得到的视图</p>
+<p>  <img data-src="https://s2.loli.net/2022/03/22/CA4TkBawSpnsgIi.png" alt="image-20220322094759185"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h3><ul>
+<li><pre><code class="sql">  DROP VIEW &lt;视图名&gt;&#123;CASCADE|RESTRICT&#125; 
+  <figure class="highlight less"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="selector-tag">-</span> 视图是虚表，**删除的是<span class="selector-tag">DD</span>中的视图的定义**，**对产生视图数据的基本表中的数据没有影响**</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">-</span> 默认<span class="selector-tag">RESTRICT</span> ，如果存在依赖被删除视图的其他对象，则不允许删除</span><br><span class="line"></span><br><span class="line">    如果指定<span class="selector-tag">CASCADE</span>**，**删除视图可能产生级联删除</span><br><span class="line"></span><br><span class="line">### 查询视图</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">-</span> **步骤**</span><br><span class="line"></span><br><span class="line">```<span class="selector-tag">mermaid</span></span><br><span class="line"><span class="selector-tag">graph</span> <span class="selector-tag">LR</span></span><br><span class="line">    <span class="selector-tag">a</span><span class="selector-attr">[有效性检查]</span><span class="selector-tag">--</span>&gt;|有效|<span class="selector-tag">b</span><span class="selector-attr">[从DD中取出视图定义]</span></span><br><span class="line">    <span class="selector-tag">b</span><span class="selector-attr">[从DD中取出视图定义]</span><span class="selector-tag">--</span>&gt;|视图消解|<span class="selector-tag">c</span><span class="selector-attr">[对基本表的查询]</span></span><br><span class="line">    <span class="selector-tag">c</span><span class="selector-attr">[对基本表的查询]</span><span class="selector-tag">--</span>&gt;<span class="selector-tag">d</span><span class="selector-attr">[执行查询]</span></span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p>&#x3D;&#x3D;视图消解&#x3D;&#x3D;：将对视图的查询<strong>转换为对基本表的查询</strong>。执行对视图的查询时，从数据字典中取出视图的定义，将定义中的子查询和用户的查询结合起来，转换成等价的对基本表的查询的过程</p>
+<blockquote>
+<p>简单转换的过程：</p>
+<ul>
+<li><p>将SELECT列表中给出的列名转换为视图定义中对应的列名</p>
+</li>
+<li><p>FROM子句的视图名可以视图定义中的FROM列表代替</p>
+</li>
+<li><p>用AND将WHERE子句和视图定义中的WHERE子句合并</p>
+</li>
+<li><p>从视图定义中复制GROUP BY和HAVING子句</p>
+</li>
+<li><p>将 ORDER BY列名转换为视图定义中对应的列名</p>
+<p>  例子：</p>
+  <img data-src="https://s2.loli.net/2022/03/22/jVlQaEdt8FD5HcW.png" alt="image-20220322221341006" style="zoom:67%;" />
+
+  <img data-src="https://s2.loli.net/2022/03/22/I5TvHtQE4RCPSlk.png" alt="image-20220322221538427" style="zoom: 67%;" />
+
+  <img data-src="https://s2.loli.net/2022/03/22/HOEKyJ3X26nhGs9.png" alt="image-20220322221558073" style="zoom:67%;" /></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>复杂转换：涉及集合函数，考虑HAVING子句等等</p>
+<img data-src="https://s2.loli.net/2022/03/22/7WcqENUudBsYIMg.png" alt="image-20220322222248720" style="zoom:67%;" />
+</blockquote>
+<ul>
+<li><p><strong>查询视图的约束：</strong></p>
+<ul>
+<li><p>如果视图中某个列是基于集合函数的，那么，该列只能出现在访问视图的SELECT和ORDER BY子句中，特别是，该列不能出现在WHERE子句中，并且不能作为集合函数的参数</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> StaffPropCnt <span class="keyword">WHERE</span> cnt <span class="operator">&gt;</span> <span class="number">2</span>; <span class="operator">/</span><span class="operator">/</span>错误</span><br><span class="line"><span class="keyword">SELECT</span> <span class="built_in">COUNT</span> (cnt) <span class="keyword">FROM</span> StaffPropCnt;  <span class="operator">/</span><span class="operator">/</span>错误</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分组视图不能与基本表或视图进行连接操作</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="更新视图"><a href="#更新视图" class="headerlink" title="更新视图"></a>更新视图</h3><ul>
+<li>👉<strong>对视图的更新最终要转换为对表的更新</strong>，但有些更新不能有意义地转换成对基本表S的更新，如修改一个集合函数得到的列，因此&#x3D;&#x3D;对视图的更新操作有一定的限制&#x3D;&#x3D;</li>
+<li>在视图定义时加上WITH CHECK OPTION子句可以使得对视图进行更新操作时需满足视图定义中子查询的条件</li>
+<li>&#x3D;&#x3D;视图可更新的充要条件&#x3D;&#x3D;<ul>
+<li>没有指定DISTINCT,即重复元组未从查询结果中消除；</li>
+<li>定义查询的SELECT列表中的每个元素均为列名（而不是常量，表达式或聚合函数），且列名不能出现多于一次；</li>
+<li>FROM子句只能指定一个表，即视图必须有一个源表且用户有请求该表的权限。如果源表本身就是一个视图，那么视图必须满足这些条件。因此，排除了基于连接、并（UNION）、交（INTERSECT）或差（EXCEPT）操作的所有视图；</li>
+<li>WHERE子句不能包括任何引用了FROM子句中的表的嵌套SELECT操作，即不能出现相关子查询</li>
+<li>定义查询不能有GROUP BY或HAVING子句。</li>
+<li>添加到视图中的每一行都不能违反基本表的完整性约束</li>
+</ul>
+</li>
+<li>分类<ul>
+<li>可更新视图：满足上面的六个条件，即对视图的更新能唯一的有意义的转换为对基本表的更新</li>
+<li>（理论上）不可更新的视图</li>
+<li>不允许更新的视图&#96;(<em>&gt;﹏&lt;</em>)′</li>
+</ul>
+</li>
+</ul>
+<h3 id="视图的优缺点"><a href="#视图的优缺点" class="headerlink" title="视图的优缺点"></a>视图的优缺点</h3><ul>
+<li><p><strong>优点：</strong>①提高逻辑独立性、②实时性、③提高安全性、④简化结构及复杂操作、⑤多角度地、更灵活地共享、⑥数据完整性</p>
+</li>
+<li><p><strong>缺点：</strong>①更新的局限性、②结构的局限性、③性能开销（查询时需要转化）</p>
+<blockquote>
+<p><strong>视图维护：</strong>更新基本表引起视图更新的过程称为视图维护</p>
+<p><strong>视图物化：</strong>把第一次访问视图的结果存储为数据库的临时表；这样，基于物化视图的查询比每次重新计算视图要快的多。但会带来视图维护的代价</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="x3D-x3D-6、sql的完整性约束-x3D-x3D"><a href="#x3D-x3D-6、sql的完整性约束-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;6、sql的完整性约束&#x3D;&#x3D;"></a>&#x3D;&#x3D;6、sql的完整性约束&#x3D;&#x3D;</h2><h3 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a><strong>基本概念：</strong></h3><ul>
+<li><strong>完整性：</strong>指数据库中数据的正确性、有效性和相容性（表示同一对象的两个或多个数据必须一致）</li>
+<li><strong>完整性约束</strong>：数据库中数据应满足的条件</li>
+</ul>
+<h3 id="非过程性完整性约束"><a href="#非过程性完整性约束" class="headerlink" title="非过程性完整性约束"></a>非过程性完整性约束</h3><ul>
+<li><p><strong>数据取值要求：</strong>非空约束（NOT NULL）、唯一性约束（UNIQUE）、CHECK约束（CHECK(searchcondition)）</p>
+<blockquote>
+<p>CHECK子句只对定义它的关系起约束作用，对其他关系没有任何作用</p>
+</blockquote>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sex <span class="type">CHAR</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">CHECK</span> (sex <span class="keyword">IN</span> (‘M’, ‘F’))</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#eg 增加学生姓名必须取唯一值的约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> student</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> c1_name <span class="keyword">UNIQUE</span> (SN)  #c1_name是约束的名字</span><br><span class="line"></span><br><span class="line">#eg 删除学生姓名必须取唯一值的约束</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> S </span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">UNIQUE</span>（SN）;  </span><br><span class="line">#或者 <span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> c1_name</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>域约束：</strong>通过自定义域来实现</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DOMAIN DomainName [<span class="keyword">AS</span>] dataType</span><br><span class="line">[<span class="keyword">DEFAULT</span> defaultOption]</span><br><span class="line">[<span class="keyword">CHECK</span> (searchCondition)]  #searchCondition 可以用<span class="keyword">SELECT</span>语句表达</span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">CREATE</span> DOMAIN SexType <span class="keyword">AS</span> <span class="type">CHAR</span>(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">DEFAULT</span> ‘M’</span><br><span class="line"><span class="keyword">CHECK</span> (<span class="keyword">VALUE</span> <span class="keyword">IN</span> (‘M’, ‘F’));</span><br><span class="line"></span><br><span class="line">#使用域来定义列</span><br><span class="line">sex SexType <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>实体完整性：</strong>主键属性不空。DBMS自动支持实体完整性（拒绝破坏实体完整性的操作（不合法的插入和更新））</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">PRIMARY</span> KEY(<span class="operator">&lt;</span>列名表<span class="operator">&gt;</span>)  #主键定义   </span><br><span class="line"><span class="keyword">UNIQUE</span>(<span class="operator">&lt;</span>列名表<span class="operator">&gt;</span>)   #候选键定义</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>参照完整性</strong>：DBMS自动支持参照完整性（拒绝破坏参照完整性的操作，如不合法的对子表（参照表）的插入和更新操作，不合法的对父表（被参照表）的删除和更新操作）。注意SQL语句的顺序。</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FOREIGN</span> KEY （<span class="operator">&lt;</span>列名<span class="operator">&gt;</span>[，<span class="operator">&lt;</span>列名<span class="operator">&gt;</span>] …）<span class="keyword">REFERENCES</span> <span class="operator">&lt;</span>被参照表名<span class="operator">&gt;</span> </span><br><span class="line">[<span class="keyword">ON</span> <span class="keyword">DELETE</span> [CASCADE <span class="operator">|</span> <span class="keyword">SET</span> <span class="keyword">DEFAULT</span> <span class="operator">|</span> <span class="keyword">SET</span> <span class="keyword">NULL</span> <span class="operator">|</span> <span class="keyword">NO</span> ACTION] ]</span><br><span class="line">[<span class="keyword">ON</span> <span class="keyword">UPDATE</span> [CASCADE <span class="operator">|</span> <span class="keyword">SET</span> <span class="keyword">DEFAULT</span> <span class="operator">|</span> <span class="keyword">SET</span> <span class="keyword">NULL</span> <span class="operator">|</span><span class="keyword">NO</span> ACTION] ]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参照完整性被破坏时可选择的策略：</p>
+<img data-src="https://s2.loli.net/2022/03/22/N9xBsZtjn5iSdO4.png" alt="image-20220322230658737" style="zoom: 80%;" />
+</blockquote>
+</li>
+<li><p><strong>一般约束（企业约束）</strong></p>
+<p>  在创建和修改表时使用CHECK&#x2F;UNIQUE，还可以&#x3D;&#x3D;CREATE ASSERTION（设置断言）&#x3D;&#x3D;</p>
+<p>  当完整性约束涉及多个关系或者与聚合操作有关，则可以采用SQL的断言机制来完成</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> ASSERTION AssertionName</span><br><span class="line"><span class="keyword">CHECK</span> (searchCondition)</span><br><span class="line"></span><br><span class="line">#限制staff不能管理太多的房产</span><br><span class="line"><span class="keyword">CREATE</span> ASSERTION StaffNotHandlingTooMuch</span><br><span class="line"><span class="keyword">CHECK</span> (<span class="keyword">NOT</span> <span class="keyword">EXISTS</span> </span><br><span class="line">           (<span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line">            <span class="keyword">FROM</span> PropertyForRent</span><br><span class="line">            <span class="keyword">GROUP</span> <span class="keyword">BY</span> staffNo</span><br><span class="line">            <span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="operator">&gt;</span> <span class="number">100</span>));</span><br></pre></td></tr></table></figure></li>
+</ul>
+<img data-src="https://s2.loli.net/2022/03/22/Ihst97CnifNJAq1.png" alt="image-20220322231603163" style="zoom: 67%;" />
+
+
+
+<h3 id="过程性完整性约束：触发器"><a href="#过程性完整性约束：触发器" class="headerlink" title="过程性完整性约束：触发器"></a>过程性完整性约束：触发器</h3><ul>
+<li><p>概念：一类靠事件驱动的特殊过程，一旦由某个用户定义，任何触发该触发器的事件发生时，均由<strong>服务器</strong>自动激活相应的触发器。</p>
+</li>
+<li><p>三要素：触发事件（包括Insert、delete、update等）、触发条件、触发动作</p>
+</li>
+<li><p>作用：示警（给出提示信息）；满足特定条件时自动执行某项任务以消除负面影响</p>
+</li>
+<li><p>定义(Full SQL-99的Create Trigger语法)</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> trigger_name </span><br><span class="line">&#123;BEFORE <span class="operator">|</span> AFTER&#125; &#123;<span class="keyword">INSERT</span> <span class="operator">|</span> <span class="keyword">DELETE</span> <span class="operator">|</span> <span class="keyword">UPDATE</span> [<span class="keyword">OF</span> columnname&#123;,columnname…&#125;]&#125; <span class="keyword">ON</span> tablename #触发事件[<span class="keyword">REFERENCING</span> corr_name_def &#123;, corr_name_def…&#125;]  #旧值或新值名表</span><br><span class="line">[<span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="type">ROW</span> <span class="operator">|</span> <span class="keyword">FOR</span> <span class="keyword">EACH</span> STATEMENT]  </span><br><span class="line">[<span class="keyword">WHEN</span> (search_condition)]   #触发条件</span><br><span class="line">&#123;	</span><br><span class="line">	statement <span class="operator">|</span>          #触发动作，为单个或一系列<span class="keyword">SQL</span>语句</span><br><span class="line">	<span class="keyword">BEGIN</span> <span class="keyword">ATOMIC</span> statement; </span><br><span class="line">	&#123;statement; …&#125; </span><br><span class="line">	<span class="keyword">END</span></span><br><span class="line">&#125; ;</span><br><span class="line"></span><br><span class="line">#eg 设计一个用于s_c的触发器，该触发器规定，如果需要修改成绩，则需要保证修改之后的成绩不得低于之前的成绩，否则拒绝修改</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> trig_grade</span><br><span class="line">AFTER <span class="keyword">UPDATE</span> <span class="keyword">OF</span> grade <span class="keyword">ON</span> s_c</span><br><span class="line"><span class="keyword">REFERENCING</span> <span class="keyword">OLD</span> <span class="keyword">AS</span> oldg, <span class="keyword">NEW</span> <span class="keyword">AS</span> newg</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="type">ROW</span></span><br><span class="line"><span class="keyword">WHEN</span> (oldg.grade <span class="operator">&gt;</span> newg.grade)</span><br><span class="line">	<span class="keyword">UPDATE</span> s_c</span><br><span class="line">	<span class="keyword">SET</span> GRADE <span class="operator">=</span> oldg.grade</span><br><span class="line">	<span class="keyword">WHERE</span> cno <span class="operator">=</span> oldg.cno <span class="keyword">AND</span> sno <span class="operator">=</span> oldg.sno;  #根据主键找到该元组</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>几点说明：</p>
+<ul>
+<li><p>触发器名是一个标识符，在其所属的模式里是唯一的</p>
+</li>
+<li><p>ON&lt;表名&gt;子句里的表必须和触发器位于同一个模式中</p>
+</li>
+<li><p>定义行的相关名字的corr_name_def 如下:</p>
+<p>  {OLD [ROW] [AS] old_row_corr_name</p>
+<p>  | NEW [ROW] [AS] new_row_corr_name</p>
+<p>  | OLD TABLE [AS] old_table_corr_name</p>
+<p>  | NEW TABLE [AS] new_table_corr_name}</p>
+</li>
+<li><p>如果在触发器定义中省略WHEN子句，即省略触发条件，则触发动作在触发器被激活后立即发生</p>
+</li>
+<li><p>触发动作可以是单个或一系列SQL语句，若为一系列，需要使用BEGIN ATOMIC…END子句，语句之间用分号隔开</p>
+</li>
+<li><p>注意触发器级联问题，防止一个触发动作引发一系列连锁反应（一个触发器的动作引发另一个触发器的动作）以致失控</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="两种完整性约束的对比"><a href="#两种完整性约束的对比" class="headerlink" title="两种完整性约束的对比"></a>两种完整性约束的对比</h3><ul>
+<li><p>非过程性完整性约束：种类和能力有限但易于理解；直接为系统所知；难以给出约束不满足时的相应动作</p>
+</li>
+<li><p>过程性完整性约束：给出了约束不满足时的相应动作；保证事物的一致性</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关系数据库</title>
+    <url>/2022/06/23/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="2fb805a0bd5b5c948b1cb6c6e393f74fc31e9906a0c853b2db4f7ae37bcc7bd6">4630436162ade97ba2718b7d0c4b3b6351ade09e539dfebeb5402828e29e64b0761016e52c83ee143be9a5bc90a976e2ce7bd4414cecba87f31f8f630f8358faf93b63e2f4db9923ecb99d84d347b52ef7cedaac6353f41bd6b43e6faec0e92ae6b1e9c75fb1ed04ff1ee326cdf297545372c172113be879360b55e6b9282e0e90b217b4e9e3b0fcb1fc1afdd4f263181e51b00a99f2c1353d8f8d3ab9a8d9791af72cdede615bb5623498c3a4ca208826b6ec6e852de947fdb79c2ea69f86f6d67154fce7626a349dfe5d987d1dffee9a991b1b75e0aba3182bd8013a23d23ed400b6b578d45b6eaf33ec7bbcf37d3f945c4ded18b409f01dcadbd0f1da73940fb4aee3953accc197197639210b4c08889c29ab36f6a677471a4f7499d5a5e23c07b2940f5ade7ba94085f0c8f8c36021aaaa46390281b942b50bced7e7cd06e80a43c38550f9147064470e3172d0056b496aaf8ce749e35477f1c8defd7f929ceb7f1c2c49bbb23ceeb2b8932884c09db3c58e00aee2f2c327dc4a76f211a889187e094a0231c2e3e211cc80168636ce34308a7b23c6941cf8f6a76f500c6c4a27c3d973266173890b1bf2907f4a8edb0f65bece9e5502217496a3b39d02d07d7d486a6629aaf411e574e5def21548aab7fdcfe045f90be1a9229ee92fad8995a75e20ce3d68a9e2c9b13c25687c5f2870b9495f1fed53ca0d78ba09925f80908d5ffcbc4e882a3acb6a160414006025304f671e6f4fd392ccf09ffdaeafc7d184d8f000bc0431f12be9e129fa6d04d439efd3354c488404657a8a3c58f0db643243a396033c91890a63068e36dd98b292799a748b2678fffc32bc46ea8b636b3af488e59dc41fb65b7d7ef23bdd4dfcef854e38073024b7ada01421f65a4151af682b3f561149dd4b620736a0fd52c4eb8fe06d32d4fdf4677f85711b1678e93ae64d3ebd0961a9e19a9a7f234ad63c4798cae46cb0ec5c57a686a8384b76cd8597979cb827caa6c2f22e07ca9bd9ec761069fe19cd959044db80a628eda5dfc1f8ce4f3b4b8d0b1e707aba8a11d46c8ab19bbd9d1027fa41264756f3537edb78c9299e05728a122e868fa1616bdbba4195376d0dd2bde6dd812f928a6f812f17253e44ea1b019720bfcbd9c6a2b87d6ec001b6a75a11c94bca38d524cb6be47ed72b2206627fdd33831bdffad0d8c15aa29ecdbdf6abf699e2bed4de29ed0208e674ef38c2cb36f6e8b3b8d3d65fb44221b4627bcc11722ceccc38a2899c314e90cfb1a5b9cd73eda13b4d5979e851054abeec03bb88f5635b4c695ac86d3ef0de4c7e45e2d8fef1a1ac4b636abb1834170474330a9ab959228af41b6b06568cacfe17e89cffc37d59973a5874d61880bd9df723f81d0652b6ef720dec314424abab9a667a0f0c936d11d7a8197b850649a3f35eadfff8bb04c554a3bcb2016dc1c8a220720775412f1ac2865ff6ccbb15384bea1befb30abace690e3d431f2bc35d93edc8b0aeb11ebb0c0abffac9726cee7187114c3118302b903f52f484b3d0f8d4169b341bc88f8de85c03ed332783596cf12ec1eb529e1a60f1077ec549f4cdb36bb429d95f2af4b6b2932cea94f34404984ad89125260aaecbb212ab861f0b86875a46ef8fa12a0b9a64f36e1ca9010e755bcc7d6bad5d22e34ffbf32f11b135391495e7592170d91e9fc6f4d01f9243d518b85f41157e8b8160ba772d1ad7508e93e28e14998d6acd2f61ffe859bb326ab88bba8ebe267d6c6b6be900e8eb1dc87e262531fdcc06ad177e0954746640758fa9544779e26658a9e265ad8c951fc6d1259ed356149aeb39c29089e6b00f0396b46a70e7d1fb281dc607f556eb2cdb4f5d13585e114feb5ff2512c808cb2d520f24b59fb6ac66ce9c8a1daec31652b7d06d61096498edfddd80a309aa8e1c1a75a0fe378900772733fa151984af29db7bd0a66bd6fd0c4b33be2874d3c7cb46882b961b432babc28f87ba5e60df2a0532d6db191c6f1c8f41731669ecc0fbf94ae508a7a1d9c711a172f2b3566e310efa5635a2b1142a32a8b241b8eb34992908212edc81e3de75beca11bbd13dfe9b040b2f09331b071cc315bd87bf9efd926bfc3328ec123caf45f45fab759e70c63582350466349200faa6afcb58dcc42ff3a6b7ca4fcf15e6fcc7e6bbe7d5ec7f2a99418fb9a7166760f76747a9251a3d09b3a303f1e59afdc0d360ceaa4cccce7579e0993a67f9f884bdff464040b33c75057641af8ecfcfea14ff217d53b77983b71d6c22d62d02582f7ca7875c65c175b3c72367c8ae16535e51311b102d659d906a4a7eb8427a9774eac96937a90d18957a1d3afba0a0489c6385ed3850f60bd20872d4a3718513f657174bcdadc480466d207da336d386dce2830ad5ec8fba06db7d4aa488d4ab9b04cec8a9432234c994a49cda4d6d526f248c2afb59ae3799fc9fc2d10c2edcead90a9b493641d19fc9bbbe9c295fc6676fd173132422eb8737d5633b565edce2152b10efe4b5c138e38df7f4a4fa9e47038e202a20aa9b04b7222453a1638d0b2f8ef17f1a799a234fcbae619815a7db84d1c1a97262eff457384198fd3b70c0dfd33f6f4286a9abdf11d086e543c1345d7b52e92da0747ec4e8bc42ec5fa4d7e5fdd65aad070b300b084d994514e03344d747a942bc5e44de5b2b6f42a19b874fa09eba0e150dc82d0f1eab970ff5f0b53c20fbff3884f41f179c61db1845a7622cedb67520806b9f9a7088f75e08ac07ee2dfb4372c7d87c7d54bc955b4d639a312fe635a26b99807913caa473201b2e929d62ad2b75b058bb3bd444b9cf5b31f1e7050ff762957042f47b5483ee2eb68a36e262a7f91c0229d7b15859c25305466a1e5d2d38368c72503db5398b7029012fe15daff8d47c6c53f45911b1ca1a16173fa74665e83a08bb83511fab4aaffc3f9de27ce7f551703ce7a90ba518a69cd09af7d880b14b1d0b24d1eac3d569e9e9c2355707c75c55358fb659c0ac98113d963ea706dac417ed13fdac8481c33ce8ce69d10ec3b1c1d34030ac2fe19d34e28bcecb37b4cb167cb4f38bad572b738749c37b164e4f336b0763867dc6aa11fb95d5c5ae149264e3aa3b1c756d7a34801fa6287c84794f20b64a8de5ae2f99753747238fa6a92429f10537c53048c137080e2ae1b8e05b45c8cf24c362f13b268c66385c389f22078372a8c75e31de3959185a9dad10f7b065c4e63e460f6e76ba270014e5ee4793d327a24746782ee63d1e7abb88b7a29e14347f2cad0c3f24f9ac023ec28ad904b9a0453eab1ad9943ddf5df132c2de23833c6ac8c0f0dc35ac7f3b9803e3bd28a0f8e7cc594d450255b8972a38fa023f947efb7b72ca6c9560af7be1af73ba4ea79915a96b505e20224b769632e961f5f70acd0d11944e11fc58d3fd21d190ac1c1c354ddffa6624ea0635a3f9c1a07c284d51e5b9af0893cea2247607ba2ff81ccd7527930b082a39d1cd1b363da42a5e83c740523e143c45b605758514415de1de6a89ec4a9e441f7d9b730b70623fccea9677ecdf2aeb32935779c63863a97fdcfab5da0cb47094763f35fda4802567f9ed7b18afe2d92fe6850924b5e3e2823a31e964a588f69a3fd55c49fe2ca42b90a3be1b7ea492a50e1bca496f41af6e27f8f9c0829e0286675377e95aeaff6357b798346e24be6956e479c21813454b3e4c09c7b92a638df2a75d054bce97d651fbaa97df885ce19ceb503e7f826f31704460fa17370cfc1dc9b423ca7c7866ac262759421bdba8e18a97f1851b61ea95fff5fe5d96317ecfbbf9db5f3ad035b2c2bad2fcf14c4f864013493332cdbdffd44fdcb4f7cdc2660f4e98ceee55af76be6bc095924d9ceb2dcc82683128c37c18b3e566171b9e170a066c535f3c2128226e77c65b19a2876a96d6008ebe066f2757a189620e3544c4da19cb140c7b9e9c79b1b7a903417e88caf528a6bf99217eb7b20970b8519ebc95d4ba342ed8d333319c0147372a79bc165124e3df7cb733db003188723f72e0fc32c0f83fb17c86928c145466ee4cb7820f9b3d4027925b7220fe23017524cdc12c6cfdfc6b90130c4e6e202f3042a582d359aa9b699aae7ce1cea4e2f5468aff2e0d06286e1272b22de3813f7db1a107c2efc78f8571afa8a614aef5c49b0b822a9e299677c97de8dfc37a71734577846f99892484346069daaee3441b527781be7a7dab52b4c8e962ff06c67f7f6109f478f3240139c14900b826690113e5950717e12032613f001ef5402af689c3dbf9840910c98cead252a66c2e6c32a5822bf99d0d7d18248994ed456884efd163357205c0f5d10031eb26aaa2ac7dad2e6c95389f95287e03d0dcd69bef32852dc2ca6fefc72dda4227d2ac97db3038167190ff00cda2667d7df0ed71afa041980499945b63c3f55aa6cb986a1850217b5d051a6f9eaf898180e8fd2e3cef793f348a5e669d5b2d91f73be6eeeaa3537ce087c40bed8f145e84f199f2b20f2c0b09f9956dbf7b75c4b7aefc04f64545d70ab5c09368e14c3dacf0122bd4c66a6efacd692823bb54f6506682e01b4eb395287db96f3dda8e4c4162fdb45dbbbfbc6f8aa41fad136ae1308b515d27e590df7ad20585edb6d2c7ff10281bf6fc5f09e0dc827f065805777cbe81f6197b8461450061aedf11f419534c879de7081761f75652cba7d2b9e9856ec3d9d607ce13e24749ac69b2840fc3926afa828e81ca2be00aa9441befa9f9879b4b172f2f590deb03e5b784ad3f22935a79e7c58f65eadf64752a1e8df18c4d093e52943ae3707631013f5a54cf6ae48008e9c7e5c1e0853dca194139008c35f4d59a8f700e9d90c0c1514268b46397e0f573db5d308711e445509412c6421b9dcd8943f2646eeda53305e4a93e0baea97614d8280388b692284705ee3bfe1c41903e200a2b69b4614e0dac2d77f505744702e9bd33de4c2666a22a2ca5312f8fe7bca16dbdee2d84e73e4ee15100fe5b5cfc5aaf5b437649989ec9404bfaacc58b9ac9084c25b9397da8c96883f34a28f14936dca324caf5581088c81c3a7d711552f69e43e85fe54e2c8e68555151d4532f754bfd6116e822b30d6967a808a7ea0b05aebef6527665d93504758f762239b3805836054f49c2226731ffb67836cc51738f8c20d94c2db4074502fb0de896e44d019641e07c5caf215023c44e0d293f479f7d3be719969432049a832f6b57edac09132256bee33dd21c00146f0c3a151a6cc42667d76fbc6c64de9c618eb96ed23061a74b02e18c456f1cf706f864b8db8628d5e7c20c61c0c9d683f3d1871239c23a6b893596e6fb39efebf525721eb553ea6e01df5549eed5e45c367a1fe1b06f248361815cba8746e12abeafb28470cea282b519e2be57d6e1381e64ab52a01528a41bdb0213be880966c129a239d475aa81e146378e8a4b2963ad99014eda11209fb92f68840726f834e727e5c38057d6f5e482f4887da5dac18610659e1199dc106f9a04807c462592163c57d602372c73c947d16d9043d145d3b21a1771cce3ad6b06e43e2d221682b3d4c240e9d91d75b4efa4a6fcd15c32fd88fd8c685a7cd8fea9f616739a405ba67746f3210b897a73a842b15451b73d722fe448edb861c59e8b16eba26e627729c90039b78dfc1ac11ea07f7941f533f69cc47d8bd0edcea8c0e63cd4d3e898b797930d6566a0d12efa2111b665998f483e4c71235a4bffb6c5050645635551d6254fdd781f74db882b100dde8de17bf3a0877fe493a5afb8d32000d6f6ba1ea374fcd0b3db84c7e2593661c2844298d278e0d4ea2f8c5163a04a4a870abf1a3493eb3b7edfc43a7b805c9d30537c4c4fff8e354e708a4c9677800d3db6ce31a32b3e311e7b612e2ee8182df7b4cd3fbcaefacf94f17a961c28cd3f1737caf5742d94aa2eb5e501d7fcf77f5817f69e0412c0c4c2f197be60c56f4d6b4016af5d919956d76d1a8622cf44d8e19c368713bad860d30e4ae878a164bbcea107604c4f22d7de9bc25dcd17aca6feb5c98aa9bc66c07a2ade66ea2689ba44c9e3733e7383b84d9b2d217e02bcab2507f259342a791b2ab9d481ea073c0d3a10c3b2e0c68645b4faafe76261172903b22a86df282d4a8cfb901996347ebea7481be8beee21a79540e71b760c7c4de815a9ec28eefc6cb6c720705043b4ebe9b1b7c821d06ab25b3564cf1a7a56fc4c7cc76ca698497956725e30b288c84680ffc725f50ca284a6f29a3e81124cff2a76e545b44836e3e7895996f9f70038d7cf7488a2926a6216052e9e02cfeb79cc3b5420d6a4c9b99e564dd78fa166074be49a642667205781f6bccc0dbf43107e86994bb460251ae32401e817f9c8c05542011db6e0b6d6fe4747dabdfdbf03b8f4cc0885d0769d4c8045a0f0e621d24c57bb7bdf874f268086eba9f02c634269770fdaf4d94ed1f148484ae5fa5ee7ca7f1f36ab835b3ea0dcdcb04922295e05bc71b76a882d698e704e14dca0a4424d7646aaf14c3b3e67f7dec8badf937f09da031de72c1dd406c4ea44d4eda95fe2650257a22360fa8420eb74dafe55d7504a5a7f83f259e24b38cfc38591e235e3fd36e0d8fb89455aededc943658013806dadacf370446d0e79c668584df34b3cbfce6ebaeba996917e43f6502fa3835c88d3e84cc7b3db3cad97a65482fad8f3830793c1fb3e85b45b5b80e102f3cb91c6a21326138a6f4058ab737d5940adac8053dcf11cadb93578adde5e70b9861e1970cc8df22d6ef085e67cf8ee41cb3860ef1119af09d4a6f14c0e7a72bcb19afc1405d096720c601fbcd4a7aded36f8458ec6cdb83bf27a04ab5f12f806b68f56e051d19a8d7241ea1ebf6e6026b06c87eb8dc27fa3b5b2e09aa9e4d9787a44d1c8beb7ad34c48f67aad56697527132a0c0b2cf0026c85186705f0b7d81058987603c9a66baf60620a407289a9c01710e541262fd5df637b7f84e5daf54342f62ddc071c45a77bb6080afd84e72862e61a165f418c4e2943e8c3b01c819d4c95adc22459d7baa63d972574819ab111844e3c3ec55bdbf4d6ae591be6571242be4fd8d5fa8ecdcd46dc19b2a462326f533d344ce6e5af5e305fcfb549f549bcedd8671721bba67761ac07246f2194f6b867e4831a57fbd5d796b0681ad022f5450e9597387d138b02a65cafa95ebdfda5f3f5996dd12b7a6954b3c8989a60ef8a17fbcb94798bd0aa08fed16347b2ed4ab8d80a3d39f488c26460f6a9878ed3823d2c992e7421addb79a5c2f12b9da6afc455d88e3c5c2be51a43b8fc8b1109101152b50b9ce69c8eb78ac7341147e61ff38d8ff7ee41888572891475132464f1ba7cc72fe66aaa3782e8f09c75d6615522bc3120d4cae62737bc7aa56a0ca48c332a8540d19b84999dff7839859e403d394fbc0b54c3a2212735dbf9f509968cb43577f4531f4af122f9e5d75082496cf2c75924b0bda8e71ad9d18a4ad3695cd25eda3b005942795a32ff9a86a5b603e77f66f0eedf51d227c46ca4507f901ea0f286923ca4992673e6b1d4c358f2811360b49e7c0ae71ea904f153807755854f9c26d343147f64da384f7701a0677902561e626e210e6871ae302af4e6c9a54ccbe6dd4b3ca7524dd9a1087ee387bb38bc566a97e1d8696dc2fb6b0ff7cc648cfd8329976ba70b6f4bfdd7cad39e0185e299a8974f456d3102bf11f9bb1a7d5aa500339ab2bc059c4bdb45ee26a7af6580d49a4c4d4638b33e504f362dfb3db241b0b3429b9106f8467e59e29391ac76a2d8afe28643eeebfa221e83eccb60da052c77fc3ccef6e26eef3396dc22bed815e73971214fe245ec43328a83791e279252163dba3d963a9f540f63738210d389e79f4e19004cc17c13e341d47e29c9f6ba655b1899dce6a4aae39b2478425080ba208e96eed523e5cd552773bbbcd26f76f29f1f468a5786473f623fcaf5f91712d8db7b63a6251833c946df16aaf80afb05d302d73cc22795e09877adc3dac97b5afe3fe154b9e733cf4c64243c6415979affa01f67c32b51c78e0692607e78d5770d2658ed92e048d612765b1571bdeb9f8a26e88a6825a357d9be369f4c48ea48a62917e3c90720870a8720ed8a9bc526d005914a120543fc66b138e4f9392cf47720b89fe2026fea90ae7821dfdb18a277d8b6e2bd77644a8151425bcb62d903e4420a125dfdc71fd9a0a82982c415d98b19d95ec0af902cff9dc5ee934f59959a04251a9aff6297ad08472d5b6e60e044558cc3e1080302979e0f4ac35929f9771defa00bfeeb53fb8fd7bd19e97e8d1866204c383ca69fa05cb39454f50fc08b077dc65edfcafdb7022c7d28642d302a6566375983324dd67463fc8dd3a6442390a6ae5bb973d5db997702632ac0b28420c1ec197e78860f7568adf3e570a1bed9de98ab36c0cf72c82c422f74ba9dc3d82e74eebe5fb38d7fcbb82638e456f72d302fbab17b56e82d6c884137ab1f224cba3894c7266fdcc0587b26ec994f0d224183e998165d2c28fcf34a82eb64f1f22afe0075a8357e50e166accc3d72adcfcd31a8e2f012ae21e0b601cfb5557afa968d7f4da7f67d36e4a6ebe52f4772ba999de6eaa00dfbabd761c97f4b71899d45f90583853b23232f708316de164c0a6401f2fab10d1fb93052e19ba4eef2d182014c87a12064c272fc6f1211bde59b667adb5dee2c0bae538f6b68b7bed07b4e0db32b1a345b4e51c94920ca963aa907e7afeeca73888db11f1e70b4e850c0e05586790cdcbdecf616d18866eee48e4e3d5011ff819d84b5015816942f30cdf66028aaf5f3021b09faa1747a8b29ee06b3a686ec050bfbb51155ed7d7e69e8729adcba5cfec38dc138a791e77bd20253a7ee6e086d33dc60b4af0a42490a45551b3d03366d58e0e2d1866ea3839983f1ad026e1461dc706e4a69bcf0040df4ca6b166f7dd72f08606f306993c6b5f403523ca277947d24ef244f1b3905367f61c110cb888d1c6ff080cb4c05c5a6d7bc9ff0ad30194ed55bb5dfcb6be15c4365961ce7dc97435127be3513397b79bea02ecfca0fd68cff148b3d92dbffc0ef1ae1e6a4e3ce6ce0c4b33cecb96f6afde89aaae91a0feb92c0e463f32c3c1ef64c7b2f317cdad84a1fef1e6ac7b77140fb8f38881fc19e171170ce7789254d6def8ffb15bfe1dcd09237e285d597f34eedfbb9b0498e2523c07da2d4f274771ee984ba0a51787d3d194ff08da4e0f545ffeb78605d006a661aae1c34c3734911bb386e6fdfb8f3d06871918a9e085bf90595c28d794057097f04370cef67464a06e88e580d44d466734620f91d1ab9a7e9ad9660c3c04eff0d5319631e5f9425d9bb49215f5c4abe4ad4f897ba44ceab07fb006f3c6b20ca45511a4e242e8ad848f0a2a139f2849b4d18b4a2440c393ebc4eb6887eab5f53fd0627de8f0fd18ed6284bd91e405f96f8b1465df50437f576fce7560fc13b9c0d7ed593a0fc0869a46f997aaf9e681a5b20f64e8de94d005fb40952692886f96f49d21650a12374752ae69a41bd48154a88b251e79d8d2c1b7284b80d7e1f98f9beeb4d88ec7ab6a3daef9dd5a3998b7337f56ea78cb5c70f009c381d8f2b5b998eb11a801a58614084eded9d6091bcb0c7f78316ac7dea61bea642625966c60fb95ca57bbdf72a06c700652f657891aea1dc894454571ca023ea7fb51e76877e5a003a3a60ebf104ebd6c66d4d0bdb1f989c18a6df947d5e371c3d95dfba5586944eaf967ef51e610de85755d48dda5580f85fd2d15711a1ceabb9d7441e1af20b48afac1af92bdad2eae332cd7a32fd786541ef0bdf3ba3a69ad052f6862925f6b88bf93d3c1b9ae925e6d659c873b5acb243c8245ace1945595f37766d61e536c450d9eb5ee8dcc0a5e763ee171d128ae85c460c6074e28037640a2593c07ace1ece2d8afc82e47c8e748c58cb9aaf7fb26e5216b64c181a376bbfde08ee1c69d5f09771ec497a4d4f0f9ee957ecba7e08ba25c0c47f3a3bedb05593b1681bbf50810b5bd71d6e1e1a8523cc83b9eb92c9d1671b6aeaa6599a946d77d893d6780f41a7d6af2ed8e7105fb2333a8e4b07ed879e71aad3bcb968b8f225bea9427e724a52e6149500add02e406c82d429e549377bf9502e5e592e890341801387d9cf6360984e35e5f0f3a2503b85ec59c6bc6ce6e068e25efd0e8c6ccdb7648337102fd29156e6f6a2c53d96f2f5e2f0e17011eb6d476de5ebc55387eda831c04d169c705f722c763ec3808e900b9a9c4e928b4167d750236e2b729d3e76e71351ecf838fc828948217589d835c4c027a69b933316ff710687bef964051e0559c6699c398be1976db5be4d3375c82b182ae30de47c0389ffbb87c5f6f78884e0787d9ee0103da3ebea1a99c33cdf66b490fd7c1ce2618a24535b023b9958f2a76e12d4ca5d19ae3a4c31388230088a9232feb466ec653d9cf52ab8a9c1cc7d910e068286ca75eec106adb264c200e2cccd58c408a5d971ad5286e9dde4bcb82261092040e3aa38c983c37c53fbb86ed5334c45f37e95bcd0941b96023d48f67f8ce9a73a954f54f63d104019bd587f3746604e9d8f33a6c2f1aba6dbd5801a0ae3bfba871464df9d9e9862d81fe6b2b4dd2391454e4cc8044e9f8c72de122375c4ebcf87ec782000b618ca8e3486618c56ea88b46fb77c8d0eed3993aa4c88247abe0b5e714634f09d69e59ecafebd2e86efca3cda0fb338ac45783538d57aed449514dd27ac7086a6807dc84ce881902b8f5a8e2267cacff83e21f5f9f7e06913de6d2309bebb23bc7a5516ff65c957c1e99053d471f0853f5681a4758ad7689680f5c68421a3669679d77317b491254499192c4e61f125288898197701e355d30570231ef348af846868649c02df5101de6b1ff971e4adc0f1a6cd3faf5c07ee7839e355378194b3235391e2549766d962d633f2eca23f77959664c274efaa1bf03460d76bb6d938084971484139f64a5d565f3abad2ab98062f32f810741b6fc08847dac95b0559409f65e60479d0d2c1a1ea6c2944ce0aab6813e07d967720474be71404f3712db7e194512ff21358ea2103c55b2daa801b87f08ca46e22365f97ac51c2ccec69d3d50733997ce65c0d7a6fcb383b49ae166650dd101515c4d389f030e127215d49b465cd204eb0d40b76d24bfaac7c178db35cd24425b06823083ac98c28c91a6c24a8f49c680c0c86ea9b881e50ceb06e574152d19a0eefcfae880a3f097f1e3c8e86461281d7fb73ca87c6abc9e4b27e78fd50363aabc2e48d4b25a6e9cc811cbeb46bc0ba619a23c0dfc504ab964a7502ef4ab1cd0888edc06de9f0786a83ca265d0e33bc240904c8af69c30e77ff2769b40e294b0416dc2bd1ac47d6d3064cc826c486e7712ff0a09bb0898539d6e446e4babb38853eaddf8c09e075125e396af679a3a402d488e6b507556d15e58446ca5af4468e8037c3ddc58b87430f00d43ea6f5a0aa4df3454e70cff31e8b2ab2c669c23a6fcb5f8fb483ae83397503c1acc2a190f6ed26fef71486c5e3943a403c86b5b9a2de812109b5b175751f12690f8d5b5b5e422568dc75bfda6ddd30e303af2fd3ec3cd1bbed4e4734dca3262cf8e0eb26c5d57b59991f914deeedc02a8f7999c6046cd17b7dda0ba539d73fc202ca966ebc71187688c40b803fa882e49a4002f62519b31aba2c6b55dd35a535ff6564d865f97c74c55b23c97bb352c70303da376f65629d570769a391dda27918c0a32f05ce94b09e0cb5fa61f926b9a2861440f605041fd6136b29b0189a9fcf7d9dd8a1249eae9d85476f2026348e499856c2080b8098a16d5971dcb42667d9e23556bc63ccdf9a37ad5cfa282e468196e0667e83d3c0b5eecaddbd89aec9be8dbe097ab3d18f771e0048b8077b12f30bc651f4ed6f7ab307eb15604b392780d060b1186c9c79abd2fac62fcd5ac47024bed885d8b5b70fb6bcb6746f9468cba154850862319af33cb289b9e5659370ee87578f905e4178c321756d23f8324167e7b3851fe90e524c17642175a39aadc4eb9e6752c99ee6d4edc779e9bebe6b1b2a74fee2a33b73528e55853b9a09541fcbd45d05d03867df88714dfcc67e04af950e44010718f6d26b520edc820424462d7514e1792c77f327273a6bc3817f4d7243864c331e46672cc85570aa0722334e8c1e6039407cb44171d2fa886aaf9196d6e02f57b8da0ead5bdffff384883ae42fb3882b2a045e870d641be71e21c4e53f98dfd74c733c27c37798c82e416dd0d09f4d75c360a86ce9cc973eb1e054cb30509da5809e41051aa230f83650a89d96c08b98c3a1bda6d1edcad72251026ac0654d78f3b95ad624b007ba91e0dfdc525d4bae5d87543520a699634e982442b83ad32fa7d92f29e0c71edc6425d17138016ebb8d4f955e5ecd1342bb6266246ed8cadbd2833e68f1bd07cd505820894cb316f7bb9c4416746baf632681167f18b941d7d026e2f0f81e487e2258a5bf3d2901dc52d93faeafdbc610998ad3ed5598efc0515c9319d2bd1f03b3747f3dead2177c1c1e89f3b298de118221951a7e6fe8662accd43bbee1a883e6021939160a600c50b50985368187181b89614e295856dc9f84257e2712026ca8e7c8b31f7d53ffca5ac50ed4e2fb11ab4f62a190a4c2e2b921ed7d30131377e58bc8e2ac3c1ef9077a400bb9c6cec51f06da7f9026f625b6b9c455f50aff43def11909a5151083c5d8a00e336fe144f2762939adc8a400ccefe8394b6ce0f12316f5a61adb1ca9bfdd25e6f03e081d32789a1e8a5f9787e900339dbc3ce5ee1bdc89c832e30b9d2d86cc30fc78e6c0198e261cb3061ca921fc12b3934d94e75cc1004d27645fcec919fae95f1b1d530f5401451ec06b4f85c081e5fe92441632a4f536d86fbf0b9a944f0f552fa900228d614dd56d0cd569e82b251c9697aaa2e02c538e54d13a2519e8a8c102ca12a148427cb5f45355a61921830fec1fa448abe478c060052c7f59b73fad714f9a973e13a05f36d616f17bdaeca5f5ec6fd5522262f30847e1916448d4ba66c7118c19a0ebd7d2af6fb7e7aac5ddc1e8f3a06d96024b0bb14eeda2d3ec14b9df48abdaa4553ca708d6bd696180dd39444d0acdddae86775897b6bdde6a90844739445d0814f9e1ece6041a6c88e88ba0f6347786832f2965a0ade5aa23d763306d0d2052d0121c4072194d7dd5d1af1d2598a781f58ae78e3eb26d3369d52e7a8546bd3c62990f4de452c5f454ab5c01e3f516626f7d87ec7efffd3758b084c9015eda22fda51d8bf73a3ceaab230e657d35c4ce89e172a431e8f38682cc5fb38247a14d75d6e9ddba65c8bd3a63eefa7964d13ded193e06b3e77eeab119e3e2bc276ffa77895604a24f0eb1b1d7b3293936018aee4b37697190156444b5e56ff8d7355fee88c550ba3c57532682ccbba02479d98bc1de77b42b9829537d5cc784b91eb09da33d985c33c50f3968dc239aa722a2b247d3250d04cb33bc93e8f42f4174cc1535dd459815a4a389543480d0d71ce09c8be58056dede9abbc15383d666ccc3065bc6ffba462545800334ed65649090d1225e9f71b7094eb01deecdd0bccc98a901d5358a1f4623c4d654b210e9c2e799f1c5b584239d9711e1af21fbdeb0790afa3096f73c22fc293b0270262f574192fe451b44caab788225cb76d162e2ac176ac69a5781bce916dbcc8c355bccccc7c1a4f4ff75bac43126447c1c8ab50c98f0d475d47c147f1a63ae2cd659a674e4b4148b9dc4696b019528a1c67af59fd6025b5a67a8616ba3c6c3a77f45af4c74a92a3d804a15cd816726f971f1995d4f9bed9dfcf8d5c4ea13d4d1f7f302fc3f39661bf53509a0dd57c7ce5e7e8d2d630090478a2d064f7abb1200d0fd1d195689f18b198a096a2e83c18ab77ea755bb33feaf1741cebd8d4e995ad2db88131a0489c24ad23795a416ad1af4aae30bb8e76a6a103c966c674f47525b9810c853dd248f9d5a8096b1de0c38e4a58b4e101d6b36c6c9142db4d8a9e49f2929b8c1a46540b6d833262d6cfa02862d65d4a6a5eaea4ec51188ce3b5c99323777523e941245fc1ee49375bbf3496db825ddea1dd2d8f1d3ef0b84c77314828bcae2ea6117bb6c41b40725cc7d072f26d684a5aa1915333f127483f1f61d6804201fbc031b06d12cbe7d3b599c73b0e3f14229099248eefca8a13f3c13ec696a548936273ea63e6cf6103c1de35e22499ec0d9ac8fd3e0e7fab8c3065a04e982300e635ad5078bb400a2fa646a953dca9e3ae2c5c09935d2131cbd14ad6deec0c3c26356119b3e007b13a39b6da3a5aa5f8e5781fd57829d32f32735b383cbf74547c036972e9617729fd5866875ae6ee0d5d6881eb0da355b1967dfd44c8ca82dd9af5557046c1efb90af3358526e083969554c777cf119daa320cb4d06e4309084ddab2e272e20643723d7762e41e15119b49e31f1701c731ed2fa064c355af26b449fef50e76e843f6cb074dc601f0fcf41ea2c6e0489c2727ee61365d74fa31f5920d4f4e171db25475b9777433bff2bd94b303faa53b2574e0ea67f0bb0170f5f247e7d35516c9b0a3a5630bf5bf3d40ba213c0e659b1ca43eef75917876c070c6d4beda96b0c5eba8da2f05686e9c9bb345d2a1d6adaedaa670f2e10b0c5710b39427bb3392e295c5136f531807c968cfd71ad67f0e492ecc8ce1077df1bfd59e90d651e6638ffdcb7b3af5e9c8ba873404ec12b29fdf81b88e5c943d922d1f0005df92f1010753c2bf4edb332afb36c848888eec27adba64063f1217727fbe2c52e81ab6d39ecc2a4eef3b8bee0ed26daf233604e</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">请输入密码查看文章</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>绪论</title>
+    <url>/2022/06/23/%E7%BB%AA%E8%AE%BA/</url>
+    <content><![CDATA[<h1 id="一、绪论"><a href="#一、绪论" class="headerlink" title="一、绪论"></a>一、绪论</h1><h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p><strong>DB：数据库</strong>，是按照一定结构组织并长期存储在计算机内的可共享的大量数据的有机集合。</p>
+<p><strong>DBMS：数据库管理系统</strong>，是管理和维护数据库的系统软件，是数据库和用户之间的一个接口，其主要作用是在数据库建立、运行和维护时对数据库进行统一的管理控制和提供数据服务。</p>
+<span id="more"></span>
+
+<p><code>DBMS的功能：</code>数据定义、数据操作、数据组织和管理、数据库运行管理（核心工作）、数据库的建立和维护、数据接口</p>
+<p><strong>DBA：数据库管理人员</strong>，其职责包括决定DB中的信息内容和结构；决定DB的存储结构和存取策略；定义数据的安全性要求和完整性约束条件；监控数据库的使用和运行。</p>
+<p><strong>DBS：数据库系统</strong>，是实现有组织地、动态地存储大量关联数据、方便多用户访问的计算机软件、硬件和人组成的系统。</p>
+<p><code>DBS的特点：</code>①数据的高度结构化；②数据的高共享性；③程序与数据的高独立性；④数据控制力度大（DBMS统一管理和控制数据）<br>$$<br>DBS &#x3D; 计算机系统(硬件、软件平台、人)+DBMS+DB\<br>或\<br>DBS &#x3D; 硬件 + 软件（OS、DB、DBMS、语言及开发工具、DB应用程序）+ 人（DBA、设计者、用户）<br>$$</p>
+<p><img data-src="https://s2.loli.net/2022/03/04/7zNQasLYrVqw1px.png"></p>
+<h2 id="2、信息模型"><a href="#2、信息模型" class="headerlink" title="2、信息模型"></a>2、信息模型</h2><p>也称概念模型，主要用于数据库设计</p>
+<p>表示方法：ER图</p>
+<p>基本成分：实体集、属性、联系</p>
+<p><img data-src="https://s2.loli.net/2022/03/04/oMmlnGpIqh5iDXO.png"></p>
+<h2 id="3、数据模型"><a href="#3、数据模型" class="headerlink" title="3、数据模型"></a>3、数据模型</h2><p>三要素：数据结构、数据操作、数据的完整性约束</p>
+<p>三种基本数据模型：层次模型、网状模型、关系模型</p>
+<p><strong>3种基本数据模型的比较</strong></p>
+<table>
+<thead>
+<tr>
+<th>特点\模型</th>
+<th>层次模型</th>
+<th>网状模型</th>
+<th>关系模型（&#x3D;&#x3D;最重要&#x3D;&#x3D; ）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>数据结构</strong></td>
+<td>树结构</td>
+<td>图结构</td>
+<td>表结构</td>
+</tr>
+<tr>
+<td><strong>存储方法</strong></td>
+<td>按先根顺序存储及用左孩子右兄弟链式存储</td>
+<td>链接法</td>
+<td>文件</td>
+</tr>
+<tr>
+<td><strong>数据操作</strong></td>
+<td>增删改查。按层次顺序查询、按层次路径查询。且每次操作只能取一个记录</td>
+<td>操作时必须说明做什么、如何做</td>
+<td>增删改查。集合操作，操作对象和操作结果都是关系，即若干元组的集合。存取路径对用户隐藏（安全的同时效率低），用户只需指出干什么。</td>
+</tr>
+<tr>
+<td><strong>数据完整性约束</strong></td>
+<td>父子约束、一致性约束、数据的型和值需保持树形结构等</td>
+<td>父子约束、主从约束</td>
+<td>实体完整性、参照完整性和用户定义的完整性</td>
+</tr>
+<tr>
+<td><strong>联系表示的特点</strong></td>
+<td>适合1：n</td>
+<td>可以间接表示m：n</td>
+<td>便于表示m：n</td>
+</tr>
+<tr>
+<td><strong>联系的方式</strong></td>
+<td>通过指针（或路径）</td>
+<td>通过指针（或路径）</td>
+<td>通过表格自然联系及创建联系</td>
+</tr>
+<tr>
+<td><strong>使用与效率</strong></td>
+<td>较难使用、效率较高</td>
+<td>使用复杂、效率较高</td>
+<td>容易使用，效率较低</td>
+</tr>
+<tr>
+<td><strong>数据操作语言</strong></td>
+<td>过程化</td>
+<td>过程化</td>
+<td>非过程化及过程扩展</td>
+</tr>
+<tr>
+<td><strong>理论基础</strong></td>
+<td>无</td>
+<td>无</td>
+<td>关系理论</td>
+</tr>
+<tr>
+<td><strong>优缺点</strong></td>
+<td>①数据结构较简单、查询效率高；②提供良好的完整性支持；③不易表示多对多的联系；④数据操作限制多，独立性较差</td>
+<td>①较为直接地描述现实世界；②存取效率较高；③结构较复杂，不易使用；④数据独立性较差</td>
+<td>①有坚实的理论基础；②结构简单、易用；③数据独立性及安全性好；④查询效率较低</td>
+</tr>
+</tbody></table>
+<h2 id="4、三级模式结构"><a href="#4、三级模式结构" class="headerlink" title="4、三级模式结构"></a>4、三级模式结构</h2><p><strong>模式</strong>：（也称概念模式&#x2F;逻辑模式）是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公用数据结构。</p>
+<p><strong>子模式</strong>：（也称外模式&#x2F;用户模式）是数据库用户所见和使用的局部数据的逻辑结构和特征的描述，是用户所用的数据库结构。子模式是模式的子集，它主要描述用户视图的各记录的组成、相互联系、数据项的特征等。</p>
+<p><strong>内模式</strong>：（也称存储模式）是数据物理结构和存储方法的描述，是整个数据库的最低层结构的标识。</p>
+<p>三级模式结构示意如下图所示：</p>
+<p><img data-src="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205081008688.png" alt="image-20220508100815575"></p>
+<h2 id="5、二级映像功能"><a href="#5、二级映像功能" class="headerlink" title="5、二级映像功能"></a>5、二级映像功能</h2><p><strong>映像1：子模式&#x2F;模式映像</strong>，是指由模式生成子模式的规则，它定义了各个子模式和模式之间的对应关系。（不唯一）</p>
+<p><strong>映像2：模式&#x2F;内模式映像</strong>，是说明模式在物理设备中的存储结构，定义了模式和内模式之间的对应关系。（唯一）</p>
+<p><strong>三级模式结构和二级映像的作用：保证了数据库系统的数据能够具有较高的逻辑独立性和物理独立性</strong></p>
+<blockquote>
+<p>数据冗余：</p>
+<p><img data-src="https://s2.loli.net/2022/05/14/pExd5HsrKunezmM.png" alt="image-20220514221005579"></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+</search>

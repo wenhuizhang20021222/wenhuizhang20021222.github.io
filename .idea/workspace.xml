@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fc14a11e-34d6-40cf-83b7-1d502ab25ebf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/themes/next/source/images/background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/next/source/images/bitbug_favicon-16x16.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/next/source/images/bitbug_favicon-32x32.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/next/source/images/zrn.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/next/source/js/fairyDustCursor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/themes/next/source/js/fireworks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next/layout/_layout.njk" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_layout.njk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next/layout/_macro/post.njk" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_macro/post.njk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next/layout/_macro/sidebar.njk" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_macro/sidebar.njk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next/layout/_partials/comments.njk" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_partials/comments.njk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next/layout/_partials/head/head.njk" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_partials/head/head.njk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next/layout/page.njk" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/page.njk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next/source/css/_common/components/post/post-body.styl" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/source/css/_common/components/post/post-body.styl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next/source/live2d-widget/autoload.js" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/source/live2d-widget/autoload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next/source/live2d-widget/waifu.css" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/source/live2d-widget/waifu.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/themes/next" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2AuTsXGmVjkz4Utwu4Pk2Hi67jQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fc14a11e-34d6-40cf-83b7-1d502ab25ebf" name="Changes" comment="" />
+      <created>1655858679939</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655858679939</updated>
+      <workItem from="1655858682251" duration="14000" />
+      <workItem from="1655858863489" duration="469000" />
+      <workItem from="1655859504367" duration="59000" />
+      <workItem from="1655860477086" duration="112000" />
+      <workItem from="1655861061870" duration="6000" />
+      <workItem from="1655861089170" duration="16000" />
+      <workItem from="1655861226338" duration="1025000" />
+      <workItem from="1655947842389" duration="1609000" />
+      <workItem from="1655955176255" duration="51366000" />
+      <workItem from="1656334150685" duration="1596000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
