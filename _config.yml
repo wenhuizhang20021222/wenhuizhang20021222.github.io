@@ -153,10 +153,10 @@ live2d:
 encrypt:
   enable: true
 
-# hexo-tag-cloud
-tag_cloud:
-  textFont: Trebuchet MS, Helvetica
-  textColor: '#999'
-  textHeight: 25
-  outlineColor: '#E2E1D1'
-  maxSpeed: 0.1
+## hexo-tag-cloud
+#tag_cloud:
+#  textFont: Trebuchet MS, Helvetica
+#  textColor: '#999'
+#  textHeight: 25
+#  outlineColor: '#E2E1D1'
+#  maxSpeed: 0.1

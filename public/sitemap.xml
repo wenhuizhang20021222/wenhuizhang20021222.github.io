@@ -2,6 +2,138 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>http://zhangwenhui-blog.com.cn/2022/06/27/%E4%B8%89%E3%80%81%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</loc>
+        
+        <lastmod>2022-06-27T15:16:47.722Z</lastmod>
+        
+        <date>1656342346000</date>
+        <title>三、进程调度 | zwh's Blog</title>
+        
+        <desc>三、进程调度&#x3D;&#x3D;重点：&#x3D;&#x3D;调度的层次：低级调度、中级调度、高级调度 引起进程调度的原因 抢占式和非抢占式调度，周转时间，等待时间 &#x3D;&#x3D;调度算法&#x3D;&#x3D; 时间片，进程优先级，高响应比可以不管， 重视多级队列，不超过作业题难度 实时调度概念 1、处理机调度的基本概念</desc>
+    </url>
+    
+    <url>
+        <loc>http://zhangwenhui-blog.com.cn/2022/06/27/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%89%8D%E4%B8%89%E7%AB%A0%EF%BC%89/</loc>
+        
+        <lastmod>2022-06-27T15:12:30.883Z</lastmod>
+        
+        <date>1656342622000</date>
+        <title>编译原理复习笔记 | zwh's Blog</title>
+        
+        <desc>第一章 引论&#x3D;&#x3D;1、编译和解释&#x3D;&#x3D; &#x3D;&#x3D;编译方式的特点：&#x3D;&#x3D; 源程序的执行需要分阶段（目标程序是机器语言：编译、运行，目标程序是汇编语言：编译、汇编、运行）； 生成了目标代码，且可多次执行 编译程序与具体的机器和语言有关 &#x3D;&#x3D;解释方式的特点：&#x3D;&#x3D; 更灵活、交互方便，节省空间 效率</desc>
+    </url>
+    
+    <url>
+        <loc>http://zhangwenhui-blog.com.cn/2022/06/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/</loc>
+        
+        <lastmod>2022-06-27T15:12:30.881Z</lastmod>
+        
+        <date>1656341680000</date>
+        <title>数据库设计 | zwh's Blog</title>
+        
+        <desc>五、数据库设计1、ER图中的基本概念现实世界、ER模型、关系模型中的概念对应 实体类型和实体实例 实体类型：一个属性集 实体类型可以是物理上的，如staff；也可以是概念上的，如work experience 实体实例：对应于实体类型下的一个取值，实体实例是可区别的 例子： 学生是一个实体类型，可以用（学号，姓名，性别，年龄，所属系）这个属性集来描述学生，每一个学生，如学生i，是学生实体的一个实体</desc>
+    </url>
+    
+    <url>
+        <loc>http://zhangwenhui-blog.com.cn/2022/06/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/</loc>
+        
+        <lastmod>2022-06-27T15:12:30.880Z</lastmod>
+        
+        <date>1656341486000</date>
+        <title>数据库安全 | zwh's Blog</title>
+        
+        <desc>四、数据库安全数据库安全性的定义：对数据库进行安全控制，保护数据库以防止&#x3D;&#x3D;不合法的使用&#x3D;&#x3D;（包括对数据库的查询和修改）所造成的数据泄露、更改或破坏。 数据库系统的安全模型：层层设防 1、用户标识与鉴别 概念：一种用来判断用户身份是否属实的机制，是系统提供的最外层安全保护措施 标识（Identification）：身份声明。用户标识由用户名和用户标识号组成（</desc>
+    </url>
+    
+    <url>
+        <loc>http://zhangwenhui-blog.com.cn/2022/06/27/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/</loc>
+        
+        <lastmod>2022-06-27T15:12:30.879Z</lastmod>
+        
+        <date>1656341816000</date>
+        <title>并发控制 | zwh's Blog</title>
+        
+        <desc>七、并发控制UNIT 16 事务管理16.1 事务的定义与特性 、事务管理 事务产生的原因：保证数据库状态的一致性 事务（transaction）：用户定义的一个数据库操作序列，这些工作要么全做要么全不做，是一个不可分割的工作单位。 事务是数据库系统工作的一个不可分割的基本单位，既是保持数据库完整性约束或逻辑一致性的单位，又是数据库恢复及并发控制的基本单位。 SQL定义事务的语句： 123BEGI</desc>
+    </url>
+    
+    <url>
+        <loc>http://zhangwenhui-blog.com.cn/2022/06/27/%E5%9B%9B%E3%80%81%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5/</loc>
+        
+        <lastmod>2022-06-27T15:12:30.877Z</lastmod>
+        
+        <date>1656342409000</date>
+        <title>四、进程同步 | zwh's Blog</title>
+        
+        <desc></desc>
+    </url>
+    
+    <url>
+        <loc>http://zhangwenhui-blog.com.cn/2022/06/27/%E5%85%B3%E7%B3%BB%E8%8C%83%E5%BC%8F/</loc>
+        
+        <lastmod>2022-06-27T15:12:30.876Z</lastmod>
+        
+        <date>1656341746000</date>
+        <title>关系范式 | zwh's Blog</title>
+        
+        <desc>六、关系范式UNIT 14 规范化与函数依赖14.1 规范化的概念 &#x3D;&#x3D;规范化&#x3D;&#x3D;是将属性分配给一个实体的过程，用以减少数据冗余和减少更新异常。这个过程实际上就是将一个低一级范式的关系模式，通过&#x3D;&#x3D;模式分解&#x3D;&#x3D;转换为若干个高一级范式的关系模式的集合的过程。这个转换过程是通过分析和消除属性间的数据依赖关系来实现的 属性可</desc>
+    </url>
+    
+    <url>
+        <loc>http://zhangwenhui-blog.com.cn/2022/06/27/%E4%BA%94%E3%80%81%E6%AD%BB%E9%94%81/</loc>
+        
+        <lastmod>2022-06-27T15:12:30.875Z</lastmod>
+        
+        <date>1656342441000</date>
+        <title>五、死锁 | zwh's Blog</title>
+        
+        <desc>5、死锁基本概念（1）死锁产生的原因 竞争资源：多个进程竞争资源，而资源又不能同时满足其需求（如下图1） 进程推进顺序不当：进程申请资源和释放资源的顺序不当（如下图2） 图1：竞争资源引起的死锁 这类图中的Pi表示进程，Ri表示资源，由Ri指向Pi的箭头表示Ri已经被分配给了Pi，而由Pi指向Ri的箭头表示Pi请求Ri 图2：进程推进顺序不当引起的死锁 如上图，当进程的推进路线进入了死锁不可避免区</desc>
+    </url>
+    
+    <url>
+        <loc>http://zhangwenhui-blog.com.cn/2022/06/27/%E5%85%AD%E3%80%81%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8%E7%AE%A1%E7%90%86/</loc>
+        
+        <lastmod>2022-06-27T15:12:30.874Z</lastmod>
+        
+        <date>1656342485000</date>
+        <title>六、主存储器管理 | zwh's Blog</title>
+        
+        <desc>第六章 主存储器管理 6.1 存储器管理的基本概念 1、基本概念 存储器的层次结构： &#x3D;&#x3D;内存的概念与作用&#x3D;&#x3D;：内存是用于存放数据的硬件。程序执行时需要先放到内存中才能被CPU处理。 &#x3D;&#x3D;存储单元和地址&#x3D;&#x3D;：每个地址对应一个存储单元 按字节编址的意思是一个字节对应一个地址，而一个地址又对应一个存储单元，故一个存储单元是</desc>
+    </url>
+    
+    <url>
+        <loc>http://zhangwenhui-blog.com.cn/2022/06/27/%E4%BA%8C%E3%80%81%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</loc>
+        
+        <lastmod>2022-06-27T15:12:30.871Z</lastmod>
+        
+        <date>1656342262000</date>
+        <title>二、进程与线程 | zwh's Blog</title>
+        
+        <desc>二、进程与线程&#x3D;&#x3D;重点：&#x3D;&#x3D;进程定义，进程控制块（PCB），进程的状态及其变化，进程切换与CPU模式切换，进程调度，上下文切换， 进程队列，进程家族树和进程创建 进程通信机制（共享内存，消息传递） ， 信号与中断的区别。 通信中的同步问题：阻塞&#x2F;非阻塞 线程，线程和进程的区别，引入线程的好处，多线程模型 1、进程的定义、特征、描述和组织 概念： 进</desc>
+    </url>
+    
+    <url>
+        <loc>http://zhangwenhui-blog.com.cn/2022/06/27/%E4%B8%83%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</loc>
+        
+        <lastmod>2022-06-27T15:12:30.869Z</lastmod>
+        
+        <date>1656342524000</date>
+        <title>七、虚拟内存管理 | zwh's Blog</title>
+        
+        <desc>第7章 虚拟内存管理虚拟内存的概念 局部性原理 请求分页系统 TLB刷新问题可以忽略 EAT计算，缺页中断，缺页率 &#x3D;&#x3D;页面分配和替换的算法&#x3D;&#x3D; 重点： 简单时钟及其变形 后面的基本是概念 局部页面替换：重点掌握局部最佳页面和工作集 抖动</desc>
+    </url>
+    
+    <url>
+        <loc>http://zhangwenhui-blog.com.cn/2022/06/27/%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%AA%E8%AE%BA/</loc>
+        
+        <lastmod>2022-06-27T15:12:30.867Z</lastmod>
+        
+        <date>1656342178000</date>
+        <title>一、操作系统绪论 | zwh's Blog</title>
+        
+        <desc>一、操作系统绪论&#x3D;&#x3D;重点考察概念&#x3D;&#x3D;操作系统的定义，操作系统在计算机系统中的地位，操作系统的主要功能，资源复用、虚化、抽象，操作系统的特征，多道程序设计，并发，中断，系统调用，CPU 的两种工作模式（用户态、内核态），特权指令和非特权指令 1、操作系统概念、功能及提供的接口操作系统的概念：管理计算机硬件并提供应用程序运行环境的软件。操作系统是配置在计算机硬件</desc>
+    </url>
+    
+    <url>
         <loc>http://zhangwenhui-blog.com.cn/2022/06/23/os%E7%BB%AA%E8%AE%BA/</loc>
         
         <lastmod>2022-06-27T00:29:52.985Z</lastmod>

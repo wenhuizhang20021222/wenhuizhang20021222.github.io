@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <script src="/live2d-widget/autoload.js"></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangwenhui-blog.com.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":true,"color":"#64CEAA","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+  <div class="weather">
+  <!-- 《添加“心知天气”-->
+  
+    <div id="tp-weather-widget"></div>
+  <script>
+    (function(a,h,g,f,e,d,c,b){b=function(){d=h.createElement(g);c=h.getElementsByTagName(g)[0];d.src=e;d.charset="utf-8";d.async=1;c.parentNode.insertBefore(d,c)};a["SeniverseWeatherWidgetObject"]=f;a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});a[f].l=+new Date();if(a.attachEvent){a.attachEvent("onload",b)}else{a.addEventListener("load",b,false)}}(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10)));
+    window.SeniverseWeatherWidget('show', {
+      flavor: "slim",
+      location: "WX4FBXXFKE4F",
+      geolocation: true,
+      language: "zh-CN",
+      unit: "c",
+      theme: "auto",
+      token: "efb760e3-5326-4f08-839b-122738249a17",
+      hover: "enabled",
+      container: "tp-weather-widget"
+    })
+  </script>
+  
+  <!-- 添加“心知天气”》-->
+  </div>
+
+
+
+
+    <meta name="description" content="四、数据库安全数据库安全性的定义：对数据库进行安全控制，保护数据库以防止&#x3D;&#x3D;不合法的使用&#x3D;&#x3D;（包括对数据库的查询和修改）所造成的数据泄露、更改或破坏。 数据库系统的安全模型：层层设防   1、用户标识与鉴别 概念：一种用来判断用户身份是否属实的机制，是系统提供的最外层安全保护措施  标识（Identification）：身份声明。用户标识由用户名和用户标识号">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库安全">
+<meta property="og:url" content="http://zhangwenhui-blog.com.cn/2022/06/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/index.html">
+<meta property="og:site_name" content="zwh&#39;s Blog">
+<meta property="og:description" content="四、数据库安全数据库安全性的定义：对数据库进行安全控制，保护数据库以防止&#x3D;&#x3D;不合法的使用&#x3D;&#x3D;（包括对数据库的查询和修改）所造成的数据泄露、更改或破坏。 数据库系统的安全模型：层层设防   1、用户标识与鉴别 概念：一种用来判断用户身份是否属实的机制，是系统提供的最外层安全保护措施  标识（Identification）：身份声明。用户标识由用户名和用户标识号">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/03/29/Rd34US7IDsHQFx6.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/28/yQN8WExhAqHluCX.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/28/v8HkOgAE6nYMCox.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/28/iWFbB3pIgTkR4GC.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/28/QPHZD64NiTeCOM5.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/29/HAcK2Nrinv83DBR.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/28/QPHZD64NiTeCOM5.png">
+<meta property="article:published_time" content="2022-06-27T14:51:26.000Z">
+<meta property="article:modified_time" content="2022-06-27T15:12:30.880Z">
+<meta property="article:author" content="Zhang Wen Hui">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/29/Rd34US7IDsHQFx6.png">
+
+
+<link rel="canonical" href="http://zhangwenhui-blog.com.cn/2022/06/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://zhangwenhui-blog.com.cn/2022/06/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/","path":"2022/06/27/数据库安全/","title":"数据库安全"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据库安全 | zwh's Blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<!-- 樱花特效 -->
+  
+      <script async src="/js/fairyDustCursor.js"></script>
+  
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+   <script type="text/javascript" src="/js/fireworks.js"></script>
+
+
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zwh's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Hello World!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8"><span class="nav-number">1.</span> <span class="nav-text">四、数据库安全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E7%94%A8%E6%88%B7%E6%A0%87%E8%AF%86%E4%B8%8E%E9%89%B4%E5%88%AB"><span class="nav-number">1.1.</span> <span class="nav-text">1、用户标识与鉴别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81DBMS%E7%9A%84%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6%E5%AD%90%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.2.</span> <span class="nav-text">2、DBMS的存取控制子系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#x3D-x3D-3%E3%80%81%E6%8E%88%E6%9D%83%E4%B8%8E%E5%9B%9E%E6%94%B6-x3D-x3D"><span class="nav-number">1.3.</span> <span class="nav-text">&#x3D;&#x3D;3、授权与回收&#x3D;&#x3D;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#x3D-x3D-4%E3%80%81%E8%A7%92%E8%89%B2-x3D-x3D"><span class="nav-number">1.4.</span> <span class="nav-text">&#x3D;&#x3D;4、角色&#x3D;&#x3D;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E8%A7%86%E5%9B%BE%E4%B8%8E%E6%9D%83%E9%99%90"><span class="nav-number">1.5.</span> <span class="nav-text">5、视图与权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81%E5%AE%A1%E8%AE%A1"><span class="nav-number">1.6.</span> <span class="nav-text">6、审计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81%E6%95%B0%E6%8D%AE%E5%8A%A0%E5%AF%86%E4%B8%8E%E7%BB%9F%E8%AE%A1%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%89%E5%85%A8"><span class="nav-number">1.7.</span> <span class="nav-text">7、数据加密与统计数据库的安全</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhang Wen Hui"
+      src="/images/zrn.png">
+  <p class="site-author-name" itemprop="name">Zhang Wen Hui</p>
+  <div class="site-description" itemprop="description">我希望许过的愿望一路生花</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wenhuizhang20021222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wenhuizhang20021222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1819027992&auto=1&height=66"></iframe>
+      
+      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+      <div class="widget-wrap">
+          <h3 class="widget-title">Tag Cloud</h3>
+          <div id="myCanvasContainer" class="widget tagcloud">
+              <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a><span class="tag-list-count">1</span></li></ul>
+              </canvas>
+          </div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/wenhuizhang20021222" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhangwenhui-blog.com.cn/2022/06/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zrn.png">
+      <meta itemprop="name" content="Zhang Wen Hui">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="description" content="我希望许过的愿望一路生花">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据库安全 | zwh's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库安全
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-06-27 22:51:26 / 修改时间：23:12:30" itemprop="dateCreated datePublished" datetime="2022-06-27T22:51:26+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="四、数据库安全"><a href="#四、数据库安全" class="headerlink" title="四、数据库安全"></a>四、数据库安全</h1><p>数据库安全性的定义：对数据库进行安全控制，保护数据库以防止&#x3D;&#x3D;不合法的使用&#x3D;&#x3D;（包括对数据库的查询和修改）所造成的数据泄露、更改或破坏。</p>
+<p>数据库系统的安全模型：层层设防</p>
+<img data-src="https://s2.loli.net/2022/03/29/Rd34US7IDsHQFx6.png" alt="image-20220329101709334" style="zoom:67%;" />
+
+<h2 id="1、用户标识与鉴别"><a href="#1、用户标识与鉴别" class="headerlink" title="1、用户标识与鉴别"></a>1、用户标识与鉴别</h2><ul>
+<li><p>概念：一种用来判断用户身份是否属实的机制，是系统提供的<strong>最外层安全保护措施</strong></p>
+<blockquote>
+<p>标识（Identification）：身份声明。用户标识由用户名和用户标识号组成（用户标识号在系统整个生命周期内唯一）</p>
+<p>鉴别（Authentication ）：检验身份声明的有效性</p>
+</blockquote>
+</li>
+<li><p>用户身份鉴别的方法：</p>
+<ul>
+<li><p>静态口令鉴别：口令一经设置不再改变，静态口令一般由用户自己设定。易于实现也易泄露，不能对抗穷举攻击等等。</p>
+</li>
+<li><p>动态口令鉴别：口令是动态变化的，一次一密。eg. 手机验证码</p>
+</li>
+<li><p>生物特征鉴别：通过每个用户所独有的生物特征进行认证的技术</p>
+</li>
+<li><p>智能卡鉴别：智能卡是一种不可复制的硬件，内置集成电路的芯片，具有硬件加密功能</p>
+<p>  可以考虑多种方法并举</p>
+</li>
+</ul>
+</li>
+<li><p>数据库系统用户认证</p>
+<ul>
+<li>系统管理员通过创建用户帐号来管理用户对计算机系统资源的访问.给定&#x3D;&#x3D;每一位用户一个唯一的标识符和口令&#x3D;&#x3D;,操作系统通过它来判断用户的身份。</li>
+<li>DBA负责为DBMS用户建立用户帐号和口令</li>
+<li>用户认证的位置和方法：一张有效用户标识符和相关口令清单</li>
+<li>方式：通过操作系统&#x2F;数据库&#x2F;网络服务认证</li>
+</ul>
+</li>
+</ul>
+<h2 id="2、DBMS的存取控制子系统"><a href="#2、DBMS的存取控制子系统" class="headerlink" title="2、DBMS的存取控制子系统"></a>2、DBMS的存取控制子系统</h2><ul>
+<li><p>不同的用户有不同的权限，这由数据库的存取控制机制实现.      eg.DBA拥有所有权限</p>
+</li>
+<li><p><strong>所有权：</strong>对象的创建者拥有对象,并能够分配对象的相应特权</p>
+</li>
+<li><p><strong>特权：</strong></p>
+<p>  &#x3D;&#x3D;一个策略 两种原则&#x3D;&#x3D;</p>
+<ul>
+<li><strong>最小特权策略</strong>：只有一个人工作需要的才是他应该知道的</li>
+<li><strong>“封闭系统”原则</strong>：&#x3D;&#x3D;默认拒绝&#x3D;&#x3D;。虽然给予用户访问DBMS的权利，但当&#x3D;&#x3D;访问特定数据库对象时需要显式的授权&#x3D;&#x3D;，由DBA或对象的拥有者来执行这个授权过程</li>
+<li><strong>“开放系统”原则</strong>：&#x3D;&#x3D;默认允许&#x3D;&#x3D;。与封闭系统原则正好相反，允许用户对数据库的所有对象都拥有访问权限，这时,访问控制可通过&#x3D;&#x3D;显式地去除用户的特权&#x3D;&#x3D;来实现。简单但不够安全</li>
+</ul>
+</li>
+<li><p><strong>授权控制&#x2F;访问控制&#x2F;存取控制：</strong></p>
+<ul>
+<li><p>概念：授予一个主体权利或特权,使其能够实现对系统或者系统对象的合法访问</p>
+</li>
+<li><p>组成：定义用户权限、合法权限检查</p>
+  <img data-src="https://s2.loli.net/2022/03/28/yQN8WExhAqHluCX.png" alt="image-20220328184353188" style="zoom:67%;" /></li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;存取控制的策略：&#x3D;&#x3D;</p>
+<ul>
+<li><p>&#x3D;&#x3D;自主存取策略：&#x3D;&#x3D;（Discretionary Access Control , DAC）</p>
+<ul>
+<li><p>概念：是基于用户身份或所属工作组来进行访问控制的一种手段。用户<strong>对于不同的数据对象有相应的存取权限</strong>，而且用户还可以将其拥有的存取权限<strong>转授</strong>给其他用户。</p>
+</li>
+<li><p>用户分类与权限：</p>
+<ul>
+<li><p>系统用户（或DBA）：拥有全部权限</p>
+</li>
+<li><p>数据对象的属主：是创建某个数据对象的用户表，拥有该对象的权限</p>
+</li>
+<li><p>一般用户：经过授权被允许进行特定操作的用户 </p>
+</li>
+<li><p>公共用户（PUBLIC）：全体用户，便于共享操作而设置</p>
+</li>
+</ul>
+<blockquote>
+<p>SQL中提供CREATE USER 等语句管理用户</p>
+</blockquote>
+</li>
+<li><p>授权粒度（用户访问的数据对象的粒度）：数据库&#x2F;表&#x2F;字段。</p>
+<blockquote>
+<p>授权粒度越细，授权子系统越灵活，但系统定义与检查权限的开销也越大</p>
+</blockquote>
+</li>
+<li><p><img data-src="https://s2.loli.net/2022/03/28/v8HkOgAE6nYMCox.png" alt="image-20220328185545227"></p>
+<blockquote>
+<p>谓词是计算结果为逻辑值（为：TRUE、FALSE、UNKNOWN）的逻辑表达式。<br>不直接支持存取谓词的系统中，通过视图可以间接地实现支持存取谓词的用户权限定义。</p>
+</blockquote>
+</li>
+<li><p>自主存取控制是与数据值有关的授权，灵活且易于实现，但由于数据本身并无安全性标志，可能会有无意泄漏问题</p>
+</li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;强制存取策略&#x3D;&#x3D; (Mandatory Access Control, MAC)</p>
+<ul>
+<li><p>定义：是基于被访问对象的信任度进行权限控制的一种手段。每一个数据对象被标以一定的密级，每一个用户也被授予某一个级别的许可证。对于任意一个对象，只有具有合法许可证的用户才可以存取。<strong>对数据本身进行密级标记，无论数据如何复制，标记与数据是一个不可分的整体。</strong></p>
+</li>
+<li><p>强制访问控制的实施由DBMS完成，但许可证与密级标记由专门的安全管理员设置</p>
+</li>
+<li><p>主体：系统中的活动实体，包含用户和用户的进程</p>
+</li>
+<li><p>客体：系统中的被动实体，被主体操纵</p>
+</li>
+<li><p>敏感度标记：主体的敏感度标记称为许可证级别；客体的敏感度标记称为密级。</p>
+<blockquote>
+<p>仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体；仅当主体的许可证级别（小于或）等于客体的密级时，该主体才能写相应的客体。 <strong>“下读上写”</strong></p>
+<img data-src="https://s2.loli.net/2022/03/28/iWFbB3pIgTkR4GC.png" alt="image-20220328190807758" style="zoom:67%;" />
+</blockquote>
+</li>
+<li><p>比较严格和安全</p>
+</li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;基于角色的存取控制&#x3D;&#x3D; (RBAC)</p>
+<ul>
+<li><p>定义：用户通过角色与权限进行关联。每一种角色对应一组相应的权限。一旦用户被分配了适当的角色后，该用户就拥有此角色的所有操作权限。 &#x3D;&#x3D;角色本质上是权限的集合&#x3D;&#x3D; </p>
+  <img data-src="https://s2.loli.net/2022/03/28/QPHZD64NiTeCOM5.png" alt="image-20220328193107662" style="zoom:67%;" />
+</li>
+<li><p>优点：简化用户的权限管理，减少系统的开销</p>
+<blockquote>
+<p><strong>SQL中提供CREAT ROLE等语句进行角色管理</strong></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="x3D-x3D-3、授权与回收-x3D-x3D"><a href="#x3D-x3D-3、授权与回收-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;3、授权与回收&#x3D;&#x3D;"></a>&#x3D;&#x3D;3、授权与回收&#x3D;&#x3D;</h2><ul>
+<li><p>&#x3D;&#x3D;授权：SQL中的GRANT语句&#x3D;&#x3D;</p>
+<ul>
+<li><p>作用：表(基本表或视图)的所有者授予一个或一类用户访问表的各种权利</p>
+</li>
+<li><p>局限性：不能根据数据内容进行授权</p>
+</li>
+<li><p>形式：</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> &#123;<span class="keyword">ALL</span> PRIVILEGES <span class="operator">|</span> privilege[, privilege] ...&#125; #多种权利</span><br><span class="line"><span class="keyword">ON</span> [<span class="keyword">TABLE</span>]&#123;〈tablename〉<span class="operator">|</span> 〈viewname〉&#125; #一次针对一个对象</span><br><span class="line"><span class="keyword">TO</span> &#123;PUBLIC <span class="operator">|</span>〈username〉[,〈username〉] ...&#125; #多个用户，其中PUBLIC是公共用户</span><br><span class="line">[<span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION];</span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span>, <span class="keyword">UPDATE</span>(sno)</span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">TABLE</span> s_c</span><br><span class="line"><span class="keyword">TO</span> U1, U2;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>一些说明：</p>
+<ul>
+<li><code>privilege</code>包括<code>SELECT、DELETE、INSERT、UPDATE [columnname [, columnnane]…]、REFERENCES [columnname [, columnnane]…]、ALTER、INDEX等等</code>，对于视图只有<code>SELECT、DELETE、INSERT、UPDATE</code></li>
+<li><code>WITH GRANT OPTION</code>用于实现转授，即被授权的用户还可以将权利授予其他用户，但不允许循环授权</li>
+<li><strong>每条GRANT语句只能针对一个对象（表）</strong></li>
+<li>可同时向<strong>多个用户</strong>授予对同一对象的<strong>多种权力</strong></li>
+<li>访问列&#x2F;行的安全性可以通过视图来实现；在视图上授予更新权限时，视图必须是可更新的；表的所有者自动拥有表的所有权限,而且不能被取消</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<hr>
+</li>
+<li><p>&#x3D;&#x3D;回收：SQL中的REVOKE语句&#x3D;&#x3D; &#x3D;&#x3D;GRANT的反操作&#x3D;&#x3D;</p>
+<ul>
+<li><p>作用：收回已授予给用户的特权</p>
+</li>
+<li><p>形式： </p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#X<span class="operator">/</span><span class="keyword">Open</span> <span class="keyword">SQL</span>的<span class="keyword">REVOKE</span>语句的语法（基本<span class="keyword">SQL</span>目前不支持&#123;CASCADE <span class="operator">|</span> RESTRICT&#125; 子句）</span><br><span class="line"><span class="keyword">REVOKE</span> [<span class="keyword">GRANT</span> OPTION <span class="keyword">FOR</span>]</span><br><span class="line">&#123;<span class="keyword">ALL</span> PRIVILEGES <span class="operator">|</span> privilege[，privilege] ...&#125;</span><br><span class="line"><span class="keyword">ON</span> [<span class="keyword">TABLE</span>]&#123;〈tablename〉<span class="operator">|</span> 〈viewname〉&#125;</span><br><span class="line"><span class="keyword">FROM</span> &#123;PUBLIC <span class="operator">|</span>〈username〉[，〈username〉] ...&#125;</span><br><span class="line">&#123;CASCADE <span class="operator">|</span> RESTRICT&#125;;</span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">INSERT</span></span><br><span class="line"><span class="keyword">ON</span> Staff</span><br><span class="line">CASCADE</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>一些说明：</p>
+<ul>
+<li><p><code>GRANT OPTION FOR</code>指撤销 允许转授 的这种特权</p>
+</li>
+<li><p><code>ALL PRIVIEGES</code>指该用户被授予的对指定对象所拥有的所有特权</p>
+</li>
+<li><p><code>CASCADE</code>的作用是删除与当前被撤消的权限有依赖关系的视图或删除依赖于<code>REFERENCES</code>权限的外键约束；如果有这样的依赖关系，<code>RESTRICT</code>将不允许执行<code>REVOKE</code>语句</p>
+</li>
+<li><p>其他用户授予该用户的特权不受影响</p>
+  <img data-src="https://s2.loli.net/2022/03/29/HAcK2Nrinv83DBR.png" alt="image-20220329112258945" style="zoom:67%;" /></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="x3D-x3D-4、角色-x3D-x3D"><a href="#x3D-x3D-4、角色-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;4、角色&#x3D;&#x3D;"></a>&#x3D;&#x3D;4、角色&#x3D;&#x3D;</h2><p>参考链接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/367873840">MySQL角色(role)功能介绍 - 知乎 (zhihu.com)</a></p>
+<ul>
+<li><p>概念：&#x3D;&#x3D;操作权限的集合&#x3D;&#x3D;，eg.学生、老师。一个用户可以有不同的角色</p>
+  <img data-src="https://s2.loli.net/2022/03/28/QPHZD64NiTeCOM5.png" style="zoom:67%;" />
+</li>
+<li><p>数据库预定义角色：指数据库建立时，系统自动创建的角色。如CONNECT（允许进入数据库）、RESOURCE（允许创建数据库对象）、DBA</p>
+</li>
+<li><p>与角色相关的SQL语句</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#角色的创建</span><br><span class="line"><span class="keyword">CREATE</span> ROLE <span class="operator">&lt;</span>角色名<span class="operator">&gt;</span> </span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">CREATE</span> ROLE R1;</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#角色的删除</span><br><span class="line"><span class="keyword">DROP</span> ROLE <span class="operator">&lt;</span>角色名<span class="operator">&gt;</span> </span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#给角色授权，跟给普通用户的授权是一样的</span><br><span class="line"><span class="keyword">GRANT</span> <span class="operator">&lt;</span>权限<span class="operator">&gt;</span>[,<span class="operator">&lt;</span>权限<span class="operator">&gt;</span>]...</span><br><span class="line"><span class="keyword">ON</span> <span class="operator">&lt;</span>对象类型<span class="operator">&gt;</span>对象名   #一个对象</span><br><span class="line"><span class="keyword">TO</span> <span class="operator">&lt;</span>角色<span class="operator">&gt;</span>[,<span class="operator">&lt;</span>角色<span class="operator">&gt;</span>]...</span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span>, <span class="keyword">UPDATE</span>, <span class="keyword">INSERT</span> </span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">TABLE</span> Student </span><br><span class="line"><span class="keyword">TO</span> R1;</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#查看角色的授权</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> grants <span class="keyword">for</span> <span class="string">&#x27;dev_role&#x27;</span>@<span class="string">&#x27;%&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> Grants <span class="keyword">for</span> dev_role@<span class="operator">%</span>                     <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">GRANT</span> USAGE <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> `dev_role`@`<span class="operator">%</span>`      <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">GRANT</span> <span class="keyword">SELECT</span> <span class="keyword">ON</span> `db1`.<span class="operator">*</span> <span class="keyword">TO</span> `dev_role`@`<span class="operator">%</span>` <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------------------------+</span></span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#确定当前会话中哪些角色处于活动状态</span><br><span class="line"><span class="keyword">select</span> <span class="built_in">CURRENT_ROLE</span>();</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 使用 <span class="keyword">set</span> <span class="keyword">default</span> role 命令激活角色</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SET</span> <span class="keyword">DEFAULT</span> ROLE <span class="keyword">ALL</span> <span class="keyword">TO</span> dev1;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.77</span> sec)</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#将一个角色授予其他的角色或用户，授予者是角色的创建者或拥有在这个角色上的ADMIN OPTION</span><br><span class="line"><span class="keyword">GRANT</span> <span class="operator">&lt;</span>角色<span class="number">1</span><span class="operator">&gt;</span>[,<span class="operator">&lt;</span>角色<span class="number">2</span><span class="operator">&gt;</span>]…</span><br><span class="line"><span class="keyword">TO</span> <span class="operator">&lt;</span>角色<span class="number">3</span><span class="operator">&gt;</span>[,<span class="operator">&lt;</span>用户<span class="number">1</span><span class="operator">&gt;</span>]… </span><br><span class="line">[<span class="keyword">WITH</span> ADMIN OPTION]  #允许转授</span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">GRANT</span> R1 </span><br><span class="line"><span class="keyword">TO</span> 王平,张明,赵玲;</span><br></pre></td></tr></table></figure>
+
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#角色权限的收回，<span class="keyword">REVOKE</span>的执行者是角色的创建者或者拥有在这个（些）角色上的ADMIN OPTION</span><br><span class="line">#可以通过回收角色的权限来修改角色的权限</span><br><span class="line"><span class="keyword">REVOKE</span> <span class="operator">&lt;</span>权限<span class="operator">&gt;</span>[,<span class="operator">&lt;</span>权限<span class="operator">&gt;</span>]…</span><br><span class="line"><span class="keyword">ON</span> <span class="operator">&lt;</span>对象类型<span class="operator">&gt;</span> <span class="operator">&lt;</span>对象名<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">FROM</span> <span class="operator">&lt;</span>角色<span class="operator">&gt;</span>[,<span class="operator">&lt;</span>角色<span class="operator">&gt;</span>]…</span><br><span class="line"></span><br><span class="line">#eg</span><br><span class="line"><span class="keyword">REVOKE</span> R1    #本质上，角色就是权限的集合</span><br><span class="line"><span class="keyword">FROM</span> 王平;</span><br><span class="line"></span><br><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">SELECT</span> </span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">TABLE</span> Student</span><br><span class="line"><span class="keyword">FROM</span> R1；</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>指定了WITH ADMIN OPTION则获得某种权限的角色或用户还可以把这种权限授予其他角色</p>
+<p>一个角色的权限是指直接授予这个角色的全部权限加上其他角色授予这个角色的全部权限</p>
+</blockquote>
+</li>
+</ul>
+<p>》查询用户权限：SELECT FROM USER …</p>
+<h2 id="5、视图与权限"><a href="#5、视图与权限" class="headerlink" title="5、视图与权限"></a>5、视图与权限</h2><ul>
+<li><p>把要保密的数据对无权存取这些数据的用户隐藏起来，对数据提供一定程度的安全保护</p>
+</li>
+<li><p>进行存取权限控制时可以给不同用户定义不同的视图，把数据对象限制在一定范围内</p>
+</li>
+<li><p>间接地实现支持存取谓词的用户权限定义</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#建立视图</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> CS_Student</span><br><span class="line"><span class="keyword">AS</span> </span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> Student</span><br><span class="line"><span class="keyword">WHERE</span> Sdept<span class="operator">=</span><span class="string">&#x27;CS&#x27;</span>;</span><br><span class="line"></span><br><span class="line">#在视图上进一步定义存取权限</span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span></span><br><span class="line"><span class="keyword">ON</span> CS_Student</span><br><span class="line"><span class="keyword">TO</span> 王平;</span><br><span class="line"></span><br><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILIGES</span><br><span class="line"><span class="keyword">ON</span> CS_Student</span><br><span class="line"><span class="keyword">TO</span> 张明;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="6、审计"><a href="#6、审计" class="headerlink" title="6、审计"></a>6、审计</h2><ul>
+<li><p><strong>概念：</strong>把用户对数据库的<strong>所有操作</strong>自动记录下来放入<strong>审计日志</strong>中，DBA可以利用审计跟踪的信息，找出非法存取数据的人、时间和内容等。 </p>
+<blockquote>
+<p>审计日志与恢复机制中的日志的区别：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>审计日志</th>
+<th>恢复日志</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>记录的内容</strong></td>
+<td>所有操作</td>
+<td>只记录更新操作</td>
+</tr>
+<tr>
+<td><strong>记录的组织方式</strong></td>
+<td>按操作的对象</td>
+<td>按时间顺序</td>
+</tr>
+</tbody></table>
+</blockquote>
+</li>
+<li><p><strong>作用</strong>：调查可疑的活动；监视并收集某类数据库活动的信息</p>
+</li>
+<li><p><strong>可选性</strong>：DBA可以根据应用对安全性的要求，灵活地打开或关闭审计功能以及选择对哪些操作进行审计</p>
+<blockquote>
+<p>审计很费时间和空间，主要用于安全性要求较高的部门</p>
+</blockquote>
+</li>
+<li><p><strong>审计事件</strong>：服务器事件、系统权限（对系统拥有的结构或模式对象进行操作的审计）、语句事件、模式对象事件</p>
+</li>
+<li><p><strong>审计功能</strong>：审计分析和报表功能、审计日志管理功能（审计日志必须先转储后删除；只允许审计员查阅和转储审计记录；…）、提供专门视图等等</p>
+</li>
+</ul>
+<h2 id="7、数据加密与统计数据库的安全"><a href="#7、数据加密与统计数据库的安全" class="headerlink" title="7、数据加密与统计数据库的安全"></a>7、数据加密与统计数据库的安全</h2><ul>
+<li><p>数据加密</p>
+<ul>
+<li>作用：通过将明文转换为密文来防止数据库中数据在存储和传输中失密</li>
+<li>两种加密方法：替换、置换（更改明文顺序）</li>
+</ul>
+</li>
+<li><p>统计数据库的安全性</p>
+<ul>
+<li><p>统计数据库允许用户查询<strong>聚集类型</strong>的信息（例如合计、平均值等），但是不允许查询单个记录信息。</p>
+</li>
+<li><p>统计数据库中的安全性问题：可能存在着隐蔽的信息通道，使得可以从合法的查询中推导出不合法的信息。</p>
+</li>
+<li><p>解决办法：</p>
+<ul>
+<li>规定任何查询至少涉及N个以上的记录</li>
+<li>规定两个查询的相交数据项不能超过M个</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div>
+    
+        <div style="text-align:center;color: #111;font-size:25px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Zhang Wen Hui
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://zhangwenhui-blog.com.cn/2022/06/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/" title="数据库安全">http://zhangwenhui-blog.com.cn/2022/06/27/数据库安全/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"><i class="fa fa-tag"></i> 数据库</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/06/23/os%E7%BB%AA%E8%AE%BA/" rel="prev" title="os绪论">
+                  <i class="fa fa-chevron-left"></i> os绪论
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/06/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/" rel="next" title="数据库设计">
+                  数据库设计 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Wen Hui</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wenhuizhang20021222","repo":"wenhuizhang20021222.github.io","client_id":"404d4662eeff0092368a","client_secret":"fcdcd5862c271778a7e8a98fa6c19056b9145d57","admin_user":"wenhuizhang20021222","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"18d028ff127efa64d0cfdc4cd7565534"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+
+</html>
