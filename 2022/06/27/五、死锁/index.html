@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <script src="/live2d-widget/autoload.js"></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangwenhui-blog.com.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":true,"color":"#64CEAA","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+  <div class="weather">
+  <!-- 《添加“心知天气”-->
+  
+    <div id="tp-weather-widget"></div>
+  <script>
+    (function(a,h,g,f,e,d,c,b){b=function(){d=h.createElement(g);c=h.getElementsByTagName(g)[0];d.src=e;d.charset="utf-8";d.async=1;c.parentNode.insertBefore(d,c)};a["SeniverseWeatherWidgetObject"]=f;a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});a[f].l=+new Date();if(a.attachEvent){a.attachEvent("onload",b)}else{a.addEventListener("load",b,false)}}(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10)));
+    window.SeniverseWeatherWidget('show', {
+      flavor: "slim",
+      location: "WX4FBXXFKE4F",
+      geolocation: true,
+      language: "zh-CN",
+      unit: "c",
+      theme: "auto",
+      token: "efb760e3-5326-4f08-839b-122738249a17",
+      hover: "enabled",
+      container: "tp-weather-widget"
+    })
+  </script>
+  
+  <!-- 添加“心知天气”》-->
+  </div>
+
+
+
+
+    <meta name="description" content="5、死锁基本概念（1）死锁产生的原因 竞争资源：多个进程竞争资源，而资源又不能同时满足其需求（如下图1） 进程推进顺序不当：进程申请资源和释放资源的顺序不当（如下图2）  图1：竞争资源引起的死锁   这类图中的Pi表示进程，Ri表示资源，由Ri指向Pi的箭头表示Ri已经被分配给了Pi，而由Pi指向Ri的箭头表示Pi请求Ri 图2：进程推进顺序不当引起的死锁   如上图，当进程的推进路线进入了死锁">
+<meta property="og:type" content="article">
+<meta property="og:title" content="五、死锁">
+<meta property="og:url" content="http://zhangwenhui-blog.com.cn/2022/06/27/%E4%BA%94%E3%80%81%E6%AD%BB%E9%94%81/index.html">
+<meta property="og:site_name" content="zwh&#39;s Blog">
+<meta property="og:description" content="5、死锁基本概念（1）死锁产生的原因 竞争资源：多个进程竞争资源，而资源又不能同时满足其需求（如下图1） 进程推进顺序不当：进程申请资源和释放资源的顺序不当（如下图2）  图1：竞争资源引起的死锁   这类图中的Pi表示进程，Ri表示资源，由Ri指向Pi的箭头表示Ri已经被分配给了Pi，而由Pi指向Ri的箭头表示Pi请求Ri 图2：进程推进顺序不当引起的死锁   如上图，当进程的推进路线进入了死锁">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205152043664.png">
+<meta property="og:image" content="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205152048260.png">
+<meta property="og:image" content="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205152149789.png">
+<meta property="og:image" content="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205162323289.png">
+<meta property="og:image" content="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205162322116.png">
+<meta property="article:published_time" content="2022-06-27T15:07:21.000Z">
+<meta property="article:modified_time" content="2022-06-27T15:12:30.875Z">
+<meta property="article:author" content="Zhang Wen Hui">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205152043664.png">
+
+
+<link rel="canonical" href="http://zhangwenhui-blog.com.cn/2022/06/27/%E4%BA%94%E3%80%81%E6%AD%BB%E9%94%81/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://zhangwenhui-blog.com.cn/2022/06/27/%E4%BA%94%E3%80%81%E6%AD%BB%E9%94%81/","path":"2022/06/27/五、死锁/","title":"五、死锁"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>五、死锁 | zwh's Blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<!-- 樱花特效 -->
+  
+      <script async src="/js/fairyDustCursor.js"></script>
+  
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+   <script type="text/javascript" src="/js/fireworks.js"></script>
+
+
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zwh's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Hello World!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5%E3%80%81%E6%AD%BB%E9%94%81"><span class="nav-number">1.</span> <span class="nav-text">5、死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.1.1.</span> <span class="nav-text">（1）死锁产生的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%844%E4%B8%AA%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.1.2.</span> <span class="nav-text">（2）死锁产生的4个必要条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E8%B5%84%E6%BA%90%E5%88%86%E9%85%8D%E5%9B%BE"><span class="nav-number">1.1.3.</span> <span class="nav-text">（3）资源分配图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%884%EF%BC%89%E6%AD%BB%E9%94%81%E7%9A%84%E8%A7%A3%E9%99%A4"><span class="nav-number">1.1.4.</span> <span class="nav-text">（4）死锁的解除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%AD%BB%E9%94%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">处理死锁的基本方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E9%A2%84%E9%98%B2%E6%AD%BB%E9%94%81"><span class="nav-number">1.2.1.</span> <span class="nav-text">（1）预防死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0%E7%A0%B4%E5%9D%8F%E4%BA%92%E6%96%A5%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">①破坏互斥条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1%E7%A0%B4%E5%9D%8F%E8%AF%B7%E6%B1%82%E5%92%8C%E4%BF%9D%E6%8C%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">②破坏请求和保持条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A2%E7%A0%B4%E5%9D%8F%E4%B8%8D%E5%8F%AF%E5%89%A5%E5%A4%BA%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">③破坏不可剥夺条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A3%E7%A0%B4%E5%9D%8F%E5%BE%AA%E7%8E%AF%E7%AD%89%E5%BE%85%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">④破坏循环等待条件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">（2）避免死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A0%E8%B5%84%E6%BA%90%E5%88%86%E9%85%8D%E5%9B%BE%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">①资源分配图算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%91%A1%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">②银行家算法</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhang Wen Hui"
+      src="/images/zrn.png">
+  <p class="site-author-name" itemprop="name">Zhang Wen Hui</p>
+  <div class="site-description" itemprop="description">我希望许过的愿望一路生花</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wenhuizhang20021222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wenhuizhang20021222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1819027992&auto=1&height=66"></iframe>
+      
+      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+      <div class="widget-wrap">
+          <h3 class="widget-title">Tag Cloud</h3>
+          <div id="myCanvasContainer" class="widget tagcloud">
+              <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a><span class="tag-list-count">1</span></li></ul>
+              </canvas>
+          </div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/wenhuizhang20021222" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhangwenhui-blog.com.cn/2022/06/27/%E4%BA%94%E3%80%81%E6%AD%BB%E9%94%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zrn.png">
+      <meta itemprop="name" content="Zhang Wen Hui">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="description" content="我希望许过的愿望一路生花">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="五、死锁 | zwh's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          五、死锁
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-06-27 23:07:21 / 修改时间：23:12:30" itemprop="dateCreated datePublished" datetime="2022-06-27T23:07:21+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="5、死锁"><a href="#5、死锁" class="headerlink" title="5、死锁"></a>5、死锁</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="（1）死锁产生的原因"><a href="#（1）死锁产生的原因" class="headerlink" title="（1）死锁产生的原因"></a>（1）死锁产生的原因</h3><ul>
+<li>竞争资源：多个进程竞争资源，而资源又不能同时满足其需求（如下图1）</li>
+<li>进程推进顺序不当：进程申请资源和释放资源的顺序不当（如下图2）</li>
+</ul>
+<p>图1：竞争资源引起的死锁</p>
+<img data-src="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205152043664.png" alt="image-20220515204316626" style="zoom:50%;" />
+
+<p>这类图中的<code>Pi</code>表示进程，<code>Ri</code>表示资源，由<code>Ri</code>指向<code>Pi</code>的箭头表示<code>Ri</code>已经被分配给了<code>Pi</code>，而由<code>Pi</code>指向<code>Ri</code>的箭头表示<code>Pi</code>请求<code>Ri</code></p>
+<p>图2：进程推进顺序不当引起的死锁</p>
+<img data-src="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205152048260.png" alt="image-20220515204834225" style="zoom:50%;" />
+
+<p>如上图，当进程的推进路线进入了死锁不可避免区，就会产生死锁</p>
+<h3 id="（2）死锁产生的4个必要条件"><a href="#（2）死锁产生的4个必要条件" class="headerlink" title="（2）死锁产生的4个必要条件"></a>（2）死锁产生的4个必要条件</h3><ol>
+<li>互斥条件：在一段时间内某资源仅为一个进程所占有</li>
+<li>请求和保持条件（占有并等待）：又称为部分分配条件。当进程因请求资源被阻塞时，已分配资源保持不放</li>
+<li>不剥夺条件（非抢占）：进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走</li>
+<li>循环等待条件：死锁发生时存在一个进程资源的循环</li>
+</ol>
+<h3 id="（3）资源分配图"><a href="#（3）资源分配图" class="headerlink" title="（3）资源分配图"></a>（3）资源分配图</h3><p>用来表示系统资源的分配关系，由一组结点N和一组边E所构成，其中：</p>
+<ul>
+<li>N包括进程节点P和资源节点R，进程节点用圆圈表示，资源节点用方框表示，每个方框对应着一种资源，方框中的一个点表示一种资源里的一个资源</li>
+<li>E包括资源请求边（由P节点指向R节点）和资源分配边（由R节点指向P节点）</li>
+</ul>
+<p><strong>✳使用资源分配图来初步分析死锁：</strong></p>
+<ul>
+<li>如果分配图没有环：无死锁</li>
+<li>如果分配图包含环：如果每个R节点中都只有一个资源，则一定会死锁；如果有多个资源，则只是存在死锁的可能，并不一定会死锁</li>
+</ul>
+<h3 id="（4）死锁的解除"><a href="#（4）死锁的解除" class="headerlink" title="（4）死锁的解除"></a>（4）死锁的解除</h3><ol>
+<li>系统重启法</li>
+<li>进程终止（进程撤销、逐步撤销）</li>
+<li>资源抢占</li>
+</ol>
+<h2 id="处理死锁的基本方法"><a href="#处理死锁的基本方法" class="headerlink" title="处理死锁的基本方法"></a>处理死锁的基本方法</h2><ol>
+<li>忽略死锁：被大多数系统采用，因为死锁出现概率低，忽略死锁的代价小</li>
+<li>预防死锁：设置某些限制条件，通过破坏死锁产生的四个必要条件之一来预防死锁</li>
+<li>避免死锁：在资源的动态分配过程之中，用某种方法防止系统进入不安全状态</li>
+<li>检测死锁及解除：系统定期检测是否出现死锁，如果出现则解除之</li>
+</ol>
+<h3 id="（1）预防死锁"><a href="#（1）预防死锁" class="headerlink" title="（1）预防死锁"></a>（1）预防死锁</h3><p>可以通过破坏产生死锁的四个必要条件之中的一个或几个条件来防止死锁的发生</p>
+<h4 id="①破坏互斥条件"><a href="#①破坏互斥条件" class="headerlink" title="①破坏互斥条件"></a>①破坏互斥条件</h4><ul>
+<li>主要思路：使资源可以同时访问，而非互斥使用</li>
+<li>局限性：互斥对一些资源是固有属性不能改变</li>
+</ul>
+<h4 id="②破坏请求和保持条件"><a href="#②破坏请求和保持条件" class="headerlink" title="②破坏请求和保持条件"></a>②破坏请求和保持条件</h4><ul>
+<li>主要思路：当每个进程申请一个资源时，不能占有其他资源</li>
+<li><em>方法1：要求进程一次申请其所需的全部资源，如果有足够的资源则分配给进程，否则不分配，进程等待（静态资源分配法）</em></li>
+<li><em>方法2：允许进程仅在没有资源时才可以申请资源，一个进程申请资源并使用，但是在申请更多资源时应释放已经分配的所有资源</em></li>
+<li>优点：简单并且易于实现</li>
+<li>缺点：资源利用率低，进程延迟运行，可能发生饥饿</li>
+</ul>
+<h4 id="③破坏不可剥夺条件"><a href="#③破坏不可剥夺条件" class="headerlink" title="③破坏不可剥夺条件"></a>③破坏不可剥夺条件</h4><ul>
+<li>主要思路：对一个已经获得某些资源的进程，若新的资源请求的不到满足，则其已经占有的资源都可以被抢占，即这些资源都被隐式释放了（常用于状态已于恢复和保存的资源）</li>
+<li>局限性：这种释放有可能造成已有工作的失效，重新申请和释放会带来新的系统开销</li>
+</ul>
+<h4 id="④破坏循环等待条件"><a href="#④破坏循环等待条件" class="headerlink" title="④破坏循环等待条件"></a>④破坏循环等待条件</h4><p>采取层次分配策略，将资源分为多个层次，并且应用如下规则：</p>
+<ul>
+<li>当进程得到某一层的一个资源后，只能申请较高层次的资源</li>
+<li>当进程释放某层的一个资源时，必须先释放占有的较高层次的资源  </li>
+<li>当进程得到某一层的一个资源后，它想申请该层的另一个资源时，必须先释放该层中的已占资源</li>
+</ul>
+<p>采取层次分配的变种：按序分配策略</p>
+<p>首先将系统的所有资源排一个顺序，如系统若共有n个进程，有m个资源，用$r_i$表示第$i$个资源，则这$m$个资源是$r_1,r_2,……,r_m$，并应用如下规则：</p>
+<ul>
+<li>进程不得在占用资源$r_i$后再申请$r_j(j&lt;i)$</li>
+<li>即只能申请编号之后的资源，不许申请编号之前的资源</li>
+</ul>
+<p>证明：</p>
+<p><img data-src="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205152149789.png" alt="image-20220515214959740"></p>
+<h3 id="（2）避免死锁"><a href="#（2）避免死锁" class="headerlink" title="（2）避免死锁"></a>（2）避免死锁</h3><p>允许系统中存在前3个必要条件，通过合适的资源分配算法，防止系统进入不安全状态 ，确保不会出现第四个必要条件，从而避免死锁。  </p>
+<p><strong>【定义】安全状态</strong>：如果系统能按照某种顺序来为每个进程分配其所需的资源直到最大需求，使每个进程都可以顺利完成，则称此时的系统状态为安全状态，称序列为安全序列</p>
+<p><strong>【定义】不安全状态</strong>：某一时刻系统中不存在安全序列</p>
+<h4 id="①资源分配图算法"><a href="#①资源分配图算法" class="headerlink" title="①资源分配图算法"></a>①资源分配图算法</h4><p>资源分配图的简化：</p>
+<ul>
+<li>在资源分配图中找到一个既不阻塞又非孤立的进程节点Pi（不阻塞：该节点并未处于等待中，非孤立：有边项链）</li>
+<li>将Pi运行完成，删掉其所有的请求边和分配边</li>
+</ul>
+<p>不断进行上述两个过程，如果能消去图中所有的边，则该图为可完全简化的，否则是不可完全简化</p>
+<blockquote>
+<p>死锁定理： S为死锁状态的条件，当且仅当S状态的资源分配图是不可完全简化的  </p>
+</blockquote>
+<h4 id="②银行家算法"><a href="#②银行家算法" class="headerlink" title="②银行家算法"></a>②银行家算法</h4><hr>
+<p><em><strong>首先进行初始化</strong></em></p>
+<p>假设系统中有n个进程，所需求的资源有m类，则定义以下的数据结构：</p>
+<ul>
+<li><strong>最大需求矩阵Max</strong>（n行m列）：定义了系统中每个进程对m类资源的最大需求数目</li>
+<li><strong>分配矩阵Allocation</strong>（n行m列）：定义了系统中每个进程对m类资源的已经分配的情况</li>
+<li><strong>需求矩阵Need</strong>（n行m列）：定义了系统中的每一个进程还需要的各类资源数目</li>
+<li><strong>可用资源向量Available</strong>（m列）：定义了系统中的每类资源所剩余的数目</li>
+</ul>
+<p>资源分配表由以上的数据结构构成，如下图所示：</p>
+<p><img data-src="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205162323289.png" alt="image-20220516232351253"></p>
+<hr>
+<p><em><strong>其次进行预分配</strong></em></p>
+<p>假设进程Pi对场上的资源做出请求，该请求用请求向量<strong>Requesti</strong>（m列）来表示，对应所分别请求的m类资源的数目，首先进行以下两步检查：</p>
+<ol>
+<li>如果$Request_i\le Need_i$，则说明该进程请求的不比自己需要的多，可以继续向下，否则报错</li>
+<li>如果$Request_i\le Available$，则说明该进程的请求可以被剩余资源所满足，可以继续向下，否则报错</li>
+</ol>
+<p>经过以上两步检查之后，尝试将资源做出分配满足请求，更新资源分配表，方法如下：<br>$$<br>Available&#x3D;Available-Request_i\<br>Allocation_i&#x3D;Allocation_i+Request_i\<br>Need_i&#x3D;Need_i-Request_i<br>$$</p>
+<hr>
+<p><em><strong>最后进行安全性检查</strong></em></p>
+<p>新定义两个数据结构</p>
+<ul>
+<li><strong>空闲资源向量Work</strong>（m列）：是一个随着安全性检查改变的向量，指的是安全性检查的过程中，系统的每类资源剩余的数目，其初始定义为Available，之后随着进程的释放会发生改变</li>
+<li><strong>完成向量Finish</strong>（n行）：表示某个进程是否可以完成，初始定义为false，随着进程的完成会发生改变</li>
+</ul>
+<p>安全性检查的过程为：</p>
+<ul>
+<li>在几个进程之中找到一个未完成的进程$i$，$Need_i$向量小于Work向量，执行之，将其填入安全性检查表，而$Work+Allocation_i$作为新的Work，置$Finish_i&#x3D;true$</li>
+<li>重复以上操作，直至将安全性检查表填满，或者遇到无法分配的状况</li>
+</ul>
+<p>安全性检查表示意图如下：</p>
+<p><img data-src="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205162322116.png" alt="image-20220516232237019"></p>
+<blockquote>
+<p>可以证明：只要存在一个序列不是安全序列，那么任意路径都不是安全序列。只要有一个序列是安全序列，那么在算法进行过程中出现的任何分叉点所构成的其它序列就都是安全序列  </p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div>
+    
+        <div style="text-align:center;color: #111;font-size:25px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Zhang Wen Hui
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://zhangwenhui-blog.com.cn/2022/06/27/%E4%BA%94%E3%80%81%E6%AD%BB%E9%94%81/" title="五、死锁">http://zhangwenhui-blog.com.cn/2022/06/27/五、死锁/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/06/27/%E5%9B%9B%E3%80%81%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5/" rel="prev" title="四、进程同步">
+                  <i class="fa fa-chevron-left"></i> 四、进程同步
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/06/27/%E5%85%AD%E3%80%81%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8%E7%AE%A1%E7%90%86/" rel="next" title="六、主存储器管理">
+                  六、主存储器管理 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Wen Hui</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wenhuizhang20021222","repo":"wenhuizhang20021222.github.io","client_id":"404d4662eeff0092368a","client_secret":"fcdcd5862c271778a7e8a98fa6c19056b9145d57","admin_user":"wenhuizhang20021222","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"52f8dc9fd81f7457cbadf710d8228c55"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+
+</html>

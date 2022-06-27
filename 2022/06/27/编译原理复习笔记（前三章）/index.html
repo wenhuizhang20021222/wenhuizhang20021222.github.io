@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <script src="/live2d-widget/autoload.js"></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangwenhui-blog.com.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":true,"color":"#64CEAA","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+  <div class="weather">
+  <!-- 《添加“心知天气”-->
+  
+    <div id="tp-weather-widget"></div>
+  <script>
+    (function(a,h,g,f,e,d,c,b){b=function(){d=h.createElement(g);c=h.getElementsByTagName(g)[0];d.src=e;d.charset="utf-8";d.async=1;c.parentNode.insertBefore(d,c)};a["SeniverseWeatherWidgetObject"]=f;a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});a[f].l=+new Date();if(a.attachEvent){a.attachEvent("onload",b)}else{a.addEventListener("load",b,false)}}(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10)));
+    window.SeniverseWeatherWidget('show', {
+      flavor: "slim",
+      location: "WX4FBXXFKE4F",
+      geolocation: true,
+      language: "zh-CN",
+      unit: "c",
+      theme: "auto",
+      token: "efb760e3-5326-4f08-839b-122738249a17",
+      hover: "enabled",
+      container: "tp-weather-widget"
+    })
+  </script>
+  
+  <!-- 添加“心知天气”》-->
+  </div>
+
+
+
+
+    <meta name="description" content="第一章 引论&#x3D;&#x3D;1、编译和解释&#x3D;&#x3D; &#x3D;&#x3D;编译方式的特点：&#x3D;&#x3D;  源程序的执行需要分阶段（目标程序是机器语言：编译、运行，目标程序是汇编语言：编译、汇编、运行）；   生成了目标代码，且可多次执行 编译程序与具体的机器和语言有关   &#x3D;&#x3D;解释方式的特点：&#x3D;&#x3D; 更灵活、交互方便，节省">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译原理复习笔记">
+<meta property="og:url" content="http://zhangwenhui-blog.com.cn/2022/06/27/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%89%8D%E4%B8%89%E7%AB%A0%EF%BC%89/index.html">
+<meta property="og:site_name" content="zwh&#39;s Blog">
+<meta property="og:description" content="第一章 引论&#x3D;&#x3D;1、编译和解释&#x3D;&#x3D; &#x3D;&#x3D;编译方式的特点：&#x3D;&#x3D;  源程序的执行需要分阶段（目标程序是机器语言：编译、运行，目标程序是汇编语言：编译、汇编、运行）；   生成了目标代码，且可多次执行 编译程序与具体的机器和语言有关   &#x3D;&#x3D;解释方式的特点：&#x3D;&#x3D; 更灵活、交互方便，节省">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/hSwesXfVIFjC4KA.jpg">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/xtsWrXz9lhBRA8Y.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/CrcNty2m9qxSUEw.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/07/Jxk1GIf8CK2mUir.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/11/ZEPthWCzVc9xrnw.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/LTgXiu1rkyNEzRY.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/15/yE3hexcragFKLtS.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/9RCBFkyrawcOHZg.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/gmYOAdLE9kyGCfD.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/9MPFq1QcTsGdDtb.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/V6R7w9UzrQtChun.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/9S5VGjzHpRnquJt.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/FEHy5VxOUkXIvSa.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/10/wOAmUG4D3QTrhcZ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/10/1JOq2LHtpFAhao5.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/10/Jo9TInwgZizP7e1.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/19/X8oUYwJbPTEC9AN.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/UxMbG8l9iDrJEXs.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/UxMbG8l9iDrJEXs.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/TDboNIEAueO5l4q.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/19/vNcVBHm3sKZgDi8.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/xBEeGqjbaPUFmcW.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/04/SHPlQYW7qhtwUXa.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/10/RYGZlHrem34jb6d.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/11/WrPyD8RK4UvhQ5J.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/11/PiaWFlI5uXQVpEG.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/11/ElRIWuefnUO83it.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/11/QKhBbEqpDTuOmng.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/11/SG89bKnl6wyrTqX.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/11/YdKyhqXgNU7THcv.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/11/R2xWwSv16Zf8grb.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/07/cH1sfzCBe7LYE9O.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/11/D75j3twy8Qgl1Kz.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/11/CBjznZkLeY4Dru9.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/07/WKsIfw9HEaAeC1u.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/07/vWbnjNEoTaGDdRz.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/07/IcoNtZhf1Kx6UbF.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/07/QjGiIAygplPCMBD.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/WaIvVMDhmdj1gJL.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/17/dbpaewYO5WZ4yc9.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/17/ZgFyLjveGRzAbwU.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/17/6ADyZeGocNvkCr7.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/17/mr486kDGcZIheNl.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/24/dEcwUWZuGxOsYDF.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/17/voLRXMOuwQh8KlJ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/24/NXDbZx2z1VdTJLK.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/24/B9zabF2JuGSEV13.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/17/owSlZ7rmcPRtM2A.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/24/9kuErAlD1L76efa.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/24/RDnC9dptK1QNkXu.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/24/QnbFtWksm9KjPAc.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/joSRI4KyDEards1.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/7YVoTF6COnZKIJR.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/bZth9rlPiADF12E.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/Tqyr9uzPmBH3pFL.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/5pFHox1ryEjbhTw.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/YozVNxEDCfHuWy2.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/1dEyrHmjPx54nhX.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/P3IEHFbZvWhRwYr.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/QWnVp9zkxHY2MoZ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/Xjo15J2dBLHhYC3.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/17/uoEaYrUIJ8gFxbj.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/p6tFHduCrOm1oL5.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/Q7WpazfkA3UgZwi.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/17/tVZi5aIBq1HJ6P9.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/YdrHoz6ZUMKlbIk.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/rsiz7VASouyqd6H.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/07/mjVd8KzNpU5EICS.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/07/ef5n4uIJqNZTc6P.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/07/YJ6rljcPZOHA5kz.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/07/TzrkhKHd2lDIoiV.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/evJchpxWLl6E8fb.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/31/TEmsJP1gAUjzN7n.png">
+<meta property="article:published_time" content="2022-06-27T15:10:22.000Z">
+<meta property="article:modified_time" content="2022-06-27T15:12:30.883Z">
+<meta property="article:author" content="Zhang Wen Hui">
+<meta property="article:tag" content="编译原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/04/hSwesXfVIFjC4KA.jpg">
+
+
+<link rel="canonical" href="http://zhangwenhui-blog.com.cn/2022/06/27/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%89%8D%E4%B8%89%E7%AB%A0%EF%BC%89/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://zhangwenhui-blog.com.cn/2022/06/27/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%89%8D%E4%B8%89%E7%AB%A0%EF%BC%89/","path":"2022/06/27/编译原理复习笔记（前三章）/","title":"编译原理复习笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>编译原理复习笔记 | zwh's Blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<!-- 樱花特效 -->
+  
+      <script async src="/js/fairyDustCursor.js"></script>
+  
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+   <script type="text/javascript" src="/js/fireworks.js"></script>
+
+
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zwh's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Hello World!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BC%95%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">第一章 引论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#x3D-x3D-1%E3%80%81%E7%BC%96%E8%AF%91%E5%92%8C%E8%A7%A3%E9%87%8A-x3D-x3D"><span class="nav-number">1.1.</span> <span class="nav-text">&#x3D;&#x3D;1、编译和解释&#x3D;&#x3D;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B%EF%BC%88%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E3%80%81%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E7%AD%89%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2、编译程序的工作过程（词法分析、语法分析等）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.</span> <span class="nav-text">3、编译程序的结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F%E5%8F%8A%E7%BC%96%E8%AF%91%E5%99%A8%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%83%A8%E5%88%86"><span class="nav-number">1.4.</span> <span class="nav-text">4、编译程序的组织方式及编译器的两个部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0"><span class="nav-number">1.5.</span> <span class="nav-text">5、编译程序的构造</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E6%A6%82%E8%AE%BA"><span class="nav-number">2.</span> <span class="nav-text">第二章 形式语言概论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%AD%97%E6%AF%8D%E8%A1%A8%E4%B8%8E%E7%AC%A6%E5%8F%B7%E4%B8%B2"><span class="nav-number">2.1.</span> <span class="nav-text">1、字母表与符号串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E6%AF%8D%E8%A1%A8%EF%BC%9A"><span class="nav-number">2.1.1.</span> <span class="nav-text">字母表：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E4%B8%B2%EF%BC%9A-string"><span class="nav-number">2.1.2.</span> <span class="nav-text">符号串： string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="nav-number">2.1.3.</span> <span class="nav-text">语法描述：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E6%96%87%E6%B3%95%E5%8F%8A%E5%85%B6%E5%88%86%E7%B1%BB%EF%BC%88%E4%B8%BB%E8%A6%81%E8%80%832%E5%9E%8B%E5%92%8C3%E5%9E%8B%E6%96%87%E6%B3%95%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">2、文法及其分类（主要考2型和3型文法）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="nav-number">2.2.1.</span> <span class="nav-text">概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E8%A1%A8%E7%A4%BA%E7%9A%84%E7%BA%A6%E5%AE%9A%EF%BC%9A"><span class="nav-number">2.2.2.</span> <span class="nav-text">符号表示的约定：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%B3%95%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">2.2.3.</span> <span class="nav-text">文法的分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E6%96%87%E6%B3%95%E5%92%8C%E8%AF%AD%E8%A8%80"><span class="nav-number">2.3.</span> <span class="nav-text">3、文法和语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%B3%95%E7%BB%8F%E8%BF%87%E6%8E%A8%E5%AF%BC%E5%BE%97%E5%88%B0%E8%AF%AD%E8%A8%80"><span class="nav-number">2.3.1.</span> <span class="nav-text">文法经过推导得到语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E7%BB%8F%E8%BF%87%E5%87%91%E8%A7%84%E5%88%99%E5%BE%97%E5%88%B0%E6%96%87%E6%B3%95"><span class="nav-number">2.3.2.</span> <span class="nav-text">语言经过凑规则得到文法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92"><span class="nav-number">2.3.3.</span> <span class="nav-text">递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E6%A0%91"><span class="nav-number">2.3.4.</span> <span class="nav-text">语法分析树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E4%B9%89%E6%80%A7%E9%97%AE%E9%A2%98"><span class="nav-number">2.3.5.</span> <span class="nav-text">二义性问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E7%BB%93%E5%90%88%E6%80%A7%E5%92%8C%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">2.3.6.</span> <span class="nav-text">运算符的结合性和优先级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E6%96%87%E6%B3%95%E7%9A%84%E5%AE%9E%E7%94%A8%E9%99%90%E5%88%B6"><span class="nav-number">2.4.</span> <span class="nav-text">4、文法的实用限制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E9%99%A4%E6%96%87%E6%B3%95%E7%9A%84%E4%BA%8C%E4%B9%89%E6%80%A7%EF%BC%88-x3D-x3D-%E9%87%8D%E9%9A%BE%E7%82%B9-x3D-x3D-%EF%BC%89"><span class="nav-number">2.4.1.</span> <span class="nav-text">消除文法的二义性（&#x3D;&#x3D;重难点&#x3D;&#x3D;）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%B3%95%E7%9A%84%E5%8E%8B%E7%BC%A9%EF%BC%88%E5%8C%96%E7%AE%80%EF%BC%89"><span class="nav-number">2.4.2.</span> <span class="nav-text">文法的压缩（化简）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%8D%95%E8%A7%84%E5%88%99%EF%BC%88%E5%8D%95%E4%BA%A7%E7%94%9F%E5%BC%8F%EF%BC%89%EF%BC%9AA%E2%86%92B"><span class="nav-number">2.4.3.</span> <span class="nav-text">删除单规则（单产生式）：A→B</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E7%A9%BA%E4%BA%A7%E7%94%9F%E5%BC%8F%EF%BC%88%CE%B5-%E8%A7%84%E5%88%99%EF%BC%89%EF%BC%9A-U%E2%86%92%CE%B5"><span class="nav-number">2.4.4.</span> <span class="nav-text">删除空产生式（ε 规则）： U→ε</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E9%99%A4%E7%9B%B4%E6%8E%A5%E5%B7%A6%E9%80%92%E5%BD%92U%E2%86%92Uy"><span class="nav-number">2.4.5.</span> <span class="nav-text">消除直接左递归U→Uy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E9%99%A4%E9%97%B4%E6%8E%A5%E5%B7%A6%E9%80%92%E5%BD%92"><span class="nav-number">2.4.6.</span> <span class="nav-text">消除间接左递归</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA-x3D-x3D-8%E4%B8%AA%E7%AE%97%E6%B3%95%EF%BC%8C%E7%A1%AE%E5%AE%9A%E5%8C%96%E3%80%81%E6%9C%80%E5%B0%8F%E5%8C%96%E3%80%81RG%E5%92%8CFA%E5%92%8CRE%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%AD%E4%B8%AA%E8%BD%AC%E6%8D%A2-x3D-x3D"><span class="nav-number">3.</span> <span class="nav-text">第三章  有穷自动机(&#x3D;&#x3D;8个算法，确定化、最小化、RG和FA和RE之间的六个转换&#x3D;&#x3D;)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 有穷自动机的形式定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%9A%84%E5%88%86%E7%B1%BB%E5%8F%8A%E7%BB%84%E6%88%90"><span class="nav-number">3.1.1.</span> <span class="nav-text">1、有穷自动机的分类及组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%9A%84%E8%A1%A8%E7%A4%BA%EF%BC%9A"><span class="nav-number">3.1.2.</span> <span class="nav-text">2、有穷自动机的表示：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-NDFA%E5%88%B0DFA%E7%9A%84%E8%BD%AC%E6%8D%A2%EF%BC%88-x3D-x3D-%E5%BF%85%E8%80%83-x3D-x3D-%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 NDFA到DFA的转换（&#x3D;&#x3D;必考&#x3D;&#x3D;）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E7%A1%AE%E5%AE%9A%E5%8C%96-NDFA-gt-DFA%EF%BC%88-x3D-x3D-%E6%B3%A8%E6%84%8F%E9%80%A0%E8%A1%A8%E6%B3%95%E6%98%AF%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E7%94%A8%E7%9A%84%EF%BC%8C%E4%B8%8D%E9%9C%80%E8%A6%81%E6%B6%88-x3D-x3D-varepsilon-%EF%BC%89"><span class="nav-number">3.2.1.</span> <span class="nav-text">1、确定化:   NDFA -&gt; DFA（&#x3D;&#x3D;注意造表法是可以直接用的，不需要消&#x3D;&#x3D;$\varepsilon$）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%9C%80%E5%B0%8F%E5%8C%96%EF%BC%9ADFA-gt-MFA"><span class="nav-number">3.2.2.</span> <span class="nav-text">2、最小化：DFA -&gt; MFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E4%BB%8E%E5%8C%96%E7%AE%80%E5%90%8E%E7%9A%84DFA%E5%88%B0%E7%A8%8B%E5%BA%8F%E8%A1%A8%E7%A4%BA-MFA-gt-scanner"><span class="nav-number">3.2.3.</span> <span class="nav-text">3、从化简后的DFA到程序表示 MFA -&gt; scanner</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E6%AD%A3%E8%A7%84%E6%96%87%E6%B3%95-RG-%E4%B8%8EFA"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 正规文法(RG)与FA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81RG%E4%B8%8EFA"><span class="nav-number">3.3.1.</span> <span class="nav-text">1、RG与FA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81RG-gt-FA%EF%BC%9A"><span class="nav-number">3.3.2.</span> <span class="nav-text">2、RG -&gt; FA：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81FA-gt-RG"><span class="nav-number">3.3.3.</span> <span class="nav-text">3、FA -&gt; RG</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E6%AD%A3%E8%A7%84%E8%A1%A8%E8%BE%BE%E5%BC%8F-x2F-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-RE-%E4%B8%8EFA"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 正规表达式&#x2F;正则表达式(RE)与FA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81RE%EF%BC%88%E5%8F%AF%E4%BB%A5%E7%9B%B4%E8%A7%82%E5%9C%B0%E6%8F%8F%E8%BF%B0%E5%87%BA%E8%AF%AD%E8%A8%80%E7%9A%84%E7%89%B9%E5%BE%81%EF%BC%89"><span class="nav-number">3.4.1.</span> <span class="nav-text">1、RE（可以直观地描述出语言的特征）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81RE-%E2%80%93-gt-FA"><span class="nav-number">3.4.2.</span> <span class="nav-text">2、RE –&gt; FA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81FA-gt-RE"><span class="nav-number">3.4.3.</span> <span class="nav-text">3、FA -&gt; RE</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-RE%E4%B8%8ERG"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 RE与RG</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81RG-gt-RE"><span class="nav-number">3.5.1.</span> <span class="nav-text">1、RG -&gt; RE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81RE-gt-RG"><span class="nav-number">3.5.2.</span> <span class="nav-text">2、RE -&gt; RG</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-RG%E3%80%81FA%E3%80%81RE%E4%B8%89%E8%80%85%E5%85%B3%E7%B3%BB"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 RG、FA、RE三者关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text"></span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhang Wen Hui"
+      src="/images/zrn.png">
+  <p class="site-author-name" itemprop="name">Zhang Wen Hui</p>
+  <div class="site-description" itemprop="description">我希望许过的愿望一路生花</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wenhuizhang20021222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wenhuizhang20021222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1819027992&auto=1&height=66"></iframe>
+      
+      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+      <div class="widget-wrap">
+          <h3 class="widget-title">Tag Cloud</h3>
+          <div id="myCanvasContainer" class="widget tagcloud">
+              <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a><span class="tag-list-count">1</span></li></ul>
+              </canvas>
+          </div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/wenhuizhang20021222" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhangwenhui-blog.com.cn/2022/06/27/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%89%8D%E4%B8%89%E7%AB%A0%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zrn.png">
+      <meta itemprop="name" content="Zhang Wen Hui">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="description" content="我希望许过的愿望一路生花">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="编译原理复习笔记 | zwh's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          编译原理复习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-06-27 23:10:22 / 修改时间：23:12:30" itemprop="dateCreated datePublished" datetime="2022-06-27T23:10:22+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">编译原理</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>12k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>11 分钟</span>
+    </span>
+</div>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="第一章-引论"><a href="#第一章-引论" class="headerlink" title="第一章 引论"></a>第一章 引论</h1><h2 id="x3D-x3D-1、编译和解释-x3D-x3D"><a href="#x3D-x3D-1、编译和解释-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;1、编译和解释&#x3D;&#x3D;"></a>&#x3D;&#x3D;1、编译和解释&#x3D;&#x3D;</h2><ul>
+<li>&#x3D;&#x3D;编译方式的特点：&#x3D;&#x3D; <ul>
+<li>源程序的执行需要分阶段（目标程序是机器语言：编译、运行，目标程序是汇编语言：编译、汇编、运行）；  </li>
+<li>生成了目标代码，且可多次执行</li>
+<li><em>编译程序与具体的机器和语言有关</em></li>
+</ul>
+</li>
+<li>&#x3D;&#x3D;解释方式的特点：&#x3D;&#x3D;<ul>
+<li>更灵活、交互方便，节省空间</li>
+<li>效率低</li>
+</ul>
+</li>
+<li>&#x3D;&#x3D;根本区别：&#x3D;&#x3D; 在解释方式下，并不生成目标代码，而是直接执行源程序本身。</li>
+<li>&#x3D;&#x3D;相同点：&#x3D;&#x3D; 都需要进行词法、语法、语义分析</li>
+</ul>
+<p><img data-src="https://s2.loli.net/2022/03/04/hSwesXfVIFjC4KA.jpg"></p>
+<h2 id="2、编译程序的工作过程（词法分析、语法分析等）"><a href="#2、编译程序的工作过程（词法分析、语法分析等）" class="headerlink" title="2、编译程序的工作过程（词法分析、语法分析等）"></a>2、编译程序的工作过程（词法分析、语法分析等）</h2><ul>
+<li><p><img data-src="https://s2.loli.net/2022/03/04/xtsWrXz9lhBRA8Y.png"></p>
+</li>
+<li><p>&#x3D;&#x3D;词法分析&#x3D;&#x3D; （或扫描）</p>
+<ul>
+<li>词法分析器读入组成源程序的字符流，并将它们组织成有意义的词素的序列。对于每个词素，产生<strong>词法单元</strong> 作为输出</li>
+<li>*词法单元：&lt;token-name, attribute-value&gt;*，前者为抽象符号，后者为条目。eg.(id, 1)。分隔词素的空格会被词法分析器忽略掉。词法单元的名字常被称为终结符号，属性值是一个指向符号表的指针，符号表中包含了该词法单元的附加信息。</li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;语法分析&#x3D;&#x3D; （或解析）</p>
+<ul>
+<li>语法分析器使用由词法分析器生成的各个词法单元的第一个分量来创建语法树（内部节点：运算，子节点：该运算的分量）</li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;语义分析&#x3D;&#x3D; </p>
+<ul>
+<li>使用语法树和符号表中的信息来检查源程序是否和语言定义的语义一致（<strong>静态语义检查</strong> ，包括类型和运算合法性检查等）</li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;中间代码生成&#x3D;&#x3D; </p>
+<ul>
+<li>中间表示形式应该易生成，易翻译</li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;代码优化&#x3D;&#x3D;</p>
+<ul>
+<li>机器无关的代码优化步骤试图<strong>改进中间代码</strong> ，以便生成更好的目标代码</li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;代码生成&#x3D;&#x3D;</p>
+<ul>
+<li>以源程序的中间表示形式作为输入，并把它映射到目标语言</li>
+<li>目标指令可能是绝对指令代码，或可重新定位的指令代码或汇编指令代码</li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;符号表的管理：&#x3D;&#x3D; 符号表存放了整个源程序的信息，变量名及其属性。在各个阶段填入、查找</p>
+</li>
+<li><p>&#x3D;&#x3D;出错处理：&#x3D;&#x3D; </p>
+<ul>
+<li>语法错误：在词法分析或语法分析时检测出来</li>
+<li>语义错误：在语义分析或运行时检测出来（因为语义分析是静态语义检查）</li>
+</ul>
+</li>
+<li><p>在一个特定的实现中，多个步骤可以组合成一趟</p>
+</li>
+<li><p>错误检查程序及表格管理程序贯穿始终</p>
+</li>
+<li><p>词法分析、语法分析、语义分析与中间代码生成及部分代码优化工作为前端部分，&#x3D;&#x3D;与目标机有关&#x3D;&#x3D;的代码优化和目标代码生成等为后端部分</p>
+</li>
+<li><p>示例：</p>
+<p>  <img data-src="https://s2.loli.net/2022/03/04/CrcNty2m9qxSUEw.png"></p>
+</li>
+</ul>
+<h2 id="3、编译程序的结构"><a href="#3、编译程序的结构" class="headerlink" title="3、编译程序的结构"></a>3、编译程序的结构</h2><p><img data-src="https://s2.loli.net/2022/04/07/Jxk1GIf8CK2mUir.png" alt="image-20220407152024793"></p>
+<h2 id="4、编译程序的组织方式及编译器的两个部分"><a href="#4、编译程序的组织方式及编译器的两个部分" class="headerlink" title="4、编译程序的组织方式及编译器的两个部分"></a>4、编译程序的组织方式及编译器的两个部分</h2><ul>
+<li><p><strong>遍&#x2F;趟：</strong>一个编译程序在编译时刻把源程序或源程序的等价物（中间程序）从头到尾扫描一遍并转换成另一紧邻的等价物的全过程</p>
+</li>
+<li><p><strong>单遍扫描：</strong>效率高但占用空间大，目标程序质量低</p>
+</li>
+<li><p><strong>多遍扫描：</strong>效率低但占用空间小，目标程序质量高，便于多人合作开发</p>
+</li>
+<li><p><strong>分析部分（编译器的前端）</strong>：主要由<strong>与源语言有关但与目标机器无关</strong> 的那些部分组成，词法分析、语法分析、语义分析、中间代码生成和部分代码优化工作</p>
+<p>  <img data-src="https://s2.loli.net/2022/03/11/ZEPthWCzVc9xrnw.png" alt="image-20220311113450229"></p>
+</li>
+<li><p><strong>综合部分（编译器的后端）</strong>：主要包括编译中<strong>与目标机器有关</strong> 的那些部分，如与目标机有关的代码优化和目标代码生成等。可以通过改变编译程序的后端来实现编译程序的移植。</p>
+</li>
+</ul>
+<h2 id="5、编译程序的构造"><a href="#5、编译程序的构造" class="headerlink" title="5、编译程序的构造"></a>5、编译程序的构造</h2><ul>
+<li><p>构造编译程序可以用机器语言、汇编语言和高级语言</p>
+</li>
+<li><p>高级语言的&#x3D;&#x3D;自编译性&#x3D;&#x3D; ：一个语言可以用来编写自己的编译程序</p>
+<p>  <img data-src="https://s2.loli.net/2022/03/04/LTgXiu1rkyNEzRY.png"></p>
+</li>
+<li><p><strong>T型图</strong></p>
+<p>  <img data-src="https://s2.loli.net/2022/05/15/yE3hexcragFKLtS.png" alt="image-20220515221623573"></p>
+</li>
+<li><p><strong>自展</strong></p>
+<p>  <img data-src="https://s2.loli.net/2022/03/04/9RCBFkyrawcOHZg.png"></p>
+</li>
+<li><p><strong>编译的移植</strong></p>
+<p>  将一个机器（宿主机）上的一个具有自编译性的高级语言编译程序移植到另一个机器（目标机）上</p>
+<p>  <img data-src="https://s2.loli.net/2022/03/04/gmYOAdLE9kyGCfD.png"></p>
+<p>  <img data-src="https://s2.loli.net/2022/03/04/9MPFq1QcTsGdDtb.png"></p>
+</li>
+</ul>
+<h1 id="第二章-形式语言概论"><a href="#第二章-形式语言概论" class="headerlink" title="第二章 形式语言概论"></a>第二章 形式语言概论</h1><h2 id="1、字母表与符号串"><a href="#1、字母表与符号串" class="headerlink" title="1、字母表与符号串"></a>1、字母表与符号串</h2><h3 id="字母表："><a href="#字母表：" class="headerlink" title="字母表："></a>字母表：</h3><p>符号(symbol)的非空有穷集，记为∑。</p>
+<p>eg.Σ&#x3D;{a，b，……，y，z}，Σ&#x3D;{0， 1}，Σ&#x3D;{BEGIN， END}</p>
+<h3 id="符号串：-string"><a href="#符号串：-string" class="headerlink" title="符号串： string"></a>符号串： string</h3><p>字母表中的符号所组成的任何有穷序列，通常用小写的字母表示。&#x3D;&#x3D;空串记为ε&#x3D;&#x3D; 。</p>
+<ul>
+<li><p>符号串相等要看顺序。eg.ab ≠ ba</p>
+</li>
+<li><p>符号串长度为符号串中符号的个数。 </p>
+<p>  |ε|&#x3D;0，|BEGINEND| &#x3D; 2</p>
+</li>
+<li><p>符号串的子串（subsequence）:必须是连续的，如abc的子串不能是ac</p>
+</li>
+<li><p>&#x3D;&#x3D;空串是任何一个符号串的子串、前缀和后缀&#x3D;&#x3D; 。</p>
+</li>
+<li><p>符号串的连接：拼接，&#x3D;&#x3D;ε是连接运算的单位元&#x3D;&#x3D; ，εx &#x3D; xε &#x3D; x</p>
+</li>
+<li><p>符号串的方幂(x^n^)：符号串与其自身的连接。x^0^  &#x3D; ε，x^1^ &#x3D; x，x^2^ &#x3D; xx。</p>
+</li>
+<li><p>符号串的逆（x^-1^ ）：符号串的倒置。 ε^-1^ &#x3D; ε，(x^-1^)^-1^ &#x3D; x，x &#x3D; αβ，x^-1^ &#x3D; β^-1^α^-1^ 。</p>
+<p>  eg.x &#x3D; abcd, x^-1^ &#x3D; dcba &#x3D; (cd)^-1^ (ab)^-1^ </p>
+</li>
+<li><p>符号串集合的和与积：</p>
+<ul>
+<li><p>A+B（或A∪B） &#x3D;{w | w∈A，或 w ∈ B}</p>
+</li>
+<li><p>A•B（或 AB）&#x3D; { xy |x ∈ A, y ∈ B}</p>
+<p>  &#x3D;&#x3D;{ε}是符号串集合乘积运算的零元&#x3D;&#x3D; ，{ε}A &#x3D; A{ε} &#x3D; A</p>
+</li>
+</ul>
+</li>
+<li><p>符号串集合的方幂：A^0^  &#x3D; {ε} ，A^1^ &#x3D; A，A^2^ &#x3D; AA</p>
+<p>  eg. A &#x3D; {ab,cd}  A^0^ &#x3D; {ε}，A^1^ &#x3D; {ab, cd} , A^2^ &#x3D; {abab, abcd, cdab, cdcd}</p>
+</li>
+<li><p>符号串集合的闭包和正闭包：</p>
+<ul>
+<li>闭包 <img data-src="https://s2.loli.net/2022/03/04/V6R7w9UzrQtChun.png"></li>
+<li>正闭包<img data-src="https://s2.loli.net/2022/03/04/9S5VGjzHpRnquJt.png"></li>
+<li>闭包比正闭包多了一个ε</li>
+</ul>
+</li>
+</ul>
+<h3 id="语法描述："><a href="#语法描述：" class="headerlink" title="语法描述："></a>语法描述：</h3><p>可以采用自然语言、语法图、BNF范式、EBNF</p>
+<p>eg.标识符的语法描述：</p>
+<p>BNF范式（Backus-Naur Form） ：&lt;标识符&gt; ::&#x3D; &lt;字母&gt;|&lt;标识符&gt;&lt;字母&gt;|&lt;标识符&gt;&lt;数字&gt; </p>
+<p>扩充的BNF（EBNF：Extended BNF） ：&lt;标识符&gt; ::&#x3D; &lt;字母&gt; {&lt;字母&gt;|&lt;数字&gt;}</p>
+<h2 id="2、文法及其分类（主要考2型和3型文法）"><a href="#2、文法及其分类（主要考2型和3型文法）" class="headerlink" title="2、文法及其分类（主要考2型和3型文法）"></a>2、文法及其分类（主要考2型和3型文法）</h2><h3 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h3><p>文法G是一个四元组，G[S]&#x3D;（V<del>N</del>，V<del>T</del>，P，S）</p>
+<p>V<del>N</del> ：非终结符号集</p>
+<p>V<del>T</del>： 终结符号集。V<del>T</del> ∩V<del>N</del> &#x3D; ∅， V &#x3D; V<del>T</del> U V<del>N</del></p>
+<p>P ：产生式(production)的有穷非空的集合，是文法的核心</p>
+<p>S：开始符号</p>
+<h3 id="符号表示的约定："><a href="#符号表示的约定：" class="headerlink" title="符号表示的约定："></a><strong>符号表示的约定：</strong></h3><ul>
+<li>终结符号：排在前面的小写字母abc、运算符号、标点符号、数字0~9、黑体字符串，如<strong>id</strong></li>
+<li>非终结符号：排在前面的大写字母ABC、字母S（常用来表示开始符号）、小写且斜体的名字，如<em>expr</em></li>
+<li>在字母表中排在后面的大写字母如XYZ表示终结符号或者非终结符号</li>
+<li>在字母表中排在后面的小写字母如uvwxyz表示终结符号串（可能为ε）</li>
+<li>小写的希腊字母，表示文法符号串（可能为ε）</li>
+</ul>
+<h3 id="文法的分类"><a href="#文法的分类" class="headerlink" title="文法的分类"></a>文法的分类</h3><ul>
+<li><p>区别：对产生式规则的形式上施加不同的限制。<strong>从PSG到CSG到CFG到RG，限制逐渐增强，能力逐渐减弱</strong>，生成的语言集逐渐减小，形式越简单，构造的自动机越易实现 。</p>
+</li>
+<li><p>&#x3D;&#x3D;下半区的左边都是单个的非终结符号&#x3D;&#x3D; </p>
+<p>  &#x3D;&#x3D;上半区：不减为1型&#x3D;&#x3D; </p>
+<p>  <img data-src="https://s2.loli.net/2022/03/04/FEHy5VxOUkXIvSa.png" alt="image.png"></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>0型文法 L<del>0</del> （短语结构文法(phrase structure grammar, PSG)）</strong></th>
+<th>α→β ，α∈V^+^  ，β∈V^<em>^             <br />亦即α→β ，α∈V</em> V<del>N</del> V*<br />（必须要有一个非终结符号） ，β∈V *</th>
+<th>对应递归可枚举语言类，与图灵机（TM）能力相当，能力最强。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1型文法 L<del>1</del> (上下文相关文法(context sensitive grammar,CSG)，长度增长文法)</strong></td>
+<td>α→β ，&#x3D;&#x3D;1≤ |α|≤|β|&#x3D;&#x3D; （ 长度不减），α∈V^+^，β∈V^+^ <br />亦即α∈V* V<del>N</del> V*（必须要有一个非终结符号） ，β∈V^+^</td>
+<td>对应递归语言类，界限自动机<strong>LBA</strong>。静态语义处理。</td>
+</tr>
+<tr>
+<td><strong>2型文法L<del>2</del> ( 上下文无关文法(context free grammar,CFG))</strong></td>
+<td>A→β ，A∈V<del>N</del> （&#x3D;&#x3D;A是单个非终结符号&#x3D;&#x3D; ，长度为1），β∈V^+^ 。 扩充的2型文法：A→β ，A∈V<del>N</del>，β∈V*</td>
+<td>对应上下文无关语言类，用于定义程序设计语言的<strong>语法规则</strong>。下推自动机<strong>PDA</strong>（&#x3D;&#x3D;栈&#x3D;&#x3D;）。</td>
+</tr>
+<tr>
+<td><strong>3型文法L<del>3</del> ( 正则文法(regular grammar ,RG)、正规文法)</strong></td>
+<td>A→a 或 A→aB , A,B∈V<del>N</del> ，a∈V<del>T</del> （右线性文法的一种情况）。<br />&#x3D;&#x3D;左线性文法：&#x3D;&#x3D; A→a或A→Ba  , A,B∈V<del>N</del> ，a∈V<del>T</del> ^<em>^ ； <br />&#x3D;&#x3D;右线性文法：&#x3D;&#x3D; A→a 或 A→aB , A,B∈V<del>N</del> ，**a∈V<del>T</del> ^</em>^** 。这3种共同构成3型文法</td>
+<td>对应正规语言类，用于描述程序设计语言的<strong>词法规则</strong>。对应于<strong>FSA</strong>（有限状态自动机）。&#x3D;&#x3D;3型没有记忆功能&#x3D;&#x3D; ，要记也是记它自己，例如A-&gt;aA</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>在写正规文法时，可以从左往右考虑，一个非终结符号表示一个字符，然后把下一个字符交给下一个非终结符号表示</p>
+</blockquote>
+<blockquote>
+<p>如果要有记忆功能，可以用栈作为记忆装置（&#x3D;&#x3D;下推自动机&#x3D;&#x3D;）。如识别aaabbb，匹配一个b就弹出一个a，如果最终栈底的终结符号不能和符号串末尾的终结符号匹配的话，则报错。</p>
+</blockquote>
+<blockquote>
+<p>正规文法不能出现$\varepsilon$</p>
+</blockquote>
+<p><strong>例子：</strong></p>
+<p><img data-src="https://s2.loli.net/2022/03/10/wOAmUG4D3QTrhcZ.png" alt="image-20220310224157836"></p>
+<p><img data-src="https://s2.loli.net/2022/03/10/1JOq2LHtpFAhao5.png" alt="image-20220310224629051"></p>
+<hr>
+<p>&#x3D;&#x3D;文法的记忆功能：&#x3D;&#x3D; 精简版的括号配对问题。记住左右两边有几个配对的括号。<strong>3型文法没有记忆功能</strong>，因为它的非终结符号只能在一侧，无法记忆左右两边的一对。<strong>2型文法可以记忆两个</strong>，即左右两边的一对，如S→aSb，故2型文法可以用来表示a^n^b^n^ 。但2型文法的左边是单个的非终结符号，故不能记忆超过两个。<strong>1型文法可以记忆三个</strong>，故1型文法可以用来表示a^n^b^n^c^n^。</p>
+<p><img data-src="https://s2.loli.net/2022/03/10/Jo9TInwgZizP7e1.png" alt="image-20220310224733082"></p>
+<p>例子：所有由0和1组成并且每个0之后都至少跟着一个1的串的集合</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">S -&gt; LS | <span class="type">ε</span></span><br><span class="line"><span class="type">L</span> -&gt; <span class="number">01</span> | <span class="type">1</span></span><br></pre></td></tr></table></figure>
+
+<p>所有由0和1组成的具有相同多个0和1的串的集合</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">S</span> -&gt; <span class="number">0</span>S1S | <span class="number">1</span>S0S | ε</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、文法和语言"><a href="#3、文法和语言" class="headerlink" title="3、文法和语言"></a>3、文法和语言</h2><h3 id="文法经过推导得到语言"><a href="#文法经过推导得到语言" class="headerlink" title="文法经过推导得到语言"></a>文法经过推导得到语言</h3><p><strong>推导：</strong></p>
+<p><img data-src="https://s2.loli.net/2022/05/19/X8oUYwJbPTEC9AN.png" alt="image-20220519160515000"></p>
+<p>每一棵语法分析树都和唯一的最左推导、唯一的最右推导相关联</p>
+<p><strong>归约：</strong></p>
+<ul>
+<li>最右归约：最左推导的逆过程称为最右归约</li>
+<li>最左归约：最右推导（规范推导）的逆过程称为最左归约</li>
+</ul>
+<p><strong>句型：</strong>设有文法G[S]，如果 <img data-src="https://s2.loli.net/2022/03/04/UxMbG8l9iDrJEXs.png">，则称符号串u为文法G[S]的句型</p>
+<p><strong>句子：</strong>设有文法G[S]，如果 <img data-src="https://s2.loli.net/2022/03/04/UxMbG8l9iDrJEXs.png">，且u∈V<del>T</del> * ，则称符号串u为文法G[S]的句子。</p>
+<p>&#x3D;&#x3D;句子是一个终结符号串。&#x3D;&#x3D; </p>
+<p><strong>语言：</strong>设有文法G[S]，则文法G[S]描述的语言为<img data-src="https://s2.loli.net/2022/03/04/TDboNIEAueO5l4q.png">(&#x3D;&#x3D;语言是合法句子的集合&#x3D;&#x3D; )</p>
+<p>如果两个文法生成相同语言，则称这两个文法是等价的。</p>
+<h3 id="语言经过凑规则得到文法"><a href="#语言经过凑规则得到文法" class="headerlink" title="语言经过凑规则得到文法"></a>语言经过凑规则得到文法</h3><p><strong>步骤：</strong>找出语言的若干典型句子→分析句子特点→根据句子特点凑规则→得到文法→检查文法</p>
+<p>检查文法时应满足：①语言的所有句子都能由S推导得到;  ②S推导得到的所有终结符号串都是语言的句子.（不多不少）</p>
+<p><strong>例子：</strong></p>
+<p><img data-src="https://s2.loli.net/2022/05/19/vNcVBHm3sKZgDi8.png" alt="image-20220519161355512"></p>
+<blockquote>
+<p>给定一个文法，可以从结构上<strong>唯一</strong> 确定其语言；给定一个语言，可以确定相应的文法（<strong>不唯一</strong> ）。</p>
+</blockquote>
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><ul>
+<li><p>规则递归（直接递归）：文法的产生式为U→xUy形式</p>
+</li>
+<li><p>规则左递归（直接左递归）：文法的产生式为U→Uy形式</p>
+</li>
+<li><p>规则右递归（直接右递归）：文法的产生式为U→xU形式</p>
+</li>
+<li><p>文法递归（间接递归）：文法中有推导<img data-src="https://s2.loli.net/2022/03/04/xBEeGqjbaPUFmcW.png"></p>
+</li>
+<li><p>文法左递归（间接左递归）：文法中有推导<img data-src="https://s2.loli.net/2022/03/04/SHPlQYW7qhtwUXa.png" alt="文法左递归.png"></p>
+</li>
+<li><p>文法右递归（间接右递归）：文法中有推导<img data-src="https://s2.loli.net/2022/03/10/RYGZlHrem34jb6d.png" alt="image-20220310164820052"></p>
+</li>
+</ul>
+<h3 id="语法分析树"><a href="#语法分析树" class="headerlink" title="语法分析树"></a>语法分析树</h3><p>语法分析树展现了从文法的开始符号推导出相应语言中的符号串的过程。一棵语法分析树的叶子结点从左向右构成了一个终结符号串。</p>
+<ul>
+<li>根结点的标号（文法符号）为文法的开始符号</li>
+<li>每个内部结点的标号为一个非终结符号</li>
+<li>叶子结点的标号为一个终结符号或者ε</li>
+<li>若一个标记为U的结点，它有标记依次为x<del>1</del>、x<del>2</del>、…、x<del>n</del>的直接后继结点，则U→x<del>1</del>x<del>2</del>…x<del>n</del>必定是文法G的一条产生式。</li>
+</ul>
+<h3 id="二义性问题"><a href="#二义性问题" class="headerlink" title="二义性问题"></a>二义性问题</h3><ul>
+<li><p><strong>句子的二义性</strong>（&#x3D;&#x3D;必考&#x3D;&#x3D; ）：一个句子有两棵（或以上）不同的语法树；存在两个（或以上）不同的最左推导；存在两个（或以上）不同的最右推导（每一棵语法分析树都和唯一的最左推导、唯一的最右推导相关联）</p>
+</li>
+<li><p><strong>文法的二义性</strong>：文法G中的某一句子具有二义性</p>
+</li>
+<li><p><strong>语言的二义性</strong>：不存在任何无二义性的文法来描述某语言L。（也称为先天二义性）</p>
+</li>
+</ul>
+<h3 id="运算符的结合性和优先级"><a href="#运算符的结合性和优先级" class="headerlink" title="运算符的结合性和优先级"></a>运算符的结合性和优先级</h3><p><strong>结合性</strong></p>
+<ul>
+<li><p>左结合性：当一个运算分量左右两侧都有同一个运算符时，它属于左边的运算符。如+-*&#x2F;</p>
+</li>
+<li><p>右结合性：一个运算分量左右两侧都有同一个运算符时，它属于右边的运算符。如&#x3D;</p>
+<blockquote>
+<p>左结合性的文法，语法分析树是向左下端延伸的；<br>右结合性的文法，语法分析树是向右下端延伸的</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>优先级</strong></p>
+<ul>
+<li><p>n层优先级一般需要n+1个非终结符号，其中，最下面那个产生式左边的非终结符号的产生式体只能是单个运算分量或括号括起来的表达式。然后，对于每个优先级都有一个非终结符，表示能被该优先级或更高的优先级的运算符分开的表达式。</p>
+</li>
+<li><p>例子：算术表达式的文法</p>
+<p>  <img data-src="https://s2.loli.net/2022/03/11/WrPyD8RK4UvhQ5J.png" alt="image-20220311184147910"></p>
+</li>
+</ul>
+<h2 id="4、文法的实用限制"><a href="#4、文法的实用限制" class="headerlink" title="4、文法的实用限制"></a>4、文法的实用限制</h2><h3 id="消除文法的二义性（-x3D-x3D-重难点-x3D-x3D-）"><a href="#消除文法的二义性（-x3D-x3D-重难点-x3D-x3D-）" class="headerlink" title="消除文法的二义性（&#x3D;&#x3D;重难点&#x3D;&#x3D;）"></a>消除文法的二义性（&#x3D;&#x3D;重难点&#x3D;&#x3D;）</h3><p><strong>方法一：设定消除二义性规则：</strong>在语义上加些限制</p>
+<p><strong>方法二：重写文法</strong>：重新构造一个等价的无二义性文法。</p>
+<p>考虑运算符的优先级和结合性。</p>
+<ul>
+<li>采用优先级联的方式——最低级的运算最靠近语法树的根结点，从上往下，运算的优先级依次增加</li>
+<li>左结合性：左递归，右结合性：右递归</li>
+</ul>
+<p><img data-src="https://s2.loli.net/2022/03/11/PiaWFlI5uXQVpEG.png" alt="image-20220311104535673"></p>
+<p><img data-src="https://s2.loli.net/2022/03/11/ElRIWuefnUO83it.png" alt="image-20220311111404819"></p>
+<h3 id="文法的压缩（化简）"><a href="#文法的压缩（化简）" class="headerlink" title="文法的压缩（化简）"></a>文法的压缩（化简）</h3><p>若文法G[S]的所有产生式都满足下列实用限制条件：</p>
+<p>1、没有<strong>多余产生式</strong>（包括无法推导出终结符号串的产生式（不可终止）和从开始符号出发的所有推导都不会用到的产生式（不可达））。</p>
+<p>2、没有<strong>有害产生式U→U</strong>（有该产生式的文法一定是二义性的）</p>
+<p>则称文法G[S]是<strong>压缩或化简</strong>的。</p>
+<p>例子：</p>
+<img data-src="https://s2.loli.net/2022/03/11/QKhBbEqpDTuOmng.png" alt="image-20220311091509810" style="zoom:67%;" />
+
+
+
+<h3 id="删除单规则（单产生式）：A→B"><a href="#删除单规则（单产生式）：A→B" class="headerlink" title="删除单规则（单产生式）：A→B"></a>删除单规则（单产生式）：A→B</h3><p>单产生式会使得语法树的深度加深，加大存储开销</p>
+<img data-src="https://s2.loli.net/2022/03/11/SG89bKnl6wyrTqX.png" alt="image-20220311091824568" style="zoom: 67%;" />
+
+<h3 id="删除空产生式（ε-规则）：-U→ε"><a href="#删除空产生式（ε-规则）：-U→ε" class="headerlink" title="删除空产生式（ε 规则）： U→ε"></a>删除空产生式（ε 规则）： U→ε</h3><p><strong>步骤：</strong></p>
+<ul>
+<li>找出可能推导出ε的非终结符号，本例中为B、D</li>
+<li>将产生式体中可能为ε的非终结符号替换为ε并删除ε</li>
+<li>特殊情形：S-&gt;ε的时候，不能去掉</li>
+</ul>
+<img data-src="https://s2.loli.net/2022/03/11/YdKyhqXgNU7THcv.png" alt="image-20220311091942023" style="zoom:67%;" />
+
+ 
+
+<h3 id="消除直接左递归U→Uy"><a href="#消除直接左递归U→Uy" class="headerlink" title="消除直接左递归U→Uy"></a>消除直接左递归U→Uy</h3><p><strong>（期末考试一般考直接改写法）</strong></p>
+<p>方法：</p>
+<ul>
+<li><p>&#x3D;&#x3D;采用EBNF表示&#x3D;&#x3D; </p>
+<blockquote>
+<p>[x]— x可以出现零次或一次</p>
+<p>{x}——x可以出现零次到多次</p>
+<p>x(y|z)——等价于xy 或 xz，用于提取公因子</p>
+</blockquote>
+<p>  步骤： <img data-src="https://s2.loli.net/2022/03/11/R2xWwSv16Zf8grb.png" alt="image-20220311093151304"></p>
+<p>  即<img data-src="https://s2.loli.net/2022/04/07/cH1sfzCBe7LYE9O.png" alt="image-20220407163924252"></p>
+</li>
+<li><p>&#x3D;&#x3D;直接改写法：&#x3D;&#x3D; 引进新的非终结符号，将左递归改写为右递归</p>
+<p>  <img data-src="https://s2.loli.net/2022/03/11/D75j3twy8Qgl1Kz.png" alt="image-20220311093533406"></p>
+</li>
+<li><p><img data-src="https://s2.loli.net/2022/03/11/CBjznZkLeY4Dru9.png"></p>
+</li>
+</ul>
+<h3 id="消除间接左递归"><a href="#消除间接左递归" class="headerlink" title="消除间接左递归"></a>消除间接左递归<img data-src="https://s2.loli.net/2022/04/07/WKsIfw9HEaAeC1u.png" alt="image-20220407164315981" style="zoom: 67%;" /></h3><ul>
+<li><p>方法：&#x3D;&#x3D;转换成直接左递归来消除&#x3D;&#x3D;</p>
+<p>  <img data-src="https://s2.loli.net/2022/04/07/vWbnjNEoTaGDdRz.png" alt="image-20220407205525749"></p>
+</li>
+<li><p>例子：</p>
+  <img data-src="https://s2.loli.net/2022/04/07/IcoNtZhf1Kx6UbF.png" alt="image-20220407231035529" style="zoom:67%;" />
+
+  <img data-src="https://s2.loli.net/2022/04/07/QjGiIAygplPCMBD.png" alt="image-20220407231055235" style="zoom:67%;" /></li>
+</ul>
+<h1 id="第三章-有穷自动机-x3D-x3D-8个算法，确定化、最小化、RG和FA和RE之间的六个转换-x3D-x3D"><a href="#第三章-有穷自动机-x3D-x3D-8个算法，确定化、最小化、RG和FA和RE之间的六个转换-x3D-x3D" class="headerlink" title="第三章  有穷自动机(&#x3D;&#x3D;8个算法，确定化、最小化、RG和FA和RE之间的六个转换&#x3D;&#x3D;)"></a>第三章  有穷自动机(&#x3D;&#x3D;8个算法，确定化、最小化、RG和FA和RE之间的六个转换&#x3D;&#x3D;)</h1><blockquote>
+<p>自动机的概念：自动机是一种能进行<strong>运算</strong>并实现<strong>自我控制</strong>(根据外界的信息改变自己的状态)的装置，计算机就是一部自动机。自动机是描述符号串处理的强有力的工具。<strong>功能：识别语言</strong></p>
+</blockquote>
+<h2 id="3-1-有穷自动机的形式定义"><a href="#3-1-有穷自动机的形式定义" class="headerlink" title="3.1 有穷自动机的形式定义"></a>3.1 有穷自动机的形式定义</h2><h3 id="1、有穷自动机的分类及组成"><a href="#1、有穷自动机的分类及组成" class="headerlink" title="1、有穷自动机的分类及组成"></a>1、有穷自动机的分类及组成</h3><ul>
+<li><p>&#x3D;&#x3D;DFA:&#x3D;&#x3D;  Deterministic Finite (State) Automation，确定的有穷(状态)自动机。当前状态经一个输入到达<strong>下一个</strong>状态。</p>
+</li>
+<li><p>&#x3D;&#x3D;NDFA（or NFA）:&#x3D;&#x3D;  Non Deterministic Finite (State) Automation非确定的有穷自动机。当前状态经一个输入可到达<strong>多个</strong>状态。</p>
+<blockquote>
+<p>FA的等价性： L(A<del>1</del>) &#x3D; L(A<del>2</del>)，则称有穷自动机A<del>1</del>和A<del>2</del>是<strong>等价</strong>的（类比文法等价）</p>
+</blockquote>
+<blockquote>
+<p>关系：<strong>DFA是NDFA的特例</strong>，对每个NDFA N一定存在一个DFA M，使得L(M)&#x3D;L(N)，但这种DFA M可能不唯一。</p>
+<p>q表示状态，Q表示状态集</p>
+<p><strong>用有穷自动机表示无穷：状态转换的回路（文法：递归）</strong></p>
+<p><img data-src="https://s2.loli.net/2022/03/31/WaIvVMDhmdj1gJL.png" alt="image-20220331234125325"></p>
+</blockquote>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>DFA &#x3D; (Q，∑，t，&#x3D;&#x3D;q<del>0</del>&#x3D;&#x3D;，F)</th>
+<th>DFA的扩充</th>
+<th>NDFA &#x3D;  (Q，∑，t，&#x3D;&#x3D;Q<del>0</del>&#x3D;&#x3D;，F)</th>
+<th>NDFA 的扩充</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Q：有穷非空的状态集</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Σ：有穷的输入字母表</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>t：<strong>单值映射Q×&#x3D;&#x3D;Σ&#x3D;&#x3D;→Q</strong> 。 t(q, x)&#x3D;q’。可以理解由当前状态和<strong>一个输入字符</strong>得到下一个状态</td>
+<td>t：<em><em>单值映射Q×&#x3D;&#x3D;Σ</em>&#x3D;&#x3D;→Q</em>* 。 t(q, ε) &#x3D; q。t(q, aα) &#x3D; t ( t(q, a),  α)，其中q∈Q， a ∈Σ,  α∈Σ*。可以理解由当前状态和<strong>一个符号串</strong>得到下一个状态</td>
+<td>t：<strong>多值映射Q×&#x3D;&#x3D;Σ&#x3D;&#x3D;→2^Q^</strong>。t(q,x)&#x3D;{q<del>1</del>,q<del>2</del>,…,q<del>n</del>} (状态的幂集)</td>
+<td>t：<em><em>多值映射Q×&#x3D;&#x3D;Σ</em>&#x3D;&#x3D;→2^Q^</em>* 。 t(q, ε)&#x3D;q。t(q, aα) &#x3D; t(q<del>1</del>,α)∪t(q<del>2</del>,α)∪… ∪t(q<del>n</del>,α)，其中 a ∈Σ,  α∈Σ*, t(q, a) &#x3D; {q<del>1</del>, q<del>2</del>… q<del>n</del>}。</td>
+</tr>
+<tr>
+<td><strong>q<del>0</del>：∈Q，是开始状态</strong></td>
+<td></td>
+<td><strong>Q<del>0</del>：⊆Q，是开始状态集</strong>。即使只有一个开始状态，也要用{}</td>
+<td></td>
+</tr>
+<tr>
+<td>F：⊆Q，非空终止状态集合</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>DFA的扩充，使得DFA可以描述对符号串的识别。**如果t(q<del>0</del>, α) ∈ F，则α可被DFA接受(或识别)*<em>，即从开始状态经α可到达某一个终止状态。被DFA A识别的符号串集合，记为L(A)，L(A) &#x3D; {α∈Σ</em> | t(q<del>0</del>, α)  ∈ F}，即这台自动机所能识别和接受的语言。α是L(A)的句子 。</td>
+<td></td>
+<td>NDFA的扩充，使得NDFA可以描述对符号串的识别。**如果q ∈ t(q<del>0</del>, α) , q<del>0</del>∈ Q<del>0</del> ，q∈ F，则α可被DFA接受(或识别)*<em>，即从某一个开始状态经α可到达某一个终止状态。被NDFA A识别的符号串集合，记为L(A)，L(A) &#x3D; {α∈Σ</em> | t(q<del>0</del>, α)  ∩ F ≠ ∅ ,q<del>0</del>∈Q<del>0</del> }</td>
+</tr>
+</tbody></table>
+<h3 id="2、有穷自动机的表示："><a href="#2、有穷自动机的表示：" class="headerlink" title="2、有穷自动机的表示："></a>2、有穷自动机的表示：</h3><ul>
+<li><p>状态转换表</p>
+</li>
+<li><p>状态转换图（<strong>更常用</strong>）</p>
+<blockquote>
+<p>非空终止状态用同心圆表示</p>
+</blockquote>
+</li>
+<li><p>&#x3D;&#x3D;DFA:&#x3D;&#x3D; </p>
+  <img data-src="https://s2.loli.net/2022/03/17/dbpaewYO5WZ4yc9.png" alt="image-20220317150650779" style="zoom:67%;" />
+</li>
+<li><p>&#x3D;&#x3D;NDFA&#x3D;&#x3D;</p>
+  <img data-src="https://s2.loli.net/2022/03/17/ZgFyLjveGRzAbwU.png" alt="image-20220317154458730"  /></li>
+</ul>
+<h2 id="3-2-NDFA到DFA的转换（-x3D-x3D-必考-x3D-x3D-）"><a href="#3-2-NDFA到DFA的转换（-x3D-x3D-必考-x3D-x3D-）" class="headerlink" title="3.2 NDFA到DFA的转换（&#x3D;&#x3D;必考&#x3D;&#x3D;）"></a>3.2 NDFA到DFA的转换（&#x3D;&#x3D;必考&#x3D;&#x3D;）</h2><blockquote>
+<p>DFA是NDFA的特例，对每个NDFA N一定存在一个DFA M，使得L(M)&#x3D;L(N)，但这种DFA M可能不唯一</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line">	a[NDFA]--&gt;|确定化|b[DFA];</span><br><span class="line">	b[DFA]--&gt; |化简|c[最小化的DFA];</span><br><span class="line">	c[最小化的DFA] --&gt; d[词法分析程序];</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1、确定化-NDFA-gt-DFA（-x3D-x3D-注意造表法是可以直接用的，不需要消-x3D-x3D-varepsilon-）"><a href="#1、确定化-NDFA-gt-DFA（-x3D-x3D-注意造表法是可以直接用的，不需要消-x3D-x3D-varepsilon-）" class="headerlink" title="1、确定化:   NDFA -&gt; DFA（&#x3D;&#x3D;注意造表法是可以直接用的，不需要消&#x3D;&#x3D;$\varepsilon$）"></a>1、确定化:   NDFA -&gt; DFA（&#x3D;&#x3D;注意造表法是可以直接用的，不需要消&#x3D;&#x3D;$\varepsilon$）</h3><p>子集法 &#x2F; 造表法（&#x3D;&#x3D;考造表法&#x3D;&#x3D;）</p>
+<ul>
+<li><p>&#x3D;&#x3D;子集法。&#x3D;&#x3D; </p>
+<p>  <strong>步骤：</strong></p>
+<ul>
+<li><p>&#x3D;&#x3D;空移环路的寻找和消除&#x3D;&#x3D;：消除从状态A开始并以A结束的空移动序列(空移环路上的所有状态都是等价的)，把它们合并成一个结点并取公共名。<strong>注意Q<del>0</del>和F</strong>。<strong>注意a弧、b弧等等会变成自环</strong></p>
+<blockquote>
+<p>ε自动机：自动机的弧上允许标记ε，称此FA为ε自动机，记为εFA（εNDFA或εDFA）。εNDFA &#x3D; (Q，∑ ∪{ε}，t，Q<del>0</del>，F)</p>
+<p>消除ε自动机中的空移：对于εFA ，总可以构造等价的FA，使得L (εFA) &#x3D; L(FA)</p>
+</blockquote>
+</li>
+<li><p>&#x3D;&#x3D;消除余下的空移&#x3D;&#x3D;： εNDFA -&gt; NDFA。<strong>去ε弧、添等价弧(包括ε弧)、置特殊状态（终态必须置，初态可以不置）</strong></p>
+</li>
+</ul>
+<p>  <img data-src="https://s2.loli.net/2022/03/17/6ADyZeGocNvkCr7.png" alt="image-20220317165134820"></p>
+<ul>
+<li><p>&#x3D;&#x3D;利用子集法确定化&#x3D;&#x3D;   NDFA  -&gt; DFA</p>
+<p>  思想：把从状态到状态的多值映射转化为状态集到状态集的单值映射</p>
+<p>  <img data-src="https://s2.loli.net/2022/03/17/mr486kDGcZIheNl.png" alt="image-20220317170543983"></p>
+</li>
+</ul>
+<blockquote>
+<p>子集法的正确性的证明：α∈L(A)当且仅当α∈L(A’)</p>
+<p>DFA:从开始状态（是一个状态类）到某一个终止状态子集，NFA：从某一个开始状态到某一个终止状态，这两个映射是可以转换的</p>
+</blockquote>
+<p>  <strong>局限性：</strong>状态数太多（2^Q^ - 1个状态，存储和查找的开销大）、存在不可达状态（挂起）</p>
+<p>  <strong>例子：</strong></p>
+<p>  <img data-src="https://s2.loli.net/2022/03/24/dEcwUWZuGxOsYDF.png" alt="image-20220324214849272"></p>
+<hr>
+</li>
+<li><p>&#x3D;&#x3D;造表法（考）&#x3D;&#x3D;(造表法本质还是子集法，子集法和造表法统称为子集法  )</p>
+<ul>
+<li><p><strong>思想</strong>：为避免不可达状态，从初始状态出发，计算t′，依次构造其后继状态，进行确定化。</p>
+<blockquote>
+<p>一些概念：</p>
+<ul>
+<li><strong>I<del>a</del><strong>：I<del>a</del> &#x3D; t’(I, a)，即从I中的状态出发经过一条a弧（可跳过a弧</strong>前后</strong>的任意条ε弧）到达的状态集合</li>
+<li><strong>状态子集I的ε闭包（ ε-CLOSURE(I) ）</strong>：包含了I中的状态和它们经过任意条ε弧能到达的Q中的状态</li>
+<li><strong>I<del>a</del>子集</strong>：即从I中的状态出发，经过一条a弧（可跳过a弧<strong>前</strong>的任意条ε弧）到达的状态集合，称为<strong>J</strong>。I<del>a</del> &#x3D; ε-CLOSURE(J)</li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>步骤：</strong></p>
+<p>  <img data-src="https://s2.loli.net/2022/03/17/voLRXMOuwQh8KlJ.png" alt="image-20220317182540359"></p>
+</li>
+<li><p><strong>特点</strong>：简单有效、不存在不可达状态、状态数比子集法大大减少</p>
+</li>
+<li><p>例子：</p>
+  <img data-src="https://s2.loli.net/2022/03/24/NXDbZx2z1VdTJLK.png" alt="image-20220324215954121" style="zoom:67%;" />
+
+  <img data-src="https://s2.loli.net/2022/03/24/B9zabF2JuGSEV13.png" alt="image-20220324215944493" style="zoom: 50%;" /></li>
+</ul>
+</li>
+</ul>
+<h3 id="2、最小化：DFA-gt-MFA"><a href="#2、最小化：DFA-gt-MFA" class="headerlink" title="2、最小化：DFA -&gt; MFA"></a>2、最小化：DFA -&gt; MFA</h3><ul>
+<li><p>目标：寻找等价的、状态数更少的DFA M’（M’是唯一的）</p>
+</li>
+<li><p><strong>思想：合并等价状态、删除无关状态</strong></p>
+<blockquote>
+<p><code>等价状态：</code>从两个状态出发可以识别同一个字符串(任意一个)到达终态，则称这两个状态是等价的，否则称它们是可区分的。即$$\forall\alpha\epsilon\Sigma^*, t(q, \alpha)\epsilon F当且仅当t(q’, \alpha)\epsilon F$$</p>
+</blockquote>
+</li>
+<li><p>最小化算法（划分法）：把状态集划分成若干个互不相交的等价状态集</p>
+<p>  步骤：</p>
+<ul>
+<li><p>构造状态集的划分，&#x3D;&#x3D;从终止状态集和非终止状态集里再细分&#x3D;&#x3D;（因此最终至少有两个状态）</p>
+</li>
+<li><p>取每组中的一个状态作代表，合并等价状态。</p>
+<blockquote>
+<p>例如，A和B是等价状态，则如果选A为代表而删除B，则应<strong>将射入B的弧补到A上</strong>，<strong>不需要补射出B的弧</strong>，因为由等价状态的定义可知，A和B的射出的弧到达的下一个状态是相同的</p>
+</blockquote>
+</li>
+<li><p>删去无关状态，包括不可达状态和死状态等</p>
+<p>  <img data-src="https://s2.loli.net/2022/03/17/owSlZ7rmcPRtM2A.png" alt="image-20220317220019401"></p>
+</li>
+</ul>
+</li>
+<li><p>例子：</p>
+<p>  <img data-src="https://s2.loli.net/2022/03/24/9kuErAlD1L76efa.png" alt="image-20220324221541448"></p>
+</li>
+</ul>
+<p><img data-src="https://s2.loli.net/2022/03/24/RDnC9dptK1QNkXu.png" alt="image-20220324221835671"></p>
+<h3 id="3、从化简后的DFA到程序表示-MFA-gt-scanner"><a href="#3、从化简后的DFA到程序表示-MFA-gt-scanner" class="headerlink" title="3、从化简后的DFA到程序表示 MFA -&gt; scanner"></a>3、从化简后的DFA到程序表示 MFA -&gt; scanner</h3><p><img data-src="https://s2.loli.net/2022/03/24/QnbFtWksm9KjPAc.png" alt="image-20220324222006003"></p>
+<h2 id="3-3-正规文法-RG-与FA"><a href="#3-3-正规文法-RG-与FA" class="headerlink" title="3.3 正规文法(RG)与FA"></a>3.3 正规文法(RG)与FA</h2><h3 id="1、RG与FA"><a href="#1、RG与FA" class="headerlink" title="1、RG与FA"></a>1、RG与FA</h3><ul>
+<li>RG是语言的生成规则</li>
+<li>FA识别（接受）语言</li>
+</ul>
+<h3 id="2、RG-gt-FA："><a href="#2、RG-gt-FA：" class="headerlink" title="2、RG -&gt; FA："></a>2、RG -&gt; FA：</h3><p>由正规文法G[S]可直接构造一个与之等价的FA A，使得L(G)&#x3D;L(A)。</p>
+<p><strong>步骤：</strong></p>
+<ul>
+<li><p>令G的终结符号集V<del>T</del>为A的字母表∑； </p>
+</li>
+<li><p>G的非终结符号作为A的状态，G的开始符号为A的开始状态； </p>
+</li>
+<li><p>&#x3D;&#x3D;增加一个终止状态Z（Z ∉ V<del>N</del>）；&#x3D;&#x3D;</p>
+</li>
+<li><p>形如U→a的规则，引一条从状态U到终止状态Z的标记为a的弧； </p>
+</li>
+<li><p>形如U→aW的规则，引一条从状态U到W的a弧</p>
+<p>  对应关系如下：</p>
+<table>
+<thead>
+<tr>
+<th>G[S]&#x3D;（V<del>N</del>，V<del>T</del>，P，S）</th>
+<th>NFA &#x3D; (Q，∑，t，{q<del>0</del>}，F) (初态唯一,因为要和S对应)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>V<del>N</del></td>
+<td>Q</td>
+</tr>
+<tr>
+<td>V<del>T</del></td>
+<td>∑</td>
+</tr>
+<tr>
+<td>P</td>
+<td>t，形如U→a的规则，引一条从状态U到终止状态Z的标记为a的弧；     形如U→aW的规则，引一条从状态U到W的a弧（特别地，如果有形如U→aU的规则，引一条从状态U到状态U的自环）</td>
+</tr>
+<tr>
+<td>S</td>
+<td>q<del>0</del></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>F(新增加的，∉ V<del>N</del>)</strong></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p>&#x3D;&#x3D;eg.&#x3D;&#x3D;</p>
+<p><img data-src="https://s2.loli.net/2022/03/31/joSRI4KyDEards1.png" alt="image-20220331230128319"></p>
+<p><img data-src="https://s2.loli.net/2022/03/31/7YVoTF6COnZKIJR.png" alt="image-20220331231013992"></p>
+<h3 id="3、FA-gt-RG"><a href="#3、FA-gt-RG" class="headerlink" title="3、FA -&gt; RG"></a>3、FA -&gt; RG</h3><p>由有穷自动机FA A可直接构造一个与之等价的正规文法G，使得L(G)&#x3D;L(A)</p>
+<p><strong>步骤：</strong></p>
+<ul>
+<li><p>自动机A中的每一个状态均作为G的非终结符号，其中A的开始状态作为G的开始符号，A的输入字母表∑中的所有符号作为G的终结符号；</p>
+</li>
+<li><p>对A中V ∈ t(U,a)的映射，构造G的产生式U∷&#x3D;aV；若V∈F，则构造G的产生式 U::&#x3D;a；</p>
+</li>
+<li><p>若A中q<del>0</del>∈F，则构造G的产生式S∷&#x3D;ε</p>
+<p>  对应关系如下：</p>
+<table>
+<thead>
+<tr>
+<th>DFA &#x3D; (Q，∑，t，q<del>0</del>，F)</th>
+<th>G[S]&#x3D;（V<del>N</del>，V<del>T</del>，P，S）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Q</td>
+<td>V<del>N</del></td>
+</tr>
+<tr>
+<td>∑</td>
+<td>V<del>T</del></td>
+</tr>
+<tr>
+<td>t</td>
+<td>P，对A中V ∈ t(U,a)的映射，构造G的产生式U∷&#x3D;aV；<br />若V∈F，则构造G的产生式 U::&#x3D;a；<br />若A中q<del>0</del>∈F，则构造G的产生式S∷&#x3D;ε</td>
+</tr>
+<tr>
+<td>q<del>0</del></td>
+<td>S</td>
+</tr>
+<tr>
+<td>F</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p>&#x3D;&#x3D;eg.&#x3D;&#x3D;</p>
+<p><img data-src="https://s2.loli.net/2022/03/31/bZth9rlPiADF12E.png" alt="image-20220331231121040"></p>
+<p><img data-src="https://s2.loli.net/2022/03/31/Tqyr9uzPmBH3pFL.png" alt="image-20220331231701572"></p>
+<h2 id="3-4-正规表达式-x2F-正则表达式-RE-与FA"><a href="#3-4-正规表达式-x2F-正则表达式-RE-与FA" class="headerlink" title="3.4 正规表达式&#x2F;正则表达式(RE)与FA"></a>3.4 正规表达式&#x2F;正则表达式(RE)与FA</h2><h3 id="1、RE（可以直观地描述出语言的特征）"><a href="#1、RE（可以直观地描述出语言的特征）" class="headerlink" title="1、RE（可以直观地描述出语言的特征）"></a>1、RE（可以直观地描述出语言的特征）</h3><ul>
+<li><p>&#x3D;&#x3D;概念：&#x3D;&#x3D; </p>
+<p>  三种运算：或运算 a|b 、连接运算 ab、闭包运算 a^<em>^(正闭包a^+^)。*<em>（优先级由低到高）</em></em></p>
+<p>  &#x3D;&#x3D;注意在RE中，0个或无穷多个不是用{}来表示，而是用*来表示，大括号是集合&#x3D;&#x3D;</p>
+</li>
+</ul>
+<p><img data-src="https://s2.loli.net/2022/03/31/5pFHox1ryEjbhTw.png" alt="image-20220331231923652"></p>
+<p><strong>eg.</strong></p>
+<p><img data-src="https://s2.loli.net/2022/03/31/YozVNxEDCfHuWy2.png" alt="image-20220331232616611"></p>
+<img data-src="https://s2.loli.net/2022/03/31/1dEyrHmjPx54nhX.png" alt="image-20220331233246560" style="zoom:50%;" />
+
+<ul>
+<li><p>&#x3D;&#x3D;RE等价：&#x3D;&#x3D; 设e<del>1</del>，e<del>2</del>均为∑上的正规表达式，若 L(e<del>1</del>)&#x3D;L(e<del>2</del>)，则称e<del>1</del>与e<del>2</del>等价，记为：e<del>1</del>&#x3D; e<del>2</del></p>
+<p>  <img data-src="https://s2.loli.net/2022/03/31/P3IEHFbZvWhRwYr.png" alt="image-20220331233053138"></p>
+<p>  <img data-src="https://s2.loli.net/2022/03/31/QWnVp9zkxHY2MoZ.png" alt="image-20220331233112495"></p>
+</li>
+<li><p>&#x3D;&#x3D;RE的性质：&#x3D;&#x3D; </p>
+<p>  <img data-src="https://s2.loli.net/2022/03/31/Xjo15J2dBLHhYC3.png" alt="image-20220331232826488"></p>
+</li>
+</ul>
+<h3 id="2、RE-–-gt-FA"><a href="#2、RE-–-gt-FA" class="headerlink" title="2、RE –&gt; FA"></a>2、RE –&gt; FA</h3><p>对于字母表Σ上的任意正规表达式e，一定可以构造一个输入字母表Σ上的<strong>NDFA A</strong>，使得L(A)&#x3D;L(e)</p>
+<p><strong>步骤：</strong></p>
+<ul>
+<li><p>构造广义NFA：<strong>S是惟一开始状态，Z是惟一终止状态</strong>。弧标记e。</p>
+</li>
+<li><p>根据分解规则分解e ，得到与e对应的NFA。</p>
+<p>  分解规则如下：</p>
+<p>  <img data-src="https://s2.loli.net/2022/03/17/uoEaYrUIJ8gFxbj.png" alt="image-20220317230004987"></p>
+</li>
+</ul>
+<p>&#x3D;&#x3D;eg&#x3D;&#x3D;</p>
+<p><img data-src="https://s2.loli.net/2022/03/31/p6tFHduCrOm1oL5.png" alt="image-20220331233904038"><img data-src="https://s2.loli.net/2022/03/31/Q7WpazfkA3UgZwi.png" alt="image-20220331233938288" style="zoom:67%;" /></p>
+<h3 id="3、FA-gt-RE"><a href="#3、FA-gt-RE" class="headerlink" title="3、FA -&gt; RE"></a>3、FA -&gt; RE</h3><ul>
+<li><p>由有穷自动机FA A所识别的语言L(A)，可以用Σ上 的RE e来表示，使得L(A)&#x3D;L(e)</p>
+<p>  <strong>步骤</strong></p>
+</li>
+<li><p>（&#x3D;&#x3D;当初态和终态不唯一时&#x3D;&#x3D;）在FA A的状态图中增加两个结点：<strong>S是惟一开始状态</strong>，从S向原开始状态连ε弧；<strong>Z是惟一终止状态</strong>，从原终止状态向Z连ε弧。</p>
+</li>
+<li><p>利用下列替换规则逐步消去状态图中的结点和弧，直至仅剩下S到Z的一条弧为止，则该弧上的标记即为RE e。</p>
+<p>  <img data-src="https://s2.loli.net/2022/03/17/tVZi5aIBq1HJ6P9.png" alt="image-20220317230404452"></p>
+</li>
+</ul>
+<p>&#x3D;&#x3D;eg&#x3D;&#x3D;</p>
+<img data-src="https://s2.loli.net/2022/03/31/YdrHoz6ZUMKlbIk.png" alt="image-20220331234216167" style="zoom:67%;" />
+
+<img data-src="https://s2.loli.net/2022/03/31/rsiz7VASouyqd6H.png" alt="image-20220331234837905" style="zoom:50%;" />
+
+<h2 id="3-5-RE与RG"><a href="#3-5-RE与RG" class="headerlink" title="3.5 RE与RG"></a>3.5 RE与RG</h2><h3 id="1、RG-gt-RE"><a href="#1、RG-gt-RE" class="headerlink" title="1、RG -&gt; RE"></a>1、RG -&gt; RE</h3><p>对任何一个正规文法G，都存在一个等价的正规表达式e，使得L(e)&#x3D;L(G)</p>
+<blockquote>
+<p>正规文法的拓广：产生式的形式为 U→αV 或 U→α， α为可空字符串，即<strong>右线性文法，</strong>容易改写成RG。</p>
+</blockquote>
+<p><strong>由右线性文法到正规表达式的转换规则：</strong></p>
+<ul>
+<li>形如U→αV, V→β的产生式转换成正规表达式U &#x3D; αβ；</li>
+<li>&#x3D;&#x3D;形如U→αU|β的产生式转换成U &#x3D; α*β；&#x3D;&#x3D;</li>
+<li>形如U→α|β的产生式转换成U &#x3D; α|β。</li>
+<li>反复使用上述三条规则，直到文法只剩下一条关于文法开始符号的产生式，且该条产生式的右部不含非终结符号。这个产生式的右部就是正规表达式。</li>
+</ul>
+<p><strong>例子：</strong></p>
+<img data-src="https://s2.loli.net/2022/04/07/mjVd8KzNpU5EICS.png" alt="image-20220407223903410" style="zoom:67%;" />
+
+<img data-src="https://s2.loli.net/2022/04/07/ef5n4uIJqNZTc6P.png" alt="image-20220407224157566" style="zoom: 50%;" />
+
+<h3 id="2、RE-gt-RG"><a href="#2、RE-gt-RG" class="headerlink" title="2、RE -&gt; RG"></a>2、RE -&gt; RG</h3><p>直接转换较困难，可通过FA来间接转换</p>
+<p><strong>规则：</strong></p>
+<ul>
+<li><p>令RG为G[S] ，对RE e，形成产生式S→e ；</p>
+</li>
+<li><p>利用下列替换规则，重写产生式，直至符合RG形式要求： </p>
+<ul>
+<li><p>A→xy       替换成   A→xB ， B→y (新增B ∈ V<del>N</del>) </p>
+</li>
+<li><p>A→x*y     替换成   A→xA | y</p>
+</li>
+<li><p>A→x | y   替换成   A→x ， A→y</p>
+<p>  即得所求之RG G[S]。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>例子：</strong></p>
+<p><img data-src="https://s2.loli.net/2022/04/07/YJ6rljcPZOHA5kz.png" alt="image-20220407225050765"></p>
+<img data-src="https://s2.loli.net/2022/04/07/TzrkhKHd2lDIoiV.png" alt="image-20220407225042766" style="zoom:50%;" />
+
+<h2 id="3-6-RG、FA、RE三者关系"><a href="#3-6-RG、FA、RE三者关系" class="headerlink" title="3.6 RG、FA、RE三者关系"></a>3.6 RG、FA、RE三者关系</h2><img data-src="https://s2.loli.net/2022/03/31/evJchpxWLl6E8fb.png" alt="image-20220331201340852" style="zoom:50%;" />
+
+<p><img data-src="https://s2.loli.net/2022/03/31/TEmsJP1gAUjzN7n.png" alt="image-20220331234446610"> </p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div>
+    
+        <div style="text-align:center;color: #111;font-size:25px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Zhang Wen Hui
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://zhangwenhui-blog.com.cn/2022/06/27/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%89%8D%E4%B8%89%E7%AB%A0%EF%BC%89/" title="编译原理复习笔记">http://zhangwenhui-blog.com.cn/2022/06/27/编译原理复习笔记（前三章）/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> 编译原理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/06/27/%E4%B8%83%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="prev" title="七、虚拟内存管理">
+                  <i class="fa fa-chevron-left"></i> 七、虚拟内存管理
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Wen Hui</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wenhuizhang20021222","repo":"wenhuizhang20021222.github.io","client_id":"404d4662eeff0092368a","client_secret":"fcdcd5862c271778a7e8a98fa6c19056b9145d57","admin_user":"wenhuizhang20021222","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"121a74daf29f388f7fef6bbbd918a84b"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+
+</html>

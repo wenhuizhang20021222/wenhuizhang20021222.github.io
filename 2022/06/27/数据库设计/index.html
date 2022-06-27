@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <script src="/live2d-widget/autoload.js"></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangwenhui-blog.com.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":true,"color":"#64CEAA","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+  <div class="weather">
+  <!-- 《添加“心知天气”-->
+  
+    <div id="tp-weather-widget"></div>
+  <script>
+    (function(a,h,g,f,e,d,c,b){b=function(){d=h.createElement(g);c=h.getElementsByTagName(g)[0];d.src=e;d.charset="utf-8";d.async=1;c.parentNode.insertBefore(d,c)};a["SeniverseWeatherWidgetObject"]=f;a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});a[f].l=+new Date();if(a.attachEvent){a.attachEvent("onload",b)}else{a.addEventListener("load",b,false)}}(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10)));
+    window.SeniverseWeatherWidget('show', {
+      flavor: "slim",
+      location: "WX4FBXXFKE4F",
+      geolocation: true,
+      language: "zh-CN",
+      unit: "c",
+      theme: "auto",
+      token: "efb760e3-5326-4f08-839b-122738249a17",
+      hover: "enabled",
+      container: "tp-weather-widget"
+    })
+  </script>
+  
+  <!-- 添加“心知天气”》-->
+  </div>
+
+
+
+
+    <meta name="description" content="五、数据库设计1、ER图中的基本概念现实世界、ER模型、关系模型中的概念对应  实体类型和实体实例 实体类型：一个属性集  实体类型可以是物理上的，如staff；也可以是概念上的，如work experience   实体实例：对应于实体类型下的一个取值，实体实例是可区别的  例子： 学生是一个实体类型，可以用（学号，姓名，性别，年龄，所属系）这个属性集来描述学生，每一个学生，如学生i，是学生实体">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库设计">
+<meta property="og:url" content="http://zhangwenhui-blog.com.cn/2022/06/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="zwh&#39;s Blog">
+<meta property="og:description" content="五、数据库设计1、ER图中的基本概念现实世界、ER模型、关系模型中的概念对应  实体类型和实体实例 实体类型：一个属性集  实体类型可以是物理上的，如staff；也可以是概念上的，如work experience   实体实例：对应于实体类型下的一个取值，实体实例是可区别的  例子： 学生是一个实体类型，可以用（学号，姓名，性别，年龄，所属系）这个属性集来描述学生，每一个学生，如学生i，是学生实体">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/f43azBqyCJXxniM.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/KusxJgkM6jNB3vY.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/lzYsi72DWPxHgoj.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/DcAMZWVklYqTdU1.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/AEn5ze4rsiGZUQ6.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/OvTZMpQCNzlRu9t.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/8plaIBwcOfkeZ1T.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/KwhYO63iC9AkLG4.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/1wB9IzoaCvGTmSj.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/Pi8boG26YmrvpZf.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/42ZoVecLI9K8TjC.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/X3becj8krD4TuYo.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/lBaznOJ2CUfdPcR.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/DPqiV6CSAW3krht.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/zHBIxnosYPqXZt2.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/DZjGTJOHfSF2VuY.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/vkUdu8rwRaBSiYf.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/JjODx9q1p4Ngo2s.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/19/YXJewcjOgv5nBGT.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/19/zRnwamC5L82ekQI.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/19/ljstSaZ9Vmc1u3B.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/o2piID5CdsX84M9.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/14/K2ZBMf5Ln4SePD3.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/14/wFm5a2JVHkYrSqd.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/14/WxGbp3khOcZijf7.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/14/CndNF5YtxWcRaJO.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/XP6twnef4rG2bgH.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/zPa9jNSdThUeH1B.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/Zps7gCADun8rBGI.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/o4OXdy1nNVpeR9b.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/xJ3vpA51YfnkU9P.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/sBSwXZjvz4D6YlP.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/19/2SrvHy1h3oebWnA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/nWRxKhXNc5mlqdi.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/lgyLBaHn9iD2RYU.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/ThBVvoKfijR7cy9.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/k8dJuPe6AByfCE2.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/PgsECqprb1HOG3Q.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/dxnKtID86QFU7T5.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/j9uenoirmIlq4Mc.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/1DFPGLpnarTCXv9.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/13/vscW9OjZQRDkaIP.png">
+<meta property="article:published_time" content="2022-06-27T14:54:40.000Z">
+<meta property="article:modified_time" content="2022-06-27T15:12:30.881Z">
+<meta property="article:author" content="Zhang Wen Hui">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/04/13/f43azBqyCJXxniM.png">
+
+
+<link rel="canonical" href="http://zhangwenhui-blog.com.cn/2022/06/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://zhangwenhui-blog.com.cn/2022/06/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/","path":"2022/06/27/数据库设计/","title":"数据库设计"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据库设计 | zwh's Blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<!-- 樱花特效 -->
+  
+      <script async src="/js/fairyDustCursor.js"></script>
+  
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+   <script type="text/javascript" src="/js/fireworks.js"></script>
+
+
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zwh's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Hello World!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.</span> <span class="nav-text">五、数据库设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81ER%E5%9B%BE%E4%B8%AD%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">1、ER图中的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%B0%E5%AE%9E%E4%B8%96%E7%95%8C%E3%80%81ER%E6%A8%A1%E5%9E%8B%E3%80%81%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E6%A6%82%E5%BF%B5%E5%AF%B9%E5%BA%94"><span class="nav-number">1.1.1.</span> <span class="nav-text">现实世界、ER模型、关系模型中的概念对应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%AE%9E%E4%BD%93%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">实体类型和实体实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7"><span class="nav-number">1.1.3.</span> <span class="nav-text">属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%94%E7%B3%BB%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.4.</span> <span class="nav-text">联系类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95E-R%E5%9B%BE"><span class="nav-number">1.1.5.</span> <span class="nav-text">简单E-R图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E8%81%94%E7%B3%BB%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%9B%BE%E5%BD%A2%E5%8C%96%E8%A1%A8%E7%A4%BA%EF%BC%9A"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">（1）联系类型的图形化表示：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E5%B1%9E%E6%80%A7%E7%9A%84%E5%9B%BE%E5%BD%A2%E5%8C%96%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">（2）属性的图形化表示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%B1%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%BA%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.6.</span> <span class="nav-text">弱实体类型和强实体类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81-%E7%BB%93%E6%9E%84%E5%8C%96%E7%BA%A6%E6%9D%9F"><span class="nav-number">1.2.</span> <span class="nav-text">2、 结构化约束</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81ER%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">3、ER模型的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E9%99%B7%E9%98%B1"><span class="nav-number">1.3.1.</span> <span class="nav-text">连接陷阱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%87%E5%BD%A2%E9%99%B7%E9%98%B1-fan-trap-%EF%BC%9A"><span class="nav-number">1.3.2.</span> <span class="nav-text">扇形陷阱(fan trap)：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E5%9D%91%E9%99%B7%E9%98%B1-chasm-trap-%EF%BC%9A"><span class="nav-number">1.3.3.</span> <span class="nav-text">深坑陷阱(chasm trap)：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81-%E5%A2%9E%E5%BC%BA%E7%9A%84ER%E6%A8%A1%E5%9E%8B%EF%BC%88EER%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">4、  增强的ER模型（EER）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81-%E7%89%B9%E6%AE%8A%E5%8C%96%E3%80%81%E6%A6%82%E5%8C%96"><span class="nav-number">1.5.</span> <span class="nav-text">5、  特殊化、概化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81-%E8%81%9A%E5%90%88%E4%B8%8E%E7%BB%84%E5%90%88"><span class="nav-number">1.6.</span> <span class="nav-text">6、  聚合与组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81-%E5%B1%80%E9%83%A8%E8%A7%86%E5%9B%BE%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%90%88%E5%B9%B6ER%E5%9B%BE"><span class="nav-number">1.7.</span> <span class="nav-text">7、  局部视图设计及合并ER图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#x3D-x3D-8%E3%80%81-%E5%B0%86ER%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B-x3D-x3D"><span class="nav-number">1.8.</span> <span class="nav-text">&#x3D;&#x3D;8、  将ER模型转换为关系模型&#x3D;&#x3D;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%BC%BA%E5%AE%9E%E4%BD%93%E7%9A%84%E8%BD%AC%E6%8D%A2%EF%BC%9A%E7%9B%B4%E6%8E%A5%E8%BD%AC%E6%8D%A2%E6%88%90%E4%B8%80%E5%BC%A0%E8%A1%A8"><span class="nav-number">1.8.0.1.</span> <span class="nav-text">（1）强实体的转换：直接转换成一张表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E4%BB%85%E5%8F%82%E4%B8%8E%E4%B8%80%E4%B8%AA1-1%E8%81%94%E7%B3%BB%E7%9A%84%E5%BC%B1%E5%AE%9E%E4%BD%93%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.8.0.2.</span> <span class="nav-text">（2）仅参与一个1:1联系的弱实体的转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E5%8F%82%E4%B8%8E1-N%E6%88%96M-N%E8%81%94%E7%B3%BB%E7%9A%84%E5%BC%B1%E5%AE%9E%E4%BD%93%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.8.0.3.</span> <span class="nav-text">（3）参与1:N或M:N联系的弱实体的转换**</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%884%EF%BC%89-1-1-%E7%9A%84%E8%81%94%E7%B3%BB%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.8.0.4.</span> <span class="nav-text">（4） 1:1 的联系的转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%885%EF%BC%891-N-%E7%9A%84%E8%81%94%E7%B3%BB%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.8.0.5.</span> <span class="nav-text">（5）1:N 的联系的转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%886%EF%BC%89-N%E5%85%83%E8%81%94%E7%B3%BB%EF%BC%88%E6%B6%89%E5%8F%8AN%E4%B8%AA%E5%AE%9E%E4%BD%93%EF%BC%89%EF%BC%88%E5%8C%85%E6%8B%ACN-M-%E7%9A%84%E8%81%94%E7%B3%BB%EF%BC%89%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.8.0.6.</span> <span class="nav-text">（6） N元联系（涉及N个实体）（包括N:M 的联系）的转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%887%EF%BC%89-%E5%A4%8D%E5%90%88%E5%B1%9E%E6%80%A7%E3%80%81%E5%A4%9A%E5%80%BC%E5%B1%9E%E6%80%A7%E5%92%8C%E6%B4%BE%E7%94%9F%E5%B1%9E%E6%80%A7%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">1.8.0.7.</span> <span class="nav-text">（7） 复合属性、多值属性和派生属性的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%888%EF%BC%89-%E5%AD%90%E7%B1%BB%E4%B8%8D%E7%9B%B8%E4%BA%A4%E7%9A%84%E8%B6%85%E7%B1%BB-x2F-%E5%AD%90%E7%B1%BB%E8%81%94%E7%B3%BB%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.8.0.8.</span> <span class="nav-text">（8） 子类不相交的超类&#x2F;子类联系的转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%889%EF%BC%89-%E5%AD%90%E7%B1%BB%E7%9B%B8%E4%BA%A4%E7%9A%84%E8%B6%85%E7%B1%BB-x2F-%E5%AD%90%E7%B1%BB%E8%81%94%E7%B3%BB%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.8.0.9.</span> <span class="nav-text">（9） 子类相交的超类&#x2F;子类联系的转换</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhang Wen Hui"
+      src="/images/zrn.png">
+  <p class="site-author-name" itemprop="name">Zhang Wen Hui</p>
+  <div class="site-description" itemprop="description">我希望许过的愿望一路生花</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wenhuizhang20021222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wenhuizhang20021222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1819027992&auto=1&height=66"></iframe>
+      
+      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+      <div class="widget-wrap">
+          <h3 class="widget-title">Tag Cloud</h3>
+          <div id="myCanvasContainer" class="widget tagcloud">
+              <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a><span class="tag-list-count">1</span></li></ul>
+              </canvas>
+          </div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/wenhuizhang20021222" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhangwenhui-blog.com.cn/2022/06/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zrn.png">
+      <meta itemprop="name" content="Zhang Wen Hui">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="description" content="我希望许过的愿望一路生花">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据库设计 | zwh's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库设计
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-06-27 22:54:40 / 修改时间：23:12:30" itemprop="dateCreated datePublished" datetime="2022-06-27T22:54:40+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="五、数据库设计"><a href="#五、数据库设计" class="headerlink" title="五、数据库设计"></a>五、数据库设计</h1><h2 id="1、ER图中的基本概念"><a href="#1、ER图中的基本概念" class="headerlink" title="1、ER图中的基本概念"></a>1、ER图中的基本概念</h2><h3 id="现实世界、ER模型、关系模型中的概念对应"><a href="#现实世界、ER模型、关系模型中的概念对应" class="headerlink" title="现实世界、ER模型、关系模型中的概念对应"></a>现实世界、ER模型、关系模型中的概念对应</h3><img data-src="https://s2.loli.net/2022/04/13/f43azBqyCJXxniM.png" alt="image-20220413170050668" style="zoom:67%;" />
+
+<h3 id="实体类型和实体实例"><a href="#实体类型和实体实例" class="headerlink" title="实体类型和实体实例"></a>实体类型和实体实例</h3><ul>
+<li><p>实体类型：一个属性集</p>
+<blockquote>
+<p>实体类型可以是物理上的，如staff；也可以是概念上的，如work experience</p>
+</blockquote>
+</li>
+<li><p>实体实例：对应于实体类型下的一个取值，实体实例是可区别的</p>
+<blockquote>
+<p>例子：</p>
+<p>学生是一个实体类型，可以用（学号，姓名，性别，年龄，所属系）这个属性集来描述学生，每一个学生，如学生i，是学生实体的一个实体实例；</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><ul>
+<li><p>属性（attribute）：实体类型&#x3D;&#x3D;或联系类型&#x3D;&#x3D;所具有的某一特性</p>
+</li>
+<li><p>属性域（attribute domain）：单个属性或多个属性所允许的值的集合</p>
+</li>
+<li><p>&#x3D;&#x3D;简单属性&#x3D;&#x3D;（simple attribute）：由单个部分组成的属性，可独立地存在</p>
+</li>
+<li><p>&#x3D;&#x3D;复合属性&#x3D;&#x3D;（composite&#x2F;component attribute）：共同描述一个性质的一组简单属性。  eg. 地址（可以分为省市县等等）、姓名（last name， first name）</p>
+<blockquote>
+<p>复合属性的处理：把复合属性拆分成多个属性，还是放在原来的表里</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>&#x3D;&#x3D;单值属性&#x3D;&#x3D;（single-valued attribute）：在一个实体实例中只有单独一个值</p>
+</li>
+<li><p>&#x3D;&#x3D;多值属性&#x3D;&#x3D;（multi-valued attribute）：在一个实体实例中可以取多个值的属性。eg.  电话、爱好等等</p>
+<blockquote>
+<p>多值属性的处理：用单独的表来处理</p>
+</blockquote>
+</li>
+<li><p>导出属性（derived attribute）：由相关的一个属性或一组属性的值导出，在同一个实体类型中该属性并不是必要的。  eg.  年龄（可以根据生日来计算）</p>
+<blockquote>
+<p>导出属性的处理：大部分情况下不保存，用的时候直接计算</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<ul>
+<li>候选关键字（candidate key）：能唯一标识每个实体实例的最小属性组</li>
+<li>主关键字（primary key）：实体类型中被选来唯一标识每个实体实例的候选关键字</li>
+<li>复合关键字（composite key）：包括两个或更多属性的候选关键字。eg.  SC表，学号和课程号构成复合关键字</li>
+</ul>
+<h3 id="联系类型"><a href="#联系类型" class="headerlink" title="联系类型"></a>联系类型</h3><ul>
+<li><p>联系类型（relationship type）：实体类型间的一组有意义的关联</p>
+</li>
+<li><p>联系实例（relationship occurrence）：一个可唯一标识的关联，涉及参与该联系的每个实体类型的一个实例</p>
+<blockquote>
+<p>联系类型和联系实例是型和值的关系</p>
+</blockquote>
+</li>
+<li><p>联系类型的度（degree of a relationship type）：参与联系的实体类型的个数。度为2的联系称为二元联系；度为3的称为三元联系；度为3或更高的联系，称为多元联系</p>
+<blockquote>
+<p>例如：学生选课，学生和课程，二元联系</p>
+</blockquote>
+</li>
+<li><p>递归联系（recursive relationship）：是这样一种联系类型，其同一个实体类型参与的次数大于1，并且每次参与具有不同角色.递归联系也称为一元联系。</p>
+<blockquote>
+<p>例如：学生选班干</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="简单E-R图"><a href="#简单E-R图" class="headerlink" title="简单E-R图"></a>简单E-R图</h3><h4 id="（1）联系类型的图形化表示："><a href="#（1）联系类型的图形化表示：" class="headerlink" title="（1）联系类型的图形化表示："></a>（1）联系类型的图形化表示：</h4><ul>
+<li><p>一元联系（递归联系）：</p>
+  <img data-src="https://s2.loli.net/2022/04/13/KusxJgkM6jNB3vY.png" alt="image-20220413183610740" style="zoom:67%;" />
+</li>
+<li><p>二元联系：每个联系类型都表现为连接相关联实体类型的一条线，在线上标明该联系的名字,通常用一个动词或动词短语。箭头表示联系的方向。</p>
+<p>  <img data-src="https://s2.loli.net/2022/04/13/lzYsi72DWPxHgoj.png" alt="image-20220413182921721"></p>
+</li>
+<li><p>三元联系：用菱形表示度大于2的联系，联系名放在菱形内部</p>
+  <img data-src="https://s2.loli.net/2022/04/13/DcAMZWVklYqTdU1.png" alt="image-20220413183338386" style="zoom:67%;" />
+
+<blockquote>
+<p>四元联系与三元联系类似</p>
+</blockquote>
+</li>
+<li><p>两个实体之间存在多于一种联系时课使用角色名</p>
+  <img data-src="https://s2.loli.net/2022/04/13/AEn5ze4rsiGZUQ6.png" alt="image-20220413183823327" style="zoom:67%;" /></li>
+</ul>
+<h4 id="（2）属性的图形化表示"><a href="#（2）属性的图形化表示" class="headerlink" title="（2）属性的图形化表示"></a>（2）属性的图形化表示</h4><ul>
+<li><p>&#x3D;&#x3D;实体的属性：&#x3D;&#x3D;在一个实体类型中显示其属性时，将实体类型的矩阵分为两个部分：上部分是实体的名字，下部分列出实体属性的名字。</p>
+<ul>
+<li>对于主关键字属性,第一个列出，并在其名字后面标记{PK}，</li>
+<li>在部分主关键字属性的名字后标记{PPK}</li>
+<li>对于候选关键字属性的名字后面标记{AK}</li>
+<li>简单属性和单值属性没有必要标记</li>
+<li>对于复合属性，在其名下以右缩进形式列出子属性名</li>
+<li>对于多值属性，在属性名后面注明它的取值范围</li>
+<li>对于导出属性，在属性名前加上前缀“&#x2F;</li>
+</ul>
+<p>  例子：</p>
+  <img data-src="https://s2.loli.net/2022/04/13/OvTZMpQCNzlRu9t.png" alt="image-20220413184441872" style="zoom:67%;" />
+</li>
+<li><p>&#x3D;&#x3D;联系的属性&#x3D;&#x3D;：采用与实体类型相同的符号，但用&#x3D;&#x3D;虚线&#x3D;&#x3D;将表示联系属性的矩形与联系类型名连接起来</p>
+  <img data-src="https://s2.loli.net/2022/04/13/8plaIBwcOfkeZ1T.png" alt="image-20220413184614803" style="zoom:67%;" /></li>
+</ul>
+<h3 id="弱实体类型和强实体类型"><a href="#弱实体类型和强实体类型" class="headerlink" title="弱实体类型和强实体类型"></a>弱实体类型和强实体类型</h3><ul>
+<li><p>&#x3D;&#x3D;强实体类型&#x3D;&#x3D;(Strong entity type) （父实体，属主实体(owner entity)，支配实体）：该实体类型的存在不依赖于其他的实体类型</p>
+</li>
+<li><p>&#x3D;&#x3D;弱实体类型&#x3D;&#x3D;(Weak entity type) （子实体，依赖实体，从属实体）：该实体类型的存在依赖于其他实体类型的存在</p>
+<blockquote>
+<p>弱实体类型的一个特征是，仅使用该实体类型的属性无法唯一标识每个实体实例。 eg. 两个学生是同班同学，学习经历相同。</p>
+</blockquote>
+<blockquote>
+<p>例子：<img data-src="https://s2.loli.net/2022/04/13/KwhYO63iC9AkLG4.png" alt="image-20220413185233053" style="zoom:67%;" /></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2、-结构化约束"><a href="#2、-结构化约束" class="headerlink" title="2、 结构化约束"></a>2、 结构化约束</h2><ul>
+<li><p>概念：ER模型的结构化约束是指参与一个联系的实体类型上存在的约束</p>
+</li>
+<li><p>&#x3D;&#x3D;多样性&#x3D;&#x3D;：联系上的主要约束称为多样性，包括基数约束和参与约束。指的是在一个特定的联系中，一个参与实体类型的某个实例，可能与另一个参与实体类型发生关联的实例的数目（或范围）</p>
+<blockquote>
+<ul>
+<li><p>基数约束(cardinality constraints)： 描述一个特定联系类型中的一个实体&#x3D;&#x3D;最多&#x3D;&#x3D;可参与联系的实例数目(&#x3D;&#x3D;最大基数&#x3D;&#x3D;) </p>
+</li>
+<li><p>参与约束（participation constraints）：说明是否所有的实体实例都参与了联系(&#x3D;&#x3D;最小基数&#x3D;&#x3D;) </p>
+<ul>
+<li>强制参与（mandatory participation）：一个实体类型的所有实例都参与联系。x为1</li>
+<li>可选参与（optional participation ）：一个实体类型的部分实例参与约束。x为0</li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;看约束：固定n - 1方，看另一方&#x3D;&#x3D;</p>
+  <img data-src="https://s2.loli.net/2022/04/13/1wB9IzoaCvGTmSj.png" alt="image-20220413191540919" style="zoom:67%;" />
+
+<p>  某个分支机构的某个职员可以拥有0个或者多个客户</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>范围的表示：范围表示为&#x3D;&#x3D;x..y&#x3D;&#x3D;,其中x为最小参与数目（参与约束）(用0表示0,用1表示大于0),y为最大参与数目（基数约束）(用1表示1,用*或N表示大于1)</p>
+</li>
+<li><p>例子：</p>
+<ul>
+<li><p>一对一联系的多样性</p>
+  <img data-src="https://s2.loli.net/2022/04/13/Pi8boG26YmrvpZf.png" alt="image-20220413190419081" style="zoom:67%;" />
+</li>
+<li><p>一对多联系的多样性</p>
+  <img data-src="https://s2.loli.net/2022/04/13/42ZoVecLI9K8TjC.png" alt="image-20220413190430930" style="zoom:67%;" />
+</li>
+<li><p>多对多联系的多样性</p>
+  <img data-src="https://s2.loli.net/2022/04/13/X3becj8krD4TuYo.png" alt="image-20220413190445972" style="zoom:67%;" />
+
+  <img data-src="https://s2.loli.net/2022/04/13/lBaznOJ2CUfdPcR.png" alt="image-20220413191346428" style="zoom:80%;" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="3、ER模型的问题"><a href="#3、ER模型的问题" class="headerlink" title="3、ER模型的问题"></a>3、ER模型的问题</h2><h3 id="连接陷阱"><a href="#连接陷阱" class="headerlink" title="连接陷阱"></a>连接陷阱</h3><p>由于对特定联系含义的错误理解而引起的问题。</p>
+<h3 id="扇形陷阱-fan-trap-："><a href="#扇形陷阱-fan-trap-：" class="headerlink" title="扇形陷阱(fan trap)："></a>扇形陷阱(fan trap)：</h3><p>当用模型来表示实体间的联系时，某些特殊实体实例间的道路是不明确的</p>
+<img data-src="https://s2.loli.net/2022/04/13/DPqiV6CSAW3krht.png" alt="image-20220413192231143" style="zoom:67%;" />
+
+<img data-src="https://s2.loli.net/2022/04/13/zHBIxnosYPqXZt2.png" alt="image-20220413192245233" style="zoom:67%;" />
+
+<h3 id="深坑陷阱-chasm-trap-："><a href="#深坑陷阱-chasm-trap-：" class="headerlink" title="深坑陷阱(chasm trap)："></a>深坑陷阱(chasm trap)：</h3><p>当一个模型暗示某些实体类型之间存在联系，而这些实体实例间却不存在相应的道路</p>
+<img data-src="https://s2.loli.net/2022/04/13/DZjGTJOHfSF2VuY.png" alt="image-20220413192355668" style="zoom:67%;" />
+
+<img data-src="https://s2.loli.net/2022/04/13/vkUdu8rwRaBSiYf.png" alt="image-20220413192412310" style="zoom:67%;" />
+
+<h2 id="4、-增强的ER模型（EER）"><a href="#4、-增强的ER模型（EER）" class="headerlink" title="4、  增强的ER模型（EER）"></a>4、  增强的ER模型（EER）</h2><ul>
+<li><p>ER模型的局限性：冗余</p>
+</li>
+<li><p>&#x3D;&#x3D;超类：&#x3D;&#x3D;其实例构成一个或多个独立子集且各独立子集在数据模型中要显示的实体类型。含有独立子类的实体类型称为超类。例如staff</p>
+</li>
+<li><p>&#x3D;&#x3D;子类：&#x3D;&#x3D;某实体类型的一个独立实例集合，并需要在数据模型中单独表示。</p>
+<blockquote>
+<p>eg.  Staff实体类型的实体成员可分为Manager, SalesPersonnel和Secretary,</p>
+<p>Staff可以看成超类，Manager, SalesPersonnel和Secretary应看作子类</p>
+</blockquote>
+</li>
+<li><p>超类和子类的联系：</p>
+<ul>
+<li>子类中的一个实体也是超类的一个实体</li>
+<li>超类&#x2F;子类联系是一对一的</li>
+<li>有些超类的子类可能重叠（<strong>不相交约束</strong>：相交的、不相交的）。例如，一名职员可以既是经理，又是销售人员</li>
+<li>并不是超类中的每个实体都必须是子类中的实体（<strong>参与约束</strong>：强制的、可选的）。例如，有些职员没有明显的一类工作角色，比如说既不是经理，也不是销售人员</li>
+</ul>
+</li>
+<li><p>将超类和子类的概念引入ER模型的主要原因：避免对相似的概念进行重复的描述</p>
+</li>
+<li><p>属性继承：子类除了拥有其所在子类特有的属性外，同时还具有（继承）超类的所有属性</p>
+</li>
+<li><p>共享子类：一个子类有不止一个超类时，称这个子类为共享子类</p>
+<p>  &#x3D;&#x3D;在UML图中，三角形的尖指向超类&#x3D;&#x3D;</p>
+  <img data-src="https://s2.loli.net/2022/04/13/JjODx9q1p4Ngo2s.png" alt="image-20220413195615579" style="zoom:67%;" />
+</li>
+<li><p>多重继承：超类的属性都被共享子类继承，同时共享子类还可以有自己的附加属性，这种继承称为多重继承</p>
+</li>
+<li><p><strong>类型层次（自上而下）</strong>：子类也可以有自己的子类。这样构成的子类层次称为类型层次</p>
+</li>
+<li><p><strong>概化层次（自下而上）</strong>：多个有公共属性的实体可以概化为一个更高层次的超类实体（supertype entity）,或者相反，一个一般化实体可以分解成低层次的子类实体（subtype entity）</p>
+</li>
+</ul>
+<h2 id="5、-特殊化、概化"><a href="#5、-特殊化、概化" class="headerlink" title="5、  特殊化、概化"></a>5、  特殊化、概化</h2><ul>
+<li><p>特殊化过程(specialization process)：&#x3D;&#x3D;自上而下&#x3D;&#x3D; 。通过标识实体成员间的差异特征将这些成员间的差异最大化的过程</p>
+</li>
+<li><p>概化过程(generalization process)：&#x3D;&#x3D;自下而上&#x3D;&#x3D;。通过标识实体成员间的共同特征将这些成员间的差异最小化的过程</p>
+  <img data-src="https://s2.loli.net/2022/04/19/YXJewcjOgv5nBGT.png" alt="image-20220419102322804" style="zoom:67%;" />
+</li>
+<li><p>特殊化&#x2F;概化约束：</p>
+<ul>
+<li><p>&#x3D;&#x3D;参与约束&#x3D;&#x3D;：确定超类中的每个成员是否都必须是子类中的成员。</p>
+<ul>
+<li>强制的参与约束（Mandatory）：超类中的每个成员都必须是子类中的成员</li>
+<li>可选的参与约束（Optional）：超类中的成员并不一定也是子类中的成员</li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;不相交约束&#x3D;&#x3D;：描述子类成员间的联系。子类成员之间是相交（AND）的或者不相交（OR）的</p>
+<blockquote>
+<p>&#x3D;&#x3D;参与约束和不相交约束是独立的，因此可以组合成4种约束&#x3D;&#x3D;</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<img data-src="https://s2.loli.net/2022/04/19/zRnwamC5L82ekQI.png" alt="image-20220419102930019" style="zoom:67%;" />
+
+<h2 id="6、-聚合与组合"><a href="#6、-聚合与组合" class="headerlink" title="6、  聚合与组合"></a>6、  聚合与组合</h2><ul>
+<li><p>&#x3D;&#x3D;聚合(aggregation）&#x3D;&#x3D;：表示实体类型之间的“具有”(has-a)和“属于”**(is-part-of)**联系，这些实体中有一个表示整体，其他的表示部分。如汽车和轮子</p>
+<blockquote>
+ <img data-src="https://s2.loli.net/2022/04/19/ljstSaZ9Vmc1u3B.png" alt="image-20220419103229323" style="zoom: 67%;" />
+</blockquote>
+</li>
+<li><p>&#x3D;&#x3D;组合（composition）：&#x3D;&#x3D;一种特殊形式的聚合，即整体对部分存在强拥有权，且&#x3D;&#x3D;两者具有一致的生存期&#x3D;&#x3D;</p>
+<blockquote>
+<p>例如：汽车和轮子，轮子是可以单独存在的；而房子和房间，如果房子没了。那房间也不存在了</p>
+</blockquote>
+  <img data-src="https://s2.loli.net/2022/04/13/o2piID5CdsX84M9.png" alt="image-20220413202610135" style="zoom:67%;" />
+</li>
+<li><p>&#x3D;&#x3D;概括&#x3D;&#x3D;：定义了类型之间的一种子集联系，它抽象了类型之间的<strong>is subset of</strong>的语义。如学生和本科生</p>
+<p>  例子：</p>
+  <img data-src="https://s2.loli.net/2022/04/14/K2ZBMf5Ln4SePD3.png" alt="image-20220414123506992" style="zoom:67%;" /></li>
+</ul>
+<h2 id="7、-局部视图设计及合并ER图"><a href="#7、-局部视图设计及合并ER图" class="headerlink" title="7、  局部视图设计及合并ER图"></a>7、  局部视图设计及合并ER图</h2><ul>
+<li><p>根据局部结构设计分ER图，即局部ER图</p>
+</li>
+<li><p>合并ER图</p>
+<ul>
+<li><p>方法：二元合并法或者多元合并法</p>
+</li>
+<li><p>冲突处理：</p>
+<ul>
+<li><p>属性冲突：包括属性域冲突和属性取值单位冲突</p>
+<p>  解决方法：取尽可能多的包含较多局部ER图要求的数据类型、值域或取值单位，并可考虑今后系统维护的工作量作为取舍</p>
+</li>
+<li><p>命名冲突：包括同名异义和异名同义。解决方法：重新命名</p>
+</li>
+<li><p>结构冲突：</p>
+<ul>
+<li>同一对象在不同应用中具有不同的抽象（解决方法：统一为实体或属性）</li>
+<li>同一对象在不同局部ER图中所包含的属性不完全相同，或属性的排列次序不完全相同（解决方法：使该实体的属性取各局部ER图中属性的并集，再适当调整属性的次序）</li>
+<li>实体之间的联系在不同局部ER图中呈现不同的类型（解决方法：根据应用的语义对实体联系的类型进行综合或调整）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>消除数据冗余</p>
+<ul>
+<li><p>用分析法消除冗余数据（😢其实就是观察法），例如实发工资可以由其他列推算得到，则可以删去实发工资</p>
+</li>
+<li><p>用规范化消除冗余联系，可以通过求最小依赖集来实现</p>
+<p>  <img data-src="https://s2.loli.net/2022/04/14/wFm5a2JVHkYrSqd.png" alt="image-20220414142449087"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>例子:</p>
+<p><img data-src="https://s2.loli.net/2022/04/14/WxGbp3khOcZijf7.png" alt="image-20220414124835366"></p>
+<p><img data-src="https://s2.loli.net/2022/04/14/CndNF5YtxWcRaJO.png" alt="image-20220414124850694"></p>
+<h2 id="x3D-x3D-8、-将ER模型转换为关系模型-x3D-x3D"><a href="#x3D-x3D-8、-将ER模型转换为关系模型-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;8、  将ER模型转换为关系模型&#x3D;&#x3D;"></a>&#x3D;&#x3D;8、  将ER模型转换为关系模型&#x3D;&#x3D;</h2><ul>
+<li><p>ER结构与关系结构的对应关系</p>
+  <img data-src="https://s2.loli.net/2022/04/13/XP6twnef4rG2bgH.png" alt="image-20220413203447160" style="zoom:67%;" />
+</li>
+<li><p>&#x3D;&#x3D;将ER模型转换为关系模型的9步算法&#x3D;&#x3D;</p>
+  <img data-src="https://s2.loli.net/2022/04/13/zPa9jNSdThUeH1B.png" alt="image-20220413203911206" style="zoom:67%;" /></li>
+</ul>
+<h4 id="（1）强实体的转换：直接转换成一张表"><a href="#（1）强实体的转换：直接转换成一张表" class="headerlink" title="（1）强实体的转换：直接转换成一张表"></a>（1）强实体的转换：直接转换成一张表</h4><img data-src="https://s2.loli.net/2022/04/13/Zps7gCADun8rBGI.png" alt="image-20220413204026593"  />
+
+<h4 id="（2）仅参与一个1-1联系的弱实体的转换"><a href="#（2）仅参与一个1-1联系的弱实体的转换" class="headerlink" title="（2）仅参与一个1:1联系的弱实体的转换"></a>（2）仅参与一个1:1联系的弱实体的转换</h4><p><img data-src="https://s2.loli.net/2022/04/13/o4OXdy1nNVpeR9b.png" alt="image-20220413204240217"></p>
+<h4 id="（3）参与1-N或M-N联系的弱实体的转换"><a href="#（3）参与1-N或M-N联系的弱实体的转换" class="headerlink" title="（3）参与1:N或M:N联系的弱实体的转换**"></a>（3）参与1:N或M:N联系的弱实体的转换**</h4><p>将参与一个1:N或M:N或多个联系的弱实体W，转换为一张表T，表中包括弱实体的所有的单值属性或复合属性的组成属性。</p>
+<ul>
+<li><p>若强实体S与弱实体W之间是&#x3D;&#x3D;1:N联系，则T的主键 &#x3D; W的主关键字+S的主关键字&#x3D;&#x3D;</p>
+<p>  <img data-src="https://s2.loli.net/2022/04/13/xJ3vpA51YfnkU9P.png" alt="image-20220413205556256"></p>
+</li>
+<li><p>若强实体S与弱实体W之间是&#x3D;&#x3D;M:N联系，则T的主键&#x3D;一个新创建的具有唯一值的属性X&#x3D;&#x3D;，而实体间的联系在step six处理</p>
+<blockquote>
+<p>如果采用T的主键 &#x3D; W的主关键字+S的主关键字，会造成冗余</p>
+</blockquote>
+  <img data-src="https://s2.loli.net/2022/04/13/sBSwXZjvz4D6YlP.png" alt="image-20220413231701028" style="zoom:67%;" />
+
+<blockquote>
+<p>父子关系等等可以作为联系的属性</p>
+<img data-src="https://s2.loli.net/2022/04/19/2SrvHy1h3oebWnA.png" alt="image-20220419103909683" style="zoom: 33%;" /></blockquote>
+</li>
+</ul>
+<h4 id="（4）-1-1-的联系的转换"><a href="#（4）-1-1-的联系的转换" class="headerlink" title="（4） 1:1 的联系的转换"></a>（4） 1:1 的联系的转换</h4><ul>
+<li><p>两方都强制参与：将两个实体组合为一个关系T，然后将联系属性加入到关系T中</p>
+  <img data-src="https://s2.loli.net/2022/04/13/nWRxKhXNc5mlqdi.png" alt="image-20220413231857172" style="zoom:67%;" />
+</li>
+<li><p>一方强制参与：将可选方实体的主关键字作为强制方实体的关系的外部关键字，然后将联系属性加入到强制实体的关系中</p>
+<blockquote>
+<p>如果放到可选参与方，会造成空间浪费，因为会有空的；强制参与方就不会有空的</p>
+</blockquote>
+  <img data-src="https://s2.loli.net/2022/04/13/lgyLBaHn9iD2RYU.png" alt="image-20220413232130399" style="zoom:67%;" />
+</li>
+<li><p>两方都可选参与：若没有进一步的信息，可选任一可选实体当作强制实体，使用方法（2）转换</p>
+  <img data-src="https://s2.loli.net/2022/04/13/ThBVvoKfijR7cy9.png" alt="image-20220413232412596" style="zoom:67%;" /></li>
+</ul>
+<h4 id="（5）1-N-的联系的转换"><a href="#（5）1-N-的联系的转换" class="headerlink" title="（5）1:N 的联系的转换"></a>（5）1:N 的联系的转换</h4><p>对于任意一个1:N联系，一方实体的主关键字作为多方实体关系的外部关键字，该联系的任何属性也安排在多方</p>
+<blockquote>
+<p>如果放到一方实体的话，则会造成多值</p>
+</blockquote>
+<img data-src="https://s2.loli.net/2022/04/13/k8dJuPe6AByfCE2.png" alt="image-20220413232534635" style="zoom:67%;" />
+
+<h4 id="（6）-N元联系（涉及N个实体）（包括N-M-的联系）的转换"><a href="#（6）-N元联系（涉及N个实体）（包括N-M-的联系）的转换" class="headerlink" title="（6） N元联系（涉及N个实体）（包括N:M 的联系）的转换"></a>（6） N元联系（涉及N个实体）（包括N:M 的联系）的转换</h4><p>对于任意一个M:N联系或N元联系，&#x3D;&#x3D;生成一个表示该联系的关系R（注意外键），&#x3D;&#x3D;关系R包含该联系的所有属性以及作为R的外部关键字出现的所有属主实体的主关键字</p>
+<img data-src="https://s2.loli.net/2022/04/13/PgsECqprb1HOG3Q.png" alt="image-20220413232804774" style="zoom:67%;" />
+
+<img data-src="https://s2.loli.net/2022/04/13/dxnKtID86QFU7T5.png" alt="image-20220413232956311" style="zoom:67%;" />
+
+<blockquote>
+<p>同一实体集的实体间的联系，即自联系，也可按上述1:1， 1：n， m：n的3种情况分别处理</p>
+</blockquote>
+<h4 id="（7）-复合属性、多值属性和派生属性的处理"><a href="#（7）-复合属性、多值属性和派生属性的处理" class="headerlink" title="（7） 复合属性、多值属性和派生属性的处理"></a>（7） 复合属性、多值属性和派生属性的处理</h4><ul>
+<li>&#x3D;&#x3D;复合属性&#x3D;&#x3D;：为每个子属性创建一个单独的属性而将复合属性去掉</li>
+<li>&#x3D;&#x3D;多值属性&#x3D;&#x3D;：将多值属性生成为一个表示该属性的关系，<strong>并把该属性的属主实体的主关键字作为该关系的外部关键字</strong></li>
+<li>&#x3D;&#x3D;派生属性&#x3D;&#x3D;：从关系模式中去掉</li>
+</ul>
+<img data-src="https://s2.loli.net/2022/04/13/j9uenoirmIlq4Mc.png" alt="image-20220413233231580" style="zoom:67%;" />
+
+<h4 id="（8）-子类不相交的超类-x2F-子类联系的转换"><a href="#（8）-子类不相交的超类-x2F-子类联系的转换" class="headerlink" title="（8） 子类不相交的超类&#x2F;子类联系的转换"></a>（8） 子类不相交的超类&#x2F;子类联系的转换</h4><p>对于每个具有强制参与且不相交子类的超类&#x2F;子类联系– {Mandatory, Or}</p>
+<ul>
+<li><p>对于每个子类Si，创建一个新表Ti; </p>
+</li>
+<li><p>将超类的简单属性和复合属性的简单组合属性放入Ti的属性集中；</p>
+</li>
+<li><p>将Si的简单属性和复合属性的简单组合属性放入Ti的属性集中；</p>
+</li>
+<li><p>标识主键和候选键。</p>
+<p>  &#x3D;&#x3D;超类不创建表（因为是强制参与且不相交，超类中的某个成员一定属于且仅属于某一个子类），各组合的超类&#x2F;子类一个表&#x3D;&#x3D;</p>
+  <img data-src="https://s2.loli.net/2022/04/13/1DFPGLpnarTCXv9.png" alt="image-20220413233638204" style="zoom:67%;" /></li>
+</ul>
+<h4 id="（9）-子类相交的超类-x2F-子类联系的转换"><a href="#（9）-子类相交的超类-x2F-子类联系的转换" class="headerlink" title="（9） 子类相交的超类&#x2F;子类联系的转换"></a>（9） 子类相交的超类&#x2F;子类联系的转换</h4><p>对于每个具有相交子类 或 可选参与且不相交子类的超类&#x2F;子类联系（即除了{Mandatory, Or}之外的三种组合约束）</p>
+<ul>
+<li><p>对于超类，创建一个新表O; </p>
+</li>
+<li><p>将超类的简单属性和复合属性的简单组合属性放入O的属性集中；</p>
+</li>
+<li><p>标识O的主键和候选键；</p>
+</li>
+<li><p>对于每个子类Si，创建一个新表Ti; </p>
+</li>
+<li><p>将Si的简单属性和复合属性的简单组合属性放入Ti的属性集中；</p>
+</li>
+<li><p><strong>将O的主键放入Ti的属性集中，作为Ti的外键</strong></p>
+<p>  &#x3D;&#x3D;超类创建一个表，各子类一个表&#x3D;&#x3D;</p>
+</li>
+</ul>
+<img data-src="https://s2.loli.net/2022/04/13/vscW9OjZQRDkaIP.png" alt="image-20220413234448229" style="zoom:67%;" />
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div>
+    
+        <div style="text-align:center;color: #111;font-size:25px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Zhang Wen Hui
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://zhangwenhui-blog.com.cn/2022/06/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/" title="数据库设计">http://zhangwenhui-blog.com.cn/2022/06/27/数据库设计/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"><i class="fa fa-tag"></i> 数据库</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/06/27/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/" rel="prev" title="数据库安全">
+                  <i class="fa fa-chevron-left"></i> 数据库安全
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/06/27/%E5%85%B3%E7%B3%BB%E8%8C%83%E5%BC%8F/" rel="next" title="关系范式">
+                  关系范式 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Wen Hui</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wenhuizhang20021222","repo":"wenhuizhang20021222.github.io","client_id":"404d4662eeff0092368a","client_secret":"fcdcd5862c271778a7e8a98fa6c19056b9145d57","admin_user":"wenhuizhang20021222","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"2977671198f5f533dcb0a774ae4f7359"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+
+</html>

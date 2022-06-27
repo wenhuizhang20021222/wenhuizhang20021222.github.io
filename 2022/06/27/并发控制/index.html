@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <script src="/live2d-widget/autoload.js"></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon-32x32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon-16x16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangwenhui-blog.com.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":true,"color":"#64CEAA","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+  <div class="weather">
+  <!-- 《添加“心知天气”-->
+  
+    <div id="tp-weather-widget"></div>
+  <script>
+    (function(a,h,g,f,e,d,c,b){b=function(){d=h.createElement(g);c=h.getElementsByTagName(g)[0];d.src=e;d.charset="utf-8";d.async=1;c.parentNode.insertBefore(d,c)};a["SeniverseWeatherWidgetObject"]=f;a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});a[f].l=+new Date();if(a.attachEvent){a.attachEvent("onload",b)}else{a.addEventListener("load",b,false)}}(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10)));
+    window.SeniverseWeatherWidget('show', {
+      flavor: "slim",
+      location: "WX4FBXXFKE4F",
+      geolocation: true,
+      language: "zh-CN",
+      unit: "c",
+      theme: "auto",
+      token: "efb760e3-5326-4f08-839b-122738249a17",
+      hover: "enabled",
+      container: "tp-weather-widget"
+    })
+  </script>
+  
+  <!-- 添加“心知天气”》-->
+  </div>
+
+
+
+
+    <meta name="description" content="七、并发控制UNIT 16  事务管理16.1  事务的定义与特性 、事务管理 事务产生的原因：保证数据库状态的一致性  事务（transaction）：用户定义的一个数据库操作序列，这些工作要么全做要么全不做，是一个不可分割的工作单位。  事务是数据库系统工作的一个不可分割的基本单位，既是保持数据库完整性约束或逻辑一致性的单位，又是数据库恢复及并发控制的基本单位。   SQL定义事务的语句：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="并发控制">
+<meta property="og:url" content="http://zhangwenhui-blog.com.cn/2022/06/27/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/index.html">
+<meta property="og:site_name" content="zwh&#39;s Blog">
+<meta property="og:description" content="七、并发控制UNIT 16  事务管理16.1  事务的定义与特性 、事务管理 事务产生的原因：保证数据库状态的一致性  事务（transaction）：用户定义的一个数据库操作序列，这些工作要么全做要么全不做，是一个不可分割的工作单位。  事务是数据库系统工作的一个不可分割的基本单位，既是保持数据库完整性约束或逻辑一致性的单位，又是数据库恢复及并发控制的基本单位。   SQL定义事务的语句：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/JaiEyIGlmXsYBVF.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/tp4Q7wbhBX3OHZe.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/02/NdQICqbpTUw6HBh.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/02/fezlxuHdRMWCi6q.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/02/VcifCBzhLoZUyKa.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/02/tcUNXbLw6fxdQ8m.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/10/VBJL7PADZoWzqOy.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/Pc2ldCGzSiN7U5q.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/10/CvwZySBr9LxhmEX.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/10/cPYrELMTeukGNoH.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/10/7r8VxWoZYlmIzQc.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/02/N162xhCXYOvqiBE.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/02/48u6gehbtD5PVnT.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/02/rGFxKEV5iQNSPs4.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/10/ZMBYK4H9SIQCOit.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/10/gYxvJR9oVeKG5US.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/02/dKOgEQJji3fncZ1.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/10/iOJKRkQElyd7TzM.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/mzDWoftL9S6kxRs.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/oEV9AIyQY7LlmZD.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/02/aeJHjWo2fNvlnSM.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/hbQXdSE3r46sk52.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/f4wAEDbW2xU6ZtX.png">
+<meta property="article:published_time" content="2022-06-27T14:56:56.000Z">
+<meta property="article:modified_time" content="2022-06-27T15:12:30.879Z">
+<meta property="article:author" content="Zhang Wen Hui">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/05/03/JaiEyIGlmXsYBVF.png">
+
+
+<link rel="canonical" href="http://zhangwenhui-blog.com.cn/2022/06/27/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://zhangwenhui-blog.com.cn/2022/06/27/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/","path":"2022/06/27/并发控制/","title":"并发控制"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>并发控制 | zwh's Blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<!-- 樱花特效 -->
+  
+      <script async src="/js/fairyDustCursor.js"></script>
+  
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+   <script type="text/javascript" src="/js/fireworks.js"></script>
+
+
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">zwh's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Hello World!</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">七、并发控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UNIT-16-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">UNIT 16  事务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#16-1-%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%89%B9%E6%80%A7-%E3%80%81%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">16.1  事务的定义与特性 、事务管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-2-%E4%BA%8B%E5%8A%A1%E5%B9%B6%E5%8F%91%E5%AF%BC%E8%87%B4%E7%9A%84%E4%B8%8D%E4%B8%80%E8%87%B4%E6%80%A7"><span class="nav-number">2.2.</span> <span class="nav-text">16.2  事务并发导致的不一致性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-3-%E5%B0%81%E9%94%81%E5%8F%8A%E5%B0%81%E9%94%81%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.3.</span> <span class="nav-text">16.3  封锁及封锁协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%B0%81%E9%94%81%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.3.1.</span> <span class="nav-text">1、封锁的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%B0%81%E9%94%81%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.3.2.</span> <span class="nav-text">2、基本的封锁类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E5%B0%81%E9%94%81%E5%8D%8F%E8%AE%AE%E5%8C%85%E5%90%AB%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-number">2.3.3.</span> <span class="nav-text">3、封锁协议包含的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E5%B0%81%E9%94%81%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">2.3.4.</span> <span class="nav-text">4、封锁协议的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81%E5%B9%B6%E5%8F%91%E8%B0%83%E5%BA%A6%E7%9A%84%E5%8F%AF%E4%B8%B2%E8%A1%8C%E6%80%A7"><span class="nav-number">2.3.5.</span> <span class="nav-text">5、并发调度的可串行性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-4-%E4%B8%A4%E6%AE%B5%E9%94%81%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.4.</span> <span class="nav-text">16.4 两段锁协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-5-%E5%B0%81%E9%94%81%E7%9A%84%E7%B2%92%E5%BA%A6"><span class="nav-number">2.5.</span> <span class="nav-text">16.5  封锁的粒度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-6-%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%EF%BC%88%E5%9B%9B%E7%A7%8D%EF%BC%89"><span class="nav-number">2.6.</span> <span class="nav-text">16.6  隔离级别（四种）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-7-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D"><span class="nav-number">2.7.</span> <span class="nav-text">16.7 数据库恢复</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhang Wen Hui"
+      src="/images/zrn.png">
+  <p class="site-author-name" itemprop="name">Zhang Wen Hui</p>
+  <div class="site-description" itemprop="description">我希望许过的愿望一路生花</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/wenhuizhang20021222" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;wenhuizhang20021222" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1819027992&auto=1&height=66"></iframe>
+      
+      <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+      <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+      <div class="widget-wrap">
+          <h3 class="widget-title">Tag Cloud</h3>
+          <div id="myCanvasContainer" class="widget tagcloud">
+              <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag">编译原理</a><span class="tag-list-count">1</span></li></ul>
+              </canvas>
+          </div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/wenhuizhang20021222" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhangwenhui-blog.com.cn/2022/06/27/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/zrn.png">
+      <meta itemprop="name" content="Zhang Wen Hui">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="name" content="zwh's Blog">
+      <meta itemprop="description" content="我希望许过的愿望一路生花">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="并发控制 | zwh's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          并发控制
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-06-27 22:56:56 / 修改时间：23:12:30" itemprop="dateCreated datePublished" datetime="2022-06-27T22:56:56+08:00">2022-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="七、并发控制"><a href="#七、并发控制" class="headerlink" title="七、并发控制"></a>七、并发控制</h1><h1 id="UNIT-16-事务管理"><a href="#UNIT-16-事务管理" class="headerlink" title="UNIT 16  事务管理"></a>UNIT 16  事务管理</h1><h2 id="16-1-事务的定义与特性-、事务管理"><a href="#16-1-事务的定义与特性-、事务管理" class="headerlink" title="16.1  事务的定义与特性 、事务管理"></a>16.1  事务的定义与特性 、事务管理</h2><ul>
+<li><p><strong>事务产生的原因：</strong>保证数据库状态的一致性</p>
+</li>
+<li><p><strong>事务（transaction）：</strong>用户定义的一个数据库操作序列，这些工作要么全做要么全不做，是一个不可分割的工作单位。</p>
+<blockquote>
+<p>事务是数据库系统工作的一个不可分割的基本单位，既是保持数据库完整性约束或逻辑一致性的单位，又是数据库恢复及并发控制的基本单位。</p>
+</blockquote>
+</li>
+<li><p><strong>SQL定义事务的语句：</strong></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span> TRANSACTION	#事务开始语句</span><br><span class="line"><span class="keyword">COMMIT</span>	  #事务提交语句，此时系统将事务所有对数据库的更新写入磁盘的物理数据库中，事务正常结束</span><br><span class="line"><span class="keyword">ROLLBACK</span>  #事务非正常结束，此时系统将数据库的所有已完成的更新操作全部撤销，将事务回滚至事务开始处并重新开始执行</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>事务的三个阶段</strong>：事务初态、事务执行、事务完成</p>
+<p>  <img data-src="https://s2.loli.net/2022/05/03/JaiEyIGlmXsYBVF.png" alt="image-20220503192133312"></p>
+</li>
+<li><p><strong>事务的五个状态</strong>：活动状态、失败状态、中止状态、局部提交状态、提交状态</p>
+<p>  <img data-src="https://s2.loli.net/2022/05/03/tp4Q7wbhBX3OHZe.png" alt="image-20220503192208460"></p>
+</li>
+<li><p>&#x3D;&#x3D;事务的四个特性：ACID&#x3D;&#x3D;  </p>
+<ul>
+<li><p><strong>原子性（Atomicity）：</strong>事务包含的一组更新操作是原子不可分的，即更新操作对于数据库而言，要么全做，要么全不做，不能部分地完成</p>
+</li>
+<li><p><strong>一致性（Consistency）：</strong>指事务对数据库的每一个插入、删除、修改等更新操作，都必须遵守一定的完整性约束，系统一旦查出数据库的完整性受到破坏，则撤销该事务并清除该事务对数据库的任何影响。一个成功的事务把数据库从一个一致的状态转换到另一个一致的状态。</p>
+</li>
+<li><p><strong>隔离性（Isolation）：</strong>指两个或多个事务可以同时运行而不互相影响，一个事务内部的操作及其使用的数据对并发的其他事务是隔离的、不可见的。</p>
+</li>
+<li><p><strong>持久性（Durability）：</strong>指一个事务成功完成之后，其工作的结果就会永远保存在数据库中，是永久有效的，即使随后系统发生故障也能保持或恢复。</p>
+<blockquote>
+<p>破坏事务ACID特性的因素有：①多个事务的并行运行（并发控制）；②事务的运行过程中被强行停止（故障恢复）</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="16-2-事务并发导致的不一致性"><a href="#16-2-事务并发导致的不一致性" class="headerlink" title="16.2  事务并发导致的不一致性"></a>16.2  事务并发导致的不一致性</h2><ul>
+<li><p><strong>并发控制：</strong>保证事务的隔离性，从而保证数据库中数据的一致性</p>
+<p>  当事务操作相同的数据且这些操作是冲突的，则会破坏事务的隔离性</p>
+</li>
+<li><p><strong>事务并发导致的不一致性</strong></p>
+<p>  包括丢失修改（lost update）、不可重复读（non-repeatable read）、读脏数据（dirty read）、幻像（phantom）</p>
+</li>
+</ul>
+<img data-src="https://s2.loli.net/2022/05/02/NdQICqbpTUw6HBh.png" alt="image-20220502105703368" style="zoom:67%;" />
+
+<img data-src="https://s2.loli.net/2022/05/02/fezlxuHdRMWCi6q.png" alt="image-20220502105416862" style="zoom:67%;" />
+
+<img data-src="https://s2.loli.net/2022/05/02/VcifCBzhLoZUyKa.png" alt="image-20220502105434043" style="zoom:67%;" />
+
+<img data-src="https://s2.loli.net/2022/05/02/tcUNXbLw6fxdQ8m.png" alt="image-20220502105958563" style="zoom:67%;" />
+
+<blockquote>
+<p><strong>不可重复读和幻象的区别：</strong>不可重复读的重点是修改；同样的条件，第1次和第2次读取的值不一样。幻读的重点在于新增或者删除；同样的条件， 第1次和第2次读出来的记录数不一样。从控制角度来看，不可重复读只需要锁住满足条件的记录，幻读要锁住满足条件及其相近的记录。</p>
+</blockquote>
+<ul>
+<li><p><strong>出现不一致性的原因：</strong>不同事务间冲突操作的无序执行，违反了隔离性原则</p>
+</li>
+<li><p><strong>并发控制的方法</strong></p>
+<ul>
+<li><p><strong>时间戳：</strong>对事务规定一定的顺序</p>
+</li>
+<li><p><strong>加锁：（主要技术）</strong>对于共享的资源DB进行控制</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="16-3-封锁及封锁协议"><a href="#16-3-封锁及封锁协议" class="headerlink" title="16.3  封锁及封锁协议"></a>16.3  封锁及封锁协议</h2><h3 id="1、封锁的定义"><a href="#1、封锁的定义" class="headerlink" title="1、封锁的定义"></a>1、封锁的定义</h3><ul>
+<li><strong>概念：</strong>事务T在对某个数据对象例如表、记录等操作之前，先向系统发出请求，对其<strong>加锁</strong>。加锁后事务T就对该数据对象有了一定的<strong>控制</strong>，在事务T释放它的锁之前，其他事务对该数据的操作受到<strong>一定限制</strong>。</li>
+</ul>
+<h3 id="2、基本的封锁类型"><a href="#2、基本的封锁类型" class="headerlink" title="2、基本的封锁类型"></a>2、基本的封锁类型</h3><ul>
+<li><strong>排它锁</strong>（Exclusive Locks，简称X锁，也称写锁）</li>
+<li><strong>共享锁</strong>（Share Locks，简称S锁，也称读锁）</li>
+</ul>
+<img data-src="https://s2.loli.net/2022/05/10/VBJL7PADZoWzqOy.png" alt="image-20220510101032697" style="zoom:50%;" />
+
+<p><img data-src="https://s2.loli.net/2022/05/03/Pc2ldCGzSiN7U5q.png" alt="image-20220503200409098"></p>
+<h3 id="3、封锁协议包含的内容"><a href="#3、封锁协议包含的内容" class="headerlink" title="3、封锁协议包含的内容"></a>3、封锁协议包含的内容</h3><ul>
+<li>什么操作需要申请何种锁？—-排它锁、共享锁</li>
+<li>何时加锁？—-事务开始前、操作前</li>
+<li>何时解锁？—-操作结束后、事务结束前</li>
+</ul>
+<h3 id="4、封锁协议的分类"><a href="#4、封锁协议的分类" class="headerlink" title="4、封锁协议的分类"></a>4、封锁协议的分类</h3><ul>
+<li><p>&#x3D;&#x3D;一级封锁协议&#x3D;&#x3D;</p>
+<p>  事务T在<strong>修改</strong>数据R之前，必须先对R加<strong>X锁</strong>，直到<strong>事务结束才释放</strong>。事务结束包括正常结束（COMMIT）和非正常结束（ROLLBACK）</p>
+<p>  &#x3D;&#x3D;一级封锁协议不加S锁&#x3D;&#x3D;</p>
+  <img data-src="https://s2.loli.net/2022/05/10/CvwZySBr9LxhmEX.png" alt="image-20220510103651090" style="zoom:67%;" />
+</li>
+<li><p>&#x3D;&#x3D;二级封锁协议&#x3D;&#x3D;</p>
+<p>  <strong>在一级封锁协议的基础上</strong>，加上事务T在<strong>读取</strong>数据R之前必须先对其加<strong>S锁</strong>，<strong>读完后即可释放S锁</strong></p>
+  <img data-src="https://s2.loli.net/2022/05/10/cPYrELMTeukGNoH.png" alt="image-20220510103811156" style="zoom:67%;" />      
+</li>
+<li><p>&#x3D;&#x3D;三级封锁协议&#x3D;&#x3D;</p>
+<p>  <strong>在一级封锁协议的基础上</strong>，加上事务T在<strong>读取</strong>数据R之前必须先对其加<strong>S锁</strong>，<strong>直到事务结束才释放</strong></p>
+  <img data-src="https://s2.loli.net/2022/05/10/7r8VxWoZYlmIzQc.png" alt="image-20220510103942568" style="zoom:67%;" />
+</li>
+<li><p>&#x3D;&#x3D;一二三级封锁协议的一致性保证&#x3D;&#x3D;</p>
+  <img data-src="https://s2.loli.net/2022/05/02/N162xhCXYOvqiBE.png" alt="image-20220502113625070" style="zoom:80%;" /></li>
+</ul>
+<h3 id="5、并发调度的可串行性"><a href="#5、并发调度的可串行性" class="headerlink" title="5、并发调度的可串行性"></a>5、并发调度的可串行性</h3><ul>
+<li><p><strong>调度的正确性</strong>：</p>
+<ul>
+<li><p>能将数据库置于一致状态的调度一定是正确的调度</p>
+</li>
+<li><p>将所有事务串行起来的调度策略一定是正确的调度（因为每个事务都会保证一致性状态，故事务串行一定会保证一致性）</p>
+</li>
+<li><p>与串行调度等价的调度是正确的调度</p>
+</li>
+</ul>
+</li>
+<li><p><strong>并发事务的正确性准则：</strong>多个事务的并发执行是正确的，当且仅当其结果与<strong>某一次序串行地执行</strong>它们时的结果相同，我们称这种调度策略为<strong>可串行化的调度</strong>。</p>
+  <img data-src="https://s2.loli.net/2022/05/02/48u6gehbtD5PVnT.png" alt="image-20220502114421860" style="zoom:67%;" />
+
+  <img data-src="https://s2.loli.net/2022/05/02/rGFxKEV5iQNSPs4.png" alt="image-20220502114251187" style="zoom:67%;" /></li>
+</ul>
+<h2 id="16-4-两段锁协议"><a href="#16-4-两段锁协议" class="headerlink" title="16.4 两段锁协议"></a>16.4 两段锁协议</h2><ul>
+<li><p><strong>概念：</strong>所有事务必须分两个阶段（获得阶段和释放阶段，亦即扩展阶段和收缩阶段）对数据项加锁和解锁。</p>
+<ul>
+<li><p><strong>获得封锁：</strong>在对任何数据进行读、写操作之前，首先要申请并获得对该数据的封锁； </p>
+</li>
+<li><p><strong>释放封锁：</strong>&#x3D;&#x3D;在释放一个封锁之后，事务不再申请和获得任何其他封锁。&#x3D;&#x3D;</p>
+<p>  例子：</p>
+  <img data-src="https://s2.loli.net/2022/05/10/ZMBYK4H9SIQCOit.png" alt="image-20220510105713156" style="zoom:67%;" /></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><p>&#x3D;&#x3D;两段锁协议是可串行化的充分条件，而不是必要条件&#x3D;&#x3D;</p>
+</li>
+<li><p>一次封锁法遵守两段锁协议，但两段锁协议不要求事务必须一次将所有要使用的数据全部加锁，因此遵守两段锁协议的事务可能发生<code>死锁</code>。</p>
+<p>  例子：</p>
+<p>  <img data-src="https://s2.loli.net/2022/05/10/gYxvJR9oVeKG5US.png" alt="image-20220510105806932"></p>
+</li>
+<li><p>三级封锁是两段锁的一种，因为三级封锁都是事务结束再释放锁，事务结束后显然事务不会再申请和获得任何其他封锁。</p>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><p><strong>活锁和死锁</strong></p>
+<ul>
+<li><p><strong>活锁（饥饿）</strong>：某一个事务无限等待。解决方法：先来先服务</p>
+</li>
+<li><p><strong>死锁：</strong>两个或多个事务都已封锁了一些数据对象，然后又都请求对已被其他事务封锁的数据对象加锁，从而出现死等待。</p>
+</li>
+<li><p><strong>解决死锁</strong>：</p>
+<ul>
+<li><p><strong>预防：</strong>破坏死锁产生的四个必要条件（互斥、请求和保持、不可剥夺、循环等待）。几个方法：静态申请法，一次性申请所有资源，资源的利用率不高；延迟进程的执行，能够获得所有资源时才允许执行，并发度不好；有序资源分配法，给资源编号</p>
+</li>
+<li><p><strong>避免</strong>：类似os中的银行家算法，在资源分配之前进行检查，防止死锁的发生</p>
+</li>
+<li><p><strong>诊断与解除</strong></p>
+<ul>
+<li><p><strong>死锁的诊断：</strong></p>
+<ul>
+<li><p><strong>超时法</strong>：超过规定的时间就认为发生死锁。</p>
+<blockquote>
+<p>不足：可能误判死锁，也可能不能及时发现死锁</p>
+</blockquote>
+</li>
+<li><p><strong>等待图法：</strong>以<code>事务</code>为结点，边表示事务等待的情况，若T1等待T2，则 T1→T2。系统周期性地检测事务等待图，若图中存在回路，则出现死锁。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>死锁的解除</strong>：选择一个处理死锁代价最小的事务，撤销。对撤销的事务所执行的数据修改操作必须加以恢复。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="16-5-封锁的粒度"><a href="#16-5-封锁的粒度" class="headerlink" title="16.5  封锁的粒度"></a>16.5  封锁的粒度</h2><ul>
+<li><strong>封锁的粒度</strong>：指封锁对象的大小，封锁的粒度包括整个数据库、关系、元组、索引</li>
+</ul>
+<img data-src="https://s2.loli.net/2022/05/02/dKOgEQJji3fncZ1.png" alt="image-20220502143147735" style="zoom:67%;" />
+
+<ul>
+<li><p><strong>封锁粒度的选择</strong>：选择封锁粒度时应该同时考虑并发度和开销两个因素。&#x3D;&#x3D;封锁粒度越大，并发度越小，系统开销越小。&#x3D;&#x3D;</p>
+</li>
+<li><p><strong>多粒度封锁</strong></p>
+<ul>
+<li><p><strong>概念：</strong>在一个系统中同时支持多种封锁粒度供不同的事务选择。</p>
+<blockquote>
+<p><code>多粒度封锁协议</code>允许多粒度树中的每个结点被独立地加锁。对每个结点的加锁意味着这个结点的所有后裔结点也被加以同样类型的锁。</p>
+</blockquote>
+</li>
+<li><p><strong>显式封锁：</strong>应事务的要求直接加到数据对象上的封锁</p>
+</li>
+<li><p><strong>隐式封锁：</strong>该数据对象没有独立加锁，是由于其上级结点加锁而使该数据对象加上了锁</p>
+</li>
+<li><p><strong>判断能否对一个数据对象加锁：</strong></p>
+<ul>
+<li><p>检查<strong>该数据对象</strong>有无显式封锁与之冲突； </p>
+</li>
+<li><p>检查其<strong>所有上级结点</strong>，看本事务的显式封锁是否与该数据对象上的隐式封锁冲突； </p>
+</li>
+<li><p>检查其<strong>所有下级结点</strong>，看上面的显式封锁是否与本事务的隐式封锁冲突。</p>
+<blockquote>
+<p>不需要检查下级结点的隐式封锁，因为有隐式封锁肯定可以向上找到显式封锁</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;意向锁&#x3D;&#x3D;</p>
+<ul>
+<li><p><strong>概念：</strong>如果对一个结点加意向锁，则说明该结点的下层结点正在被加锁；对任一结点加锁时，必须先对它的（所有）上层结点加意向锁。</p>
+</li>
+<li><p><strong>意向共享锁（简称IS锁）</strong>：如果对数据对象加IS锁，表示它的后裔结点拟加S锁 </p>
+</li>
+<li><p><strong>意向排它锁（简称IX锁）</strong>：如果对数据对象加IX锁，表示它的后裔结点拟加X锁 </p>
+</li>
+<li><p><strong>共享意向排它锁（简称SIX锁）</strong>：如果对数据对象加SIX锁，表示先加S锁，再加IX</p>
+<p>  eg.  对某个表加SIX锁，表示该事务要读整个表（所以要对该表加S锁），同时会更新个别元组（所以要对该表加IX锁）</p>
+  <img data-src="https://s2.loli.net/2022/05/10/iOJKRkQElyd7TzM.png" alt="image-20220510113003330" style="zoom:67%;" />
+
+<blockquote>
+<p>加锁是从上往下的</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p><img data-src="https://s2.loli.net/2022/05/03/mzDWoftL9S6kxRs.png" alt="image-20220503201553550"></p>
+<blockquote>
+<p>IS锁和IX锁是相容的，因为最终会转化到下层结点，如果最终S锁和X锁加到了同一个对象上，那么在这个对象上的这两个锁是不相容的；如果没有加到同一个对象上，那么IS锁和IX锁就不会出现问题。</p>
+</blockquote>
+<h2 id="16-6-隔离级别（四种）"><a href="#16-6-隔离级别（四种）" class="headerlink" title="16.6  隔离级别（四种）"></a>16.6  隔离级别（四种）</h2><ul>
+<li><p><strong>未提交读（读未提交， read uncommitted）</strong>：事务隔离的最低级别，一个事务可以读到另外一个事务未提交的数据，不允许丢失修改，接受读脏数据和不可重复读现象。</p>
+</li>
+<li><p><strong>提交读（读已提交， read committed）</strong>：SQL Server 默认级别。若事务还没提交，其它事务不能读取该事务正在修改的数据。不允许丢失修改和读脏数据，接受不可重复读现象。</p>
+</li>
+<li><p><strong>可重复读（repeatable read）</strong>：事务多次读取统一数据对象的结果一致。不允许丢失修改、读脏数据和读不一致，接受幻影读现象。</p>
+</li>
+<li><p><strong>可串行读（serializable）</strong>：事务隔离的最高级别，保证可串行化，不允许丢失修改、读脏数据、读不一致以及幻影读现象的发生。</p>
+</li>
+<li><p>隔离级别允许不同类型的行为：</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>隔离级别</strong></th>
+<th align="center">丢失修改</th>
+<th align="center"><strong>脏读</strong></th>
+<th align="center"><strong>不可重复读取</strong></th>
+<th align="center"><strong>幻像</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>未提交读</strong></td>
+<td align="center">否</td>
+<td align="center">是</td>
+<td align="center">是</td>
+<td align="center">是</td>
+</tr>
+<tr>
+<td align="center"><strong>提交读</strong></td>
+<td align="center">否</td>
+<td align="center">否</td>
+<td align="center">是</td>
+<td align="center">是</td>
+</tr>
+<tr>
+<td align="center"><strong>可重复读</strong></td>
+<td align="center">否</td>
+<td align="center">否</td>
+<td align="center">否</td>
+<td align="center">是</td>
+</tr>
+<tr>
+<td align="center"><strong>可串行读</strong></td>
+<td align="center">否</td>
+<td align="center">否</td>
+<td align="center">否</td>
+<td align="center">否</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>设置隔离级别的语法</strong></p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> transaction isolation level</span><br><span class="line">&#123;</span><br><span class="line">	read committed <span class="operator">|</span> </span><br><span class="line">	read uncommitted <span class="operator">|</span></span><br><span class="line">	repeatable read <span class="operator">|</span></span><br><span class="line">	serializable read</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="16-7-数据库恢复"><a href="#16-7-数据库恢复" class="headerlink" title="16.7 数据库恢复"></a>16.7 数据库恢复</h2><ul>
+<li><p><strong>概念</strong>：把数据库从<strong>错误状态</strong>恢复到某一个已知的<strong>正确状态</strong>（亦称为一致状态或完整状态）的功能。</p>
+</li>
+<li><p><strong>目标：</strong>在故障发生时，确保事务的原子性和持久性</p>
+</li>
+<li><p><strong>特点：</strong>因为DB与内存用户工作区之间的数据交换是通过缓冲区进行的，而这个交换一般是以缓冲区是否满来触发的。因此，有可能提交事务的数据仍在缓冲区而没有写到DB中，而未提交事务的数据却写到了DB中。所以，故障恢复时，可能既要REDO已经提交了的事务，又要UNDO未提交的事务，以保证事务的原子性</p>
+</li>
+<li><p><strong>技术</strong></p>
+<p>  DBMS提供备份机制、日志机制、检查点机制来协助数据库故障恢复;</p>
+<p>  &#x3D;&#x3D;基本原理：数据冗余。&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;数据转储：&#x3D;&#x3D;DBA定期地将整个数据库复制到磁带或另一个磁盘上保存起来的过程。这些备用的数据文本称为后备副本或后援副本。</p>
+<p>  <strong>数据转储的分类：</strong></p>
+<ul>
+<li>按照转储时的状态可以分为<strong>静态转储和动态转储</strong>。静态转储是指在系统中无运行事务时进行的转储操作。动态转储是指转储期间允许对数据库进行存取或者修改，但此时需要把转储期间各事务对数据库的修改记录在日志文件中，从而将来可以恢复</li>
+<li>按方式不同可以分为<strong>海量转储和增量转储</strong>。海量转储是指每次转储全部数据库。增量转储是指每次只转储上一次转储后更新的数据库。</li>
+</ul>
+<p>  <img data-src="https://s2.loli.net/2022/05/03/oEV9AIyQY7LlmZD.png" alt="image-20220503193938217"></p>
+</li>
+<li><p>&#x3D;&#x3D;登记日志文件&#x3D;&#x3D;：记录事务对数据库的<code>更新</code>操作</p>
+<p>  <strong>日志文件的格式：</strong>以记录为单位的日志文件和以数据块为单位的日志文件。</p>
+<ul>
+<li><p>以记录为单位的日志文件：一个日志记录包括每个事务的开始标志（BEGIN TRANSACTION）、结束标志（COMMIT 或 ROLLBACK）、每个更新操作</p>
+</li>
+<li><p>以数据块为单位的日志文件：包含事务标识和被更新的数据块</p>
+</li>
+</ul>
+  <img data-src="https://s2.loli.net/2022/05/02/aeJHjWo2fNvlnSM.png" alt="image-20220502151104445" style="zoom:67%;" />
+
+<p>  <strong>登记日志文件的原则：</strong></p>
+<ul>
+<li>登记的次序按并发事务执行的时间次序</li>
+<li>必须先写日志文件，后写数据库&#x3D;&#x3D;（日志先写原则）&#x3D;&#x3D;</li>
+</ul>
+</li>
+<li><p><strong>系统故障的恢复实现策略</strong></p>
+<ul>
+<li><p><strong>系统故障导致的数据库不一致</strong><br>  （1）未完成的事务对DB产生影响<br>  （2）已完成的事务在缓冲区的内容未写入DB</p>
+</li>
+<li><p><strong>恢复功能</strong><br>  （1）UNDO未完成的事务<br>  （2）REDO已完成的事务</p>
+</li>
+<li><p><strong>恢复步骤</strong><br>  （1）正向扫描日志文件，建立UNDO和REDO队列；（不需要redo日志中所有已完成的事务）<br>  （2）反向扫描日志文件，对每个UNDO事务的更新执行逆操作；<br>  （3）正向扫描日志文件，对每个REDO事务的更新重新执行。</p>
+</li>
+</ul>
+</li>
+<li><p>&#x3D;&#x3D;检查点技术：&#x3D;&#x3D;</p>
+<p>  当事务正常运行时，数据库系统按一定的时间间隔设检查点。一旦系统需要恢复数据库状态，就可以根据最新的检查点的信息，从检查点开始执行，而不必从头开始执行那些被中断的事务。</p>
+<p>  系统在检查点做的动作主要如下：</p>
+<ul>
+<li>暂时中止现有事务的执行</li>
+<li>在日志中写入检查点记录，并把日志强制写入磁盘</li>
+<li>把主存中被修改的数据缓冲区强制写入磁盘</li>
+<li>重新开始执行事务</li>
+</ul>
+<p>  例子：</p>
+<p>  <img data-src="https://s2.loli.net/2022/05/03/hbQXdSE3r46sk52.png" alt="image-20220503195636843"></p>
+<p>  <img data-src="https://s2.loli.net/2022/05/03/f4wAEDbW2xU6ZtX.png" alt="image-20220503195650256"></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div>
+    
+        <div style="text-align:center;color: #111;font-size:25px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Zhang Wen Hui
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://zhangwenhui-blog.com.cn/2022/06/27/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/" title="并发控制">http://zhangwenhui-blog.com.cn/2022/06/27/并发控制/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"><i class="fa fa-tag"></i> 数据库</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/06/27/%E5%85%B3%E7%B3%BB%E8%8C%83%E5%BC%8F/" rel="prev" title="关系范式">
+                  <i class="fa fa-chevron-left"></i> 关系范式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/06/27/%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%AA%E8%AE%BA/" rel="next" title="一、操作系统绪论">
+                  一、操作系统绪论 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Wen Hui</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wenhuizhang20021222","repo":"wenhuizhang20021222.github.io","client_id":"404d4662eeff0092368a","client_secret":"fcdcd5862c271778a7e8a98fa6c19056b9145d57","admin_user":"wenhuizhang20021222","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"01015368c2f9e6cba3168d07ae89b603"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+
+</html>

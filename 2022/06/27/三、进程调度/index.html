@@ -46,33 +46,55 @@
 
 
 
-    <meta name="description" content="一、绪论1、概念DB：数据库，是按照一定结构组织并长期存储在计算机内的可共享的大量数据的有机集合。 DBMS：数据库管理系统，是管理和维护数据库的系统软件，是数据库和用户之间的一个接口，其主要作用是在数据库建立、运行和维护时对数据库进行统一的管理控制和提供数据服务。">
+    <meta name="description" content="三、进程调度&#x3D;&#x3D;重点：&#x3D;&#x3D;调度的层次：低级调度、中级调度、高级调度 引起进程调度的原因 抢占式和非抢占式调度，周转时间，等待时间 &#x3D;&#x3D;调度算法&#x3D;&#x3D;  时间片，进程优先级，高响应比可以不管， 重视多级队列，不超过作业题难度 实时调度概念 1、处理机调度的基本概念">
 <meta property="og:type" content="article">
-<meta property="og:title" content="绪论">
-<meta property="og:url" content="http://zhangwenhui-blog.com.cn/2022/06/23/%E7%BB%AA%E8%AE%BA/index.html">
+<meta property="og:title" content="三、进程调度">
+<meta property="og:url" content="http://zhangwenhui-blog.com.cn/2022/06/27/%E4%B8%89%E3%80%81%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/index.html">
 <meta property="og:site_name" content="zwh&#39;s Blog">
-<meta property="og:description" content="一、绪论1、概念DB：数据库，是按照一定结构组织并长期存储在计算机内的可共享的大量数据的有机集合。 DBMS：数据库管理系统，是管理和维护数据库的系统软件，是数据库和用户之间的一个接口，其主要作用是在数据库建立、运行和维护时对数据库进行统一的管理控制和提供数据服务。">
+<meta property="og:description" content="三、进程调度&#x3D;&#x3D;重点：&#x3D;&#x3D;调度的层次：低级调度、中级调度、高级调度 引起进程调度的原因 抢占式和非抢占式调度，周转时间，等待时间 &#x3D;&#x3D;调度算法&#x3D;&#x3D;  时间片，进程优先级，高响应比可以不管， 重视多级队列，不超过作业题难度 实时调度概念 1、处理机调度的基本概念">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s2.loli.net/2022/03/04/7zNQasLYrVqw1px.png">
-<meta property="og:image" content="https://s2.loli.net/2022/03/04/oMmlnGpIqh5iDXO.png">
-<meta property="og:image" content="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205081008688.png">
-<meta property="og:image" content="https://s2.loli.net/2022/05/14/pExd5HsrKunezmM.png">
-<meta property="article:published_time" content="2022-06-23T03:10:12.000Z">
-<meta property="article:modified_time" content="2022-06-24T00:44:55.900Z">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/PqpV7zcuSgAUL5v.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/14/2GmBQDkHjsiAPy6.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/Fmr7aO5N9dtszGb.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/pcZnNOMo5ugamv8.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/ecKivlW2Lb1jnNF.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/AlPaLcNSMfE8YC7.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/JoeG3fn18mzbvIp.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/MKsupUYmCxJE7WG.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/v8k5tBYWVThbQ4g.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/SHnKZd7Wa3vcPmr.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/94JzSmAiaP5jBRb.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/Bk3YS9dGruoTWOl.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/cn1wtYv6B78lpTe.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/osPMXSpyvK3NTCZ.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/sG3ZJP9DRdKlH2e.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/my9UwruzFTjLt5N.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/zgEpmj17vwMSbo5.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/mcwBOxYhr8otI7z.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/BeYU9XjykCD24sR.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/l8L1IdpDo2h9HfS.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/G5VbhWiEMqUoNQg.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/5Jr2HGj3YQd4sFC.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/8ZshCGOIJfSFBo1.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/if6V8BLPaINGKhn.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/g8Kju6BQw52FMPd.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/20/7T4HiSVvycBFeAL.png">
+<meta property="article:published_time" content="2022-06-27T15:05:46.000Z">
+<meta property="article:modified_time" content="2022-06-27T15:16:47.722Z">
 <meta property="article:author" content="Zhang Wen Hui">
-<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://s2.loli.net/2022/03/04/7zNQasLYrVqw1px.png">
+<meta name="twitter:image" content="https://s2.loli.net/2022/05/20/PqpV7zcuSgAUL5v.png">
 
 
-<link rel="canonical" href="http://zhangwenhui-blog.com.cn/2022/06/23/%E7%BB%AA%E8%AE%BA/">
+<link rel="canonical" href="http://zhangwenhui-blog.com.cn/2022/06/27/%E4%B8%89%E3%80%81%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://zhangwenhui-blog.com.cn/2022/06/23/%E7%BB%AA%E8%AE%BA/","path":"2022/06/23/绪论/","title":"绪论"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://zhangwenhui-blog.com.cn/2022/06/27/%E4%B8%89%E3%80%81%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/","path":"2022/06/27/三、进程调度/","title":"三、进程调度"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>绪论 | zwh's Blog</title>
+<title>三、进程调度 | zwh's Blog</title>
   
 
 
@@ -187,7 +209,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%BB%AA%E8%AE%BA"><span class="nav-number">1.</span> <span class="nav-text">一、绪论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">1、概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E4%BF%A1%E6%81%AF%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">2、信息模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.3.</span> <span class="nav-text">3、数据模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E4%B8%89%E7%BA%A7%E6%A8%A1%E5%BC%8F%E7%BB%93%E6%9E%84"><span class="nav-number">1.4.</span> <span class="nav-text">4、三级模式结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E4%BA%8C%E7%BA%A7%E6%98%A0%E5%83%8F%E5%8A%9F%E8%83%BD"><span class="nav-number">1.5.</span> <span class="nav-text">5、二级映像功能</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="nav-number">1.</span> <span class="nav-text">三、进程调度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#x3D-x3D-%E9%87%8D%E7%82%B9%EF%BC%9A-x3D-x3D"><span class="nav-number">1.1.</span> <span class="nav-text">&#x3D;&#x3D;重点：&#x3D;&#x3D;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">1、处理机调度的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%9A%84%E6%97%B6%E6%9C%BA%E3%80%81%E8%BF%87%E7%A8%8B%E5%92%8C%E6%96%B9%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">2、进程调度的时机、过程和方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="nav-number">1.4.</span> <span class="nav-text">3、调度算法的评价指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#x3D-x3D-4%E3%80%81%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95-x3D-x3D"><span class="nav-number">1.5.</span> <span class="nav-text">&#x3D;&#x3D;4、调度算法&#x3D;&#x3D;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1%EF%BC%88FCFS%EF%BC%89"><span class="nav-number">1.5.1.</span> <span class="nav-text">（1）先来先服务（FCFS）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88"><span class="nav-number">1.5.2.</span> <span class="nav-text">（2）短作业优先</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E4%BC%98%E5%85%88"><span class="nav-number">1.5.3.</span> <span class="nav-text">（3）高响应比优先</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%884%EF%BC%89%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%EF%BC%88RR%EF%BC%89"><span class="nav-number">1.5.4.</span> <span class="nav-text">（4）时间片轮转调度算法（RR）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%885%EF%BC%89%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">1.5.5.</span> <span class="nav-text">（5）优先级调度算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%886%EF%BC%89%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">1.5.6.</span> <span class="nav-text">（6）多级反馈队列调度算法</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -276,7 +298,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhangwenhui-blog.com.cn/2022/06/23/%E7%BB%AA%E8%AE%BA/">
+    <link itemprop="mainEntityOfPage" href="http://zhangwenhui-blog.com.cn/2022/06/27/%E4%B8%89%E3%80%81%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/zrn.png">
@@ -290,12 +312,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="绪论 | zwh's Blog">
+      <meta itemprop="name" content="三、进程调度 | zwh's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          绪论
+          三、进程调度
         </h1>
 
         <div class="post-meta-container">
@@ -305,15 +327,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2022-06-23 11:10:12" itemprop="dateCreated datePublished" datetime="2022-06-23T11:10:12+08:00">2022-06-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-24 08:44:55" itemprop="dateModified" datetime="2022-06-24T08:44:55+08:00">2022-06-24</time>
+      <time title="创建时间：2022-06-27 23:05:46 / 修改时间：23:16:47" itemprop="dateCreated datePublished" datetime="2022-06-27T23:05:46+08:00">2022-06-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -321,7 +337,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
         </span>
     </span>
 
@@ -339,7 +355,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.5k</span>
+      <span>863</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -359,104 +375,63 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="一、绪论"><a href="#一、绪论" class="headerlink" title="一、绪论"></a>一、绪论</h1><h2 id="1、概念"><a href="#1、概念" class="headerlink" title="1、概念"></a>1、概念</h2><p><strong>DB：数据库</strong>，是按照一定结构组织并长期存储在计算机内的可共享的大量数据的有机集合。</p>
-<p><strong>DBMS：数据库管理系统</strong>，是管理和维护数据库的系统软件，是数据库和用户之间的一个接口，其主要作用是在数据库建立、运行和维护时对数据库进行统一的管理控制和提供数据服务。</p>
-<span id="more"></span>
-
-<p><code>DBMS的功能：</code>数据定义、数据操作、数据组织和管理、数据库运行管理（核心工作）、数据库的建立和维护、数据接口</p>
-<p><strong>DBA：数据库管理人员</strong>，其职责包括决定DB中的信息内容和结构；决定DB的存储结构和存取策略；定义数据的安全性要求和完整性约束条件；监控数据库的使用和运行。</p>
-<p><strong>DBS：数据库系统</strong>，是实现有组织地、动态地存储大量关联数据、方便多用户访问的计算机软件、硬件和人组成的系统。</p>
-<p><code>DBS的特点：</code>①数据的高度结构化；②数据的高共享性；③程序与数据的高独立性；④数据控制力度大（DBMS统一管理和控制数据）<br>$$<br>DBS &#x3D; 计算机系统(硬件、软件平台、人)+DBMS+DB\<br>或\<br>DBS &#x3D; 硬件 + 软件（OS、DB、DBMS、语言及开发工具、DB应用程序）+ 人（DBA、设计者、用户）<br>$$</p>
-<p><img data-src="https://s2.loli.net/2022/03/04/7zNQasLYrVqw1px.png"></p>
-<h2 id="2、信息模型"><a href="#2、信息模型" class="headerlink" title="2、信息模型"></a>2、信息模型</h2><p>也称概念模型，主要用于数据库设计</p>
-<p>表示方法：ER图</p>
-<p>基本成分：实体集、属性、联系</p>
-<p><img data-src="https://s2.loli.net/2022/03/04/oMmlnGpIqh5iDXO.png"></p>
-<h2 id="3、数据模型"><a href="#3、数据模型" class="headerlink" title="3、数据模型"></a>3、数据模型</h2><p>三要素：数据结构、数据操作、数据的完整性约束</p>
-<p>三种基本数据模型：层次模型、网状模型、关系模型</p>
-<p><strong>3种基本数据模型的比较</strong></p>
-<table>
-<thead>
-<tr>
-<th>特点\模型</th>
-<th>层次模型</th>
-<th>网状模型</th>
-<th>关系模型（&#x3D;&#x3D;最重要&#x3D;&#x3D; ）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>数据结构</strong></td>
-<td>树结构</td>
-<td>图结构</td>
-<td>表结构</td>
-</tr>
-<tr>
-<td><strong>存储方法</strong></td>
-<td>按先根顺序存储及用左孩子右兄弟链式存储</td>
-<td>链接法</td>
-<td>文件</td>
-</tr>
-<tr>
-<td><strong>数据操作</strong></td>
-<td>增删改查。按层次顺序查询、按层次路径查询。且每次操作只能取一个记录</td>
-<td>操作时必须说明做什么、如何做</td>
-<td>增删改查。集合操作，操作对象和操作结果都是关系，即若干元组的集合。存取路径对用户隐藏（安全的同时效率低），用户只需指出干什么。</td>
-</tr>
-<tr>
-<td><strong>数据完整性约束</strong></td>
-<td>父子约束、一致性约束、数据的型和值需保持树形结构等</td>
-<td>父子约束、主从约束</td>
-<td>实体完整性、参照完整性和用户定义的完整性</td>
-</tr>
-<tr>
-<td><strong>联系表示的特点</strong></td>
-<td>适合1：n</td>
-<td>可以间接表示m：n</td>
-<td>便于表示m：n</td>
-</tr>
-<tr>
-<td><strong>联系的方式</strong></td>
-<td>通过指针（或路径）</td>
-<td>通过指针（或路径）</td>
-<td>通过表格自然联系及创建联系</td>
-</tr>
-<tr>
-<td><strong>使用与效率</strong></td>
-<td>较难使用、效率较高</td>
-<td>使用复杂、效率较高</td>
-<td>容易使用，效率较低</td>
-</tr>
-<tr>
-<td><strong>数据操作语言</strong></td>
-<td>过程化</td>
-<td>过程化</td>
-<td>非过程化及过程扩展</td>
-</tr>
-<tr>
-<td><strong>理论基础</strong></td>
-<td>无</td>
-<td>无</td>
-<td>关系理论</td>
-</tr>
-<tr>
-<td><strong>优缺点</strong></td>
-<td>①数据结构较简单、查询效率高；②提供良好的完整性支持；③不易表示多对多的联系；④数据操作限制多，独立性较差</td>
-<td>①较为直接地描述现实世界；②存取效率较高；③结构较复杂，不易使用；④数据独立性较差</td>
-<td>①有坚实的理论基础；②结构简单、易用；③数据独立性及安全性好；④查询效率较低</td>
-</tr>
-</tbody></table>
-<h2 id="4、三级模式结构"><a href="#4、三级模式结构" class="headerlink" title="4、三级模式结构"></a>4、三级模式结构</h2><p><strong>模式</strong>：（也称概念模式&#x2F;逻辑模式）是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公用数据结构。</p>
-<p><strong>子模式</strong>：（也称外模式&#x2F;用户模式）是数据库用户所见和使用的局部数据的逻辑结构和特征的描述，是用户所用的数据库结构。子模式是模式的子集，它主要描述用户视图的各记录的组成、相互联系、数据项的特征等。</p>
-<p><strong>内模式</strong>：（也称存储模式）是数据物理结构和存储方法的描述，是整个数据库的最低层结构的标识。</p>
-<p>三级模式结构示意如下图所示：</p>
-<p><img data-src="https://yzxtuchuang.oss-cn-beijing.aliyuncs.com/img/202205081008688.png" alt="image-20220508100815575"></p>
-<h2 id="5、二级映像功能"><a href="#5、二级映像功能" class="headerlink" title="5、二级映像功能"></a>5、二级映像功能</h2><p><strong>映像1：子模式&#x2F;模式映像</strong>，是指由模式生成子模式的规则，它定义了各个子模式和模式之间的对应关系。（不唯一）</p>
-<p><strong>映像2：模式&#x2F;内模式映像</strong>，是说明模式在物理设备中的存储结构，定义了模式和内模式之间的对应关系。（唯一）</p>
-<p><strong>三级模式结构和二级映像的作用：保证了数据库系统的数据能够具有较高的逻辑独立性和物理独立性</strong></p>
+        <h1 id="三、进程调度"><a href="#三、进程调度" class="headerlink" title="三、进程调度"></a>三、进程调度</h1><h2 id="x3D-x3D-重点：-x3D-x3D"><a href="#x3D-x3D-重点：-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;重点：&#x3D;&#x3D;"></a>&#x3D;&#x3D;重点：&#x3D;&#x3D;</h2><p>调度的层次：低级调度、中级调度、高级调度</p>
+<p>引起进程调度的原因</p>
+<p>抢占式和非抢占式调度，周转时间，等待时间</p>
+<p>&#x3D;&#x3D;调度算法&#x3D;&#x3D;  时间片，进程优先级，高响应比可以不管， 重视多级队列，不超过作业题难度</p>
+<p>实时调度概念</p>
+<h2 id="1、处理机调度的基本概念"><a href="#1、处理机调度的基本概念" class="headerlink" title="1、处理机调度的基本概念"></a>1、处理机调度的基本概念</h2><p><img data-src="https://s2.loli.net/2022/05/20/PqpV7zcuSgAUL5v.png" alt="image-20220520083413143"></p>
+<p><img data-src="https://s2.loli.net/2022/03/14/2GmBQDkHjsiAPy6.png" alt="image-20220314093421092"></p>
+<h2 id="2、进程调度的时机、过程和方式"><a href="#2、进程调度的时机、过程和方式" class="headerlink" title="2、进程调度的时机、过程和方式"></a>2、进程调度的时机、过程和方式</h2><p><img data-src="https://s2.loli.net/2022/05/20/Fmr7aO5N9dtszGb.png" alt="image-20220520085145159"></p>
+<p><img data-src="https://s2.loli.net/2022/05/20/pcZnNOMo5ugamv8.png" alt="image-20220520085014437"></p>
+<h2 id="3、调度算法的评价指标"><a href="#3、调度算法的评价指标" class="headerlink" title="3、调度算法的评价指标"></a>3、调度算法的评价指标</h2><p><img data-src="https://s2.loli.net/2022/05/20/ecKivlW2Lb1jnNF.png" alt="image-20220520090857781"></p>
+<ul>
+<li><p>CPU利用率指CPU忙碌的时间占总时间的比例。CPU利用率 &#x3D; 忙碌的时间&#x2F;总时间</p>
+</li>
+<li><p>系统吞吐量指单位时间内完成作业的数量。系统吞吐量 &#x3D; 总共完成了多少道作业 &#x2F; 总共花了多少时间</p>
+</li>
+<li><p>周转时间：从作业提交给系统开始，到作业完成为止的这段时间间隔。周转时间 &#x3D; 作业完成时间 - 作业提交时间。</p>
+</li>
+<li><p>平均周转时间 &#x3D; 各作业周转时间之和 &#x2F; 作业数</p>
+</li>
+<li><p>带权周转时间 &#x3D; 作业周转时间 &#x2F; 作业实际运行的时间 &#x3D; (作业完成时间 - 作业提交时间) &#x2F; 作业实际运行的时间</p>
+</li>
+<li><p>平均带权周转时间 &#x3D; 各作业带权周转时间之和 &#x2F; 作业数</p>
+</li>
+<li><p>等待时间：指进程&#x2F;作业处于等待处理机状态时间之和</p>
+<p>  <img data-src="https://s2.loli.net/2022/05/20/AlPaLcNSMfE8YC7.png" alt="image-20220520090716035"></p>
+</li>
+<li><p>响应时间：从用户提交请求到首次产生响应所用的时间</p>
+</li>
+</ul>
+<h2 id="x3D-x3D-4、调度算法-x3D-x3D"><a href="#x3D-x3D-4、调度算法-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;4、调度算法&#x3D;&#x3D;"></a>&#x3D;&#x3D;4、调度算法&#x3D;&#x3D;</h2><p><img data-src="https://s2.loli.net/2022/05/20/JoeG3fn18mzbvIp.png" alt="image-20220520095505721"></p>
+<p><img data-src="https://s2.loli.net/2022/05/20/MKsupUYmCxJE7WG.png" alt="image-20220520104630768"></p>
+<h3 id="（1）先来先服务（FCFS）"><a href="#（1）先来先服务（FCFS）" class="headerlink" title="（1）先来先服务（FCFS）"></a>（1）先来先服务（FCFS）</h3><p>考虑作业的等待时间</p>
+<p><img data-src="https://s2.loli.net/2022/05/20/v8k5tBYWVThbQ4g.png" alt="image-20220520092445844"></p>
+<p><img data-src="https://s2.loli.net/2022/05/20/SHnKZd7Wa3vcPmr.png" alt="image-20220520092236752"></p>
+<h3 id="（2）短作业优先"><a href="#（2）短作业优先" class="headerlink" title="（2）短作业优先"></a>（2）短作业优先</h3><p>考虑作业的运行时间</p>
+<p><img data-src="https://s2.loli.net/2022/05/20/94JzSmAiaP5jBRb.png" alt="image-20220520094247319"></p>
+<p><img data-src="https://s2.loli.net/2022/05/20/Bk3YS9dGruoTWOl.png" alt="image-20220520094114612"></p>
+<p><img data-src="https://s2.loli.net/2022/05/20/cn1wtYv6B78lpTe.png" alt="image-20220520092954098"></p>
+<p><img data-src="https://s2.loli.net/2022/05/20/osPMXSpyvK3NTCZ.png" alt="image-20220520093622737"></p>
+<p><img data-src="https://s2.loli.net/2022/05/20/sG3ZJP9DRdKlH2e.png" alt="image-20220520093730231"></p>
+<h3 id="（3）高响应比优先"><a href="#（3）高响应比优先" class="headerlink" title="（3）高响应比优先"></a>（3）高响应比优先</h3><p><img data-src="https://s2.loli.net/2022/05/20/my9UwruzFTjLt5N.png" alt="image-20220520095245768"></p>
+<p><img data-src="https://s2.loli.net/2022/05/20/zgEpmj17vwMSbo5.png" alt="image-20220520095132854"></p>
+<hr>
+<h3 id="（4）时间片轮转调度算法（RR）"><a href="#（4）时间片轮转调度算法（RR）" class="headerlink" title="（4）时间片轮转调度算法（RR）"></a>（4）时间片轮转调度算法（RR）</h3><p><img data-src="https://s2.loli.net/2022/05/20/mcwBOxYhr8otI7z.png" alt="image-20220520101410525"></p>
+<p><img data-src="https://s2.loli.net/2022/05/20/BeYU9XjykCD24sR.png" alt="image-20220520100727740"></p>
+<p><img data-src="https://s2.loli.net/2022/05/20/l8L1IdpDo2h9HfS.png" alt="image-20220520101604794"></p>
 <blockquote>
-<p>数据冗余：</p>
-<p><img data-src="https://s2.loli.net/2022/05/14/pExd5HsrKunezmM.png" alt="image-20220514221005579"></p>
+<p>如果RR和优先级结合考虑的话，那么FCFS队列变为优先级队列，同优先级则FCFS。当一个进程正在运行时，如果有更高优先级的进程到来，处理机立即被抢占；如果有同等优先级的进程在等待，执行完当前时间片后让出处理机；如果有低优先级的进程到来或者在等待，则不会被抢占。</p>
 </blockquote>
+<h3 id="（5）优先级调度算法"><a href="#（5）优先级调度算法" class="headerlink" title="（5）优先级调度算法"></a>（5）优先级调度算法</h3><p><img data-src="https://s2.loli.net/2022/05/20/G5VbhWiEMqUoNQg.png" alt="image-20220520102840867"></p>
+<p><img data-src="https://s2.loli.net/2022/05/20/5Jr2HGj3YQd4sFC.png" alt="image-20220520101957020"></p>
+<p><img data-src="https://s2.loli.net/2022/05/20/8ZshCGOIJfSFBo1.png" alt="image-20220520102237628"></p>
+<p><img data-src="https://s2.loli.net/2022/05/20/if6V8BLPaINGKhn.png" alt="image-20220520102742626"></p>
+<h3 id="（6）多级反馈队列调度算法"><a href="#（6）多级反馈队列调度算法" class="headerlink" title="（6）多级反馈队列调度算法"></a>（6）多级反馈队列调度算法</h3><p><img data-src="https://s2.loli.net/2022/05/20/g8Kju6BQw52FMPd.png" alt="image-20220520104355407"></p>
+<p><img data-src="https://s2.loli.net/2022/05/20/7T4HiSVvycBFeAL.png" alt="image-20220520103557785"></p>
+<hr>
+<p>对于实时调度，调度器必须支持<strong>抢占的基于优先权的调度</strong>。可以根据进程的截止期限、任务速率来进行分配优先级</p>
 
     </div>
 
@@ -479,7 +454,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://zhangwenhui-blog.com.cn/2022/06/23/%E7%BB%AA%E8%AE%BA/" title="绪论">http://zhangwenhui-blog.com.cn/2022/06/23/绪论/</a>
+      <a href="http://zhangwenhui-blog.com.cn/2022/06/27/%E4%B8%89%E3%80%81%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/" title="三、进程调度">http://zhangwenhui-blog.com.cn/2022/06/27/三、进程调度/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -488,20 +463,20 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"><i class="fa fa-tag"></i> 数据库</a>
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"><i class="fa fa-tag"></i> 操作系统</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/06/22/hello-world/" rel="prev" title="Hello World">
-                  <i class="fa fa-chevron-left"></i> Hello World
+                <a href="/2022/06/27/%E4%BA%8C%E3%80%81%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" rel="prev" title="二、进程与线程">
+                  <i class="fa fa-chevron-left"></i> 二、进程与线程
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/06/23/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="next" title="关系数据库">
-                  关系数据库 <i class="fa fa-chevron-right"></i>
+                <a href="/2022/06/27/%E5%9B%9B%E3%80%81%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5/" rel="next" title="四、进程同步">
+                  四、进程同步 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -579,7 +554,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wenhuizhang20021222","repo":"wenhuizhang20021222.github.io","client_id":"404d4662eeff0092368a","client_secret":"fcdcd5862c271778a7e8a98fa6c19056b9145d57","admin_user":"wenhuizhang20021222","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"1a05e881bf16430139db65f067b16563"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"wenhuizhang20021222","repo":"wenhuizhang20021222.github.io","client_id":"404d4662eeff0092368a","client_secret":"fcdcd5862c271778a7e8a98fa6c19056b9145d57","admin_user":"wenhuizhang20021222","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"2ae5977c54781b1b98128925caf2e5ca"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
