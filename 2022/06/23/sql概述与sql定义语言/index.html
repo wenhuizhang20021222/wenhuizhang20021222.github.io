@@ -19,7 +19,29 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangwenhui-blog.com.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangwenhui-blog.com.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":true,"color":"#64CEAA","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+  <div class="weather">
+  <!-- 《添加“心知天气”-->
+  
+    <div id="tp-weather-widget"></div>
+  <script>
+    (function(a,h,g,f,e,d,c,b){b=function(){d=h.createElement(g);c=h.getElementsByTagName(g)[0];d.src=e;d.charset="utf-8";d.async=1;c.parentNode.insertBefore(d,c)};a["SeniverseWeatherWidgetObject"]=f;a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});a[f].l=+new Date();if(a.attachEvent){a.attachEvent("onload",b)}else{a.addEventListener("load",b,false)}}(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10)));
+    window.SeniverseWeatherWidget('show', {
+      flavor: "slim",
+      location: "WX4FBXXFKE4F",
+      geolocation: true,
+      language: "zh-CN",
+      unit: "c",
+      theme: "auto",
+      token: "efb760e3-5326-4f08-839b-122738249a17",
+      hover: "enabled",
+      container: "tp-weather-widget"
+    })
+  </script>
+  
+  <!-- 添加“心知天气”》-->
+  </div>
 
 
 
@@ -251,6 +273,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -363,15 +386,15 @@
 
 <p><strong>sql语言的分类</strong>：数据定义语言DDL、数据操作语言DML、数据查询语言DQL、数据控制语言DCL</p>
 <p><strong>sql数据库的三级结构：</strong></p>
-<p><img src="https://s2.loli.net/2022/05/17/3IjuTbYwHFQzdAp.png" alt="image-20220517103508209"></p>
+<p><img data-src="https://s2.loli.net/2022/05/17/3IjuTbYwHFQzdAp.png" alt="image-20220517103508209"></p>
 <p>子模式对应于视图和部分查询表，模式对应于基本表，内模式对应于存储文件</p>
 <p><strong>sql语句的分类</strong>：模式定义语句、数据操纵语句（增删改查）、事务与控制语句、会话及诊断语句</p>
 <p><strong>sql的数据类型：</strong></p>
-<p><img src="https://s2.loli.net/2022/05/17/fhJG9wazTZ1ydL5.png" alt="image-20220517104732266"></p>
+<p><img data-src="https://s2.loli.net/2022/05/17/fhJG9wazTZ1ydL5.png" alt="image-20220517104732266"></p>
 <blockquote>
 <p>在实验中发现，如果要显示001这种类型的数字，可以设置为<em>sno int(3) zerofill</em></p>
 </blockquote>
-<h2 id="2、sql的数据定义"><a href="#2、sql的数据定义" class="headerlink" title="2、sql的数据定义"></a>2、sql的数据定义</h2><p><img src="https://s2.loli.net/2022/05/17/5Qv3qyIM9TeJrXG.png" alt="image-20220517110612939"></p>
+<h2 id="2、sql的数据定义"><a href="#2、sql的数据定义" class="headerlink" title="2、sql的数据定义"></a>2、sql的数据定义</h2><p><img data-src="https://s2.loli.net/2022/05/17/5Qv3qyIM9TeJrXG.png" alt="image-20220517110612939"></p>
 <blockquote>
 <p>👉总结：</p>
 <p>创建：create  对象类型 对象名</p>
@@ -414,7 +437,7 @@
 <h2 id="x3D-x3D-3、⚠⚠⚠sql数据查询-x3D-x3D"><a href="#x3D-x3D-3、⚠⚠⚠sql数据查询-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;3、⚠⚠⚠sql数据查询&#x3D;&#x3D;"></a>&#x3D;&#x3D;3、⚠⚠⚠sql数据查询&#x3D;&#x3D;</h2><h3 id="一般格式"><a href="#一般格式" class="headerlink" title="一般格式"></a>一般格式</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">ALL</span><span class="operator">|</span><span class="keyword">DISTINCT</span>] <span class="operator">&lt;</span>目标列表达式<span class="operator">&gt;</span>[,<span class="operator">&lt;</span>目标列表达式<span class="operator">&gt;</span>]...      #<span class="keyword">ALL</span>为默认设置，即不取消重复值，<span class="keyword">DISTINCT</span>表示取消重复值</span><br><span class="line"><span class="keyword">FROM</span> <span class="operator">&lt;</span>表名或视图名<span class="operator">&gt;</span>[,表名或视图名]...     #<span class="keyword">SELECT</span>子句与<span class="keyword">FROM</span>子句是必选子句</span><br><span class="line">[<span class="keyword">WHERE</span> <span class="operator">&lt;</span>条件表达式<span class="operator">&gt;</span>]</span><br><span class="line">[<span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>列名<span class="number">1</span><span class="operator">&gt;</span>[<span class="keyword">HAVING</span><span class="operator">&lt;</span>条件表达式<span class="operator">&gt;</span>]]</span><br><span class="line">[<span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="operator">&lt;</span>列名<span class="number">2</span><span class="operator">&gt;</span>[<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>]];     #其中，列名<span class="number">2</span>也可以用<span class="keyword">SELECT</span>子句中相应列的序号</span><br></pre></td></tr></table></figure>
 
 <p><strong>含义：</strong></p>
-<p><img src="https://s2.loli.net/2022/05/17/GUvQItYzXHpeOmW.png" alt="image-20220517114258444"></p>
+<p><img data-src="https://s2.loli.net/2022/05/17/GUvQItYzXHpeOmW.png" alt="image-20220517114258444"></p>
 <p><strong>概念性的执行步骤：</strong></p>
 <ul>
 <li>计算出现在FROM后面的表之间的笛卡儿积</li>
@@ -431,13 +454,13 @@
 <li><p>ALL为默认设置 ，即不取消重复值，DISTINCT表示取消重复值</p>
 </li>
 <li><p>&#x3D;&#x3D;聚集函数（只能用于SELECT子句和HAVING子句中 ）&#x3D;&#x3D;</p>
-<p>  <img src="https://s2.loli.net/2022/03/05/YGrdqMfam4Qhb8P.png" alt="image-20220305102158697"></p>
-<p>  <img src="https://s2.loli.net/2022/03/07/xj6qmHkOhKrcvag.png" alt="image-20220307231705848"></p>
+<p>  <img data-src="https://s2.loli.net/2022/03/05/YGrdqMfam4Qhb8P.png" alt="image-20220305102158697"></p>
+<p>  <img data-src="https://s2.loli.net/2022/03/07/xj6qmHkOhKrcvag.png" alt="image-20220307231705848"></p>
 <blockquote>
 <p>当这些函数遇到空值时，除COUNT(*)外，都跳过空值而只处理非空值。</p>
 </blockquote>
 <p>  例子：</p>
-  <img src="https://s2.loli.net/2022/05/17/5Yvk4aWe1JPLMOw.png" alt="image-20220517115836637" style="zoom: 67%;" />
+  <img data-src="https://s2.loli.net/2022/05/17/5Yvk4aWe1JPLMOw.png" alt="image-20220517115836637" style="zoom: 67%;" />
 </li>
 <li><p>&#x3D;&#x3D;算术表达式：&#x3D;&#x3D;  </p>
 <p>  +、-、*、&#x2F;、%、INTEGER（取整）、SQRT（求平方根）、三角函数（SIN、COS）、字符串函数SUBSTRING（取子串）、UPPER（大写字符）、MONTHS_BETWEEN（月份差）</p>
@@ -447,9 +470,9 @@
   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> staffNo, fName, lName, salary<span class="operator">/</span><span class="number">12</span> <span class="keyword">AS</span> monthlySalary <span class="keyword">FROM</span> Staff;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="FROM子句："><a href="#FROM子句：" class="headerlink" title="FROM子句："></a>FROM子句：</h3><p>可以给表指定别名：多个表放在FROM子句中，代表多表进行笛卡尔积</p>
-<p><img src="https://s2.loli.net/2022/05/17/4bpXBmUsKrI3CdH.png" alt="image-20220517120134854"></p>
+<p><img data-src="https://s2.loli.net/2022/05/17/4bpXBmUsKrI3CdH.png" alt="image-20220517120134854"></p>
 <h3 id="WHERE子句："><a href="#WHERE子句：" class="headerlink" title="WHERE子句："></a>WHERE子句：</h3><p>WHERE子句的查询条件可以用多种形式表示： </p>
-<img src="https://s2.loli.net/2022/05/18/X4nGHxUtsuZCcio.png" style="zoom:67%;" />
+<img data-src="https://s2.loli.net/2022/05/18/X4nGHxUtsuZCcio.png" style="zoom:67%;" />
 
 <ul>
 <li><p>比较运算作为查找条件 (&gt;,  &lt;,  &gt;&#x3D;,  &lt;&#x3D;,  &#x3D;,  &lt;&gt;(不等于))</p>
@@ -470,7 +493,7 @@
 <li><p>%: 百分号表示零或多个字符序列（通配符）</p>
 </li>
 <li><p>_: 下划线表示任意单个字符</p>
-  <img src="https://s2.loli.net/2022/03/07/Z52TOHjLlb6tivJ.png" alt="image-20220307230435181" style="zoom:67%;" /></li>
+  <img data-src="https://s2.loli.net/2022/03/07/Z52TOHjLlb6tivJ.png" alt="image-20220307230435181" style="zoom:67%;" /></li>
 </ul>
   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">WHERE</span> sname <span class="keyword">LIKE</span> <span class="string">&#x27;刘%&#x27;</span> <span class="keyword">OR</span> SNAME <span class="keyword">LIKE</span> <span class="string">&#x27;__晓%&#x27;</span>   #一个汉字占两个字符位</span><br></pre></td></tr></table></figure>
 </li>
@@ -493,9 +516,9 @@
 </blockquote>
 <h3 id="ORDER-BY子句"><a href="#ORDER-BY子句" class="headerlink" title="ORDER BY子句"></a>ORDER BY子句</h3><p>order by子句必须放最后用于对最终的查询结果进行排序，<u>不能用在子查询中</u></p>
 <p>该子句后可以跟多个排序的变量名，第一个变量为主序，下面依次类推。&#x3D;&#x3D;ASC（升序）为默认设置&#x3D;&#x3D; 。它也可以用SELECT子句中相应列的序号。</p>
-<img src="https://s2.loli.net/2022/05/17/5Yvk4aWe1JPLMOw.png" alt="image-20220517115836637" style="zoom: 67%;" />
+<img data-src="https://s2.loli.net/2022/05/17/5Yvk4aWe1JPLMOw.png" alt="image-20220517115836637" style="zoom: 67%;" />
 
-<img src="https://s2.loli.net/2022/05/17/GeHg8L1yBXIUpJt.png" alt="image-20220517120939452" style="zoom: 80%;" />
+<img data-src="https://s2.loli.net/2022/05/17/GeHg8L1yBXIUpJt.png" alt="image-20220517120939452" style="zoom: 80%;" />
 
 <h3 id="简单查询"><a href="#简单查询" class="headerlink" title="简单查询"></a>简单查询</h3><p>单表查询</p>
 <ul>
@@ -562,7 +585,7 @@
 </li>
 <li><p>所有带IN谓词、比较运算符、SOME和ALL谓词的子查询都可以用带EXISTS谓词的子查询等价替换，反过来就不一定</p>
 </li>
-<li><p>可以采用双嵌套NOT_EXISTS来实现<strong>带全称量词的查询</strong>。<img src="https://s2.loli.net/2022/03/15/Km17HNji9vZAeGV.png" alt="image-20220315110415416" style="zoom:50%;" /></p>
+<li><p>可以采用双嵌套NOT_EXISTS来实现<strong>带全称量词的查询</strong>。<img data-src="https://s2.loli.net/2022/03/15/Km17HNji9vZAeGV.png" alt="image-20220315110415416" style="zoom:50%;" /></p>
   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#查询选修了全部课程的学生姓名</span><br><span class="line">#转化为查询这样的学生x，没有一门课程y 是x不选修的</span><br><span class="line"><span class="keyword">SELECT</span> SN</span><br><span class="line"><span class="keyword">FROM</span> S     #查询学生x</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>  #不存在课程y</span><br><span class="line">    （<span class="keyword">SELECT</span> ﹡</span><br><span class="line">    <span class="keyword">FROM</span> C</span><br><span class="line">    <span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>  #x不选修课程y</span><br><span class="line">        （<span class="keyword">SELECT</span> ﹡</span><br><span class="line">        <span class="keyword">FROM</span> SC</span><br><span class="line">        <span class="keyword">WHERE</span> S# <span class="operator">=</span> S.S#</span><br><span class="line">        <span class="keyword">AND</span> C# <span class="operator">=</span> C.C#））</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>可以采用NOT EXISTS谓词实现<strong>关系代数的除运算</strong></p>
@@ -570,7 +593,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="https://s2.loli.net/2022/03/14/2srATEC8QOWUzM4.png" alt="image-20220314232322210"></p>
+<p><img data-src="https://s2.loli.net/2022/03/14/2srATEC8QOWUzM4.png" alt="image-20220314232322210"></p>
 <h2 id="4、数据更新"><a href="#4、数据更新" class="headerlink" title="4、数据更新"></a>4、数据更新</h2><h3 id="插入数据：INSERT-（元组级）"><a href="#插入数据：INSERT-（元组级）" class="headerlink" title="插入数据：INSERT （元组级）"></a>插入数据：INSERT （元组级）</h3><p>&#x3D;&#x3D;插入数据时，表定义中说明了NOT NULL的列不能取空值&#x3D;&#x3D; </p>
 <ul>
 <li><p>用<strong>子句</strong>向表中插入数据：将新元组插入表中</p>
@@ -642,7 +665,7 @@
 <li><p>分组视图：用<strong>GROUP BY 子句</strong>定义的视图</p>
 </li>
 <li><p>连接视图：用<strong>连接运算</strong>得到的视图</p>
-<p>  <img src="https://s2.loli.net/2022/03/22/CA4TkBawSpnsgIi.png" alt="image-20220322094759185"></p>
+<p>  <img data-src="https://s2.loli.net/2022/03/22/CA4TkBawSpnsgIi.png" alt="image-20220322094759185"></p>
 </li>
 </ul>
 </li>
@@ -666,18 +689,18 @@
 </li>
 <li><p>将 ORDER BY列名转换为视图定义中对应的列名</p>
 <p>  例子：</p>
-  <img src="https://s2.loli.net/2022/03/22/jVlQaEdt8FD5HcW.png" alt="image-20220322221341006" style="zoom:67%;" />
+  <img data-src="https://s2.loli.net/2022/03/22/jVlQaEdt8FD5HcW.png" alt="image-20220322221341006" style="zoom:67%;" />
 
-  <img src="https://s2.loli.net/2022/03/22/I5TvHtQE4RCPSlk.png" alt="image-20220322221538427" style="zoom: 67%;" />
+  <img data-src="https://s2.loli.net/2022/03/22/I5TvHtQE4RCPSlk.png" alt="image-20220322221538427" style="zoom: 67%;" />
 
-  <img src="https://s2.loli.net/2022/03/22/HOEKyJ3X26nhGs9.png" alt="image-20220322221558073" style="zoom:67%;" /></li>
+  <img data-src="https://s2.loli.net/2022/03/22/HOEKyJ3X26nhGs9.png" alt="image-20220322221558073" style="zoom:67%;" /></li>
 </ul>
 </blockquote>
 </li>
 </ul>
 <blockquote>
 <p>复杂转换：涉及集合函数，考虑HAVING子句等等</p>
-<img src="https://s2.loli.net/2022/03/22/7WcqENUudBsYIMg.png" alt="image-20220322222248720" style="zoom:67%;" />
+<img data-src="https://s2.loli.net/2022/03/22/7WcqENUudBsYIMg.png" alt="image-20220322222248720" style="zoom:67%;" />
 </blockquote>
 <ul>
 <li><p><strong>查询视图的约束：</strong></p>
@@ -743,7 +766,7 @@
 
 <blockquote>
 <p>参照完整性被破坏时可选择的策略：</p>
-<img src="https://s2.loli.net/2022/03/22/N9xBsZtjn5iSdO4.png" alt="image-20220322230658737" style="zoom: 80%;" />
+<img data-src="https://s2.loli.net/2022/03/22/N9xBsZtjn5iSdO4.png" alt="image-20220322230658737" style="zoom: 80%;" />
 </blockquote>
 </li>
 <li><p><strong>一般约束（企业约束）</strong></p>
@@ -751,7 +774,7 @@
 <p>  当完整性约束涉及多个关系或者与聚合操作有关，则可以采用SQL的断言机制来完成</p>
   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> ASSERTION AssertionName</span><br><span class="line"><span class="keyword">CHECK</span> (searchCondition)</span><br><span class="line"></span><br><span class="line">#限制staff不能管理太多的房产</span><br><span class="line"><span class="keyword">CREATE</span> ASSERTION StaffNotHandlingTooMuch</span><br><span class="line"><span class="keyword">CHECK</span> (<span class="keyword">NOT</span> <span class="keyword">EXISTS</span> </span><br><span class="line">           (<span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line">            <span class="keyword">FROM</span> PropertyForRent</span><br><span class="line">            <span class="keyword">GROUP</span> <span class="keyword">BY</span> staffNo</span><br><span class="line">            <span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="operator">&gt;</span> <span class="number">100</span>));</span><br></pre></td></tr></table></figure></li>
 </ul>
-<img src="https://s2.loli.net/2022/03/22/Ihst97CnifNJAq1.png" alt="image-20220322231603163" style="zoom: 67%;" />
+<img data-src="https://s2.loli.net/2022/03/22/Ihst97CnifNJAq1.png" alt="image-20220322231603163" style="zoom: 67%;" />
 
 
 
@@ -889,7 +912,11 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
 
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
@@ -900,7 +927,7 @@
 
 
   
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 

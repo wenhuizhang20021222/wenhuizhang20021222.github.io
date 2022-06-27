@@ -19,7 +19,29 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangwenhui-blog.com.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhangwenhui-blog.com.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","width":300,"display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"bookmark":{"enable":true,"color":"#64CEAA","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+  <div class="weather">
+  <!-- 《添加“心知天气”-->
+  
+    <div id="tp-weather-widget"></div>
+  <script>
+    (function(a,h,g,f,e,d,c,b){b=function(){d=h.createElement(g);c=h.getElementsByTagName(g)[0];d.src=e;d.charset="utf-8";d.async=1;c.parentNode.insertBefore(d,c)};a["SeniverseWeatherWidgetObject"]=f;a[f]||(a[f]=function(){(a[f].q=a[f].q||[]).push(arguments)});a[f].l=+new Date();if(a.attachEvent){a.attachEvent("onload",b)}else{a.addEventListener("load",b,false)}}(window,document,"script","SeniverseWeatherWidget","//cdn.sencdn.com/widget2/static/js/bundle.js?t="+parseInt((new Date().getTime() / 100000000).toString(),10)));
+    window.SeniverseWeatherWidget('show', {
+      flavor: "slim",
+      location: "WX4FBXXFKE4F",
+      geolocation: true,
+      language: "zh-CN",
+      unit: "c",
+      theme: "auto",
+      token: "efb760e3-5326-4f08-839b-122738249a17",
+      hover: "enabled",
+      container: "tp-weather-widget"
+    })
+  </script>
+  
+  <!-- 添加“心知天气”》-->
+  </div>
 
 
 
@@ -249,6 +271,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -366,10 +389,10 @@
 </li>
 <li>&#x3D;&#x3D;控制程序&#x3D;&#x3D; ：控制程序执行过程，防止错误和计算机的不当使用</li>
 </ul>
-<p><img src="https://s2.loli.net/2022/05/13/msaGykqzLiVtrDT.png" alt="image-20220513191418134"></p>
-<p><img src="https://s2.loli.net/2022/05/13/HKJvnRhTVw89bdC.png" alt="image-20220513193433159"></p>
-<p><img src="https://s2.loli.net/2022/05/13/AQW3CRkS6fHpBNw.png" alt="image-20220513192502110"></p>
-<p><img src="https://s2.loli.net/2022/05/13/LiEpfK6Awz8WFvs.png" alt="image-20220513193123123"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/msaGykqzLiVtrDT.png" alt="image-20220513191418134"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/HKJvnRhTVw89bdC.png" alt="image-20220513193433159"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/AQW3CRkS6fHpBNw.png" alt="image-20220513192502110"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/LiEpfK6Awz8WFvs.png" alt="image-20220513193123123"></p>
 <p>联机命令接口 &#x3D; 交互命令接口，如命令行</p>
 <p>脱机命令接口 &#x3D; 批处理命令接口，如*.bat文件</p>
 <p>程序接口：如dll文件，调用dll文件即可进行系统调用，只能通过应用程序间接使用</p>
@@ -395,7 +418,7 @@
 <li><p><strong>异步性（或不确定性）：</strong> 多个作业的执行过程是走走停停的，其执行顺序和每个作业的执行时间是不确定的。</p>
 </li>
 </ul>
-<h2 id="3、操作系统的发展与分类"><a href="#3、操作系统的发展与分类" class="headerlink" title="3、操作系统的发展与分类"></a>3、操作系统的发展与分类</h2><p><img src="https://s2.loli.net/2022/05/13/3AWQXpLSTGkobFC.png" alt="image-20220513201053867"></p>
+<h2 id="3、操作系统的发展与分类"><a href="#3、操作系统的发展与分类" class="headerlink" title="3、操作系统的发展与分类"></a>3、操作系统的发展与分类</h2><p><img data-src="https://s2.loli.net/2022/05/13/3AWQXpLSTGkobFC.png" alt="image-20220513201053867"></p>
 <p>批处理技术是指计算机系统对一批作业自动进行处理的一种技术。</p>
 <p>分类：</p>
 <ul>
@@ -432,7 +455,7 @@
 <li>独立性：用户彼此之间都感觉不到别人也在使用这台计算机，好像只有自己独占计算机一样。</li>
 <li>及时性：用户请求能在很短时间内获得响应。</li>
 </ul>
-<h2 id="4、操作系统的运行机制与体系结构"><a href="#4、操作系统的运行机制与体系结构" class="headerlink" title="4、操作系统的运行机制与体系结构"></a>4、操作系统的运行机制与体系结构</h2><p><img src="https://s2.loli.net/2022/05/13/uCvXRb5ixgc4ep9.png" alt="image-20220513203343485"></p>
+<h2 id="4、操作系统的运行机制与体系结构"><a href="#4、操作系统的运行机制与体系结构" class="headerlink" title="4、操作系统的运行机制与体系结构"></a>4、操作系统的运行机制与体系结构</h2><p><img data-src="https://s2.loli.net/2022/05/13/uCvXRb5ixgc4ep9.png" alt="image-20220513203343485"></p>
 <blockquote>
 <p>用程序状态字寄存器（PSW， program status word）中的某标志位来标识当前处理器处于什么状态。如0为用户态，1为核心态</p>
 </blockquote>
@@ -457,26 +480,26 @@
 <li><p><strong>模块结构（整体式结构）</strong>：将内核划分为一个个独立的模块，模块之间相互调用。效率高但是结构不清晰，访问控制困难</p>
 </li>
 <li><p><strong>层次结构</strong>：一种特殊的模块结构。将内核划分为一系列相互依赖的层次，每个层次也可以分解为一系列更小的模块。</p>
-<p>  <img src="https://s2.loli.net/2022/03/04/2PkGeSmIBXyOTai.png"></p>
+<p>  <img data-src="https://s2.loli.net/2022/03/04/2PkGeSmIBXyOTai.png"></p>
 </li>
 <li><p><strong>微内核结构</strong></p>
 </li>
 </ul>
-<p><img src="https://s2.loli.net/2022/05/13/OzmplexJuwFcj24.png" alt="image-20220513202231353"></p>
-<p><img src="https://s2.loli.net/2022/05/13/7S4E6d3gHUeNlpI.png" alt="image-20220513202617422"></p>
-<h2 id="5、中断和异常"><a href="#5、中断和异常" class="headerlink" title="5、中断和异常"></a>5、中断和异常</h2><p><img src="https://s2.loli.net/2022/05/13/ojrdODLXqEezi3G.png" alt="image-20220513205554625"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/OzmplexJuwFcj24.png" alt="image-20220513202231353"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/7S4E6d3gHUeNlpI.png" alt="image-20220513202617422"></p>
+<h2 id="5、中断和异常"><a href="#5、中断和异常" class="headerlink" title="5、中断和异常"></a>5、中断和异常</h2><p><img data-src="https://s2.loli.net/2022/05/13/ojrdODLXqEezi3G.png" alt="image-20220513205554625"></p>
 <p>&#x3D;&#x3D;用户态 → 核心态是通过中断实现的，并且中断是唯一途径&#x3D;&#x3D;</p>
 <p>&#x3D;&#x3D;核心态 → 用户态的切换是通过执行一个特权指令，将程序状态字（PSW）的标志位设置为“用户态”&#x3D;&#x3D;</p>
-<p><img src="https://s2.loli.net/2022/05/13/twndlTegkLJ6x9X.png" alt="image-20220513205029547"></p>
-<p><img src="https://s2.loli.net/2022/05/13/EYTzjIOvW7drqfx.png" alt="image-20220513205136837"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/twndlTegkLJ6x9X.png" alt="image-20220513205029547"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/EYTzjIOvW7drqfx.png" alt="image-20220513205136837"></p>
 <p><strong>外中断的处理过程：</strong></p>
-<p><img src="https://s2.loli.net/2022/05/13/oRmXYrNvBUkTgfI.png" alt="image-20220513205420243"></p>
-<h2 id="6、系统调用"><a href="#6、系统调用" class="headerlink" title="6、系统调用"></a>6、系统调用</h2><p><img src="https://s2.loli.net/2022/05/13/xzmwb1KdrT5MIsp.png" alt="image-20220513213014300"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/oRmXYrNvBUkTgfI.png" alt="image-20220513205420243"></p>
+<h2 id="6、系统调用"><a href="#6、系统调用" class="headerlink" title="6、系统调用"></a>6、系统调用</h2><p><img data-src="https://s2.loli.net/2022/05/13/xzmwb1KdrT5MIsp.png" alt="image-20220513213014300"></p>
 <p>系统调用是操作系统提供给应用程序（程序员&#x2F;编程人员）使用的接口，可以理解为一种可供应用程序调用的特殊函数，应用程序可以发出系统调用请求来获得操作系统的服务。</p>
 <p>系统调用与库函数的区别：</p>
-<p><img src="https://s2.loli.net/2022/05/13/tK9mNhM6OdzepCP.png" alt="image-20220513211951839"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/tK9mNhM6OdzepCP.png" alt="image-20220513211951839"></p>
 <p>系统调用背后的过程：</p>
-<p><img src="https://s2.loli.net/2022/05/13/obNKP1RrQt9sBuV.png" alt="image-20220513212751507"></p>
+<p><img data-src="https://s2.loli.net/2022/05/13/obNKP1RrQt9sBuV.png" alt="image-20220513212751507"></p>
 <p>中断、异常和系统调用：</p>
 <table>
 <thead>
@@ -524,7 +547,7 @@
 <p>Job3：CPU(30ms)、I1(20ms)</p>
 <p>如果CPU、I1和I2都能并行工作，优先级从高到低为Job1、Job2和Job3，优先级高的作业可以抢占优先级低的作业的CPU。试求：(1)每个作业从投入到完成分别所需的时间。(2) 每个作业投入到完成CPU的利用率。(3)I&#x2F;O设备利用率。</p>
 <p><strong>答：</strong>画出三个作业并行工作图如下(图中着色部分为作业等待时间)：</p>
-<p><img src="https://s2.loli.net/2022/05/14/FxBnaZuVIQ8Nhe7.png" alt="img"></p>
+<p><img data-src="https://s2.loli.net/2022/05/14/FxBnaZuVIQ8Nhe7.png" alt="img"></p>
 <p>(1) Job1从投入到运行完成需80ms，Job2从投入到运行完成需90ms，Job3从投入到运行完成需90ms。</p>
 <p>(2) CPU空闲时间段为：60ms至70ms，80ms至90ms。所以CPU利用率为(90-20)&#x2F;90&#x3D;77.78%。</p>
 <p>(3) 设备I1空闲时间段为：20ms至40ms，故I1的利用率为(90-20)&#x2F;90&#x3D;77.78%。设备I2空闲时间段为：30ms至50ms，故I2的利用率为(90-20)&#x2F;90&#x3D;77.78%。</p>
@@ -535,10 +558,10 @@
 <p>如果三道程序都使用相同设备进行I&#x2F;O(即程序用串行方式使用设备，调度开销忽略不计)。试分别画出单道和多道运行的时间关系图。两种情况下，CPU的平均利用率各为多少?</p>
 <p><strong>答</strong>：分别画出单道和多道运行的时间图</p>
 <p>(1) 单道运行时间关系图</p>
-<p>  <img src="https://s2.loli.net/2022/05/14/FhG1CTOSvzJu8EM.png" alt="img"></p>
+<p>  <img data-src="https://s2.loli.net/2022/05/14/FhG1CTOSvzJu8EM.png" alt="img"></p>
 <p>单道总运行时间为190ms。CPU利用率为(190-80)&#x2F;190&#x3D;57.9%</p>
 <p>(2) 多道运行时间关系图</p>
-<p>  <img src="https://s2.loli.net/2022/05/14/vworFI23sGiWeKp.png" alt="img"></p>
+<p>  <img data-src="https://s2.loli.net/2022/05/14/vworFI23sGiWeKp.png" alt="img"></p>
 <p>多道总运行时间为140ms。CPU利用率为(140-30)&#x2F;140&#x3D;78.6%</p>
 
     </div>
@@ -632,7 +655,11 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
 
   
 <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
@@ -643,7 +670,7 @@
 
 
   
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
 
