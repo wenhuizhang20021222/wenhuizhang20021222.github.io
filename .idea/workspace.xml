@@ -11,6 +11,7 @@
       <change afterPath="$PROJECT_DIR$/themes/next/source/images/zrn.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/themes/next/source/js/fairyDustCursor.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/themes/next/source/js/fireworks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/next/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/_config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/next/layout/_layout.njk" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_layout.njk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/next/layout/_macro/post.njk" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/layout/_macro/post.njk" afterDir="false" />
@@ -70,7 +71,7 @@
       <workItem from="1655861226338" duration="1025000" />
       <workItem from="1655947842389" duration="1609000" />
       <workItem from="1655955176255" duration="51366000" />
-      <workItem from="1656334150685" duration="1596000" />
+      <workItem from="1656334150685" duration="2192000" />
     </task>
     <servers />
   </component>
