@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "md5": "^2.3.0",
-    "moment": "^2.29.3",
+    "moment": "^2.29.4",
     "request": "^2.88.2",
     "xml-parser": "^1.2.1"
   }
